@@ -121,6 +121,8 @@ export class BlockchainExplorer extends Component {
         msg: 'dashboard.epochsMsg',
       }];
     }
+
+    // Sets empty array return value to hold dashboard info. Dashboard is the info to the right of plasmaball
     const retval = [];
     retval.push({
       title: t('dashboard.blocks'),
@@ -177,30 +179,51 @@ export class BlockchainExplorer extends Component {
     const currentProducer = consensusMetrics.latestBlockProducer;
     const candidates = consensusMetrics.candidates || [];
     let plasmaBall = null;
-    let votes = null;
-    if (this.props.chainId === 1) {
-      plasmaBall = (
-        <div className='column is-half'>
-          <div className='box-custom' style='width: 100%;height:100%;min-height:300px'>
-            <div>
-              <h1 className='title roll-dpos-title'>{t('rolldpos:title')}</h1>
-              <ToolTip
-                iconClass={'fas fa-question-circle'}
-                message={t('rolldpos:msg')}
-                customPadClass={'rollDpos-tooltip'}
-              />
-            </div>
-            <PlasmaBall
-              delegates={delegates.sort()}
-              currentProducer={currentProducer}
-              offline={[]}
-              candidates={candidates.sort()}
-            />
-          </div>
-        </div>
-      );
-      votes = (
-        <div className='column'>
+    // if (this.props.chainId === 1) {
+    //   plasmaBall = (
+    //     <div className='column is-half'>
+    //       <div className='box-custom' style='width: 100%;height:100%;min-height:300px'>
+    //         <div>
+    //           <h1 className='title roll-dpos-title'>{t('rolldpos:title')}</h1>
+    //           <ToolTip
+    //             iconClass={'fas fa-question-circle'}
+    //             message={t('rolldpos:msg')}
+    //             customPadClass={'rollDpos-tooltip'}
+    //           />
+    //         </div>
+    //         <PlasmaBall
+    //           delegates={delegates.sort()}
+    //           currentProducer={currentProducer}
+    //           offline={[]}
+    //           candidates={candidates.sort()}
+    //         />
+    //       </div>
+    //     </div>
+    //   );
+    //   votes = (
+    //     <div className='column'>
+    //       <SingleColTable
+    //         title={t('latestVotes.title')}
+    //         items={this.props.votes.items}
+    //         fetching={this.props.votes.fetching}
+    //         error={this.props.votes.error}
+    //         offset={this.props.votes.offset}
+    //         count={this.props.votes.count}
+    //         fetch={this.props.fetchVotes}
+    //         tip={this.props.votes.tip}
+    //         name={t('votes.title')}
+    //         displayViewMore={true}>
+    //         <VotesListOnlyId
+    //           votes={this.props.votes.items}
+    //           width={this.props.width}
+    //           isHome={true}
+    //         />
+    //       </SingleColTable>
+    //     </div>
+    //   );
+    // }
+
+      let votes = (
           <SingleColTable
             title={t('latestVotes.title')}
             items={this.props.votes.items}
@@ -218,31 +241,9 @@ export class BlockchainExplorer extends Component {
               isHome={true}
             />
           </SingleColTable>
-        </div>
       );
-    }
 
-    return (
-      <div className='container'>
-        <Helmet
-          title={`${t('blockchainExplorer.title')} - IoTeX`}
-        />
-        <div className='column'>
-          <div className='columns'>
-            {plasmaBall}
-            <Dashboard
-              stats={this.formStats(
-                this.props.chainId,
-                consensusMetrics ? (consensusMetrics.latestEpoch || 0) : 0,
-                this.props.statistic,
-              )}
-            />
-          </div>
-        </div>
-        <br></br>
-        <div className='column'>
-          <div className='columns'>
-            <div className='column'>
+      let blocks = (
               <SingleColTable
                 title={t('latestBlocks.title')}
                 items={this.props.blocks.items}
@@ -260,28 +261,30 @@ export class BlockchainExplorer extends Component {
                   isHome={true}
                 />
               </SingleColTable>
-            </div>
-            <div className='column'>
-              <SingleColTable
-                title={t('latestExecutions.title')}
-                items={this.props.executions.items}
-                fetching={this.props.executions.fetching}
-                error={this.props.executions.error}
-                offset={this.props.executions.offset}
-                count={this.props.executions.count}
-                fetch={this.props.executions}
-                tip={this.props.executions.tip}
-                name={t('meta.executions')}
-                displayViewMore={true}>
-                <ExecutionsListOnlyId
-                  executions={this.props.executions.items}
-                  width={this.props.width}
-                  isHome={true}
-                />
-              </SingleColTable>
-            </div>
-            <div className='column'>
-              <SingleColTable
+      );
+
+      let executions = (
+        <SingleColTable
+        title={t('latestExecutions.title')}
+        items={this.props.executions.items}
+        fetching={this.props.executions.fetching}
+        error={this.props.executions.error}
+        offset={this.props.executions.offset}
+        count={this.props.executions.count}
+        fetch={this.props.executions}
+        tip={this.props.executions.tip}
+        name={t('meta.executions')}
+        displayViewMore={true}>
+        <ExecutionsListOnlyId
+          executions={this.props.executions.items}
+          width={this.props.width}
+          isHome={true}
+        />
+      </SingleColTable>
+      );
+
+      let transfers = (
+        <SingleColTable
                 title={t('latestTransfers.title')}
                 items={this.props.transfers.items}
                 fetching={this.props.transfers.fetching}
@@ -298,8 +301,40 @@ export class BlockchainExplorer extends Component {
                   isHome={true}
                 />
               </SingleColTable>
+      );
+
+    return (
+      <div className='container'>
+        <Helmet
+          title={`IoTxplorer - the IoTeX search engine`}
+        />
+        <div className='column'>
+          <div className='columns'>
+            {plasmaBall}
+            <Dashboard
+              stats={this.formStats(
+                this.props.chainId,
+                consensusMetrics ? (consensusMetrics.latestEpoch || 0) : 0,
+                this.props.statistic,
+              )}
+            />
+          </div>
+        </div>
+        <br></br>
+        <div className='column'>
+          <div className='columns'>
+            <div className='column'>
+              {blocks}
+            </div>  
+            <div className='column'>
+              {executions}
             </div>
-            {votes}
+            <div className='column'>
+              {transfers}
+            </div>
+            <div className='column'>
+              {votes}
+            </div>
           </div>
         </div>
         <CommonMargin/>
