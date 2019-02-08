@@ -7,6 +7,7 @@ import window from 'global/window';
 import {t} from '../../lib/iso-i18n';
 import {fonts} from './styles/style-font';
 import {ellipsisText} from './utils';
+import { SITE_URL } from './site-url';
 
 type Breadcrumb = {
   name: string,
@@ -41,6 +42,7 @@ export class Breadcrumbs extends Component {
     super(props);
     this.state = {
       url: '',
+      homepage: null,
     };
   }
 
@@ -82,6 +84,8 @@ export class Breadcrumbs extends Component {
   }
 }
 
+
+
 export function notClickablePath(p: string): boolean {
   for (let i = 0; i < _restrictedPaths.length; i++) {
     if (p === _restrictedPaths[i]) {
@@ -94,5 +98,5 @@ export function notClickablePath(p: string): boolean {
 const BreadCrumbStyle = styled('div', props => ({
   ...fonts.body,
   paddingTop: '50px',
-  marginBottom: '2rem',
+  marginBottom: '0rem',
 }));
