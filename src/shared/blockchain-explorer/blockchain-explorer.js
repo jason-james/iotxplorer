@@ -307,7 +307,7 @@ export class BlockchainExplorer extends Component {
       );
 
     return (
-      <body>
+      <section>
         <Helmet
           title={`IoTxplorer - the IoTeX search engine`}
         />
@@ -348,7 +348,7 @@ export class BlockchainExplorer extends Component {
           <CommonMargin/>
         </div>
 
-      </body>
+      </section>
     );
   }
 }
