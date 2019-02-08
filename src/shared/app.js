@@ -52,9 +52,6 @@ export class App extends Component {
           width={this.props.width}
         />
         <div style={{minHeight: '100vh'}}>
-          <TitleContainer
-            status={this.props.status}
-          />
           {children}
         </div>
         <CookieConsentContainer content={t('other.cookie.content')} accept={t('other.cookie.accept')}/>

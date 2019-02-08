@@ -113,18 +113,17 @@ export class Nav extends Component {
     return (
       <div className='navbar is-fixed-top' role='navigation'>
         <NavWrapper>
-          <nav className='navbar is-black'>
+          <nav className='navbar is-primary'>
             <div className='container'>
               <div className='navbar-brand'>
-                <a className='navbar-item' href={IOTEX_URL}>
+                <a className='navbar-item' href={SITE_URL}>
                   <img
-                    src={assetURL('/logo.svg')}
+                    src={assetURL('/dark-iotxplorer-logo.png')}
                     alt='IoTeX Explorer'
-                    width='112'
-                    height='28'
+                    width='120'
+                    height='29'
                   />
                 </a>
-                <a className='navbar-item' href={SITE_URL}>{t('nav.explorer')}</a>
                 <div
                   className={`navbar-burger burger ${this.state.displayDropdownMenu ? 'is-active' : ''}`}
                   data-target='navMenuColordark-example'
@@ -135,43 +134,25 @@ export class Nav extends Component {
                   <span aria-hidden='true'/>
                 </div>
               </div>
-              <div id='navMenuColordark-example'
-                className={`navbar-menu ${this.state.displayDropdownMenu ? 'is-active' : ''}`}
+              <div
+                className={`navbar-menu is-primary ${this.state.displayDropdownMenu ? 'is-active' : ''}`}
               >
                 <div className='navbar-end'>
                   <div className='navbar-item has-dropdown is-hoverable'>
-                    <p className='navbar-link'>Tools</p>
+                    <p className='navbar-link'>Blockchain</p>
                     <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
-                      <a className='navbar-item' href={EXECUTIONS.INDEX}>{t('meta.executions')}</a>
-                      <a className='navbar-item' href={TRANSFERS.INDEX}>{t('meta.transfers')}</a>
-                      <a className='navbar-item' href={BLOCKS.INDEX}>{t('meta.blocks')}</a>
-                      <a className='navbar-item' href={VOTES.INDEX}>{t('meta.votes')}</a>
+                      <a className='navbar-item nav-dropdown-item' href={EXECUTIONS.INDEX}>{t('meta.executions')}</a>
+                      <a className='navbar-item nav-dropdown-item' href={TRANSFERS.INDEX}>{t('meta.transfers')}</a>
+                      <a className='navbar-item nav-dropdown-item' href={BLOCKS.INDEX}>{t('meta.blocks')}</a>
+                      <a className='navbar-item nav-dropdown-item' href={VOTES.INDEX}>{t('meta.votes')}</a>
                     </div>
                   </div>
-                  <div className='navbar-item'>
-                    <a className='navbar-item' href={WALLET.INDEX}>{t('meta.account')}</a>
-                  </div>
-                  <div className='navbar-item'>
-                    <form onSubmit={e => this.handleSubmit(e)} ref={r => (this._form = r)}>
-                      <div className='field has-addons'>
-                        <NavWrapper className='control'>
-                          <input name='search'
-                            className={`input ${this.state.error === true ? 'is-danger' : ''}`}
-                            type='text'
-                            style='min-width: 350px'
-                            placeholder={t('nav.fuzzy.search.placeholder')}
-                            onChange={() => {
-                              this.setState({error: false});
-                            }}
-                          />
-                        </NavWrapper>
-                        <div className='control'>
-                          <button className='button'>
-                            <i className='fas fa-search'/>
-                          </button>
-                        </div>
-                      </div>
-                    </form>
+                  <div className='navbar-item has-dropdown is-hoverable'>
+                    <p className='navbar-link'>Resources</p>
+                    <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
+                      <a className='navbar-item nav-dropdown-item' href={WALLET.INDEX}>{t('meta.account')}</a>
+                      <a className='navbar-item nav-dropdown-item' href={SITE_URL}>{'PLACEHOLDER'}</a> 
+                    </div>
                   </div>
 
                   <div className='navbar-item has-dropdown is-hoverable'>
@@ -180,7 +161,7 @@ export class Nav extends Component {
                     </p>
                     <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
                       {chains.map((c, i) => (
-                        <a target='_blank' rel='noopener noreferrer' key={i} className='navbar-item' href={c.url + path}>
+                        <a target='_blank' rel='noopener noreferrer' key={i} className='navbar-item nav-dropdown-item' href={c.url + path}>
                           <Icon/>{c.name}
                         </a>
                       ))}
@@ -193,9 +174,9 @@ export class Nav extends Component {
           </nav>
           <div className='info-bar nav-price'>
             <div className='content has-text-centered'>
-              <div className='columns is-mobile' style={{marginTop: '0rem'}}>
+              <div className='columns is-mobile is-multiline is-centered' style={{marginTop: '0rem'}}>
                 <div
-                  className='column is-one-third nav-price-col'>IOTX/BTC: {this.props.price ? this.props.price.btc : 'N/A'}</div>
+                  className='column nav-price-col'>IOTX/BTC: {this.props.price ? this.props.price.btc : 'N/A'}</div>
                 <div
                   className='column nav-price-col'>IOTX/ETH: {this.props.price ? this.props.price.eth : 'N/A'}</div>
                 <div

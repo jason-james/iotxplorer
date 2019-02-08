@@ -4,42 +4,20 @@ import Component from 'inferno-component';
 import {connect} from 'inferno-redux';
 import document from 'global/document';
 import window from 'global/window';
+import {assetURL} from '../../lib/asset-url';
+
 
 class IotexExplorerTitle extends Component {
-  props: {
-    status: string,
-  };
-
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      fetchLive: 0,
-    };
-  }
-
-  componentWillUnmount() {
-    window.clearInterval(this.state.fetchLive);
-  }
-
-  componentDidMount() {
-    const fetchLive = window.setInterval(() => this.flash(), 500);
-    this.setState({fetchLive});
-  }
-
-  flash() {
-    const tag = document.getElementsByClassName('live-tag-icon')[0];
-    tag.style.visibility = tag.style.visibility === 'hidden' ? 'visible' : 'hidden';
-  }
 
   render() {
     return (
-      <div className='column container main-title-wrap'>
-        <h1 className='title main-title'>IoTeX.Explorer</h1>
-        <span className='live-tag'>
-          <i className='fas fa-circle live-tag-icon'/>
-          <span className='live-tag-text'>{this.props.status}</span>
-        </span>
-        <br/>
+      <div className='column container landing-image' style={{textAlign: 'center'}}>
+        <img
+          src={assetURL('/light-iotxplorer-logo.png')}
+          alt='iotxplorer'
+          width='600'
+          height='144'
+        /><br/>
         <small className='version-text'>{`version ${this.props.version}`}</small>
       </div>
     );

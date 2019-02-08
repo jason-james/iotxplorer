@@ -22,6 +22,9 @@ import type {TConsensusMetrics} from '../../entities/explorer-types';
 import {ToolTip} from '../common/tooltip';
 import type {TExecution} from '../../entities/explorer-types';
 import {Dashboard} from './dashboard';
+import { SearchBar } from './search-bar';
+import {TitleContainer} from '../common/iotex-explorer-title';
+
 
 type PropsType = {
   statistic: TCoinStatistic,
@@ -223,7 +226,7 @@ export class BlockchainExplorer extends Component {
     //   );
     // }
 
-      let votes = (
+      let votesTable = (
           <SingleColTable
             title={t('latestVotes.title')}
             items={this.props.votes.items}
@@ -243,7 +246,7 @@ export class BlockchainExplorer extends Component {
           </SingleColTable>
       );
 
-      let blocks = (
+      let blocksTable = (
               <SingleColTable
                 title={t('latestBlocks.title')}
                 items={this.props.blocks.items}
@@ -263,7 +266,7 @@ export class BlockchainExplorer extends Component {
               </SingleColTable>
       );
 
-      let executions = (
+      let executionsTable = (
         <SingleColTable
         title={t('latestExecutions.title')}
         items={this.props.executions.items}
@@ -283,7 +286,7 @@ export class BlockchainExplorer extends Component {
       </SingleColTable>
       );
 
-      let transfers = (
+      let transfersTable = (
         <SingleColTable
                 title={t('latestTransfers.title')}
                 items={this.props.transfers.items}
@@ -304,41 +307,48 @@ export class BlockchainExplorer extends Component {
       );
 
     return (
-      <div className='container'>
+      <body>
         <Helmet
           title={`IoTxplorer - the IoTeX search engine`}
         />
-        <div className='column'>
-          <div className='columns'>
-            {plasmaBall}
-            <Dashboard
-              stats={this.formStats(
-                this.props.chainId,
-                consensusMetrics ? (consensusMetrics.latestEpoch || 0) : 0,
-                this.props.statistic,
-              )}
-            />
-          </div>
-        </div>
-        <br></br>
-        <div className='column'>
-          <div className='columns'>
-            <div className='column'>
-              {blocks}
-            </div>  
-            <div className='column'>
-              {executions}
-            </div>
-            <div className='column'>
-              {transfers}
-            </div>
-            <div className='column'>
-              {votes}
+        <div className='container'><TitleContainer/></div>
+
+        <div className='container is-fluid'><SearchBar/></div>
+
+        <div className='container' style={{marginTop:'64px'}}>
+          <div className='column'>
+            <div className='columns'>
+              {plasmaBall}
+              <Dashboard
+                stats={this.formStats(
+                  this.props.chainId,
+                  consensusMetrics ? (consensusMetrics.latestEpoch || 0) : 0,
+                  this.props.statistic,
+                )}
+              />
             </div>
           </div>
+          <br></br>
+          <div className='column'>
+            <div className='columns'>
+              <div className='column'>
+                {blocksTable}
+              </div>  
+              <div className='column'>
+                {executionsTable}
+              </div>
+              <div className='column'>
+                {transfersTable}
+              </div>
+              <div className='column'>
+                {votesTable}
+              </div>
+            </div>
+          </div>
+          <CommonMargin/>
         </div>
-        <CommonMargin/>
-      </div>
+
+      </body>
     );
   }
 }
