@@ -1,3 +1,9 @@
+
+.main-search-bar {
+  margin-top: 8px;
+  text-align: center;
+  }
+
 .box-custom {
   background-color: #151b21 !important;
   border-width: 1px;
@@ -170,8 +176,12 @@
 }
 
 // Navbar
-.navbar-menu, .navbar-dropdown {
-  background-color: #0a0a0a;
+.navbar-menu, .navbar-item {
+  background-color: #00d1b2;
+}
+
+.navbar-dropdown, .nav-dropdown-item {
+  background-color: #4c4c4c;
   color: #ffffff;
 }
 
@@ -190,11 +200,12 @@ a.navbar-item:hover {
 }
 
 .nav-price {
-  background-color: #1a2733;
+  background-color: #383737;
   color: #ffffff;
 }
 
 .nav-price-col {
+  background-color: #383737;
   padding: 0.2rem;
 }
 
@@ -274,10 +285,6 @@ a.navbar-item:hover {
 }
 
 // Navbar
-.navbar-menu, .navbar-dropdown {
-  background-color: #0a0a0a;
-  color: #ffffff;
-}
 
 a.navbar-item:hover, .navbar-link:hover {
   color: #73fbe1 !important;
