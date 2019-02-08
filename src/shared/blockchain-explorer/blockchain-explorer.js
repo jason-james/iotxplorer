@@ -316,33 +316,39 @@ export class BlockchainExplorer extends Component {
         <div className='container is-fluid'><SearchBar/></div>
 
         <div className='container' style={{marginTop:'64px'}}>
-          <div className='column'>
-            <div className='columns'>
-              {plasmaBall}
-              <Dashboard
-                stats={this.formStats(
-                  this.props.chainId,
-                  consensusMetrics ? (consensusMetrics.latestEpoch || 0) : 0,
-                  this.props.statistic,
-                )}
-              />
-            </div>
+          <div className='card'>
+            <div className='card-content'>
+              <div className='column'>
+                <div className='columns'>
+                  <Dashboard
+                    stats={this.formStats(
+                      this.props.chainId,
+                      consensusMetrics ? (consensusMetrics.latestEpoch || 0) : 0,
+                      this.props.statistic,
+                    )}
+                  />
+                </div>
+              </div>
+          </div>
           </div>
           <br></br>
-          <div className='column'>
-            <div className='columns'>
+           <div className='card'>
+            <div className='card-content'></div>
               <div className='column'>
-                {blocksTable}
-              </div>  
-              <div className='column'>
-                {executionsTable}
-              </div>
-              <div className='column'>
-                {transfersTable}
-              </div>
-              <div className='column'>
-                {votesTable}
-              </div>
+                <div className='columns'>
+                  <div className='column'>
+                    {blocksTable}
+                  </div>  
+                  <div className='column'>
+                    {executionsTable}
+                  </div>
+                  <div className='column'>
+                    {transfersTable}
+                  </div>
+                  <div className='column'>
+                    {votesTable}
+                  </div>
+                </div>
             </div>
           </div>
           <CommonMargin/>

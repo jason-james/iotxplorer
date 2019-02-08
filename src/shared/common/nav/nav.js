@@ -116,7 +116,7 @@ export class Nav extends Component {
           <nav className='navbar is-primary'>
             <div className='container'>
               <div className='navbar-brand'>
-                <a className='navbar-item' href={SITE_URL}>
+                <a className='navbar-item small-nav-logo' href={SITE_URL}>
                   <img
                     src={assetURL('/dark-iotxplorer-logo.png')}
                     alt='IoTeX Explorer'
