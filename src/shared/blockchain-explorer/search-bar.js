@@ -62,7 +62,7 @@ export class SearchBar extends Component {
     return (
       <form onSubmit={e => this.handleSubmit(e)} ref={r => (this._form = r)}>
         <div className='field has-addons'>
-          <div className='container main-search-bar'>
+          <div className='container main-search-bar has-addons'>
             <input name='search'
             className={`input ${this.state.error === true ? 'is-danger' : ''}`}
             type='text'

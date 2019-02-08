@@ -311,12 +311,17 @@ export class BlockchainExplorer extends Component {
         <Helmet
           title={`IoTxplorer - the IoTeX search engine`}
         />
+        <div className='section' style={{padding: '0rem', margin: '0rem'}} >
         <div className='container'><TitleContainer/></div>
+        </div>
 
+        <div className='section' style={{padding: '0rem', margin: '0rem'}} >
         <div className='container is-fluid'><SearchBar/></div>
+        </div>
 
+        <div className='section' style={{padding: '0px', margin: '0rem'}}>
         <div className='container' style={{marginTop:'64px'}}>
-          <div className='card'>
+          <div className='card' style={{padding: '1rem'}}>
             <div className='card-content'>
               <div className='column'>
                 <div className='columns'>
@@ -331,9 +336,15 @@ export class BlockchainExplorer extends Component {
               </div>
           </div>
           </div>
+          <CommonMargin/>
+          </div>
+          </div>
           <br></br>
-           <div className='card'>
-            <div className='card-content'></div>
+          
+          <div className='section' style={{backgroundColor: '#f0f2f7', padding: '24px', margin: '0rem'}}>
+          <div className='container'>
+           <div className='card' style={{padding: '1rem'}}>
+            <div className='card-content'>
               <div className='column'>
                 <div className='columns'>
                   <div className='column'>
@@ -352,6 +363,8 @@ export class BlockchainExplorer extends Component {
             </div>
           </div>
           <CommonMargin/>
+        </div>
+        </div>
         </div>
 
       </section>
