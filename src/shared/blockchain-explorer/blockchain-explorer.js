@@ -319,7 +319,7 @@ export class BlockchainExplorer extends Component {
         </div>
 
         <div className='section' style={{padding: '0px', margin: '0rem'}}>
-        <div className='container' style={{marginTop:'64px'}}>
+        <div className='container' style={{marginTop:'42px'}}>
           <div className='card'>
             <div className='card-content'>
               <div className='column'>

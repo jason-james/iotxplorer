@@ -1,7 +1,4 @@
 
-.small-nav-logo:hover {
-  background-color: #00d1b2;
-}
 
 .main-search-bar {
   margin-top: 8px;
@@ -194,7 +191,7 @@
   color: #ffffff !important;
 }
 
-a.navbar-item:hover {
+a.navbar-item:not(.small-nav-logo):hover {
   background-color: #0a0a0a !important;
   color: #73fbe1 !important;
 }
@@ -290,7 +287,7 @@ a.navbar-item:hover {
 
 // Navbar
 
-a.navbar-item:hover, .navbar-link:hover {
+a.navbar-item:not(.small-nav-logo):hover, .navbar-link:hover {
   color: #73fbe1 !important;
 }
 

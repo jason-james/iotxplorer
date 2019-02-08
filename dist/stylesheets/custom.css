@@ -1,6 +1,3 @@
-.small-nav-logo:hover {
-  background-color: #00d1b2; }
-
 .main-search-bar {
   margin-top: 8px;
   text-align: center; }
@@ -153,7 +150,7 @@
   background-color: #0a0a0a !important;
   color: #ffffff !important; }
 
-a.navbar-item:hover {
+a.navbar-item:not(.small-nav-logo):hover {
   background-color: #0a0a0a !important;
   color: #73fbe1 !important; }
 
@@ -231,7 +228,7 @@ a.navbar-item:hover {
   right: 0;
   z-index: 10; }
 
-a.navbar-item:hover, .navbar-link:hover {
+a.navbar-item:not(.small-nav-logo):hover, .navbar-link:hover {
   color: #73fbe1 !important; }
 
 .navbar-item, .navbar-link {
