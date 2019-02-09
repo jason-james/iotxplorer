@@ -26,6 +26,7 @@ import { SearchBar } from './search-bar';
 import {TitleContainer} from '../common/iotex-explorer-title';
 import { Tabs } from './Tabs'
 import { Tab } from './Tab'
+import { MarketDashboard } from './market-dashboard';
 
 
 type PropsType = {
@@ -184,124 +185,168 @@ export class BlockchainExplorer extends Component {
     return retval;
   }
 
-  // eslint-disable-next-line complexity
-  render() {
-    const consensusMetrics = this.props.consensus && this.props.consensus.metrics || {};
-    const delegates = consensusMetrics.latestDelegates || [];
-    const currentProducer = consensusMetrics.latestBlockProducer;
-    const candidates = consensusMetrics.candidates || [];
-    let plasmaBall = null;
-    const tabList = [
-      {
-        name: 'Market',
-      },
-      {
-        name: 'Blockchain',
-      },
-    ]
-    // if (this.props.chainId === 1) {
-    //   plasmaBall = (
-    //     <div className='column is-half'>
-    //       <div className='box-custom' style='width: 100%;height:100%;min-height:300px'>
-    //         <div>
-    //           <h1 className='title roll-dpos-title'>{t('rolldpos:title')}</h1>
-    //           <ToolTip
-    //             iconClass={'fas fa-question-circle'}
-    //             message={t('rolldpos:msg')}
-    //             customPadClass={'rollDpos-tooltip'}
-    //           />
-    //         </div>
-    //         <PlasmaBall
-    //           delegates={delegates.sort()}
-    //           currentProducer={currentProducer}
-    //           offline={[]}
-    //           candidates={candidates.sort()}
-    //         />
-    //       </div>
-    //     </div>
-    //   );
-    //
-    // }
 
-      let votesTable = (
+  renderContent() {
+
+ 
+      const consensusMetrics = this.props.consensus && this.props.consensus.metrics || {};
+      const delegates = consensusMetrics.latestDelegates || [];
+      const currentProducer = consensusMetrics.latestBlockProducer;
+      const candidates = consensusMetrics.candidates || [];
+      let plasmaBall = null;
+      const tabList = [
+        {
+          name: 'Market',
+        },
+        {
+          name: 'Blockchain',
+        },
+      ]
+   
+        let votesTable = (
+            <SingleColTable
+              title={t('latestVotes.title')}
+              items={this.props.votes.items}
+              fetching={this.props.votes.fetching}
+              error={this.props.votes.error}
+              offset={this.props.votes.offset}
+              count={this.props.votes.count}
+              fetch={this.props.fetchVotes}
+              tip={this.props.votes.tip}
+              name={t('votes.title')}
+              displayViewMore={true}>
+              <VotesListOnlyId
+                votes={this.props.votes.items}
+                width={this.props.width}
+                isHome={true}
+              />
+            </SingleColTable>
+        );
+  
+        let blocksTable = (
+                <SingleColTable
+                  title={t('latestBlocks.title')}
+                  items={this.props.blocks.items}
+                  fetching={this.props.blocks.fetching}
+                  error={this.props.blocks.error}
+                  offset={this.props.blocks.offset}
+                  count={this.props.blocks.count}
+                  fetch={this.props.fetchBlocks}
+                  tip={this.props.blocks.tip}
+                  name={t('blocks.title')}
+                  displayViewMore={true}>
+                  <BlocksListOnlyId
+                    blocks={this.props.blocks.items}
+                    width={this.props.width}
+                    isHome={true}
+                  />
+                </SingleColTable>
+        );
+  
+        let executionsTable = (
           <SingleColTable
-            title={t('latestVotes.title')}
-            items={this.props.votes.items}
-            fetching={this.props.votes.fetching}
-            error={this.props.votes.error}
-            offset={this.props.votes.offset}
-            count={this.props.votes.count}
-            fetch={this.props.fetchVotes}
-            tip={this.props.votes.tip}
-            name={t('votes.title')}
-            displayViewMore={true}>
-            <VotesListOnlyId
-              votes={this.props.votes.items}
-              width={this.props.width}
-              isHome={true}
-            />
-          </SingleColTable>
+          title={t('latestExecutions.title')}
+          items={this.props.executions.items}
+          fetching={this.props.executions.fetching}
+          error={this.props.executions.error}
+          offset={this.props.executions.offset}
+          count={this.props.executions.count}
+          fetch={this.props.executions}
+          tip={this.props.executions.tip}
+          name={t('meta.executions')}
+          displayViewMore={true}>
+          <ExecutionsListOnlyId
+            executions={this.props.executions.items}
+            width={this.props.width}
+            isHome={true}
+          />
+        </SingleColTable>
+        );
+  
+        let transfersTable = (
+          <SingleColTable
+                  title={t('latestTransfers.title')}
+                  items={this.props.transfers.items}
+                  fetching={this.props.transfers.fetching}
+                  error={this.props.transfers.error}
+                  offset={this.props.transfers.offset}
+                  count={this.props.transfers.count}
+                  fetch={this.props.transfers}
+                  tip={this.props.transfers.tip}
+                  name={t('meta.transfers')}
+                  displayViewMore={true}>
+                  <TransfersListOnlyId
+                    transfers={this.props.transfers.items}
+                    width={this.props.width}
+                    isHome={true}
+                  />
+                </SingleColTable>
+        );
+  
+    if (this.state.activeTab === 'Market') {
+      return (
+        <section>
+          <Helmet
+            title={`IoTxplorer - the IoTeX search engine`}
+          />
+          <div className='hero is-medium' style={{backgroundColor: '#f0f2f7', padding: '0rem', margin: '0rem'}} >
+            <div className='hero-body'>
+              <div className='container'><TitleContainer/></div>
+              <div className='container is-fluid'><SearchBar/></div>
+            </div>
+          </div>
+  
+          <div className='section' style={{padding: '0px', margin: '0rem'}}>
+          <div className='container' style={{marginTop:'42px'}}>
+            <div className='card'>
+            
+            <Tabs tabList={tabList}
+                  activeTab={this.state.activeTab}
+                  changeActiveTab={this.changeActiveTab.bind(this)}
+             />
+            
+              <div className='card-content' style={{paddingTop: '3px'}}>
+                <div className='column'>
+                  <div className='columns'>
+                    <MarketDashboard/>
+                  </div>
+                </div>
+            </div>
+            </div>
+            <CommonMargin/>
+            </div>
+            </div>
+            <br></br>
+            
+            <div className='section' style={{backgroundColor: '#f0f2f7', padding: '24px', margin: '0rem'}}>
+            <div className='container'>
+             <div className='card'>
+              <div className='card-content'>
+                <div className='column'>
+                  <div className='columns'>
+                    <div className='column'>
+                      {blocksTable}
+                    </div>  
+                    <div className='column'>
+                      {executionsTable}
+                    </div>
+                    <div className='column'>
+                      {transfersTable}
+                    </div>
+                    <div className='column'>
+                      {votesTable}
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <CommonMargin/>
+          </div>
+          </div>
+          </div>
+  
+        </section>
       );
-
-      let blocksTable = (
-              <SingleColTable
-                title={t('latestBlocks.title')}
-                items={this.props.blocks.items}
-                fetching={this.props.blocks.fetching}
-                error={this.props.blocks.error}
-                offset={this.props.blocks.offset}
-                count={this.props.blocks.count}
-                fetch={this.props.fetchBlocks}
-                tip={this.props.blocks.tip}
-                name={t('blocks.title')}
-                displayViewMore={true}>
-                <BlocksListOnlyId
-                  blocks={this.props.blocks.items}
-                  width={this.props.width}
-                  isHome={true}
-                />
-              </SingleColTable>
-      );
-
-      let executionsTable = (
-        <SingleColTable
-        title={t('latestExecutions.title')}
-        items={this.props.executions.items}
-        fetching={this.props.executions.fetching}
-        error={this.props.executions.error}
-        offset={this.props.executions.offset}
-        count={this.props.executions.count}
-        fetch={this.props.executions}
-        tip={this.props.executions.tip}
-        name={t('meta.executions')}
-        displayViewMore={true}>
-        <ExecutionsListOnlyId
-          executions={this.props.executions.items}
-          width={this.props.width}
-          isHome={true}
-        />
-      </SingleColTable>
-      );
-
-      let transfersTable = (
-        <SingleColTable
-                title={t('latestTransfers.title')}
-                items={this.props.transfers.items}
-                fetching={this.props.transfers.fetching}
-                error={this.props.transfers.error}
-                offset={this.props.transfers.offset}
-                count={this.props.transfers.count}
-                fetch={this.props.transfers}
-                tip={this.props.transfers.tip}
-                name={t('meta.transfers')}
-                displayViewMore={true}>
-                <TransfersListOnlyId
-                  transfers={this.props.transfers.items}
-                  width={this.props.width}
-                  isHome={true}
-                />
-              </SingleColTable>
-      );
+    } else if (this.state.activeTab === 'Blockchain') {
 
     return (
       <section>
@@ -372,4 +417,12 @@ export class BlockchainExplorer extends Component {
       </section>
     );
   }
+
+  }
+
+  render() {
+    return <div>{this.renderContent()}</div>
+  
+}
+
 }
