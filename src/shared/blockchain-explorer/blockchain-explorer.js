@@ -24,6 +24,8 @@ import type {TExecution} from '../../entities/explorer-types';
 import {Dashboard} from './dashboard';
 import { SearchBar } from './search-bar';
 import {TitleContainer} from '../common/iotex-explorer-title';
+import { Tabs } from './Tabs'
+import { Tab } from './Tab'
 
 
 type PropsType = {
@@ -82,6 +84,7 @@ export class BlockchainExplorer extends Component {
     this.state = {
       fetchConsensusMetricsId: 0,
       height: 0,
+      activeTab: 'Market',
     };
     this.formStats = this.formStats.bind(this);
   }
@@ -113,6 +116,12 @@ export class BlockchainExplorer extends Component {
 
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
+
+  
+  changeActiveTab(tab) {
+    this.setState({ activeTab: tab });
+  }
+
 
   formStats(chainId: number, latestEpoch: number, stats: TCoinStatistic) {
     const epochs = Number(latestEpoch).toLocaleString();
@@ -182,6 +191,14 @@ export class BlockchainExplorer extends Component {
     const currentProducer = consensusMetrics.latestBlockProducer;
     const candidates = consensusMetrics.candidates || [];
     let plasmaBall = null;
+    const tabList = [
+      {
+        name: 'Market',
+      },
+      {
+        name: 'Blockchain',
+      },
+    ]
     // if (this.props.chainId === 1) {
     //   plasmaBall = (
     //     <div className='column is-half'>
@@ -203,27 +220,7 @@ export class BlockchainExplorer extends Component {
     //       </div>
     //     </div>
     //   );
-    //   votes = (
-    //     <div className='column'>
-    //       <SingleColTable
-    //         title={t('latestVotes.title')}
-    //         items={this.props.votes.items}
-    //         fetching={this.props.votes.fetching}
-    //         error={this.props.votes.error}
-    //         offset={this.props.votes.offset}
-    //         count={this.props.votes.count}
-    //         fetch={this.props.fetchVotes}
-    //         tip={this.props.votes.tip}
-    //         name={t('votes.title')}
-    //         displayViewMore={true}>
-    //         <VotesListOnlyId
-    //           votes={this.props.votes.items}
-    //           width={this.props.width}
-    //           isHome={true}
-    //         />
-    //       </SingleColTable>
-    //     </div>
-    //   );
+    //
     // }
 
       let votesTable = (
@@ -321,7 +318,13 @@ export class BlockchainExplorer extends Component {
         <div className='section' style={{padding: '0px', margin: '0rem'}}>
         <div className='container' style={{marginTop:'42px'}}>
           <div className='card'>
-            <div className='card-content'>
+          
+          <Tabs tabList={tabList}
+                activeTab={this.state.activeTab}
+                changeActiveTab={this.changeActiveTab.bind(this)}
+           />
+          
+            <div className='card-content' style={{paddingTop: '3px'}}>
               <div className='column'>
                 <div className='columns'>
                   <Dashboard
