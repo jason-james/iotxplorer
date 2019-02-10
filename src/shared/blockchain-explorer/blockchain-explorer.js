@@ -423,6 +423,6 @@ export class BlockchainExplorer extends Component {
   render() {
     return <div>{this.renderContent()}</div>
   
-}
+  }
 
 }
