@@ -34,7 +34,7 @@ export class Dashboard extends Component {
                   <div className='tile is-parent'>
                     <article className='tile is-child box box-custom'>
                       <div>
-                        <p className='subtitle force-teal dashboard-title'>{s.title}</p>
+                        <p className='subtitle dashboard-title' style={{color: '#4c4c4c'}}>{s.title}</p>
                         <ToolTip
                           iconClass={s.icon}
                           message={t(s.msg)}

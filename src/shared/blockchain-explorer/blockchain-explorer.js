@@ -145,19 +145,19 @@ export class BlockchainExplorer extends Component {
     retval.push({
       title: t('marketDashboard.marketCap'),
       subtitle: `$ ${marketData.marketCap} USD`,
-      icon: 'fas fa-question-circle',
+      icon: 'fas fa-question-circle has-text-primary',
       msg: 'marketDashboard.marketCapMsg',
     });
     retval.push({
       title: t('marketDashboard.supply'),
       subtitle: `${marketData.supply} IOTX`,
-      icon: 'fas fa-question-circle',
+      icon: 'fas fa-question-circle has-text-primary',
       msg: 'marketDashboard.supplyMsg',
     });
     retval.push({
       title: t('marketDashboard.volume'),
       subtitle: `$ ${marketData.volume}`,
-      icon: 'fas fa-question-circle',
+      icon: 'fas fa-question-circle has-text-primary',
       msg: 'marketDashboard.volumeMsg',
     });
 

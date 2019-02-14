@@ -1,4 +1,13 @@
+.bx--data-table-v2 thead {
+  background-color: #00d1b2;
+}
 
+.single-col-header {
+  text-align: center !important;
+  font-size: 1.5em;
+  word-break: break-all;
+  color: #4c4c4c; 
+}
 
 .main-search-bar {
   margin-top: 8px;
@@ -6,10 +15,10 @@
   }
 
 .box-custom {
-  background-color: #151b21 !important;
+  background-color: #ffffff !important;
   border-width: 1px;
   border-style: solid;
-  border-color: #73fbe0;
+  border-color: #292929;
   border-radius: 0 !important;
 }
 
@@ -94,7 +103,7 @@
 }
 
 .version-text{
-  color: #ffffff;
+  color: #4c4c4c;
 }
 
 // TOOL TIP
@@ -108,8 +117,8 @@
 .tooltip .tooltiptext-right {
   visibility: hidden;
   width: 150px;
-  background-color: #73fbe0;
-  color: #151b21;
+  background-color: #00d1b2;
+  color: #292929;
   text-align: center;
   border-radius: 6px;
   padding: 5px 5px 5px 5px;
