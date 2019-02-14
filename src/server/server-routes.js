@@ -20,6 +20,7 @@ import {setDelegateRoutes} from '../shared/delegates/delegates-handler';
 import {setDepositRoutes} from '../shared/deposit/deposit-handler';
 import {version} from '../../package.json';
 import {setJsonRpcRoutes} from './json-rpc/json-rpc';
+import {setMarketDashboardRoutes} from '../shared/blockchain-explorer/market-dashboard-handler';
 
 // eslint-disable-next-line max-statements
 export function setServerRoutes(server: Server) {
@@ -55,6 +56,7 @@ export function setServerRoutes(server: Server) {
   setNavRoutes(server);
   setConsensusMetricsRoutes(server);
   setBlockchainExplorerRoutes(server);
+  setMarketDashboardRoutes(server);
 
   setExecutionHandler(server);
   setExecutionsHandler(server);

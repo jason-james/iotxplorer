@@ -40,6 +40,7 @@ export class BlockchainExplorer extends Component {
     fetchBlocks: fetchBlocks,
     fetchVotes: fetchVotes,
     fetchConsensusMetrics: fetchConsensusMetrics,
+    fetchMarketData: fetchMarketData,
     executions: {
       offset: number,
       count: number,
@@ -84,6 +85,7 @@ export class BlockchainExplorer extends Component {
     super(props);
     this.state = {
       fetchConsensusMetricsId: 0,
+      fetchMarketData: 0,
       height: 0,
       activeTab: 'Market',
     };
@@ -105,15 +107,19 @@ export class BlockchainExplorer extends Component {
 
   componentDidMount() {
     this.props.fetchConsensusMetrics();
+    this.props.fetchMarketData();
     const fetchConsensusMetricsId = window.setInterval(
       () => this.props.fetchConsensusMetrics(),
       5000,
     );
-    this.setState({fetchConsensusMetricsId});
+    const fetchMarketData = window.setInterval(() => this.props.fetchMarketData(), 10000);
+
+    this.setState({fetchConsensusMetricsId, fetchMarketData});
   }
 
   componentWillUnmount() {
     window.clearInterval(this.state.fetchConsensusMetricsId);
+    window.clearInterval(this.state.fetchMarketData);
 
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
@@ -308,7 +314,9 @@ export class BlockchainExplorer extends Component {
               <div className='card-content' style={{paddingTop: '3px'}}>
                 <div className='column'>
                   <div className='columns'>
-                    <MarketDashboard/>
+                  <div style={{color:'black'}}><h1>Market Cap: {this.props.marketData ? this.props.marketData.marketCap : 'N/A'} ---- </h1> </div>
+                  <div style={{color:'black'}}><h1>Circulating Supply: {this.props.marketData ? this.props.marketData.supply : 'N/A'} ---- </h1> </div>
+                  <div style={{color:'black'}}><h1>Volume: {this.props.marketData ? this.props.marketData.volume : 'N/A'} ---- </h1> </div>
                   </div>
                 </div>
             </div>

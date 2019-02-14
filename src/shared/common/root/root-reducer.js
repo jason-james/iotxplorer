@@ -17,6 +17,7 @@ import app from '../../app-container';
 import consensus from '../../consensus-metrics/consensus-metrics-reducer';
 import dialogue from '../dialogue/dialogue-reducer';
 import delegates from '../../delegates/delegates-reducer';
+import marketDashboard from '../../blockchain-explorer/market-dashboard-reducer';
 
 export type Reducer = (state: any, action: any) => any;
 
@@ -27,6 +28,7 @@ export function noopReducer(state: any = {}, action: any) {
 export const rootReducer = combineReducers({
   base: noopReducer,
   nav,
+  marketDashboard,
   app,
   execution,
   executions,

@@ -177,6 +177,13 @@ export class NAV {
   }
 }
 
+export class DASHBOARD {
+
+  static get MARKET_DATA(): String {
+    return '/api/getMarketData';
+  }
+}
+
 export class WALLET {
 
   static get INDEX(): string {

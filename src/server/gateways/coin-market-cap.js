@@ -6,4 +6,10 @@ export class CoinMarketCap {
     const url = 'https://api.coinmarketcap.com/v1/ticker/iotex/?convert=ETH';
     return axios.get(url);
   }
+
+  fetchMarketData() {
+    // there are usd, btc and eth prices
+    const url = 'https://api.coinmarketcap.com/v1/ticker/iotex/';
+    return axios.get(url);
+  }
 }

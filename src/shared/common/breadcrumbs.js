@@ -80,7 +80,7 @@ export class Breadcrumbs extends Component {
           </ul>
         </nav>
       </BreadCrumbStyle>
-    );
+    )
   }
 }
 

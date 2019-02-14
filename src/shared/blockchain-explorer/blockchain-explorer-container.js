@@ -6,6 +6,7 @@ import {fetchBlocks} from '../blocks/blocks-actions';
 import {fetchVotes} from '../votes/votes-actions';
 import {fetchConsensusMetrics} from '../consensus-metrics/consensus-metrics-actions';
 import {BlockchainExplorer} from './blockchain-explorer';
+import {fetchMarketData} from './market-dashboard-actions';
 
 export const BlockchainExplorerContainer = connect(
   function mapStateToProps(state) {
@@ -18,6 +19,9 @@ export const BlockchainExplorerContainer = connect(
       width: state.app.width,
       statistic: state.nav.statistic,
       chainId: state.base.chainId,
+      marketData: state.marketDashboard.marketData,
+      fetching: state.fetching,
+      error: state.error,
     };
   },
   dispatch => ({
@@ -26,5 +30,6 @@ export const BlockchainExplorerContainer = connect(
     fetchBlocks: data => dispatch(fetchBlocks(data)),
     fetchVotes: data => dispatch(fetchVotes(data)),
     fetchConsensusMetrics: () => dispatch(fetchConsensusMetrics()),
+    fetchMarketData: () => dispatch(fetchMarketData()),
   }),
 )(BlockchainExplorer);
