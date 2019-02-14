@@ -7,7 +7,11 @@ export function setMarketDashboardRoutes(server) {
     try {
       const response = await coinmarketcap.fetchMarketData();
       const d = response.data[0];
-      const marketData = {marketCap: d.market_cap_usd, supply: d.available_supply, volume: d['24h_volume_usd']};
+      const marketData = {
+        marketCap: new Intl.NumberFormat('en-US', {maximumFractionDigits: 1 }).format(d.market_cap_usd), 
+        supply: new Intl.NumberFormat('en-US', {maximumFractionDigits: 0 }).format(d.available_supply), 
+        volume: new Intl.NumberFormat('en-US', {maximumFractionDigits: 0 }).format(d['24h_volume_usd']), 
+      };
       ctx.body = {ok: true, marketData};
     } catch (error) {
       ctx.body = {ok: false, error: {code: 'FAIL_GET_MARKET_DATA', message: 'error.unknown'}};
@@ -16,3 +20,4 @@ export function setMarketDashboardRoutes(server) {
 
   server.post('getMarketData', DASHBOARD.MARKET_DATA, getMarketData);
 }
+

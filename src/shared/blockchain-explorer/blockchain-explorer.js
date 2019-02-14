@@ -134,7 +134,7 @@ export class BlockchainExplorer extends Component {
     if (!marketData) {
       return [{
         title: t('marketDashboard.marketCap'),
-        subtitle: 'Unable to fetch price data',
+        subtitle: 'Loading...',
         icon: 'fas fa-question-circle',
         msg: 'marketDashboard.marketCapMsg',
       }];
@@ -144,19 +144,19 @@ export class BlockchainExplorer extends Component {
     const retval = [];
     retval.push({
       title: t('marketDashboard.marketCap'),
-      subtitle: marketData.marketCap,
+      subtitle: `$ ${marketData.marketCap} USD`,
       icon: 'fas fa-question-circle',
       msg: 'marketDashboard.marketCapMsg',
     });
     retval.push({
       title: t('marketDashboard.supply'),
-      subtitle: marketData.supply,
+      subtitle: `${marketData.supply} IOTX`,
       icon: 'fas fa-question-circle',
       msg: 'marketDashboard.supplyMsg',
     });
     retval.push({
       title: t('marketDashboard.volume'),
-      subtitle: marketData.volume,
+      subtitle: `$ ${marketData.volume}`,
       icon: 'fas fa-question-circle',
       msg: 'marketDashboard.volumeMsg',
     });
