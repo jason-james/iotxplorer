@@ -130,6 +130,40 @@ export class BlockchainExplorer extends Component {
   }
 
 
+  formMarketStats = (marketData) => {
+    if (!marketData) {
+      return [{
+        title: t('marketDashboard.marketCap'),
+        subtitle: 'Unable to fetch price data',
+        icon: 'fas fa-question-circle',
+        msg: 'marketDashboard.marketCapMsg',
+      }];
+    }
+
+    // Sets empty array return value to hold dashboard info. Dashboard is the info to the right of plasmaball
+    const retval = [];
+    retval.push({
+      title: t('marketDashboard.marketCap'),
+      subtitle: marketData.marketCap,
+      icon: 'fas fa-question-circle',
+      msg: 'marketDashboard.marketCapMsg',
+    });
+    retval.push({
+      title: t('marketDashboard.supply'),
+      subtitle: marketData.supply,
+      icon: 'fas fa-question-circle',
+      msg: 'marketDashboard.supplyMsg',
+    });
+    retval.push({
+      title: t('marketDashboard.volume'),
+      subtitle: marketData.volume,
+      icon: 'fas fa-question-circle',
+      msg: 'marketDashboard.volumeMsg',
+    });
+
+    return retval;
+  }
+
   formStats(chainId: number, latestEpoch: number, stats: TCoinStatistic) {
     const epochs = Number(latestEpoch).toLocaleString();
     if (!stats) {
@@ -314,9 +348,7 @@ export class BlockchainExplorer extends Component {
               <div className='card-content' style={{paddingTop: '3px'}}>
                 <div className='column'>
                   <div className='columns'>
-                  <div style={{color:'black'}}><h1>Market Cap: {this.props.marketData ? this.props.marketData.marketCap : 'N/A'} ---- </h1> </div>
-                  <div style={{color:'black'}}><h1>Circulating Supply: {this.props.marketData ? this.props.marketData.supply : 'N/A'} ---- </h1> </div>
-                  <div style={{color:'black'}}><h1>Volume: {this.props.marketData ? this.props.marketData.volume : 'N/A'} ---- </h1> </div>
+                    <MarketDashboard stats={this.formMarketStats(this.props.marketData)}/>
                   </div>
                 </div>
             </div>

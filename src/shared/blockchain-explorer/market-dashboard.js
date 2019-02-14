@@ -4,7 +4,50 @@ import {ToolTip} from '../common/tooltip';
 
 
 export class MarketDashboard extends Component {
-    render () {
-        return <div style={{color:'black'}}><h1>MarketDashboard</h1></div>
+  props: {
+    stats: Array<any>,
+  };
+
+  render() {
+    const stats = this.props.stats;
+    const ss = [];
+    let n = 0;
+    if (stats.length % 2) {
+      n = 1;
+      ss.push([stats[0]]);
     }
+    while (n < stats.length) {
+      ss.push([stats[n], stats[n + 1]]);
+      n += 2;
+    }
+    console.log(stats)
+    console.log(ss)
+    return (
+      <div className='column dashboard-wrap'>
+        {
+          ss.map(row => {
+            return (
+              <div className='tile is-ancestor'>
+                {row.map(s => (
+                  <div className='tile is-parent'>
+                    <article className='tile is-child box box-custom'>
+                      <div>
+                        <p className='subtitle force-teal dashboard-title'>{s.title}</p>
+                        <ToolTip
+                          iconClass={s.icon}
+                          message={t(s.msg)}
+                          customPadClass={'dashboard-tooltip'}
+                        />
+                      </div>
+                      <p className='title has-text-centered'>{s.subtitle}</p>
+                    </article>
+                  </div>
+                ))}
+              </div>
+            );
+          })
+        }
+      </div>
+    );
+  }
 }

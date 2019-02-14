@@ -97,6 +97,15 @@ footer.website: Website
 footer.blog: Blog
 footer.chat: Chat
 votes.title: Votes
+marketDashboard.marketCap: Market Cap
+marketDashboard.supply: Circulating Supply
+marketDashboard.volume: Total Volume (24h)
+marketDashboard.marketCapMsg: >-
+  Market Capitalisation is one way to quantify the size and value of a cryptocurrency. It's calculated by multiplying the Price by the Circulating Supply.
+marketDashboard.supplyMsg: >-
+  Circulating Supply is the best approximation of the number of coins that are circulating in the market and in the general public's hands.
+marketDashboard.volumeMsg: >-
+  Volume is the total value of all IOTX traded in the market during a given period of time.
 nav.fuzzy.search.not.found: Not Found
 nav.fuzzy.search.placeholder: Search blocks, blogs, dApps... Search anything.
 nav.error.statistic: Could not get statistics

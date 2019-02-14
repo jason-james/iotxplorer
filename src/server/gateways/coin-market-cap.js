@@ -8,7 +8,7 @@ export class CoinMarketCap {
   }
 
   fetchMarketData() {
-    // there are usd, btc and eth prices
+    //usd prices
     const url = 'https://api.coinmarketcap.com/v1/ticker/iotex/';
     return axios.get(url);
   }
