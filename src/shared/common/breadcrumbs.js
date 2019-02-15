@@ -62,6 +62,7 @@ export class Breadcrumbs extends Component {
 
   render() {
     const breadcrumbs = cleanPath(this.state.url);
+    if (this.state.url !== SITE_URL) {
     return (
       <BreadCrumbStyle className='container column'>
         <nav className='breadcrumb' aria-label='breadcrumbs'>
@@ -81,8 +82,11 @@ export class Breadcrumbs extends Component {
         </nav>
       </BreadCrumbStyle>
     )
-  }
+  } else { return <div></div>}
 }
+
+}
+
 
 
 

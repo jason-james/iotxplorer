@@ -394,7 +394,7 @@ export class BlockchainExplorer extends Component {
           title={`IoTxplorer - the IoTeX search engine`}
         />
         <div className='hero is-medium' style={{backgroundColor: '#f0f2f7', padding: '0rem', margin: '0rem'}} >
-          <div className='hero-body' style={{paddingTop:'7rem'}}>
+          <div className='hero-body' style={{paddingTop:'8rem'}}>
             <div className='container'><TitleContainer/></div>
             <div className='container is-fluid'><SearchBar/></div>
           </div>
