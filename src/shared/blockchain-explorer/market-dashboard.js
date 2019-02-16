@@ -20,8 +20,6 @@ export class MarketDashboard extends Component {
       ss.push([stats[n], stats[n + 1]]);
       n += 2;
     }
-    console.log(stats)
-    console.log(ss)
     return (
       <div className='column dashboard-wrap'>
         {
@@ -31,7 +29,7 @@ export class MarketDashboard extends Component {
                 {row.map(s => (
                   <div className='tile is-parent'>
                     <article className='tile is-child box box-custom'>
-                      <div>
+                      <div style={{display:'flex', justifyContent:'center'}}>
                         <p className='subtitle dashboard-title' style={{color: '#4c4c4c'}}>{s.title}</p>
                         <ToolTip
                           iconClass={s.icon}
@@ -39,7 +37,7 @@ export class MarketDashboard extends Component {
                           customPadClass={'dashboard-tooltip'}
                         />
                       </div>
-                      <p className='title has-text-centered'>{s.subtitle}</p>
+                      <p className='title has-text-centered' style={{display:'flex', justifyContent:'center'}}>{s.subtitle}</p>
                     </article>
                   </div>
                 ))}

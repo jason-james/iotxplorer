@@ -27,6 +27,7 @@ import {TitleContainer} from '../common/iotex-explorer-title';
 import { Tabs } from './Tabs'
 import { Tab } from './Tab'
 import { MarketDashboard } from './market-dashboard';
+import { LineChart } from './chart';
 
 
 type PropsType = {
@@ -156,7 +157,7 @@ export class BlockchainExplorer extends Component {
     });
     retval.push({
       title: t('marketDashboard.volume'),
-      subtitle: `$ ${marketData.volume}`,
+      subtitle: `$ ${marketData.volume} USD`,
       icon: 'fas fa-question-circle has-text-primary',
       msg: 'marketDashboard.volumeMsg',
     });
@@ -228,7 +229,15 @@ export class BlockchainExplorer extends Component {
 
   renderContent() {
 
- 
+      const width = 640, height = 370
+      const data = [
+        {price: 1, timestamp: 3},
+        {price: 2, timestamp: 6},
+        {price: 3, timestamp: 2},
+        {price: 4, timestamp: 12},
+        {price: 5, timestamp: 8}
+      ]
+  
       const consensusMetrics = this.props.consensus && this.props.consensus.metrics || {};
       const delegates = consensusMetrics.latestDelegates || [];
       const currentProducer = consensusMetrics.latestBlockProducer;
@@ -348,6 +357,9 @@ export class BlockchainExplorer extends Component {
               <div className='card-content' style={{paddingTop: '3px'}}>
                 <div className='column'>
                   <div className='columns'>
+                  <div className='column is-half'>
+                  <LineChart data={data} width={width} height={height} />
+                  </div>
                     <MarketDashboard stats={this.formMarketStats(this.props.marketData)}/>
                   </div>
                 </div>
@@ -393,8 +405,8 @@ export class BlockchainExplorer extends Component {
         <Helmet
           title={`IoTxplorer - the IoTeX search engine`}
         />
-        <div className='hero is-medium' style={{backgroundColor: '#f0f2f7', padding: '0rem', margin: '0rem'}} >
-          <div className='hero-body' style={{paddingTop:'8rem'}}>
+        <div className='hero is-medium hero-bg-image' style={{backgroundColor: '#f0f2f7', padding: '0rem', margin: '0rem'}} >
+          <div className='hero-body' style={{paddingTop:'7rem'}}>
             <div className='container'><TitleContainer/></div>
             <div className='container is-fluid'><SearchBar/></div>
           </div>
