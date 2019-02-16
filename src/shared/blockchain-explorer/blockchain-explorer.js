@@ -27,7 +27,7 @@ import {TitleContainer} from '../common/iotex-explorer-title';
 import { Tabs } from './Tabs'
 import { Tab } from './Tab'
 import { MarketDashboard } from './market-dashboard';
-import { LineChart } from './chart';
+import { LineChart } from './LineChart';
 
 
 type PropsType = {
@@ -228,15 +228,6 @@ export class BlockchainExplorer extends Component {
 
 
   renderContent() {
-
-      const width = 640, height = 370
-      const data = [
-        {price: 1, timestamp: 3},
-        {price: 2, timestamp: 6},
-        {price: 3, timestamp: 2},
-        {price: 4, timestamp: 12},
-        {price: 5, timestamp: 8}
-      ]
   
       const consensusMetrics = this.props.consensus && this.props.consensus.metrics || {};
       const delegates = consensusMetrics.latestDelegates || [];
@@ -358,7 +349,7 @@ export class BlockchainExplorer extends Component {
                 <div className='column'>
                   <div className='columns'>
                   <div className='column is-half'>
-                  <LineChart data={data} width={width} height={height} />
+                  <LineChart />
                   </div>
                     <MarketDashboard stats={this.formMarketStats(this.props.marketData)}/>
                   </div>
