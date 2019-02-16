@@ -1,283 +1,13 @@
 import Component from "inferno-component";
 import * as d3 from "d3";
 import * as Axis from "d3-axis";
-
+//TODO: Create API call for data and pass into state to use here, instead of static array below
 export class LineChart extends Component {
   constructor() {
     super();
 
     this.state = {
       data: [
-        {
-          "time": 1534723200,
-          "high": 0.01178,
-          "low": 0.009656,
-          "open": 0.01072,
-          "volumefrom": 145368076.55,
-          "volumeto": 1563885.55,
-          "close": 0.01127
-        },
-        {
-          "time": 1534982400,
-          "high": 0.01667,
-          "low": 0.01144,
-          "open": 0.01157,
-          "volumefrom": 558779544.68,
-          "volumeto": 7351209.11,
-          "close": 0.0133
-        },
-        {
-          "time": 1535241600,
-          "high": 0.01489,
-          "low": 0.01277,
-          "open": 0.01317,
-          "volumefrom": 114260742.74,
-          "volumeto": 1588288.26,
-          "close": 0.01425
-        },
-        {
-          "time": 1535500800,
-          "high": 0.01558,
-          "low": 0.01316,
-          "open": 0.01417,
-          "volumefrom": 123433828.42,
-          "volumeto": 1745174.49,
-          "close": 0.01441
-        },
-        {
-          "time": 1535760000,
-          "high": 0.01658,
-          "low": 0.01448,
-          "open": 0.01477,
-          "volumefrom": 109738345.22,
-          "volumeto": 1681542.1,
-          "close": 0.01578
-        },
-        {
-          "time": 1536019200,
-          "high": 0.01658,
-          "low": 0.01108,
-          "open": 0.01592,
-          "volumefrom": 121264906.07,
-          "volumeto": 1552455.85,
-          "close": 0.01173
-        },
-        {
-          "time": 1536278400,
-          "high": 0.01186,
-          "low": 0.01004,
-          "open": 0.01154,
-          "volumefrom": 77794066.13,
-          "volumeto": 824531.21,
-          "close": 0.01037
-        },
-        {
-          "time": 1536537600,
-          "high": 0.01247,
-          "low": 0.009949,
-          "open": 0.0105,
-          "volumefrom": 170937068.67,
-          "volumeto": 1888050.47,
-          "close": 0.0109
-        },
-        {
-          "time": 1536796800,
-          "high": 0.01337,
-          "low": 0.01084,
-          "open": 0.01117,
-          "volumefrom": 144558842.59,
-          "volumeto": 1707836.93,
-          "close": 0.01207
-        },
-        {
-          "time": 1537056000,
-          "high": 0.0129,
-          "low": 0.01083,
-          "open": 0.01203,
-          "volumefrom": 131645999,
-          "volumeto": 1573598.96,
-          "close": 0.01219
-        },
-        {
-          "time": 1537315200,
-          "high": 0.01481,
-          "low": 0.01152,
-          "open": 0.01222,
-          "volumefrom": 134166558.72,
-          "volumeto": 1708058.69,
-          "close": 0.01332
-        },
-        {
-          "time": 1537574400,
-          "high": 0.0137,
-          "low": 0.01198,
-          "open": 0.01323,
-          "volumefrom": 106066131.47,
-          "volumeto": 1324047.41,
-          "close": 0.01205
-        },
-        {
-          "time": 1537833600,
-          "high": 0.01333,
-          "low": 0.01172,
-          "open": 0.01178,
-          "volumefrom": 90126630.53,
-          "volumeto": 1119722.3,
-          "close": 0.01277
-        },
-        {
-          "time": 1538092800,
-          "high": 0.01457,
-          "low": 0.01228,
-          "open": 0.01267,
-          "volumefrom": 172390176.13,
-          "volumeto": 2215531.11,
-          "close": 0.01285
-        },
-        {
-          "time": 1538352000,
-          "high": 0.01494,
-          "low": 0.01279,
-          "open": 0.01279,
-          "volumefrom": 232705374.69,
-          "volumeto": 3241464.91,
-          "close": 0.0135
-        },
-        {
-          "time": 1538611200,
-          "high": 0.01608,
-          "low": 0.01353,
-          "open": 0.01369,
-          "volumefrom": 157427112.48,
-          "volumeto": 2304074.83,
-          "close": 0.01503
-        },
-        {
-          "time": 1538870400,
-          "high": 0.01584,
-          "low": 0.01439,
-          "open": 0.01498,
-          "volumefrom": 79383569.94,
-          "volumeto": 1178733.23,
-          "close": 0.01452
-        },
-        {
-          "time": 1539129600,
-          "high": 0.01481,
-          "low": 0.01304,
-          "open": 0.01441,
-          "volumefrom": 123934468.92,
-          "volumeto": 1721844.22,
-          "close": 0.014
-        },
-        {
-          "time": 1539388800,
-          "high": 0.02103,
-          "low": 0.01404,
-          "open": 0.01404,
-          "volumefrom": 343503074.77,
-          "volumeto": 5776625.01,
-          "close": 0.01752
-        },
-        {
-          "time": 1539648000,
-          "high": 0.01916,
-          "low": 0.01518,
-          "open": 0.01751,
-          "volumefrom": 226854445.39,
-          "volumeto": 3795720.69,
-          "close": 0.01564
-        },
-        {
-          "time": 1539907200,
-          "high": 0.01745,
-          "low": 0.01533,
-          "open": 0.01559,
-          "volumefrom": 136149164.04,
-          "volumeto": 2236111.87,
-          "close": 0.0168
-        },
-        {
-          "time": 1540166400,
-          "high": 0.01773,
-          "low": 0.01575,
-          "open": 0.01673,
-          "volumefrom": 152824468.06,
-          "volumeto": 2568730.04,
-          "close": 0.01671
-        },
-        {
-          "time": 1540425600,
-          "high": 0.02217,
-          "low": 0.01609,
-          "open": 0.01661,
-          "volumefrom": 956011912.35,
-          "volumeto": 18227907.67,
-          "close": 0.0174
-        },
-        {
-          "time": 1540684800,
-          "high": 0.02828,
-          "low": 0.01728,
-          "open": 0.01741,
-          "volumefrom": 1877384634.29,
-          "volumeto": 39586055.22,
-          "close": 0.01886
-        },
-        {
-          "time": 1540944000,
-          "high": 0.02174,
-          "low": 0.01858,
-          "open": 0.01896,
-          "volumefrom": 364813737.31,
-          "volumeto": 7237743.17,
-          "close": 0.02014
-        },
-        {
-          "time": 1541203200,
-          "high": 0.02021,
-          "low": 0.01705,
-          "open": 0.02021,
-          "volumefrom": 194859355.47,
-          "volumeto": 3586438.33,
-          "close": 0.0175
-        },
-        {
-          "time": 1541462400,
-          "high": 0.01902,
-          "low": 0.01639,
-          "open": 0.0175,
-          "volumefrom": 299315271.03,
-          "volumeto": 5355601.05,
-          "close": 0.01844
-        },
-        {
-          "time": 1541721600,
-          "high": 0.01856,
-          "low": 0.01716,
-          "open": 0.01824,
-          "volumefrom": 104244363.79,
-          "volumeto": 1835074.64,
-          "close": 0.01762
-        },
-        {
-          "time": 1541980800,
-          "high": 0.01881,
-          "low": 0.01303,
-          "open": 0.01753,
-          "volumefrom": 199337378.17,
-          "volumeto": 3184392.27,
-          "close": 0.01389
-        },
-        {
-          "time": 1542240000,
-          "high": 0.01384,
-          "low": 0.01231,
-          "open": 0.01367,
-          "volumefrom": 100236799.45,
-          "volumeto": 1325548.36,
-          "close": 0.0132
-        },
         {
           "time": 1542499200,
           "high": 0.01348,
@@ -550,12 +280,12 @@ export class LineChart extends Component {
         },
         {
           "time": 1550275200,
-          "high": 0.00701,
-          "low": 0.006792,
-          "open": 0.006864,
-          "volumefrom": 22987195.2,
-          "volumeto": 157784.11,
-          "close": 0.006858
+          "high": 0.007002,
+          "low": 0.006785,
+          "open": 0.006857,
+          "volumefrom": 23966213.86,
+          "volumeto": 164336.33,
+          "close": 0.006851
         }
       ]
     };
@@ -598,7 +328,7 @@ export class LineChart extends Component {
   render() {
     let { data } = this.state;
 
-    const height = 370;
+    const height = 350;
     const width = 625;
 
     const boxStyles = {
@@ -638,6 +368,17 @@ export class LineChart extends Component {
         return y(d.close);
       });
 
+
+      const yTicks = y.ticks(5).map(d => (
+        y(d) > 10 && y(d) < height ? 
+          <g transform={`translate(${20},${y(d)})`}>  
+            <text x="-12" y="5">{'$' + (d)}</text>
+            <line x1='0' x1='5' y1='0' y2='0' transform="translate(-5,0)"/>
+            <line className='gridline' x1='0' x1={width} y1='0' y2='0' transform="translate(-5,0)"/> 
+          </g>
+        : null
+    ))
+
     return (
       <div style={boxStyles}>
         <svg height={height} width={width}>
@@ -648,7 +389,9 @@ export class LineChart extends Component {
             </linearGradient>
           </defs>
 
-          <g id={"xAxis"}>
+          <g id={"yAxis"}>
+          {yTicks}
+
             <path
               id={"line"}
               d={line(data)}
@@ -663,6 +406,7 @@ export class LineChart extends Component {
             />
           </g>
         </svg>
+        <p style={{position:'relative', bottom:'45px', textAlign:'center', fontFamily: 'Roboto,Actor,Helvetica Neue'}}>30 day performance</p>
       </div>
     );
   }
