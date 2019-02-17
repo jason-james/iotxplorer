@@ -68,16 +68,16 @@ export class SearchBar extends Component {
             type='text'
             style={{
             width: '60%',
-            height: '80px',
+            height: '70px',
             fontSize: '20pt',
             textAlign: 'center',
-            lineHeight: '80px'}}
+            lineHeight: '70px'}}
             placeholder={t('nav.fuzzy.search.placeholder')}
             onChange={() => {
               this.setState({error: false});
             }}
           />
-            <button className='button is-primary' style={{height:'80px'}}>
+            <button className='button is-primary' style={{height:'70px'}}>
               <span class="icon">
                 <i class="fas fa-search"></i>
               </span>

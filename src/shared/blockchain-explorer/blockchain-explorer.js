@@ -330,7 +330,7 @@ export class BlockchainExplorer extends Component {
             title={`IoTxplorer - the IoTeX search engine`}
           />
           <div className='hero is-medium hero-bg-image' style={{padding: '0rem', margin: '0rem'}} >
-            <div className='hero-body' style={{paddingTop:'8rem'}}>
+            <div className='hero-body' style={{paddingTop:'7rem'}}>
               <div className='container'><TitleContainer/></div>
               <div className='container is-fluid'><SearchBar/></div>
             </div>
@@ -361,7 +361,7 @@ export class BlockchainExplorer extends Component {
             </div>
             <br></br>
             
-            <div className='section' style={{backgroundColor: '#f0f2f7', padding: '24px', margin: '0rem'}}>
+            <div className='section' style={{padding: '24px', margin: '0rem'}}>
             <div className='container'>
              <div className='card'>
               <div className='card-content'>
@@ -396,8 +396,8 @@ export class BlockchainExplorer extends Component {
         <Helmet
           title={`IoTxplorer - the IoTeX search engine`}
         />
-        <div className='hero is-medium hero-bg-image' style={{backgroundColor: '#f0f2f7', padding: '0rem', margin: '0rem'}} >
-          <div className='hero-body' style={{paddingTop:'8rem'}}>
+        <div className='hero is-medium hero-bg-image' style={{padding: '0rem', margin: '0rem'}} >
+          <div className='hero-body' style={{paddingTop:'7rem'}}>
             <div className='container'><TitleContainer/></div>
             <div className='container is-fluid'><SearchBar/></div>
           </div>

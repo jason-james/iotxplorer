@@ -15,8 +15,8 @@ class IotexExplorerTitle extends Component {
         <img
           src={assetURL('/light-iotxplorer-logo.png')}
           alt='iotxplorer'
-          width='600'
-          height='144'
+          width='552'
+          height='132'
         /><br/>
         <small className='version-text'>{`version ${this.props.version}`}</small>
       </div>
