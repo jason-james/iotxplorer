@@ -249,3 +249,11 @@ export class DELEGATES {
     return '/api/getDelegates';
   }
 }
+
+export class STAKING {
+
+  static get INDEX(): string {
+    return '/staking';
+  }
+
+}

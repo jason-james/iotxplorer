@@ -24,12 +24,14 @@ import {
   VOTES,
   WALLET,
   DEPOSIT,
+  STAKING,
 } from './common/site-url';
 import {VoteContainer} from './vote/vote-container';
 import {VotesContainer} from './votes/votes-container';
 import {WalletContainer} from './wallet/wallet-container';
 import {SettleDepositContainer} from './deposit/settle-deposit-container';
 import {CreateDepositContainer} from './deposit/create-deposit-container';
+import {StakingContainer} from './staking/staking-container'
 
 export function createViewRoutes(routePrefix = '/') {
   return (
@@ -52,6 +54,8 @@ export function createViewRoutes(routePrefix = '/') {
       <RoutePage path={VOTE.INDEX} component={VoteContainer}/>
 
       <RoutePage path={WALLET.INDEX} component={WalletContainer}/>
+
+      <RoutePage path={STAKING.INDEX} component={StakingContainer}/>
 
       {/* <RoutePage path={DELEGATES.INDEX} component={DelegatesContainer}/>*/}
 

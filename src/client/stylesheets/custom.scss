@@ -1,3 +1,4 @@
+
 .hero-bg-image {
   background: url("../landing-bg.png") center center;
   background-size:cover;
@@ -196,8 +197,8 @@
 }
 
 .navbar-dropdown, .nav-dropdown-item {
-  background-color: #4c4c4c;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #4c4c4c;
 }
 
 .navbar-link:hover {
@@ -211,7 +212,7 @@ a.navbar-item:not(.small-nav-logo):hover {
 }
 
 .navbar-item, .navbar-link {
-  color: #ffffff;
+  color: #4c4c4c;
 }
 
 .nav-price {
@@ -303,10 +304,6 @@ a.navbar-item:not(.small-nav-logo):hover {
 
 a.navbar-item:not(.small-nav-logo):hover, .navbar-link:hover {
   color: #73fbe1 !important;
-}
-
-.navbar-item, .navbar-link {
-  color: #ffffff;
 }
 
 .nav-price {

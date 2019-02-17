@@ -7,7 +7,7 @@ import window from 'global/window';
 import isBrowser from 'is-browser';
 import {assetURL} from '../../../lib/asset-url';
 import {t} from '../../../lib/iso-i18n';
-import {BLOCKS, SITE_URL, EXECUTIONS, TRANSFERS, VOTES, WALLET, IOTEX_URL, NAV} from '../site-url';
+import {BLOCKS, SITE_URL, EXECUTIONS, TRANSFERS, VOTES, WALLET, IOTEX_URL, NAV, STAKING} from '../site-url';
 import {titleFont} from '../../../shared/common/styles/style-font';
 import {fetchPost} from '../../../lib/fetch-post';
 
@@ -33,6 +33,7 @@ export class Nav extends Component {
       fetchCoinStatistic: 0,
       fetchCoinPrice: 0,
       error: false,
+      url: '',
     };
 
     (this: any).toggleDropdownMenu = this.toggleDropdownMenu.bind(this);
@@ -55,7 +56,8 @@ export class Nav extends Component {
     if (isBrowser) {
       const fetchCoinStatistic = window.setInterval(() => this.props.fetchCoinStatistic(), 30000);
       const fetchCoinPrice = window.setInterval(() => this.props.fetchCoinPrice(), 30000);
-      this.setState({fetchCoinStatistic, fetchCoinPrice});
+      this.setState({fetchCoinStatistic, fetchCoinPrice, url: window.location.pathname,
+      });
     }
   }
 
@@ -109,7 +111,7 @@ export class Nav extends Component {
         path = href.replace(c.url, '');
       }
     }
-
+    if (this.state.url !== STAKING.INDEX) {
     return (
       <div className='navbar is-fixed-top' role='navigation'>
         <NavWrapper>
@@ -154,7 +156,13 @@ export class Nav extends Component {
                       <a className='navbar-item nav-dropdown-item' href={SITE_URL}>{'PLACEHOLDER'}</a> 
                     </div>
                   </div>
-
+                  <div className='navbar-item has-dropdown is-hoverable'>
+                  <a className='navbar-link is-arrowless' href={STAKING.INDEX}>Stake With Us &lt;3</a>
+                  <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
+                  <a className='navbar-item nav-dropdown-item' href={STAKING.INDEX}>Why Us?</a>
+                  <a className='navbar-item nav-dropdown-item' href={STAKING.INDEX}>Staking Calculators</a>   
+                  </div>               
+                  </div>
                   <div className='navbar-item has-dropdown is-hoverable'>
                     <p className='navbar-link'>
                       <Icon/>{name}
@@ -188,6 +196,80 @@ export class Nav extends Component {
       </div>
     );
   }
+  else {
+    
+    return (
+      <div className='navbar is-fixed-top' role='navigation'>
+        <NavWrapper>
+          <nav className='navbar is-primary'>
+            <div className='container'>
+              <div className='navbar-brand'>
+                <a className='navbar-item small-nav-logo' href={SITE_URL}>
+                  <img
+                    src={assetURL('/dark-iotxplorer-logo.png')}
+                    alt='IoTeX Explorer'
+                    width='120'
+                    height='29'
+                  />
+                </a>
+                <div
+                  className={`navbar-burger burger ${this.state.displayDropdownMenu ? 'is-active' : ''}`}
+                  data-target='navMenuColordark-example'
+                  onClick={() => this.toggleDropdownMenu()}
+                >
+                  <span aria-hidden='true'/>
+                  <span aria-hidden='true'/>
+                  <span aria-hidden='true'/>
+                </div>
+              </div>
+              <div
+                className={`navbar-menu is-primary ${this.state.displayDropdownMenu ? 'is-active' : ''}`}
+              >
+                <div className='navbar-end'>
+                  <div className='navbar-item has-dropdown is-hoverable'>
+                    <p className='navbar-link'>Blockchain</p>
+                    <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
+                      <a className='navbar-item nav-dropdown-item' href={EXECUTIONS.INDEX}>{t('meta.executions')}</a>
+                      <a className='navbar-item nav-dropdown-item' href={TRANSFERS.INDEX}>{t('meta.transfers')}</a>
+                      <a className='navbar-item nav-dropdown-item' href={BLOCKS.INDEX}>{t('meta.blocks')}</a>
+                      <a className='navbar-item nav-dropdown-item' href={VOTES.INDEX}>{t('meta.votes')}</a>
+                    </div>
+                  </div>
+                  <div className='navbar-item has-dropdown is-hoverable'>
+                    <p className='navbar-link'>Resources</p>
+                    <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
+                      <a className='navbar-item nav-dropdown-item' href={WALLET.INDEX}>{t('meta.account')}</a>
+                      <a className='navbar-item nav-dropdown-item' href={SITE_URL}>Calculators</a> 
+                    </div>
+                  </div>
+                  <div className='navbar-item has-dropdown is-hoverable'>
+                  <a className='navbar-link is-arrowless' href={STAKING.INDEX}>Stake With Us &lt;3</a>
+                  <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
+                  <a className='navbar-item nav-dropdown-item' href={STAKING.INDEX}>Why Us?</a>
+                  <a className='navbar-item nav-dropdown-item' href={STAKING.INDEX}>Staking Calculators</a>   
+                  </div>               
+                  </div>
+                  <div className='navbar-item has-dropdown is-hoverable'>
+                    <p className='navbar-link'>
+                      <Icon/>{name}
+                    </p>
+                    <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
+                      {chains.map((c, i) => (
+                        <a target='_blank' rel='noopener noreferrer' key={i} className='navbar-item nav-dropdown-item' href={c.url + path}>
+                          <Icon/>{c.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </nav>
+        </NavWrapper>
+      </div>
+  )}
+} 
 }
 
 const NavWrapper = styled('div', props => ({

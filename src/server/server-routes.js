@@ -21,6 +21,7 @@ import {setDepositRoutes} from '../shared/deposit/deposit-handler';
 import {version} from '../../package.json';
 import {setJsonRpcRoutes} from './json-rpc/json-rpc';
 import {setMarketDashboardRoutes} from '../shared/blockchain-explorer/market-dashboard-handler';
+import { setStakingRoutes } from '../shared/staking/staking-handler';
 
 // eslint-disable-next-line max-statements
 export function setServerRoutes(server: Server) {
@@ -78,4 +79,6 @@ export function setServerRoutes(server: Server) {
   setContractRoutes(server);
 
   setDelegateRoutes(server);
+
+  setStakingRoutes(server);
 }
