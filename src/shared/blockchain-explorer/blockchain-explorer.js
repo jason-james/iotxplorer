@@ -24,10 +24,10 @@ import type {TExecution} from '../../entities/explorer-types';
 import {Dashboard} from './dashboard';
 import { SearchBar } from './search-bar';
 import {TitleContainer} from '../common/iotex-explorer-title';
-import { Tabs } from './Tabs'
-import { Tab } from './Tab'
+import { Tabs } from './tabs'
+import { Tab } from './tab'
 import { MarketDashboard } from './market-dashboard';
-import { LineChart } from './LineChart';
+import { LineChart } from './line-chart';
 
 
 type PropsType = {
@@ -330,7 +330,7 @@ export class BlockchainExplorer extends Component {
             title={`IoTxplorer - the IoTeX search engine`}
           />
           <div className='hero is-medium hero-bg-image' style={{padding: '0rem', margin: '0rem'}} >
-            <div className='hero-body' style={{paddingTop:'7rem'}}>
+            <div className='hero-body' style={{paddingTop:'8rem'}}>
               <div className='container'><TitleContainer/></div>
               <div className='container is-fluid'><SearchBar/></div>
             </div>
@@ -397,7 +397,7 @@ export class BlockchainExplorer extends Component {
           title={`IoTxplorer - the IoTeX search engine`}
         />
         <div className='hero is-medium hero-bg-image' style={{backgroundColor: '#f0f2f7', padding: '0rem', margin: '0rem'}} >
-          <div className='hero-body' style={{paddingTop:'7rem'}}>
+          <div className='hero-body' style={{paddingTop:'8rem'}}>
             <div className='container'><TitleContainer/></div>
             <div className='container is-fluid'><SearchBar/></div>
           </div>

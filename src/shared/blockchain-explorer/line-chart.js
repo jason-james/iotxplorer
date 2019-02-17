@@ -306,8 +306,20 @@ export class LineChart extends Component {
       area
         .attr("transform", "translate(0, 300)")
         .transition()
-        .duration(3000)
+        .duration(1500)
         .attr("transform", "translate(0,0)");
+
+        let line = d3.selectAll("#line");
+        var totalLength = line.node().getTotalLength();
+        line
+          .attr("stroke-dasharray", totalLength)
+          .attr("stroke-dashoffset", totalLength)
+          .attr("stroke-width", 6)
+          .attr("stroke", "#00d1b2")
+          .transition()
+          .duration(2000)
+          .attr("stroke-width", 0.5)
+          .attr("stroke-dashoffset", 0);
   }
 
   componentDidUpdate() {
@@ -329,7 +341,7 @@ export class LineChart extends Component {
     let { data } = this.state;
 
     const height = 350;
-    const width = 625;
+    const width = 623;
 
     const boxStyles = {
       width: width,

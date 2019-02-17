@@ -1,5 +1,5 @@
 import Component from 'inferno-component';
-import { Tab } from './Tab'
+import { Tab } from './tab'
 
 export class Tabs extends Component { 
 
