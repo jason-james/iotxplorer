@@ -184,6 +184,13 @@ export class DASHBOARD {
   }
 }
 
+export class CHART {
+
+  static get CHART_DATA(): String {
+    return '/api/getChartData';
+  }
+}
+
 export class WALLET {
 
   static get INDEX(): string {

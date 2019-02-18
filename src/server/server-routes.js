@@ -22,6 +22,7 @@ import {version} from '../../package.json';
 import {setJsonRpcRoutes} from './json-rpc/json-rpc';
 import {setMarketDashboardRoutes} from '../shared/blockchain-explorer/market-dashboard-handler';
 import { setStakingRoutes } from '../shared/staking/staking-handler';
+import { setLineChartRoutes } from '../shared/blockchain-explorer/line-chart-handler';
 
 // eslint-disable-next-line max-statements
 export function setServerRoutes(server: Server) {
@@ -58,6 +59,7 @@ export function setServerRoutes(server: Server) {
   setConsensusMetricsRoutes(server);
   setBlockchainExplorerRoutes(server);
   setMarketDashboardRoutes(server);
+  setLineChartRoutes(server);
 
   setExecutionHandler(server);
   setExecutionsHandler(server);

@@ -42,6 +42,7 @@ export class BlockchainExplorer extends Component {
     fetchVotes: fetchVotes,
     fetchConsensusMetrics: fetchConsensusMetrics,
     fetchMarketData: fetchMarketData,
+    fetchChartData: fetchChartData,
     executions: {
       offset: number,
       count: number,
@@ -87,6 +88,7 @@ export class BlockchainExplorer extends Component {
     this.state = {
       fetchConsensusMetricsId: 0,
       fetchMarketData: 0,
+      fetchChartData: 0,
       height: 0,
       activeTab: 'Market',
     };
@@ -106,16 +108,15 @@ export class BlockchainExplorer extends Component {
     }
   }
 
+  
   componentDidMount() {
     this.props.fetchConsensusMetrics();
     this.props.fetchMarketData();
-    const fetchConsensusMetricsId = window.setInterval(
-      () => this.props.fetchConsensusMetrics(),
-      5000,
-    );
+    const fetchChartData = this.props.fetchChartData();
+    const fetchConsensusMetricsId = window.setInterval(() => this.props.fetchConsensusMetrics(), 5000);
     const fetchMarketData = window.setInterval(() => this.props.fetchMarketData(), 10000);
 
-    this.setState({fetchConsensusMetricsId, fetchMarketData});
+    this.setState({fetchConsensusMetricsId, fetchMarketData, fetchChartData});
   }
 
   componentWillUnmount() {
@@ -131,6 +132,14 @@ export class BlockchainExplorer extends Component {
   }
 
 
+  formChartData = (chartData) => { //to avoid component using chartData prop before promise has been resolved (ie null)
+    if (!chartData) {
+        return []
+    } 
+
+    return chartData
+  }
+
   formMarketStats = (marketData) => {
     if (!marketData) {
       return [{
@@ -141,7 +150,6 @@ export class BlockchainExplorer extends Component {
       }];
     }
 
-    // Sets empty array return value to hold dashboard info. Dashboard is the info to the right of plasmaball
     const retval = [];
     retval.push({
       title: t('marketDashboard.marketCap'),
@@ -349,7 +357,7 @@ export class BlockchainExplorer extends Component {
                 <div className='column'>
                   <div className='columns'>
                   <div className='column is-half'>
-                  <LineChart />
+                  <LineChart chartData={this.formChartData(this.props.chartData)}/>
                   </div>
                     <MarketDashboard stats={this.formMarketStats(this.props.marketData)}/>
                   </div>

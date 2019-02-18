@@ -12,4 +12,5 @@ export class CoinMarketCap {
     const url = 'https://api.coinmarketcap.com/v1/ticker/iotex/';
     return axios.get(url);
   }
+
 }

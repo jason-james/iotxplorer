@@ -7,6 +7,7 @@ import {fetchVotes} from '../votes/votes-actions';
 import {fetchConsensusMetrics} from '../consensus-metrics/consensus-metrics-actions';
 import {BlockchainExplorer} from './blockchain-explorer';
 import {fetchMarketData} from './market-dashboard-actions';
+import {fetchChartData} from './line-chart-actions'
 
 export const BlockchainExplorerContainer = connect(
   function mapStateToProps(state) {
@@ -20,6 +21,7 @@ export const BlockchainExplorerContainer = connect(
       statistic: state.nav.statistic,
       chainId: state.base.chainId,
       marketData: state.marketDashboard.marketData,
+      chartData: state.lineChart.chartData,
       fetching: state.fetching,
       error: state.error,
     };
@@ -31,5 +33,6 @@ export const BlockchainExplorerContainer = connect(
     fetchVotes: data => dispatch(fetchVotes(data)),
     fetchConsensusMetrics: () => dispatch(fetchConsensusMetrics()),
     fetchMarketData: () => dispatch(fetchMarketData()),
+    fetchChartData: () => dispatch(fetchChartData()),
   }),
 )(BlockchainExplorer);
