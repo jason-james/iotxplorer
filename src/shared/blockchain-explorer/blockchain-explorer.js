@@ -335,7 +335,7 @@ export class BlockchainExplorer extends Component {
               <div className='container is-fluid'><SearchBar/></div>
             </div>
           </div>
-  
+
           <div className='section' style={{padding: '0px', margin: '0rem'}}>
           <div className='container' style={{marginTop:'42px'}}>
             <div className='card'>
@@ -431,7 +431,7 @@ export class BlockchainExplorer extends Component {
           </div>
           <br></br>
           
-          <div className='section' style={{backgroundColor: '#f0f2f7', padding: '24px', margin: '0rem'}}>
+          <div className='section' style={{padding: '24px', margin: '0rem'}}>
           <div className='container'>
            <div className='card'>
             <div className='card-content'>

@@ -50,6 +50,7 @@ module.exports = {
       'http://use.fontawesome.com/releases/v5.0.9/css/all.css',
     ],
     'frame-src': [
+      'https://www.youtube.com/',
     ],
     'connect-src': [
       'self',
