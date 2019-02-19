@@ -7,7 +7,7 @@ import window from 'global/window';
 import isBrowser from 'is-browser';
 import {assetURL} from '../../../lib/asset-url';
 import {t} from '../../../lib/iso-i18n';
-import {BLOCKS, SITE_URL, EXECUTIONS, TRANSFERS, VOTES, WALLET, IOTEX_URL, NAV, STAKING} from '../site-url';
+import {BLOCKS, SITE_URL, EXECUTIONS, TRANSFERS, VOTES, WALLET, IOTEX_URL, NAV, STAKING, STAKING_DASHBOARD} from '../site-url';
 import {titleFont} from '../../../shared/common/styles/style-font';
 import {fetchPost} from '../../../lib/fetch-post';
 
@@ -160,7 +160,7 @@ export class Nav extends Component {
                   <a className='navbar-link is-arrowless' href={STAKING.INDEX}>Stake With Us &lt;3</a>
                   <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
                   <a className='navbar-item nav-dropdown-item' href={STAKING.INDEX}>Why Us?</a>
-                  <a className='navbar-item nav-dropdown-item' href={STAKING.INDEX}>Staking Calculators</a>   
+                  <a className='navbar-item nav-dropdown-item' href={STAKING_DASHBOARD.INDEX}>Staking Dashboard</a>   
                   </div>               
                   </div>
                   <div className='navbar-item has-dropdown is-hoverable'>
@@ -246,7 +246,7 @@ export class Nav extends Component {
                   <a className='navbar-link is-arrowless' href={STAKING.INDEX}>Stake With Us &lt;3</a>
                   <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
                   <a className='navbar-item nav-dropdown-item' href={STAKING.INDEX}>Why Us?</a>
-                  <a className='navbar-item nav-dropdown-item' href={STAKING.INDEX}>Staking Calculators</a>   
+                  <a className='navbar-item nav-dropdown-item' href={STAKING_DASHBOARD.INDEX}>Staking Dashboard</a>   
                   </div>               
                   </div>
                   <div className='navbar-item has-dropdown is-hoverable'>

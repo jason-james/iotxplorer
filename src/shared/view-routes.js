@@ -25,13 +25,15 @@ import {
   WALLET,
   DEPOSIT,
   STAKING,
+  STAKING_DASHBOARD,
 } from './common/site-url';
 import {VoteContainer} from './vote/vote-container';
 import {VotesContainer} from './votes/votes-container';
 import {WalletContainer} from './wallet/wallet-container';
 import {SettleDepositContainer} from './deposit/settle-deposit-container';
 import {CreateDepositContainer} from './deposit/create-deposit-container';
-import {StakingContainer} from './staking/staking-container'
+import {StakingContainer} from './staking/staking-container';
+import {StakingDashboardContainer} from './staking-dashboard/staking-dashboard-container';
 
 export function createViewRoutes(routePrefix = '/') {
   return (
@@ -56,6 +58,8 @@ export function createViewRoutes(routePrefix = '/') {
       <RoutePage path={WALLET.INDEX} component={WalletContainer}/>
 
       <RoutePage path={STAKING.INDEX} component={StakingContainer}/>
+
+      <RoutePage path={STAKING_DASHBOARD.INDEX} component={StakingDashboardContainer}/>
 
       {/* <RoutePage path={DELEGATES.INDEX} component={DelegatesContainer}/>*/}
 

@@ -264,3 +264,11 @@ export class STAKING {
   }
 
 }
+
+export class STAKING_DASHBOARD {
+
+  static get INDEX(): string {
+    return '/staking/dashboard';
+  }
+
+}

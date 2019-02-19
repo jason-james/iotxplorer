@@ -7,7 +7,7 @@ import window from 'global/window';
 import {t} from '../../lib/iso-i18n';
 import {fonts} from './styles/style-font';
 import {ellipsisText} from './utils';
-import { SITE_URL, STAKING } from './site-url';
+import { SITE_URL, STAKING, STAKING_DASHBOARD } from './site-url';
 
 type Breadcrumb = {
   name: string,
@@ -62,7 +62,7 @@ export class Breadcrumbs extends Component {
 
   render() {
     const breadcrumbs = cleanPath(this.state.url);
-    if (this.state.url !== SITE_URL && this.state.url !== STAKING.INDEX) {
+    if (this.state.url !== SITE_URL && this.state.url !== STAKING.INDEX && this.state.url !== STAKING_DASHBOARD.INDEX) {
     return (
       <BreadCrumbStyle className='container column'>
         <nav className='breadcrumb' aria-label='breadcrumbs'>

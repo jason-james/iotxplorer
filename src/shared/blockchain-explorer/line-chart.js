@@ -119,7 +119,7 @@ export class LineChart extends Component {
               id={"area"}
               d={area(data)}
               fill={"url(#MyGradient)"}
-              style={{ opacity: 0.8 }}
+              style={{ opacity: 0.72 }}
             />
           </g>
         </svg>
