@@ -335,7 +335,7 @@ export class BlockchainExplorer extends Component {
       return (
         <section>
           <Helmet
-            title={`IoTxplorer - the IoTeX search engine`}
+            title={`iotxplorer - the IoTeX search engine`}
           />
           <div className='hero is-medium hero-bg-image' style={{padding: '0rem', margin: '0rem'}} >
             <div className='hero-body' style={{paddingTop:'7rem'}}>

@@ -1,5 +1,5 @@
 import Component from 'inferno-component';
-import { StakingCalculators } from './staking-calculators';
+import { StakingCalc } from './staking-calculators';
 
 export class StakingDashboard extends Component {
     render() {
@@ -13,7 +13,7 @@ export class StakingDashboard extends Component {
           General
         </p>
         <ul class="menu-list">
-          <li><a class="is-active">Dashboard</a></li>
+          <li><a class="is-active">Calculators</a></li>
         </ul>
         <p class="menu-label">
           Voting/Staking
@@ -26,9 +26,6 @@ export class StakingDashboard extends Component {
               <li><a>FAQ</a></li>
             </ul>
          </li> 
-          <li>
-            <a class="">Calculators</a>
-          </li>
         </ul>
       </nav>
     </aside>
@@ -41,95 +38,9 @@ export class StakingDashboard extends Component {
           </div>
         </div>
       </div>
-      
-      <div class="columns">
-      <div className='column is-half'>
-      <div className='box'>
-            <div className='columns'>
-        <div className='column is-three-quarters'>
-        <div className='box'>Calculations go here</div>
-        </div>
-        <div className='columns is-multiline'>
-        <div class="column">
-          <div class="box">
-            <div class="heading">Top Seller Total</div>
-            <div class="title">56,950</div>
-            <div class="level">
-              <div class="level-item">
-                <div class="">
-                  <div class="heading">Sales $</div>
-                  <div class="title is-5">250,000</div>
-                </div>
-              </div>
-              <div class="level-item">
-                <div class="">
-                  <div class="heading">Overall $</div>
-                  <div class="title is-5">750,000</div>
-                </div>
-              </div>
-              <div class="level-item">
-                <div class="">
-                  <div class="heading">Sales %</div>
-                  <div class="title is-5">25%</div>
-                </div>
-              </div>
-            </div>
+          <div className='container is-fluid'>
+          <StakingCalc />
           </div>
-          <div class="box">
-            <div class="heading">Revenue / Expenses</div>
-            <div class="title">55% / 45%</div>
-            <div class="level">
-              <div class="level-item">
-                <div class="">
-                  <div class="heading">Rev Prod $</div>
-                  <div class="title is-5">30%</div>
-                </div>
-              </div>
-              <div class="level-item">
-                <div class="">
-                  <div class="heading">Rev Serv $</div>
-                  <div class="title is-5">25%</div>
-                </div>
-              </div>
-              <div class="level-item">
-                <div class="">
-                  <div class="heading">Exp %</div>
-                  <div class="title is-5">45%</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="box">
-            <div class="heading">Feedback Activity</div>
-            <div class="title">78% &uarr;</div>
-            <div class="level">
-              <div class="level-item">
-                <div class="">
-                  <div class="heading">Positive</div>
-                  <div class="title is-5">1560</div>
-                </div>
-              </div>
-              <div class="level-item">
-                <div class="">
-                  <div class="heading">Negative</div>
-                  <div class="title is-5">368</div>
-                </div>
-              </div>
-              <div class="level-item">
-                <div class="">
-                  <div class="heading">Pos/Neg %</div>
-                  <div class="title is-5">77% / 23%</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        </div>
-        </div>
-      </div>  
-      </div>   
-      </div>
       </section>
     </main>
     </div>
