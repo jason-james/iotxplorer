@@ -26,6 +26,7 @@ import {
   DEPOSIT,
   STAKING,
   STAKING_DASHBOARD,
+  HOW_TO_STAKE,
 } from './common/site-url';
 import {VoteContainer} from './vote/vote-container';
 import {VotesContainer} from './votes/votes-container';
@@ -34,6 +35,7 @@ import {SettleDepositContainer} from './deposit/settle-deposit-container';
 import {CreateDepositContainer} from './deposit/create-deposit-container';
 import {StakingContainer} from './staking/staking-container';
 import {StakingDashboardContainer} from './staking-dashboard/staking-dashboard-container';
+import {HowToStakeContainer} from './staking-dashboard/staking-voting/how-to-stake-container';
 
 export function createViewRoutes(routePrefix = '/') {
   return (
@@ -60,6 +62,9 @@ export function createViewRoutes(routePrefix = '/') {
       <RoutePage path={STAKING.INDEX} component={StakingContainer}/>
 
       <RoutePage path={STAKING_DASHBOARD.INDEX} component={StakingDashboardContainer}/>
+
+      <RoutePage path={HOW_TO_STAKE.INDEX} component={HowToStakeContainer}/>
+
 
       {/* <RoutePage path={DELEGATES.INDEX} component={DelegatesContainer}/>*/}
 

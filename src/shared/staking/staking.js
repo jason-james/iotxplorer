@@ -120,7 +120,7 @@ export class Staking extends Component {
                     />
                     </div>
                     <div className='card-content subtitle' style={{color:'#4c4c4c', paddingBottom:'0.5rem', marginBottom:'0', fontWeight:'600'}}>
-                    <a href='https://medium.com/iotex/iotex-delegates-program-application-voting-and-rewards-5cab7e87bd20' style={{color:'inherit'}}>IoTeX Delegates Program — Requirements (Medium)</a>
+                    <a href='https://medium.com/iotex/iotex-delegates-program-application-voting-and-rewards-5cab7e87bd20' target="_blank" style={{color:'inherit'}}>IoTeX Delegates Program — Requirements (Medium)</a>
                     </div>
                     <div className='card-content'>
                     <p>The governance design of the IoTeX network encodes the rules and processes that define how the network will reach consensus, incentivize network participation, and evolve sustainably over time. In this blog post we provide an overview of the IoTeX Delegates Program, focusing on application, voting and election guidelines.</p>

@@ -108,7 +108,7 @@
     "inferno-helmet": "^4.0.2",
     "inferno-outside-click-handler": "^0.1.1",
     "inferno-redux": "^3.9.0",
-    "inferno-router": "^3.9.0",
+    "inferno-router": "^3.10.1",
     "inferno-server": "^3.9.0",
     "inferno-side-effect": "1.1.0",
     "iotex-client-js": "^0.1.8",

@@ -268,7 +268,16 @@ export class STAKING {
 export class STAKING_DASHBOARD {
 
   static get INDEX(): string {
-    return '/staking/dashboard';
+    return '/staking/dashboard';  
+  }
+
+}
+
+
+export class HOW_TO_STAKE {
+
+  static get INDEX(): string {
+    return '/staking/dashboard/howto';
   }
 
 }

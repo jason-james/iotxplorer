@@ -62,7 +62,7 @@ export class Breadcrumbs extends Component {
 
   render() {
     const breadcrumbs = cleanPath(this.state.url);
-    if (this.state.url !== SITE_URL && this.state.url !== STAKING.INDEX && this.state.url !== STAKING_DASHBOARD.INDEX) {
+    if (this.state.url !== SITE_URL && this.state.url !== STAKING.INDEX && !this.state.url.includes(STAKING_DASHBOARD.INDEX)) {
     return (
       <BreadCrumbStyle className='container column'>
         <nav className='breadcrumb' aria-label='breadcrumbs'>

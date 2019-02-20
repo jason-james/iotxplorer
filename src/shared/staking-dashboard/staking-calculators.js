@@ -5,24 +5,24 @@ import {ToolTip} from '../../shared/common/tooltip'
 export class StakingCalc extends Component {
 
     state = {
-      stakeAmount: 400000,
-      stakeDuration: 9,
-      tokenPrice: 0.01,
+      stakeAmount: null,
+      stakeDuration: null,
+      tokenPrice: null,
     }
 
     calculateROI() {
       const totalDelegateVotes36thplace = 7575120
       const overallRedist = 1711120
 
-      let bonusVotes = Math.log(this.state.stakeDuration)/Math.log(1.2)
-      let effectiveVotes = this.state.stakeAmount * (1+(bonusVotes/100))
-      let percentOfTotalVotes = (effectiveVotes / totalDelegateVotes36thplace)
-      let holderReturn = (percentOfTotalVotes * overallRedist) + this.state.stakeAmount
-      let ROI = ((holderReturn - this.state.stakeAmount)/this.state.stakeAmount) * 100
-      let profitIOTX = holderReturn - this.state.stakeAmount
-      let profitUSD = this.state.tokenPrice * profitIOTX
+      const bonusVotes = Math.log(this.state.stakeDuration)/Math.log(1.2)
+      const effectiveVotes = this.state.stakeAmount * (1+(bonusVotes/100))
+      const percentOfTotalVotes = (effectiveVotes / totalDelegateVotes36thplace)
+      const amountGivenBack = ((percentOfTotalVotes * overallRedist) + this.state.stakeAmount)
+      const ROI = ((parseInt(amountGivenBack) - this.state.stakeAmount)/this.state.stakeAmount) * 100
+      const profitIOTX = amountGivenBack - this.state.stakeAmount
+      const profitUSD = this.state.tokenPrice * profitIOTX
 
-      return [ROI.toFixed(1), holderReturn.toFixed(1), profitUSD.toFixed(2), profitIOTX.toFixed(1)]
+      return [ROI.toFixed(1), amountGivenBack.toFixed(1), profitUSD.toFixed(2), profitIOTX.toFixed(1)]
     }
 
     calculatorContent() {
@@ -44,9 +44,9 @@ export class StakingCalc extends Component {
             />
             <div className='field has-addons'>
             <div className='control'>
-            <input className='input is-primary has-addons' placeholder='The higher the better.' style={{marginLeft:'32px'}} 
+            <input className='input is-primary has-addons' placeholder='The higher the better.' type='number' style={{marginLeft:'32px'}} 
                   value={this.state.stakeAmount}
-                  onChange={e => this.setState({ stakeAmount: e.target.value })}>
+                  onChange={e => this.setState({ stakeAmount: parseInt(e.target.value) })}>
             </input>
             </div>
             <div className='control'>
@@ -99,7 +99,7 @@ export class StakingCalc extends Component {
             />
             <div className='field has-addons'>
             <div className='control'>
-            <input className='input is-primary' placeholder={`You know what we're gonna say.`} style={{width:'80%', marginLeft:'80px'}}
+            <input className='input is-primary' placeholder={`Current price is in nav bar.`} style={{width:'80%', marginLeft:'80px'}}
             value={this.state.tokenPrice}
             onChange={e => this.setState({ tokenPrice: e.target.value })}>
             </input>
@@ -118,6 +118,9 @@ export class StakingCalc extends Component {
     
 
     render() {
+
+      const results = this.calculateROI()
+
         return (
             <div className='columns'>
             <div className='column is-half'>
@@ -136,12 +139,12 @@ export class StakingCalc extends Component {
         <div class="column">
           <div class="box is-centered">
             <div class="heading">ROI</div>
-            <div class="title">{this.calculateROI()[0]}%</div>
+            <div class="title">{isNaN(results[0]) ? 0 : results[0] }%</div>
             <div class="level">
               <div class="level-item">
                 <div class="">
                   <div class="heading">Total IOTX returned</div>
-                  <div class="title is-5">{this.calculateROI()[1]}</div>
+                  <div class="title is-5">{isNaN(results[1]) ? 0 : results[1] }</div>
                 </div>
               </div>
              
@@ -149,9 +152,9 @@ export class StakingCalc extends Component {
           </div>
           <div class="box">
             <div class="heading">Profit per year</div>
-            <div class="title">${this.calculateROI()[2]}</div>
+            <div class="title">${isNaN(results[2]) ? 0 : results[2] }</div>
             <div class="level">
-                <div>{this.calculateROI()[3]} IOTX</div>
+                <div>{isNaN(results[3]) ? 0 : results[3] } IOTX</div>
             </div>
           </div>
         </div>
