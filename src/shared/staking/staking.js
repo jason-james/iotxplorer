@@ -14,7 +14,7 @@ export class Staking extends Component {
 
             <section class="hero is-primary is-medium is-bold">
              <Helmet
-                title={`IoTxplorer - the IoTeX search engine`}
+                title={`iotxplorer - the iotex search engine`}
             />
             <div class="hero-body">
                 <div class="container has-text-centered">

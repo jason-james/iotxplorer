@@ -1,12 +1,17 @@
 import Component from 'inferno-component';
 import { StakingCalc } from './staking-calculators';
 import {StakingDashboardNav} from './staking-dashboard-nav'
+import Helmet from 'inferno-helmet';
+
 
 export class StakingDashboard extends Component {
     render() {
         return (
 
 <div class="section">
+<Helmet
+            title={`iotxplorer - the iotex search engine`}
+          />
   <div class="columns">
     <StakingDashboardNav activeClass='calculators'/>
     <main class="column">
