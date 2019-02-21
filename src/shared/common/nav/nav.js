@@ -152,15 +152,13 @@ export class Nav extends Component {
                   <div className='navbar-item has-dropdown is-hoverable'>
                     <p className='navbar-link'>Resources</p>
                     <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
-                      <a className='navbar-item nav-dropdown-item' href={WALLET.INDEX}>{t('meta.account')}</a>
-                      <a className='navbar-item nav-dropdown-item' href={SITE_URL}>{'PLACEHOLDER'}</a> 
+                    <a className='navbar-item nav-dropdown-item' href={STAKING_DASHBOARD.INDEX}>Staking Dashboard</a>   
                     </div>
                   </div>
                   <div className='navbar-item has-dropdown is-hoverable'>
                   <a className='navbar-link is-arrowless' href={STAKING.INDEX}>Stake With Us &lt;3</a>
                   <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
                   <a className='navbar-item nav-dropdown-item' href={STAKING.INDEX}>Why Us?</a>
-                  <a className='navbar-item nav-dropdown-item' href={STAKING_DASHBOARD.INDEX}>Staking Dashboard</a>   
                   </div>               
                   </div>
                   <div className='navbar-item has-dropdown is-hoverable'>
@@ -238,15 +236,13 @@ export class Nav extends Component {
                   <div className='navbar-item has-dropdown is-hoverable'>
                     <p className='navbar-link'>Resources</p>
                     <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
-                      <a className='navbar-item nav-dropdown-item' href={WALLET.INDEX}>{t('meta.account')}</a>
-                      <a className='navbar-item nav-dropdown-item' href={SITE_URL}>Calculators</a> 
+                    <a className='navbar-item nav-dropdown-item' href={STAKING_DASHBOARD.INDEX}>Staking Dashboard</a>   
                     </div>
                   </div>
                   <div className='navbar-item has-dropdown is-hoverable'>
                   <a className='navbar-link is-arrowless' href={STAKING.INDEX}>Stake With Us &lt;3</a>
                   <div className='navbar-dropdown' style={{paddingTop: '0px', borderTop: '0px'}}>
                   <a className='navbar-item nav-dropdown-item' href={STAKING.INDEX}>Why Us?</a>
-                  <a className='navbar-item nav-dropdown-item' href={STAKING_DASHBOARD.INDEX}>Staking Dashboard</a>   
                   </div>               
                   </div>
                   <div className='navbar-item has-dropdown is-hoverable'>

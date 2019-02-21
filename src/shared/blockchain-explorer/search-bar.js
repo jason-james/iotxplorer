@@ -72,7 +72,8 @@ export class SearchBar extends Component {
             fontSize: '20pt',
             textAlign: 'center',
             lineHeight: '70px'}}
-            placeholder={t('nav.fuzzy.search.placeholder')}
+            // placeholder={t('nav.fuzzy.search.placeholder')}
+            placeholder='Search the IoTeX network by block/transaction/execution/vote.'
             onChange={() => {
               this.setState({error: false});
             }}

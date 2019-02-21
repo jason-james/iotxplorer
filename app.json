@@ -1,7 +1,7 @@
 {
-  "name": "iotex-explorer",
-  "description": "Official explorer of IoTeX blockchain",
-  "repository": "https://github.com/iotexproject/iotex-explorer",
-  "logo": "https://iotex.io/logo-no-text.svg",
+  "name": "iotxplorer",
+  "description": "The IoTeX search engine",
+  "repository": "https://github.com/jason-james/iotxplorer",
+  "logo": "https://raw.githubusercontent.com/jason-james/iotxplorer/master/src/client/static/light-iotxplorer-logo.png",
   "keywords": ["node", "koa", "react", "inferno"]
 }
