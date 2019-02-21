@@ -2,6 +2,7 @@ import Component from 'inferno-component';
 import Helmet from 'inferno-helmet';
 import {assetURL} from '../../lib/asset-url'
 import {t} from '../../lib/iso-i18n';
+import { STAKING_DASHBOARD, SITE_URL } from '../common/site-url';
 
 //TODO: Impletment mailing list at bottom of page. Convert appropriate strings below into translatables.
 
@@ -18,19 +19,41 @@ export class Staking extends Component {
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <h1 class="title">
-                    Always adding value.
+                    Always add value.
                     </h1>
                     <h2 class="subtitle">
-                    Add value to the IoTeX network while adding to your wallet. Stake with iotxplorer. 
+                    Add value to the IoTeX network whilst adding to your wallet. Stake with iotxplorer. 
                     </h2>
                 </div>
             </div>
         </section>
         <div class="box cta">
             <p class="has-text-centered">
-                <span class="tag is-primary">New</span>   Check out our brand new <a>calculator</a> to estimate your potential rewards from staking with us.
+                <span class="tag is-primary">New</span>   Check out our brand new <a href={STAKING_DASHBOARD.INDEX}>calculator</a> to estimate your potential rewards from staking with us.
             </p>
         </div>
+        <div style={{textAlign:'center'}}>
+            {/* <h2 className='title' style={{marginTop:'48px', marginBottom:'1.8em'}}>About iotxplorer            </h2> */}
+            <div className='columns is-centered'>  
+            <div className='column is-4'>
+            <div className='card'>
+            <div className='card-content'>
+            <p>We are an open source collective dedicated to adding value to the IoTeX network. Currently iotxplorer is run and developed solely by <a href='https://www.twitter.com/cryptweeter' target="_blank">Cryptweeter</a>, one of IoTeX's first brand ambassadors and someone who many were introduced to
+            by the popular article <a href='https://hackernoon.com/finding-honey-in-a-bear-market-why-im-betting-big-on-iotex-the-ultimate-iot-blockchain-solution-205c5e9c5697' target="_blank">'Finding Honey in a Bear Market'</a>.
+             <br></br><br></br>
+             <strong>Starting with the <a href={SITE_URL} style={{color:'#00d1b2'}}>block explorer</a>, iotxplorer aims to be the hub for all things IoTeX and a place for the diverse talents of the IoTeX community to come together and build something wonderful.</strong></p>
+            </div>
+            </div>
+            </div>
+            </div>
+        
+        </div>
+
+        <div style={{textAlign:'center'}}>
+            <h2 className='title' style={{marginTop:'48px', marginBottom:'1.8em'}}>Why iotxplorer?            </h2>
+        
+        </div>
+
 
         <section class="container">
             <div class="columns features">
@@ -47,7 +70,7 @@ export class Staking extends Component {
                         <div class="card-content">
                             <div class="content">
                                 <h4 style={{display: 'flex', justifyContent:'center'}}> Secure. </h4>
-                                <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
+                                <p>  Vote on iotex.io using Metamask or directly from your desktop. <strong>Your IOTX never leaves your wallet</strong> – you are always in control. </p>
                                 {/* <p><a href="#">Learn more</a></p> */}
                             </div>
                         </div>
@@ -66,8 +89,8 @@ export class Staking extends Component {
                         <div class="card-content">
                             <div class="content" >
                                 <h4 style={{display: 'flex', justifyContent:'center'}}> Rewarding. </h4>
-                                <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non odio euismod lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue. Phasellus vestibulum lorem
-                                sed risus.</p>
+                                <p> Every epoch, we’ll receive rewards based on our delegate rank. <strong>We give you 87% of our rewards</strong> for ranking in the top 100, and we’ll take the consensus rewards
+                                    to cover operating costs associated with the hardware and dApp development.</p>
                                 {/* <p><a href="#">Learn more</a></p> */}
                             </div>
                         </div>
@@ -85,7 +108,8 @@ export class Staking extends Component {
                         <div class="card-content">
                             <div class="content">
                                 <h4 style={{display: 'flex', justifyContent:'center'}}> Transparent. </h4>
-                                <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim enim. Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus vel facilisis.</p>
+                                <p> The voting process is <strong>completely transparent – you’ll always know our ranking and reward structure</strong>. We’ll even go a step further and
+                                    provide insightful reports tailored to you, which break down your rewards after each cycle.</p>
                                 {/* <p><a href="#">Learn more</a></p> */}
                             </div>
                         </div>
@@ -95,7 +119,7 @@ export class Staking extends Component {
             
             </section>
             <div style={{textAlign:'center'}}>
-            <h2 className='title' style={{marginTop:'48px', marginBottom:'1.8em'}}>The iotxplorer mission              </h2>
+            <h2 className='title is-3' style={{marginTop:'48px', marginBottom:'1.8em'}}>Our mission              </h2>
                 <img 
                     src={assetURL('/iotxplorer-mission2.svg')}
                     alt='secure'
@@ -150,10 +174,10 @@ export class Staking extends Component {
             <div class="hero-body">
                 <div class="container has-text-centered">
                     <h2 class="title">
-                    Join our mailing list
+                    We are open to contributions!
                     </h2>
                     <h2 class="subtitle">
-                    Stay up to date on all things iotxplorer by joining our mailing list.
+                    Please email contact@iotxplorer.io if you are interested.
                     </h2>
                 </div>
             </div>

@@ -3,6 +3,12 @@ import {StakingDashboardNav} from '../staking-dashboard-nav'
 
 export class HowToStake extends Component {
 
+    howToStakeContent() {
+        return (
+            <div>Complete voting guides have not yet been released by the IoTeX foundation. Check the Official IoTeX telegram or return here soon for complete details after they've been released.</div>
+        )
+    }
+
     render() {
         return (
             <div class="section">
@@ -18,6 +24,7 @@ export class HowToStake extends Component {
                     </div>
                 </div>
                     <div className='container is-fluid'>
+                    {this.howToStakeContent()}
                     </div>
                 </section>
                 </main>

@@ -19,7 +19,9 @@ export class StakingDashboard extends Component {
         </div>
       </div>
           <div className='container is-fluid'>
+          <div className='box'>
           <StakingCalc />
+          </div>
           </div>
       </section>
     </main>

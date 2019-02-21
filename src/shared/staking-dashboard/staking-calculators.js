@@ -1,18 +1,19 @@
 import Component from 'inferno-component';
 import {assetURL} from '../../lib/asset-url'
 import {ToolTip} from '../../shared/common/tooltip'
+import {nav} from '../common/nav/nav'
 
 export class StakingCalc extends Component {
 
     state = {
-      stakeAmount: null,
-      stakeDuration: null,
+      stakeAmount: 300000,
+      stakeDuration: 14,
       tokenPrice: null,
     }
 
     calculateROI() {
       const totalDelegateVotes36thplace = 7575120
-      const overallRedist = 1711120
+      const overallRedist = 1397220
 
       const bonusVotes = Math.log(this.state.stakeDuration)/Math.log(1.2)
       const effectiveVotes = this.state.stakeAmount * (1+(bonusVotes/100))
@@ -36,10 +37,10 @@ export class StakingCalc extends Component {
             height='100'
             />
             </div> 
-            <p style={{paddingLeft:'24px'}}>Set the amount of IOTX you want to stake</p>
+            <p style={{paddingLeft:'24px'}}>Set the amount of IOTX you will stake</p>
             <ToolTip
               iconClass={'fas fa-question-circle has-text-primary'}
-              message={'testtip'}
+              message={'Set the amount of IOTX that you want to use for voting/staking. The more you stake, the greater your returns will be.'}
               customPadClass={'dashboard-tooltip'}
             />
             <div className='field has-addons'>
@@ -67,12 +68,12 @@ export class StakingCalc extends Component {
             <p style={{paddingLeft:'24px'}}>Set your stake duration</p>
             <ToolTip
                           iconClass={'fas fa-question-circle has-text-primary'}
-                          message={'testtip'}
+                          message={'Enter your stake duration. This time period commits you to locking up your coins for the time specified. Longer stake periods get more bonus votes which results in greater returns.'}
                           customPadClass={'dashboard-tooltip'}
                         />
             <div className='field has-addons'>
             <div className='control'>
-            <input className='input is-primary' placeholder='The higher the better, again.' style={{width:'80%', maxWidth:'391px', marginLeft:'97px'}}
+            <input className='input is-primary' placeholder='The higher the better, again.' type='number' style={{width:'80%', maxWidth:'391px', marginLeft:'97px'}}
             value={this.state.stakeDuration}
             onChange={e => this.setState({ stakeDuration: e.target.value })}>
             </input>
@@ -94,7 +95,7 @@ export class StakingCalc extends Component {
             <p style={{paddingLeft:'24px'}}>Enter the price of 1 IOTX</p>
             <ToolTip
               iconClass={'fas fa-question-circle has-text-primary'}
-              message={'testtip'}
+              message={'Enter the price of 1 IOTX in USD. You can vary this number to estimate what your USD returns might look like depending on the price.'}
               customPadClass={'dashboard-tooltip'}
             />
             <div className='field has-addons'>
@@ -110,10 +111,34 @@ export class StakingCalc extends Component {
             </div>
             </div>
 
-
+            
             </section>
 
         )
+    }
+
+    assumptionsContent() {
+      return (
+        <section>
+
+        <div className='title is-5'>Assumptions</div>
+
+        <div className='content'>
+        <p>
+        <strong>Note:</strong> The assumptions used in this calculator are based on data analysis from established DPoS networks, however, they are still just assumptions and real results may vary due to the difference in votes, votes distribution, number of delegates etc.
+        </p>
+
+        <ol type="i">
+          <li>There is 25% of the current circulating supply used to vote across all candidates, and as such, 630,126,001.30 IOTX is used in voting.</li>
+          <li>Calculations are on a ‘worst case in which iotxplorer still receives block rewards’ basis.</li>
+          <li>The top delegate has 2% of total votes.</li>
+          <li>The 36th delegate (iotxplorer, for the purposes of these calculations) has 1.2% of total votes.</li>
+          <li>iotxplorer <strong>redistributes 87% of the entire epoch bonus</strong>, keeping 13% as a ‘service fee’ to cover operating costs and fund IoTeX development projects and developer bounties.</li> 
+        </ol>
+        </div>
+        </section>
+
+      )
     }
     
 
@@ -122,10 +147,15 @@ export class StakingCalc extends Component {
       const results = this.calculateROI()
 
         return (
+          <div>
+            <div className='columns is-centered'>
+            <div className='title is-4'>Staking ROI calculator</div>
+            </div>
+            <div className='card-content'>
             <div className='columns'>
             <div className='column is-half'>
             <div className='box'>
-            Assumptions here
+            {this.assumptionsContent()}
             </div>
             </div>
 
@@ -137,7 +167,7 @@ export class StakingCalc extends Component {
         </div>
         <div className='columns is-quarter is-multiline'>
         <div class="column">
-          <div class="box is-centered">
+          <div class="box box-custom" style={{marginTop:'16px', marginRight:'16px'}}>
             <div class="heading">ROI</div>
             <div class="title">{isNaN(results[0]) ? 0 : results[0] }%</div>
             <div class="level">
@@ -147,10 +177,9 @@ export class StakingCalc extends Component {
                   <div class="title is-5">{isNaN(results[1]) ? 0 : results[1] }</div>
                 </div>
               </div>
-             
-            </div>
+             </div>
           </div>
-          <div class="box">
+          <div class="box box-custom" style={{marginRight:'16px'}}>
             <div class="heading">Profit per year</div>
             <div class="title">${isNaN(results[2]) ? 0 : results[2] }</div>
             <div class="level">
@@ -163,6 +192,10 @@ export class StakingCalc extends Component {
         </div>
         </div>
         </div>
+        </div>
+        </div>
+        <div className='columns is-centered'><p>That's <strong> {isNaN(results[0]) ? 0 : (results[0]/4.66).toFixed(2) }x</strong> better than EOS, <strong> {isNaN(results[0]) ? 0 : (results[0]/7.85).toFixed(2) }x </strong>better than Tezos and <strong> {isNaN(results[0]) ? 0 : (results[0]/3.7).toFixed(2)}x </strong> better than Cardano staking returns on average.</p></div>
+
         </div>
         )
     }

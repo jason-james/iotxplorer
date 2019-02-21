@@ -2,7 +2,7 @@
 
 export const SITE_URL = '/';
 export const CONSENSUS_API = '/api/getConsensusMetrics';
-export const IOTEX_URL = 'https://iotex.io/';
+export const IOTEX_URL = 'https://iotxplorer.io/';
 
 export class ADDRESS {
 

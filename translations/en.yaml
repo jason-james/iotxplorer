@@ -117,6 +117,14 @@ empty.no: 'No'
 empty.noMore: No More
 empty.yet: Yet
 error.unknown: Something Went Wrong
+stakingInfo.secure: >-
+  Vote on iotex.io using Metamask or directly from your desktop. Your IOTX never leaves your wallet – you are always in control. 
+stakingInfo.rewarding: >-
+  Every epoch, we’ll receive rewards based on our delegate rank. We give you 87% of our rewards for ranking in the top 100, and we’ll take the consensus rewards
+  to cover operating costs associated with the hardware and dApp development.
+stakingInfo.transparent: >-
+  The voting process is completely transparent – you’ll always know our ranking and reward structure. We’ll even go a step further and
+  provide insightful reports tailored to you, which break down your rewards after each cycle.
 vote.title: Vote Details
 vote.id: Vote Hash
 vote.votee: Votee
