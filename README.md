@@ -3,10 +3,12 @@
 
 Frontend website for [the iotex blockchain](https://github.com/iotexproject/iotex-core) and eventually the website for all things IoTeX.
 
+Website is live at http://www.iotxplorer.io
+
 
 ## Contributing to development
 
-Prepare the environment variables.
+Prepare the environment variables...
 
 ```
 cp ./.env.tmpl ./.env
@@ -18,8 +20,7 @@ IOTEX_CORE_URL=http://YOUR-IP:30100
 IOTEX_WALLET_URL=35.247.78.183:30500
 CHAINS=[{"id":1,"name":"mainchain","url":"http://localhost.io/","gatewayUrl":"https://localhost.io/"},{"id":2,"name":"subchain","url":"http://subchain.localhost.io/","gatewayUrl":"https://subchain.iotexslocalhostcan.io/"}]
 ```
-
-And specify environment variables in `.env` file.
+Install nvm and npm
 
 ```
 nvm install 10.14.2
