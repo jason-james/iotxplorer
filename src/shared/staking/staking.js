@@ -70,7 +70,9 @@ export class Staking extends Component {
                         <div class="card-content">
                             <div class="content">
                                 <h4 style={{display: 'flex', justifyContent:'center'}}> Secure. </h4>
-                                <p>  Vote on iotex.io using Metamask or directly from your desktop. <strong>Your IOTX never leaves your wallet</strong> – you are always in control. </p>
+                                <p>  Vote on iotex.io using Metamask or directly from your desktop. Your IOTX is sent to a <strong>secure smart contract</strong> on the ethereum blockchain and is sent back to you when you want it to be - you are in control. 
+                                <br></br> <br></br>
+                                </p>
                                 {/* <p><a href="#">Learn more</a></p> */}
                             </div>
                         </div>
@@ -119,20 +121,27 @@ export class Staking extends Component {
             
             </section>
             <div style={{textAlign:'center'}}>
-            <h2 className='title is-3' style={{marginTop:'48px', marginBottom:'1.8em'}}>Our mission              </h2>
+            <h2 className='title is-3' style={{marginTop:'48px', marginBottom:'1.8em'}}>Our mission                     </h2>
                 <img 
                     src={assetURL('/iotxplorer-mission2.svg')}
                     alt='secure'
                     width='1400'
                     height='1400'
-                />
+                 style={{marginLeft:'48px'}}/>
             </div>
 
             <section>
             <div style={{textAlign:'center'}}>
-            <h2 className='title' style={{marginTop:'48px', marginBottom:'1.8em'}}>How it works</h2>
+            <h2 className='title' style={{marginTop:'48px', marginBottom:'1em'}}>How it works</h2>
             </div>
         <div class="container">
+        <div className='columns is-centered' style={{marginBottom:'42px'}}>
+
+            <div className='column is-centered' style={{textAlign:'center'}}>
+            <img src={assetURL('/voting-diagram.png')}/>
+            </div>
+
+            </div>
             <div class="columns">
                 <div className='column'>
                     <div className='card'>
@@ -167,6 +176,8 @@ export class Staking extends Component {
                 </div>
         
             </div>
+
+
         </div>
 
         <section class="hero is-light is-medium is-bold" style={{marginTop: '48px'}}>

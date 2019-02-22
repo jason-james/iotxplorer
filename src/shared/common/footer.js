@@ -49,7 +49,7 @@ const LinkStyle = styled('a', props => ({
 }));
 
 const FooterIcon = styled('i', props => ({
-  color: colors.iotex,
+  color: '00d1b2',
   fontSize: '2em',
   cursor: 'pointer',
   ...colorHover(colors.brand02, colors.brand02),

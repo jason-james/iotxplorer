@@ -149,53 +149,60 @@ export class StakingCalc extends Component {
         return (
           <div>
             <div className='columns is-centered'>
-            <div className='title is-4'>Staking ROI calculator</div>
+            <div className='title is-4' style={{paddingTop:'16px'}}>Staking ROI calculator</div>
             </div>
             <div className='card-content'>
             <div className='columns'>
-            <div className='column is-half'>
-            <div className='box'>
+            <div className='column'>
             {this.assumptionsContent()}
             </div>
             </div>
 
-            <div className='column is-half'>
-            <div className='box'>
-            <div className='columns'>
-        <div className='column'>
+           
+            <div className='columns is-centered'>
+        <div className='column is-7'>
+        <div className='box'>
         {this.calculatorContent()}
         </div>
-        <div className='columns is-quarter is-multiline'>
-        <div class="column">
-          <div class="box box-custom" style={{marginTop:'16px', marginRight:'16px'}}>
-            <div class="heading">ROI</div>
-            <div class="title">{isNaN(results[0]) ? 0 : results[0] }%</div>
+        </div>
+        </div>
+
+        <div className='columns is-centered'>
+          <div className='column is-3'>
+          <div class="box box-custom">
+            <div class="heading has-text-centered">ROI</div>
+            <div class="title has-text-centered">{isNaN(results[0]) ? 0 : results[0] }%</div>
             <div class="level">
               <div class="level-item">
                 <div class="">
-                  <div class="heading">Total IOTX returned</div>
-                  <div class="title is-5">{isNaN(results[1]) ? 0 : results[1] }</div>
+                  <div class="heading">Total IOTX returned (yearly)</div>
+                  <div className='has-text-centered'>{isNaN(results[1]) ? 0 : results[1] }</div>
                 </div>
               </div>
              </div>
           </div>
-          <div class="box box-custom" style={{marginRight:'16px'}}>
-            <div class="heading">Profit per year</div>
-            <div class="title">${isNaN(results[2]) ? 0 : results[2] }</div>
+          </div>
+          <div className='column is-3'>
+          <div class="box box-custom">
+            <div class="heading has-text-centered">Profit per year (USD)</div>
+            <div class="title has-text-centered">${isNaN(results[2]) ? 0 : results[2] }</div>
             <div class="level">
-                <div>{isNaN(results[3]) ? 0 : results[3] } IOTX</div>
+            <div class="level-item">
+                <div class="">
+                <div class="heading has-text-centered">Profit per year (IOTX)</div>
+                <div className='has-text-centered'>{isNaN(results[3]) ? 0 : results[3] } IOTX</div>
             </div>
           </div>
-        </div>
+          </div>
+             </div>
+          </div>
+          </div>
+        
 
         </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        <div className='columns is-centered'><p>That's <strong> {isNaN(results[0]) ? 0 : (results[0]/4.66).toFixed(2) }x</strong> better than EOS, <strong> {isNaN(results[0]) ? 0 : (results[0]/7.85).toFixed(2) }x </strong>better than Tezos and <strong> {isNaN(results[0]) ? 0 : (results[0]/3.7).toFixed(2)}x </strong> better than Cardano staking returns on average.</p></div>
 
+        <div className='columns is-centered'>
+        <p style={{paddingTop:'16px', paddingBottom:'16px'}}>That's <strong> {isNaN(results[0]) ? 0 : (results[0]/4.66).toFixed(2) }x</strong> better than EOS, <strong> {isNaN(results[0]) ? 0 : (results[0]/7.85).toFixed(2) }x </strong>better than Tezos and <strong> {isNaN(results[0]) ? 0 : (results[0]/3.7).toFixed(2)}x </strong> better than Cardano staking returns on average.</p></div>
         </div>
         )
     }
