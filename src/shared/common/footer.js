@@ -52,7 +52,7 @@ export function Footer() {
             </div>
             <div className='column is-one-third'>
             <p>© 2019 iotxplorer</p>
-            <img src={assetURL('/favicon.png')} width='88px' height='100px'/>
+            <img src={assetURL('/iotxplorer-favicon.png')} width='88px' height='100px'/>
             </div>
             <div className='column is-one-third'>
             <p className='heading' style={{width:'60%', marginLeft:'52px', fontSize:'15px'}}>Connect</p>

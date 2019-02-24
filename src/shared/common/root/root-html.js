@@ -14,7 +14,7 @@ export function rootHtml({styletron, jsonGlobals, reactMarkup, clientScript, non
     ${head.meta.toString()}
     ${head.link.toString()}
     ${head.style.toString()}
-    <link rel="icon" type="image/png" sizes="any" href="${assetURL('/favicon.png')}" />
+    <link rel="icon" type="image/png" sizes="any" href="${assetURL('/iotxplorer-favicon.png')}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     ${stylesheets}
     ${jsonGlobals}
