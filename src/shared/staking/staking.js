@@ -123,7 +123,7 @@ export class Staking extends Component {
             <div style={{textAlign:'center'}}>
             <h2 className='title is-3' style={{marginTop:'48px', marginBottom:'1.8em'}}>Our mission                     </h2>
                 <img 
-                    src={assetURL('/iotxplorer-mission2.svg')}
+                    src={assetURL('/iotxplorer-mission3.svg')}
                     alt='secure'
                     width='1400'
                     height='1400'

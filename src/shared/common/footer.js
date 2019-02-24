@@ -5,6 +5,7 @@ import {t} from '../../lib/iso-i18n';
 import {fonts} from './styles/style-font';
 import {colors} from './styles/style-color';
 import {colorHover} from './color-hover';
+import {assetURL} from '../../lib/asset-url'
 
 const IOTXPLORER_LINK = 'https://www.iotxplorer.io/';
 const MEDIUM_LINK = 'https://medium.com/iotxplorer';
@@ -49,7 +50,10 @@ export function Footer() {
               <button className='button is-outlined is-primary' style={{width:'180px'}}>SUBSCRIBE</button>
             </form>
             </div>
-            <div className='column is-one-third'><p>© 2019 iotxplorer</p></div>
+            <div className='column is-one-third'>
+            <p>© 2019 iotxplorer</p>
+            <img src={assetURL('/favicon.png')} width='88px' height='100px'/>
+            </div>
             <div className='column is-one-third'>
             <p className='heading' style={{width:'60%', marginLeft:'52px', fontSize:'15px'}}>Connect</p>
 
