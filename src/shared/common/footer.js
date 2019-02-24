@@ -19,14 +19,44 @@ export function Footer() {
         <div className='content has-text-centered'>
           <div className='columns'>
             <div className='column is-one-third'>
-              <LinkStyle href={IOTXPLORER_LINK}>{t('footer.website')}</LinkStyle>
-              <LinkStyle href={MEDIUM_LINK}>{t('footer.blog')}</LinkStyle>
-              <LinkStyle href={TELEGRAM_LINK}>{t('footer.chat')}</LinkStyle>
+            <p className='heading' style={{width:'60%', marginLeft:'54px', fontSize:'15px'}}>Stay Updated</p>
+
+              <form
+              action='//iotxplorer.us20.list-manage.com/subscribe/post?u=6e080e4562ed541d1f6636917&amp;id=01b0eb8ba6'
+              method='post'
+              id='mc-embedded-subscribe-form'
+              name='mc-embedded-subscribe-form'
+              className='validate'
+              target='_blank'
+              noValidate={false}
+              >
+              <p class="control has-icons-left">
+              <input
+                type='email'
+                className='input'
+                aria-label='Email'
+                id='mce-EMAIL'
+                name='EMAIL'
+                placeholder='Email'
+                required={true}
+                style={{width:'180px', marginLeft:'125px'}}
+              />
+              <span class="icon is-small is-left" style={{marginLeft:'125px'}}>
+              <i class="fas fa-envelope"></i>
+              </span>
+              </p>
+              <input type='hidden' name='b_6e080e4562ed541d1f6636917_01b0eb8ba6' tabIndex='-1' value=''/>
+              <button className='button is-outlined is-primary' style={{width:'180px'}}>SUBSCRIBE</button>
+            </form>
             </div>
-            <div className='column is-one-third'><p>© 2018 iotxplorer</p></div>
+            <div className='column is-one-third'><p>© 2019 iotxplorer</p></div>
             <div className='column is-one-third'>
-              <LinkStyle href={TWITTER_LINK}><FooterIcon className='fab fa-twitter-square'/></LinkStyle>
-              <LinkStyle href={GITHUB_LINK}><FooterIcon className='fab fa-github-square'/></LinkStyle>
+            <p className='heading' style={{width:'60%', marginLeft:'52px', fontSize:'15px'}}>Connect</p>
+
+                <LinkStyle href={MEDIUM_LINK}><FooterIcon className='fab fa-medium'/></LinkStyle>
+                <LinkStyle href={TELEGRAM_LINK}><FooterIcon className='fab fa-telegram-plane'/></LinkStyle>
+                <LinkStyle href={TWITTER_LINK}><FooterIcon className='fab fa-twitter-square'/></LinkStyle>
+                <LinkStyle href={GITHUB_LINK}><FooterIcon className='fab fa-github-square'/></LinkStyle>
             </div>
           </div>
         </div>
@@ -37,7 +67,7 @@ export function Footer() {
 
 const FooterStyle = styled('footer', props => ({
   ...fonts.body,
-  backgroundColor: colors.nav03,
+  backgroundColor: '#363636',
   color: colors.inverse01,
 }));
 

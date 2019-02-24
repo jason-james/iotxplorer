@@ -131,17 +131,12 @@ export class Staking extends Component {
             </div>
 
             <section>
+
             <div style={{textAlign:'center'}}>
             <h2 className='title' style={{marginTop:'48px', marginBottom:'1em'}}>How it works</h2>
             </div>
+
         <div class="container">
-        <div className='columns is-centered' style={{marginBottom:'42px'}}>
-
-            <div className='column is-centered' style={{textAlign:'center'}}>
-            <img src={assetURL('/voting-diagram.png')}/>
-            </div>
-
-            </div>
             <div class="columns">
                 <div className='column'>
                     <div className='card'>
@@ -180,7 +175,7 @@ export class Staking extends Component {
 
         </div>
 
-        <section class="hero is-light is-medium is-bold" style={{marginTop: '48px'}}>
+        <section class="hero is-light is-medium is-bold" style={{marginTop: '64px'}}>
 
             <div class="hero-body">
                 <div class="container has-text-centered">
