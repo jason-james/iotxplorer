@@ -12,18 +12,67 @@ export class Staking extends Component {
         return (
             <section>
 
-            <section class="hero is-primary is-medium is-bold">
+            <section class="hero is-primary is-large is-bold">
              <Helmet
                 title={`iotxplorer - the iotex search engine`}
             />
-            <div class="hero-body">
+                <div className='columns' style={{marginBottom:'0px'}}>
+                <div className='column is-two-fifths staking-bg-image'>
+                
+                </div>
+                <div className='column' style={{padding:'18rem'}}>
+                        <h1 class="title">
+                        Always add value.
+                        </h1>
+                        <h2 class="subtitle">
+                        Add value to the IoTeX network whilst adding to your wallet. Stake with iotxplorer. 
+                        </h2>
+
+                        <form
+                        action='//iotxplorer.us20.list-manage.com/subscribe/post?u=6e080e4562ed541d1f6636917&amp;id=01b0eb8ba6'
+                        method='post'
+                        id='mc-embedded-subscribe-form'
+                        name='mc-embedded-subscribe-form'
+                        className='validate'
+                        target='_blank'
+                        noValidate={false}
+                        >
+                            <p class="control has-icons-left">
+                                <input
+                                    type='email'
+                                    className='input'
+                                    aria-label='Email'
+                                    id='mce-EMAIL'
+                                    name='EMAIL'
+                                    placeholder='Trust us, you want to be subscribed.'
+                                    required={true}
+                                    style={{width:'400px'}}
+                                />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </p>
+                            <input type='hidden' name='b_6e080e4562ed541d1f6636917_01b0eb8ba6' tabIndex='-1' value=''/>
+                            <button className='button is-outlined is-light' style={{width:'130px', marginTop:'16px'}}>SUBSCRIBE</button>
+                        </form>
+                </div>
+                </div>
+            <div class="hero-body" style={{padding:'0px'}}>
                 <div class="container has-text-centered">
-                    <h1 class="title">
-                    Always add value.
-                    </h1>
-                    <h2 class="subtitle">
-                    Add value to the IoTeX network whilst adding to your wallet. Stake with iotxplorer. 
-                    </h2>
+                    {/* <div className='columns'>
+                    <div className='column is-half'>
+                    
+                    </div>
+
+                    <div className='column'>
+                        <h1 class="title">
+                        Always add value.
+                        </h1>
+                        <h2 class="subtitle">
+                        Add value to the IoTeX network whilst adding to your wallet. Stake with iotxplorer. 
+                        </h2>
+                    </div>
+                </div> */}
                 </div>
             </div>
         </section>
@@ -31,22 +80,6 @@ export class Staking extends Component {
             <p class="has-text-centered">
                 <span class="tag is-primary">New</span>   Check out our brand new <a href={STAKING_DASHBOARD.INDEX}>calculator</a> to estimate your potential rewards from staking with us.
             </p>
-        </div>
-        <div style={{textAlign:'center'}}>
-            {/* <h2 className='title' style={{marginTop:'48px', marginBottom:'1.8em'}}>About iotxplorer            </h2> */}
-            <div className='columns is-centered'>  
-            <div className='column is-4'>
-            <div className='card'>
-            <div className='card-content'>
-            <p>We are an open source collective dedicated to adding value to the IoTeX network. Currently iotxplorer is run and developed solely by <a href='https://www.twitter.com/cryptweeter' target="_blank">Cryptweeter</a>, one of IoTeX's first brand ambassadors and someone who many were introduced to
-            by the popular article <a href='https://hackernoon.com/finding-honey-in-a-bear-market-why-im-betting-big-on-iotex-the-ultimate-iot-blockchain-solution-205c5e9c5697' target="_blank">'Finding Honey in a Bear Market'</a>.
-             <br></br><br></br>
-             <strong>Starting with the <a href={SITE_URL} style={{color:'#00d1b2'}}>block explorer</a>, iotxplorer aims to be the hub for all things IoTeX and a place for the diverse talents of the IoTeX community to come together and build something wonderful.</strong></p>
-            </div>
-            </div>
-            </div>
-            </div>
-        
         </div>
 
         <div style={{textAlign:'center'}}>
@@ -91,7 +124,7 @@ export class Staking extends Component {
                         <div class="card-content">
                             <div class="content" >
                                 <h4 style={{display: 'flex', justifyContent:'center'}}> Rewarding. </h4>
-                                <p> Every epoch, we’ll receive rewards based on our delegate rank. <strong>We give you 87% of our rewards</strong> for ranking in the top 100, and we’ll take the consensus rewards
+                                <p> Every epoch, we’ll receive rewards based on our delegate rank. <strong>We give you <span style={{color:'#00d1b2'}}>87%</span> of our rewards</strong> for ranking in the top 100, and we’ll take the consensus rewards
                                     to cover operating costs associated with the hardware and dApp development.</p>
                                 {/* <p><a href="#">Learn more</a></p> */}
                             </div>

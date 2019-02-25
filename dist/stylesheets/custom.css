@@ -1,3 +1,8 @@
+.staking-bg-image {
+  background: url("../abstract-staking.jpg") center center;
+  background-size: cover;
+  height: 80vh; }
+
 .hero-bg-image {
   background: url("../landing-bg.png") center center;
   background-size: cover; }
