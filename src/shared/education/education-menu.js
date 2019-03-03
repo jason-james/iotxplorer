@@ -41,7 +41,7 @@ export class EducationMenu extends Component {
                     <code className="language-javascript">
                     contactDetails = {'{'} 
                         <br></br>   
-                        {'  '}telegram: t.me/iotxplorer
+                        {'  '}telegram: t.me/iotxplorer,
                         <br></br>
                         {'  '}email: contact@iotxplorer.io 
                         <br></br>                    
