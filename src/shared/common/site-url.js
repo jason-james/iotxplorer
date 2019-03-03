@@ -281,3 +281,11 @@ export class HOW_TO_STAKE {
   }
 
 }
+
+  export class EDUCATION {
+
+    static get INDEX(): string {
+      return '/education';
+    }
+
+}

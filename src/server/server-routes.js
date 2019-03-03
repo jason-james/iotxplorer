@@ -25,6 +25,7 @@ import { setStakingRoutes } from '../shared/staking/staking-handler';
 import { setLineChartRoutes } from '../shared/blockchain-explorer/line-chart-handler';
 import {setStakingDashboardRoutes} from '../shared/staking-dashboard/staking-dashboard-handler';
 import {setHowToStakeRoutes} from '../shared/staking-dashboard/staking-voting/how-to-stake-handler';
+import {setEducationRoutes} from '../shared/education/education-handler';
 
 // eslint-disable-next-line max-statements
 export function setServerRoutes(server: Server) {
@@ -88,5 +89,7 @@ export function setServerRoutes(server: Server) {
 
   setStakingDashboardRoutes(server);
 
-  setHowToStakeRoutes(server)
+  setHowToStakeRoutes(server);
+
+  setEducationRoutes(server);
 }
