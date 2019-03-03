@@ -161,7 +161,7 @@ export class StakingCalc extends Component {
            
             <div className='columns is-centered'>
         <div className='column is-7'>
-        <div className='box'>
+        <div className='box' style={{boxShadow:'none'}}>
         {this.calculatorContent()}
         </div>
         </div>

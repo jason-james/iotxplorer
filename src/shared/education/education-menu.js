@@ -31,7 +31,7 @@ export class EducationMenu extends Component {
             <div className="content is-medium">
                 <h3 className="title is-3">How to contribute to iotxplorer.education</h3>
                     <div className="box">
-                        <h4 id="const" className="title is-3">Providing new content</h4>
+                        <h4 id="const" className="title is-4">Providing new content</h4>
                         <article className="message is-primary">
                         <div className="message-body">
                             You can provide new content to the iotxplorer education page via Github. If you want to ensure your content will be accepted before you create it or try to edit this page, you can contact us first.
@@ -50,7 +50,7 @@ export class EducationMenu extends Component {
                     </pre>
                     </div>
                     <div className="box">
-                    <h4 id="let" className="title is-3">Found an error?</h4>
+                    <h4 id="let" className="title is-4">Found an error?</h4>
                     <article className="message is-primary">
                         <div className="message-body">
                         If you see any errors or incorrect information please correct them using the same method as above.

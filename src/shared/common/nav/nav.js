@@ -111,7 +111,7 @@ export class Nav extends Component {
         path = href.replace(c.url, '');
       }
     }
-    if (this.state.url !== STAKING.INDEX) {
+    if (this.state.url !== STAKING.INDEX && this.state.url !== EDUCATION.INDEX) {
     return (
       <div className='navbar is-fixed-top' role='navigation'>
         <NavWrapper>
@@ -184,11 +184,11 @@ export class Nav extends Component {
             <div className='content has-text-centered'>
               <div className='columns is-mobile is-multiline is-centered' style={{marginTop: '0rem'}}>
                 <div
-                  className='column nav-price-col'>IOTX/BTC: {this.props.price ? `${this.props.price.btc} ฿` : 'N/A'}</div>
+                  className='column is-3 nav-price-col'>IOTX/BTC: {this.props.price ? `${this.props.price.btc} ฿` : 'N/A'}</div>
                 <div
-                  className='column nav-price-col'>IOTX/ETH: {this.props.price ? `${this.props.price.eth} Ξ` : 'N/A'}</div>
+                  className='column is-2 nav-price-col' style={{paddingLeft:'65px'}}>IOTX/ETH: {this.props.price ? `${this.props.price.eth} Ξ` : 'N/A'}</div>
                 <div
-                  className='column nav-price-col'>IOTX/USD: {this.props.price ? `$${parseFloat(this.props.price.usd).toFixed(4)}` : 'N/A'}</div>
+                  className='column is-3 nav-price-col' style={{marginLeft:'130px'}}>IOTX/USD: {this.props.price ? `$${parseFloat(this.props.price.usd).toFixed(4)}` : 'N/A'}</div>
               </div>
             </div>
           </div>
