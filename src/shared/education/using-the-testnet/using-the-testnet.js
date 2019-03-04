@@ -47,7 +47,7 @@ export class UsingTheTestnet extends Component {
                       </li>
                     </EducationButton>
                   </ul>
-                  <p className='menu-label'>Helpful links</p>
+                  <p className='menu-label'>Contents</p>
                   <ul className='menu-list'>
                     <li>
                       <a
