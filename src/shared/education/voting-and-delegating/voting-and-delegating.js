@@ -55,25 +55,7 @@ export class VotingAndDelegating extends Component {
                         href='https://guides.github.com/activities/hello-world/'
                         target='_blank'
                       >
-                        Introduction to Github
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className='button is-light education-tag'
-                        href='https://help.github.com/en/articles/fork-a-repo'
-                        target='_blank'
-                      >
-                        Forking
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className='button is-light education-tag'
-                        href='https://help.github.com/en/articles/creating-a-pull-request'
-                        target='_blank'
-                      >
-                        Submitting pull requests
+                        Work in progress
                       </a>
                     </li>
                   </ul>
@@ -84,13 +66,11 @@ export class VotingAndDelegating extends Component {
                   <h3 className='title is-3'>Voting and Delegating</h3>
                   <div className='box'>
                     <h4 id='const' className='title is-4'>
-                      Providing new content
+                      Work in progress
                     </h4>
                     <p>
-                      You can provide new content to the iotxplorer education
-                      page via Github. If you want to ensure your content will
-                      be accepted before you create it or try to edit this page,
-                      you can contact us first.
+                      The content for this page is currently being written. If
+                      you'd like to help, join us on telegram!
                     </p>
                     <pre>
                       <code className='language-javascript'>
