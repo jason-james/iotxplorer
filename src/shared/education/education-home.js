@@ -1,6 +1,7 @@
 import { styled } from "styletron-inferno";
 import Component from "inferno-component";
-import { assetURL } from "../../lib/asset-url";
+import { Link } from "inferno-router";
+
 import { EducationHeader } from "./education-header";
 
 export class Education extends Component {
@@ -17,23 +18,32 @@ export class Education extends Component {
                   <ul className='menu-list education-buttons'>
                     <EducationButton>
                       <li className='is-right'>
-                        <a href='#const' className='is-active'>
+                        <Link
+                          to='/education/understandingiotex/'
+                          className='is-active'
+                        >
                           0. Understanding IoTeX
-                        </a>
+                        </Link>
                       </li>
                     </EducationButton>
                     <EducationButton>
                       <li>
-                        <a href='#let' className='is-active'>
+                        <Link
+                          to='/education/usingthetestnet/'
+                          className='is-active'
+                        >
                           1. Using the testnet
-                        </a>
+                        </Link>
                       </li>
                     </EducationButton>
                     <EducationButton>
                       <li>
-                        <a href='#let' className='is-active'>
+                        <Link
+                          to='/education/votingdelegating/'
+                          className='is-active'
+                        >
                           2. Voting and Delegating
-                        </a>
+                        </Link>
                       </li>
                     </EducationButton>
                   </ul>
@@ -78,14 +88,12 @@ export class Education extends Component {
                     <h4 id='const' className='title is-4'>
                       Providing new content
                     </h4>
-                    <article className='message is-primary'>
-                      <div className='message-body'>
-                        You can provide new content to the iotxplorer education
-                        page via Github. If you want to ensure your content will
-                        be accepted before you create it or try to edit this
-                        page, you can contact us first.
-                      </div>
-                    </article>
+                    <p>
+                      You can provide new content to the iotxplorer education
+                      page via Github. If you want to ensure your content will
+                      be accepted before you create it or try to edit this page,
+                      you can contact us first.
+                    </p>
                     <pre>
                       <code className='language-javascript'>
                         contactDetails = {"{"}
