@@ -1,5 +1,6 @@
 import Component from "inferno-component";
 import { Link } from "inferno-router";
+import Helmet from "inferno-helmet";
 
 import { assetURL } from "../../lib/asset-url";
 
@@ -7,6 +8,7 @@ export class EducationHeader extends Component {
   render() {
     return (
       <section className='hero is-primary'>
+        <Helmet title={`iotxplorer: education`} />
         <div className='hero-body'>
           <div className='columns'>
             <div className='column is-12'>
