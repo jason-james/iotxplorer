@@ -7,7 +7,7 @@ export class StakingDashboard extends Component {
   render() {
     return (
       <div class='section'>
-        <Helmet title={`iotxplorer - Staking dashboard`} />
+        <Helmet title={`iotxplorer: Staking dashboard`} />
         <div class='columns'>
           <StakingDashboardNav activeClass='calculators' />
           <main class='column'>

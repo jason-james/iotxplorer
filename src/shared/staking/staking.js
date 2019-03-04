@@ -11,7 +11,7 @@ export class Staking extends Component {
     return (
       <section>
         <section class='hero is-primary is-large is-bold'>
-          <Helmet title={`iotxplorer - Stake with us <3`} />
+          <Helmet title={`iotxplorer: Stake with us <3`} />
           <div className='columns' style={{ marginBottom: "0px" }}>
             <div className='column is-two-fifths staking-bg-image' />
             <div className='column' style={{ padding: "18rem" }}>
