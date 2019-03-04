@@ -81,9 +81,14 @@ export class Staking extends Component {
         </section>
         <div class='box cta'>
           <p class='has-text-centered'>
-            <span class='tag is-primary'>New</span> Check out our brand new{" "}
-            <a href={STAKING_DASHBOARD.INDEX}>calculator</a> to estimate your
-            potential rewards from staking with us.
+            <span class='tag is-primary'>New</span> Read our{" "}
+            <a
+              href='https://medium.com/@iotxplorer/who-we-are-an-introduction-to-iotxplorer-35005c020867'
+              target='_blank'
+            >
+              full introduction
+            </a>{" "}
+            to the community on our blog
           </p>
         </div>
 
