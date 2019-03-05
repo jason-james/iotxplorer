@@ -53,7 +53,6 @@ export class VotingAndDelegating extends Component {
                       <a
                         className='button is-light education-tag'
                         href='#voters-handbook'
-                        target='_blank'
                       >
                         Voter's Handbook
                       </a>
