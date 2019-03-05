@@ -101,6 +101,7 @@ class InstallingDockerWindows extends Component {
     return (
       <section>
         <h4 className='title is-4'>IoTeX testnet via Docker for Windows</h4>
+        <hr />
         <article className='message is-primary'>
           <div className='message-body'>
             If you don't already have Docker installed on your machine, you can
