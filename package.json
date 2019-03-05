@@ -8,11 +8,10 @@
     "check-coverage": "nyc check-coverage --lines 50",
     "ava": "NODE_ENV=test ava",
     "watch": "gulp watch",
-    "build": "gulp build",
+    "build": "npm run bp",
     "build-production": "NODE_ENV=production gulp build",
     "server": "node server",
     "lint": "eslint . --fix",
-    "postinstall": "npm run bp",
     "cover": "NODE_ENV=test npm run lint && nyc npm run ava",
     "flow": "flow",
     "flow-install": "flow-typed install",
@@ -184,5 +183,6 @@
     "node": "v10.14.2",
     "npm": "6.4.1"
   },
-  "private": true
+  "private": true,
+  "heroku-run-build-script": true
 }
