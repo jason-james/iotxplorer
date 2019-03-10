@@ -388,10 +388,10 @@ export class BlockchainExplorer extends Component {
           </div>
           <div class='box cta'>
             <p class='has-text-centered'>
-              <span class='tag is-warning'>Note</span> The IoTeX testnet is
-              currently migrating to testnet v2. As a result, blockchain data is
-              not able to be displayed until testnet v2 is released and the
-              iotxplorer code is adjusted accordingly.
+              <span class='tag is-warning'>Note</span> Blockchain data will not
+              be displayed until mainnet is released and the iotxplorer code is
+              adjusted to account for the jsonRPC vs gRPC difference between
+              testnet and mainnet.
             </p>
           </div>
 
