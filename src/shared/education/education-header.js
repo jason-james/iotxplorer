@@ -8,7 +8,50 @@ export class EducationHeader extends Component {
   render() {
     return (
       <section className='hero is-primary'>
-        <Helmet title={`iotxplorer: education`} />
+        <Helmet
+          title={`iotxplorer: education`}
+          meta={[
+            {
+              name: "description",
+              content:
+                "Guides, tutorials, articles, videos and developer documentation to help you find out everything you need to know about IoTeX."
+            },
+            {
+              property: "og:title",
+              content: "iotxplorer: Education"
+            },
+            {
+              property: "og:description",
+              content:
+                "Guides, tutorials, articles, videos and developer documentation to help you find out everything you need to know about IoTeX."
+            },
+            {
+              property: "og:image",
+              content: `${assetURL("/meta-image-large.png")}`
+            },
+            {
+              name: "twitter:card",
+              content: "summary_large_image"
+            },
+            {
+              name: "twitter:site",
+              content: "@iotxplorer"
+            },
+            {
+              name: "twitter:title",
+              content: "iotxplorer: Education"
+            },
+            {
+              name: "twitter:description",
+              content:
+                "Guides, tutorials, articles, videos and developer documentation to help you find out everything you need to know about IoTeX."
+            },
+            {
+              name: "twitter:image",
+              content: `${assetURL("/education-meta-image.png")}`
+            }
+          ]}
+        />
         <div className='hero-body'>
           <div className='columns'>
             <div className='column is-12'>

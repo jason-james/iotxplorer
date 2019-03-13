@@ -25,11 +25,33 @@ export class Staking extends Component {
               },
               {
                 property: "og:description",
-                content: "Learn how and why you should stake with iotxplorer."
+                content:
+                  "Add value to the IoTeX network whilst adding to your wallet. Learn how and why you should vote for iotxplorer."
               },
               {
                 property: "og:image",
-                content: `${assetURL("/iotxplorer-logo.png")}`
+                content: `${assetURL("/staking-meta-image.png")}`
+              },
+              {
+                name: "twitter:card",
+                content: "summary_large_image"
+              },
+              {
+                name: "twitter:site",
+                content: "@iotxplorer"
+              },
+              {
+                name: "twitter:title",
+                content: "iotxplorer: Stake with us <3"
+              },
+              {
+                name: "twitter:description",
+                content:
+                  "Add value to the IoTeX network whilst adding to your wallet. Learn how and why you should vote for iotxplorer."
+              },
+              {
+                name: "twitter:image",
+                content: `${assetURL("/staking-meta-image.png")}`
               }
             ]}
           />

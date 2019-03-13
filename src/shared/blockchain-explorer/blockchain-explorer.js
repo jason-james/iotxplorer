@@ -392,7 +392,28 @@ export class BlockchainExplorer extends Component {
               },
               {
                 property: "og:image",
-                content: `${assetURL("/meta-image1.png")}`
+                content: `${assetURL("/meta-image-large.png")}`
+              },
+              {
+                name: "twitter:card",
+                content: "summary_large_image"
+              },
+              {
+                name: "twitter:site",
+                content: "@iotxplorer"
+              },
+              {
+                name: "twitter:title",
+                content: "iotxplorer: iotex network explorer"
+              },
+              {
+                name: "twitter:description",
+                content:
+                  "An IoTeX explorer by iotxplorer. An open source collective of IoTeX community leaders, dedicated to adding value to the IoTeX network."
+              },
+              {
+                name: "twitter:image",
+                content: `${assetURL("/meta-image-large.png")}`
               }
             ]}
           />
@@ -467,7 +488,50 @@ export class BlockchainExplorer extends Component {
     } else if (this.state.activeTab === "Blockchain") {
       return (
         <section>
-          <Helmet title={`iotxplorer: the IoTeX search engine`} />
+          <Helmet
+            title={`iotxplorer: iotex network explorer`}
+            meta={[
+              {
+                name: "description",
+                content:
+                  "An open source collective by IoTeX community leaders, dedicated to adding value to the IoTeX network."
+              },
+              {
+                property: "og:title",
+                content: "iotxplorer: iotex network explorer"
+              },
+              {
+                property: "og:description",
+                content:
+                  "An open source collective by IoTeX community leaders, dedicated to adding value to the IoTeX network #IoTeXDelegate"
+              },
+              {
+                property: "og:image",
+                content: `${assetURL("/meta-image-large.png")}`
+              },
+              {
+                name: "twitter:card",
+                content: "summary_large_image"
+              },
+              {
+                name: "twitter:site",
+                content: "@iotxplorer"
+              },
+              {
+                name: "twitter:title",
+                content: "iotxplorer: iotex network explorer"
+              },
+              {
+                name: "twitter:description",
+                content:
+                  "An IoTeX explorer by iotxplorer. An open source collective of IoTeX community leaders, dedicated to adding value to the IoTeX network."
+              },
+              {
+                name: "twitter:image",
+                content: `${assetURL("/meta-image-large.png")}`
+              }
+            ]}
+          />
           <div
             className='hero is-medium hero-bg-image'
             style={{ padding: "0rem", margin: "0rem" }}
@@ -481,7 +545,6 @@ export class BlockchainExplorer extends Component {
               </div>
             </div>
           </div>
-
           <div className='section' style={{ padding: "0px", margin: "0rem" }}>
             <div className='container' style={{ marginTop: "42px" }}>
               <div className='card'>
@@ -511,7 +574,6 @@ export class BlockchainExplorer extends Component {
             </div>
           </div>
           <br />
-
           <div className='section' style={{ padding: "24px", margin: "0rem" }}>
             <div className='container'>
               <div className='card'>
