@@ -33,6 +33,7 @@ import { Tabs } from "./tabs";
 import { Tab } from "./tab";
 import { MarketDashboard } from "./market-dashboard";
 import { LineChart } from "./line-chart";
+import { assetURL } from "../../lib/asset-url";
 
 type PropsType = {
   statistic: TCoinStatistic
@@ -372,7 +373,29 @@ export class BlockchainExplorer extends Component {
     if (this.state.activeTab === "Market") {
       return (
         <section>
-          <Helmet title={`iotxplorer: the iotex search engine`} />
+          <Helmet
+            title={`iotxplorer: iotex block explorer`}
+            meta={[
+              {
+                name: "description",
+                content:
+                  "An open source collective by IoTeX community leaders, dedicated to adding value to the IoTeX network."
+              },
+              {
+                property: "og:title",
+                content: "iotxplorer: iotex block explorer"
+              },
+              {
+                property: "og:description",
+                content:
+                  "An open source collective by IoTeX community leaders, dedicated to adding value to the IoTeX network."
+              },
+              {
+                property: "og:image",
+                content: `${assetURL("/meta-image.png")}`
+              }
+            ]}
+          />
           <div
             className='hero is-medium hero-bg-image'
             style={{ padding: "0rem", margin: "0rem" }}
@@ -394,7 +417,6 @@ export class BlockchainExplorer extends Component {
               testnet and mainnet.
             </p>
           </div>
-
           <div className='section' style={{ padding: "0px", margin: "0rem" }}>
             <div className='container' style={{ marginTop: "42px" }}>
               <div className='card'>
@@ -423,7 +445,6 @@ export class BlockchainExplorer extends Component {
             </div>
           </div>
           <br />
-
           <div className='section' style={{ padding: "24px", margin: "0rem" }}>
             <div className='container'>
               <div className='card'>
