@@ -11,7 +11,28 @@ export class Staking extends Component {
     return (
       <section>
         <section class='hero is-primary is-large is-bold'>
-          <Helmet title={`iotxplorer: Stake with us <3`} />
+          <Helmet
+            title={`iotxplorer: Stake with us <3`}
+            meta={[
+              {
+                name: "description",
+                content:
+                  "An open source collective by IoTeX community leaders, dedicated to adding value to the IoTeX network."
+              },
+              {
+                property: "og:title",
+                content: "iotxplorer: Stake with us <3"
+              },
+              {
+                property: "og:description",
+                content: "Learn how and why you should stake with iotxplorer."
+              },
+              {
+                property: "og:image",
+                content: `${assetURL("/iotxplorer-logo.png")}`
+              }
+            ]}
+          />
           <div className='columns' style={{ marginBottom: "0px" }}>
             <div className='column is-two-fifths staking-bg-image' />
             <div className='column' style={{ padding: "18rem" }}>

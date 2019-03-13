@@ -374,7 +374,7 @@ export class BlockchainExplorer extends Component {
       return (
         <section>
           <Helmet
-            title={`iotxplorer: iotex block explorer`}
+            title={`iotxplorer: iotex network explorer`}
             meta={[
               {
                 name: "description",
@@ -383,16 +383,16 @@ export class BlockchainExplorer extends Component {
               },
               {
                 property: "og:title",
-                content: "iotxplorer: iotex block explorer"
+                content: "iotxplorer: iotex network explorer"
               },
               {
                 property: "og:description",
                 content:
-                  "An open source collective by IoTeX community leaders, dedicated to adding value to the IoTeX network."
+                  "An open source collective by IoTeX community leaders, dedicated to adding value to the IoTeX network #IoTeXDelegate"
               },
               {
                 property: "og:image",
-                content: `${assetURL("/meta-image.png")}`
+                content: `${assetURL("/meta-image1.png")}`
               }
             ]}
           />
