@@ -48,7 +48,7 @@ export class EducationHeader extends Component {
             },
             {
               name: "twitter:image",
-              content: `${assetURL("/education-meta-image.png")}`
+              content: `${assetURL("/education-meta-img.png")}`
             }
           ]}
         />

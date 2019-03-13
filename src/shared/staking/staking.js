@@ -51,7 +51,7 @@ export class Staking extends Component {
               },
               {
                 name: "twitter:image",
-                content: `${assetURL("/staking-meta-image.png")}`
+                content: `${assetURL("/staking-meta-img.png")}`
               }
             ]}
           />
