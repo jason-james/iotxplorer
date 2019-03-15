@@ -1,29 +1,29 @@
 import Component from "inferno-component";
 import * as d3 from "d3";
 import * as Axis from "d3-axis";
+import moment from "moment";
+
 export class LineChart extends Component {
-
   componentDidMount() {
+    let area = d3.selectAll("#area");
 
-      let area = d3.selectAll("#area");
+    area
+      .attr("transform", "translate(0, 300)")
+      .transition()
+      .duration(1500)
+      .attr("transform", "translate(0,0)");
 
-      area
-        .attr("transform", "translate(0, 300)")
-        .transition()
-        .duration(1500)
-        .attr("transform", "translate(0,0)");
-
-        let line = d3.selectAll("#line");
-        var totalLength = line.node().getTotalLength();
-        line
-          .attr("stroke-dasharray", totalLength)
-          .attr("stroke-dashoffset", totalLength)
-          .attr("stroke-width", 6)
-          .attr("stroke", "#00d1b2")
-          .transition()
-          .duration(2000)
-          .attr("stroke-width", 0.5)
-          .attr("stroke-dashoffset", 0);
+    let line = d3.selectAll("#line");
+    var totalLength = line.node().getTotalLength();
+    line
+      .attr("stroke-dasharray", totalLength)
+      .attr("stroke-dashoffset", totalLength)
+      .attr("stroke-width", 6)
+      .attr("stroke", "#00d1b2")
+      .transition()
+      .duration(2000)
+      .attr("stroke-width", 0.5)
+      .attr("stroke-dashoffset", 0);
   }
 
   componentDidUpdate() {
@@ -38,12 +38,10 @@ export class LineChart extends Component {
       .duration(2000)
       .attr("stroke-width", 0.5)
       .attr("stroke-dashoffset", 0);
-
   }
 
   render() {
-    
-    const data = this.props.chartData
+    const data = this.props.chartData;
 
     const height = 350;
     const width = 623;
@@ -57,14 +55,22 @@ export class LineChart extends Component {
 
     let x = d3
       .scaleLinear()
-      .domain(d3.extent(data, function(d) { return d.time; }))
+      .domain(
+        d3.extent(data, function(d) {
+          return d.time;
+        })
+      )
       .range([0, width]);
 
     let y = d3
       .scaleLinear()
-      .domain([0, d3.max(data, function(d) { return d.close; })])
+      .domain([
+        0,
+        d3.max(data, function(d) {
+          return d.close;
+        })
+      ])
       .range([height, 0]);
-
 
     var line = d3
       .line()
@@ -85,29 +91,37 @@ export class LineChart extends Component {
         return y(d.close);
       });
 
-
-      const yTicks = y.ticks(5).map(d => (
-        y(d) > 10 && y(d) < height ? 
-          <g transform={`translate(${20},${y(d)})`}>  
-            <text x="-12" y="5">{'$' + (d)}</text>
-            <line x1='0' x1='5' y1='0' y2='0' transform="translate(-5,0)"/>
-            <line className='gridline' x1='0' x1={width} y1='0' y2='0' transform="translate(-5,0)"/> 
-          </g>
-        : null
-    ))
+    const yTicks = y.ticks(5).map(d =>
+      y(d) > 10 && y(d) < height ? (
+        <g transform={`translate(${20},${y(d)})`}>
+          <text x='-12' y='5'>
+            {"$" + d}
+          </text>
+          <line x1='0' x1='5' y1='0' y2='0' transform='translate(-5,0)' />
+          <line
+            className='gridline'
+            x1='0'
+            x1={width}
+            y1='0'
+            y2='0'
+            transform='translate(-5,0)'
+          />
+        </g>
+      ) : null
+    );
 
     return (
       <div style={boxStyles}>
         <svg height={height} width={width}>
           <defs>
-            <linearGradient id="MyGradient">
-              <stop offset="-10%" stop-color="#317c70" />
-              <stop offset="95%" stop-color="#00d1b2" />
+            <linearGradient id='MyGradient'>
+              <stop offset='-10%' stop-color='#317c70' />
+              <stop offset='95%' stop-color='#00d1b2' />
             </linearGradient>
           </defs>
 
           <g id={"yAxis"}>
-          {yTicks}
+            {yTicks}
 
             <path
               id={"line"}
@@ -123,7 +137,16 @@ export class LineChart extends Component {
             />
           </g>
         </svg>
-        <p style={{position:'relative', bottom:'45px', textAlign:'center', fontFamily: 'Roboto,Actor,Helvetica Neue'}}>30 day performance</p>
+        <p
+          style={{
+            position: "relative",
+            bottom: "45px",
+            textAlign: "center",
+            fontFamily: "Roboto,Actor,Helvetica Neue"
+          }}
+        >
+          30 day performance
+        </p>
       </div>
     );
   }
