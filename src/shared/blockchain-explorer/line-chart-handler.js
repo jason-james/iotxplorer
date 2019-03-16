@@ -9,7 +9,6 @@ export function setLineChartRoutes(server) {
     try {
       const response = await cryptocompare.fetchChartData();
       const chartData = response.data.Data;
-      console.log(chartData);
       ctx.body = { ok: true, chartData };
     } catch (error) {
       ctx.body = {

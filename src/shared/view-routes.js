@@ -41,6 +41,7 @@ import { EducationContainer } from "./education/education-container";
 import { UnderstandingIoTeXContainer } from "./education/understanding-iotex/understanding-iotex-container";
 import { UsingTheTestnetContainer } from "./education/using-the-testnet/using-the-testnet-container";
 import { VotingAndDelegatingContainer } from "./education/voting-and-delegating/voting-and-delegating-container";
+import { CalculatorsContainer } from "./staking-dashboard/calculators/staking-calcs-container";
 
 export function createViewRoutes(routePrefix = "/") {
   return (
@@ -94,6 +95,11 @@ export function createViewRoutes(routePrefix = "/") {
       <RoutePage
         path={EDUCATION.VOTING_AND_DELEGATING}
         component={VotingAndDelegatingContainer}
+      />
+
+      <RoutePage
+        path={STAKING_DASHBOARD.CALCULATORS}
+        component={CalculatorsContainer}
       />
 
       {/* <RoutePage path={DELEGATES.INDEX} component={DelegatesContainer}/>*/}

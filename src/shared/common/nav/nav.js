@@ -245,6 +245,12 @@ export class Nav extends Component {
                           className='navbar-item nav-dropdown-item'
                           href={STAKING_DASHBOARD.INDEX}
                         >
+                          Dashboard
+                        </a>
+                        <a
+                          className='navbar-item nav-dropdown-item'
+                          href={STAKING_DASHBOARD.CALCULATORS}
+                        >
                           Calculators
                         </a>
                         <a
@@ -419,6 +425,12 @@ export class Nav extends Component {
                         <a
                           className='navbar-item nav-dropdown-item'
                           href={STAKING_DASHBOARD.INDEX}
+                        >
+                          Dashboard
+                        </a>
+                        <a
+                          className='navbar-item nav-dropdown-item'
+                          href={STAKING_DASHBOARD.CALCULATORS}
                         >
                           Calculators
                         </a>

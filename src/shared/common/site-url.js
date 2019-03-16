@@ -252,11 +252,19 @@ export class STAKING_DASHBOARD {
   static get INDEX(): string {
     return "/staking/dashboard";
   }
+
+  static get CALCULATORS(): string {
+    return "/staking/calculators";
+  }
+
+  static get DELEGATE_DATA(): string {
+    return "/api/getDelegateData";
+  }
 }
 
 export class HOW_TO_STAKE {
   static get INDEX(): string {
-    return "/staking/dashboard/howto";
+    return "/staking/howto";
   }
 }
 

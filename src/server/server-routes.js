@@ -29,6 +29,7 @@ import { setEducationRoutes } from "../shared/education/education-handler";
 import { setUnderstandingIotexRoutes } from "../shared/education/understanding-iotex/understanding-iotex-handler";
 import { setUsingTheTestnetRoutes } from "../shared/education/using-the-testnet/using-the-testnet-handler";
 import { setVotingAndDelegatingRoutes } from "../shared/education/voting-and-delegating/voting-and-delegating-handler";
+import { setCalculatorsRoutes } from "../shared/staking-dashboard/calculators/staking-calcs-handler";
 
 // eslint-disable-next-line max-statements
 export function setServerRoutes(server: Server) {
@@ -97,4 +98,6 @@ export function setServerRoutes(server: Server) {
   setUsingTheTestnetRoutes(server);
 
   setVotingAndDelegatingRoutes(server);
+
+  setCalculatorsRoutes(server);
 }

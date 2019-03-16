@@ -64,8 +64,7 @@ export class Breadcrumbs extends Component {
     const breadcrumbs = cleanPath(this.state.url);
     if (
       this.state.url !== SITE_URL &&
-      this.state.url !== STAKING.INDEX &&
-      !this.state.url.includes(STAKING_DASHBOARD.INDEX) &&
+      !this.state.url.includes(STAKING.INDEX) &&
       !this.state.url.includes(EDUCATION.INDEX)
     ) {
       return (
