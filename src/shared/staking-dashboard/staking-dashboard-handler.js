@@ -18,12 +18,30 @@ export function setStakingDashboardRoutes(server) {
   async function getDelegateData(ctx, next) {
     try {
       const response = await iotexgraphql.fetchDelegateData();
-      console.log(response.data.data.bpCandidates[0]);
+      const delegateData = response.data.data.bpCandidates;
       ctx.body = { ok: true, delegateData };
     } catch (error) {
       ctx.body = {
         ok: false,
         error: { code: "FAIL_GET_DELEGATE_DATA", message: "error.unknown" }
+      };
+    }
+  }
+
+  async function getIotxplorerDelegateData(ctx, next) {
+    try {
+      const response = await iotexgraphql.fetchIotxplorerData();
+      const iotxplorerDelegateData = parseInt(
+        response.data.data.bpCandidate.rank
+      );
+      ctx.body = { ok: true, iotxplorerDelegateData };
+    } catch (error) {
+      ctx.body = {
+        ok: false,
+        error: {
+          code: "FAIL_GET_IOTXPLORER_DELEGATE_DATA",
+          message: "error.unknown"
+        }
       };
     }
   }
@@ -37,5 +55,10 @@ export function setStakingDashboardRoutes(server) {
     "getDelegateData",
     STAKING_DASHBOARD.DELEGATE_DATA,
     getDelegateData
+  );
+  server.post(
+    "getIotxplorerDelegateData",
+    STAKING_DASHBOARD.IOTXPLORER_DELEGATE_DATA,
+    getIotxplorerDelegateData
   );
 }

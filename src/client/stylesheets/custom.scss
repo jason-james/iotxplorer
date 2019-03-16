@@ -1,15 +1,16 @@
 .education-tag {
-  margin: 5px
+  margin: 5px;
 }
 
 .staking-bg-image {
   background: url("../abstract-staking.jpg") center center;
   background-size: cover;
-  height: 80vh; }
+  height: 80vh;
+}
 
 .hero-bg-image {
   background: url("../landing-bg.png") center center;
-  background-size:cover;
+  background-size: cover;
 }
 
 .bx--data-table-v2 thead {
@@ -20,13 +21,13 @@
   text-align: center !important;
   font-size: 1.5em;
   word-break: break-all;
-  color: #4c4c4c; 
+  color: #4c4c4c;
 }
 
 .main-search-bar {
   margin-top: 8px;
   text-align: center;
-  }
+}
 
 .box-custom {
   background-color: #ffffff !important;
@@ -95,7 +96,7 @@
   background-color: #73fbe0;
   color: #151b21;
   width: 50px;
-  height:100px;
+  height: 100px;
   border-radius: 5px;
   margin-left: 20px;
   padding-top: 3px;
@@ -116,7 +117,7 @@
   margin-right: 1em;
 }
 
-.version-text{
+.version-text {
   color: #4c4c4c;
 }
 
@@ -200,11 +201,13 @@
 }
 
 // Navbar
-.navbar-menu, .navbar-item {
+.navbar-menu,
+.navbar-item {
   background-color: #00d1b2;
 }
 
-.navbar-dropdown, .nav-dropdown-item {
+.navbar-dropdown,
+.nav-dropdown-item {
   background-color: #ffffff;
   color: #4c4c4c;
 }
@@ -219,7 +222,8 @@ a.navbar-item:not(.small-nav-logo):hover {
   color: #73fbe1 !important;
 }
 
-.navbar-item, .navbar-link {
+.navbar-item,
+.navbar-link {
   color: #4c4c4c;
 }
 
@@ -234,7 +238,8 @@ a.navbar-item:not(.small-nav-logo):hover {
 }
 
 // Wallet
-.tabs li.is-active a, .tabs a:hover {
+.tabs li.is-active a,
+.tabs a:hover {
   border-bottom-color: #00b4a0;
   color: black;
 }
@@ -250,7 +255,8 @@ a.navbar-item:not(.small-nav-logo):hover {
   background-color: #f7f7f7;
 }
 
-.content table td, .content table th {
+.content table td,
+.content table th {
   border: 0;
 }
 
@@ -279,38 +285,39 @@ a.navbar-item:not(.small-nav-logo):hover {
 }
 
 .input-with-icon-eye-slash:before {
-    content: "\f070";
-    font-family: "Font Awesome 5 Free";
-    font-style: normal;
-    font-weight: 900;
-    text-decoration: inherit;
-    color: #d4d0d0;
-    font-size: 18px;
-    padding-right: 0.5em;
-    position: absolute;
-    top: 5px;
-    right: 0;
-    z-index: 10;
+  content: "\f070";
+  font-family: "Font Awesome 5 Free";
+  font-style: normal;
+  font-weight: 900;
+  text-decoration: inherit;
+  color: #d4d0d0;
+  font-size: 18px;
+  padding-right: 0.5em;
+  position: absolute;
+  top: 5px;
+  right: 0;
+  z-index: 10;
 }
 
 .input-with-icon-eye:before {
-    content: "\f06e";
-    font-family: "Font Awesome 5 Free";
-    font-style: normal;
-    font-weight: 900;
-    text-decoration: inherit;
-    color: #d4d0d0;
-    font-size: 18px;
-    padding-right: 0.5em;
-    position: absolute;
-    top: 5px;
-    right: 0;
-    z-index: 10;
+  content: "\f06e";
+  font-family: "Font Awesome 5 Free";
+  font-style: normal;
+  font-weight: 900;
+  text-decoration: inherit;
+  color: #d4d0d0;
+  font-size: 18px;
+  padding-right: 0.5em;
+  position: absolute;
+  top: 5px;
+  right: 0;
+  z-index: 10;
 }
 
 // Navbar
 
-a.navbar-item:not(.small-nav-logo):hover, .navbar-link:hover {
+a.navbar-item:not(.small-nav-logo):hover,
+.navbar-link:hover {
   color: #73fbe1 !important;
 }
 
@@ -326,7 +333,7 @@ a.navbar-item:not(.small-nav-logo):hover, .navbar-link:hover {
 // wallet
 
 .blur-image {
-  filter:blur(9px);
+  filter: blur(9px);
 }
 
 .centered-text {
@@ -374,7 +381,7 @@ a.navbar-item:not(.small-nav-logo):hover, .navbar-link:hover {
   padding-top: 24px;
   padding-bottom: 24px;
   text-align: center;
-  font-size:28px;
+  font-size: 28px;
 }
 #iotx-balance b {
   padding-left: 5px;

@@ -12,8 +12,24 @@ export class IotexGraphQL {
                     name
                     liveVotes
                     percent
-                    rank
                     id
+                  }
+                }
+              `
+      }
+    });
+  }
+
+  fetchIotxplorerData() {
+    return axios({
+      url: "https://member.iotex.io/api-gateway/",
+      method: "post",
+      data: {
+        query: `
+              query {
+                bpCandidate (candidateProfileId: "5c736ba72d01e727d88b9dea") {
+                    name
+                    rank
                   }
                 }
               `

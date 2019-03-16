@@ -160,10 +160,12 @@
   border-color: #73fbe1 !important;
   color: #6c7175 !important; }
 
-.navbar-menu, .navbar-item {
+.navbar-menu,
+.navbar-item {
   background-color: #00d1b2; }
 
-.navbar-dropdown, .nav-dropdown-item {
+.navbar-dropdown,
+.nav-dropdown-item {
   background-color: #ffffff;
   color: #4c4c4c; }
 
@@ -175,7 +177,8 @@ a.navbar-item:not(.small-nav-logo):hover {
   background-color: #0a0a0a !important;
   color: #73fbe1 !important; }
 
-.navbar-item, .navbar-link {
+.navbar-item,
+.navbar-link {
   color: #4c4c4c; }
 
 .nav-price {
@@ -186,7 +189,8 @@ a.navbar-item:not(.small-nav-logo):hover {
   background-color: #383737;
   padding: 0.2rem; }
 
-.tabs li.is-active a, .tabs a:hover {
+.tabs li.is-active a,
+.tabs a:hover {
   border-bottom-color: #00b4a0;
   color: black; }
 
@@ -199,7 +203,8 @@ a.navbar-item:not(.small-nav-logo):hover {
   padding: 0px 10px 0px 10px;
   background-color: #f7f7f7; }
 
-.content table td, .content table th {
+.content table td,
+.content table th {
   border: 0; }
 
 .content table td {
@@ -249,7 +254,8 @@ a.navbar-item:not(.small-nav-logo):hover {
   right: 0;
   z-index: 10; }
 
-a.navbar-item:not(.small-nav-logo):hover, .navbar-link:hover {
+a.navbar-item:not(.small-nav-logo):hover,
+.navbar-link:hover {
   color: #73fbe1 !important; }
 
 .nav-price {

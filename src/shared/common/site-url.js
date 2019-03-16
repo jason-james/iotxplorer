@@ -260,6 +260,10 @@ export class STAKING_DASHBOARD {
   static get DELEGATE_DATA(): string {
     return "/api/getDelegateData";
   }
+
+  static get IOTXPLORER_DELEGATE_DATA(): string {
+    return "/api/getIotxplorerDelegateData";
+  }
 }
 
 export class HOW_TO_STAKE {
