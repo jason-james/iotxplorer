@@ -108,6 +108,7 @@
     "inferno-compat": "^7.1.10",
     "inferno-component": "^3.9.0",
     "inferno-create-element": "^7.1.10",
+    "inferno-dom": "^1.0.7",
     "inferno-helmet": "^4.0.2",
     "inferno-outside-click-handler": "^0.1.1",
     "inferno-redux": "^3.9.0",

@@ -1,3 +1,17 @@
+.ct-label {
+  color: #4c4c4c;
+  fill: #4c4c4c;
+  font-family: Share Tech, Helvetica Neue, sans-serif !important;
+  font-size: 0.85rem;
+}
+
+.ct-series-e .ct-bar,
+.ct-series-e .ct-line,
+.ct-series-e .ct-point,
+.ct-series-e .ct-slice-donut {
+  stroke: #00d1b2;
+}
+
 .education-tag {
   margin: 5px;
 }

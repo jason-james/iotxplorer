@@ -1,7 +1,10 @@
 import Component from "inferno-component";
 import { StakingDashboardNav } from "./staking-dashboard-nav";
 import Helmet from "inferno-helmet";
-import { ChartistGraph } from "../../shared/chart-helper/chart-helper";
+import {
+  ChartistGraph,
+  TradingViewWidget
+} from "../../shared/chart-helper/chart-helper";
 
 export class StakingDashboard extends Component {
   constructor(props: any) {
@@ -160,9 +163,13 @@ export class StakingDashboard extends Component {
                       <div class='panel'>
                         <p class='panel-heading'>IOTX/BTC: 24h</p>
                         <div class='panel-block'>
-                          <figure class='image is-16x9'>
-                            <img src='https://placehold.it/1280x720' />
-                          </figure>
+                          <div>
+                            <TradingViewWidget
+                              symbol='BINANCE:IOTXBTC'
+                              width='940'
+                              height='545'
+                            />
+                          </div>{" "}
                         </div>
                       </div>
                     </div>

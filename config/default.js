@@ -49,7 +49,7 @@ module.exports = {
       "http://use.fontawesome.com/releases/v5.0.9/css/all.css",
       "http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"
     ],
-    "frame-src": ["https://www.youtube.com/"],
+    "frame-src": ["https://www.youtube.com/", "https://s.tradingview.com/"],
     "connect-src": ["self"],
     "child-src": ["self"],
     "font-src": [
@@ -63,6 +63,7 @@ module.exports = {
     "object-src": ["self"],
     "script-src": [
       "self",
+      "https://s3.tradingview.com/tv.js",
       "https://use.fontawesome.com/releases/v5.0.9/js/all.js",
       "https://www.google-analytics.com/analytics.js",
       "https://d3js.org/d3.v4.min.js",
