@@ -22,27 +22,29 @@ export class Calculators extends Component {
         <Helmet title={`iotxplorer: Staking calculators`} />
         <div class='columns'>
           <StakingDashboardNav activeClass='calculators' />
-          <main class='column'>
-            <section>
-              <div className='container is-fluid'>
-                <section
-                  class='hero welcome is-small is-primary'
-                  style={{
-                    marginBottom: "26px"
-                  }}
-                >
-                  <div class='hero-body'>
-                    <div class='container' style={{ margin: "0px" }}>
-                      <h1 class='title'>Calculators</h1>
+          <div className='container is-fluid'>
+            <main class='column'>
+              <section>
+                <div className='container is-fluid'>
+                  <section
+                    class='hero welcome is-small is-primary'
+                    style={{
+                      marginBottom: "26px"
+                    }}
+                  >
+                    <div class='hero-body'>
+                      <div class='container' style={{ margin: "0px" }}>
+                        <h1 class='title'>Calculators</h1>
+                      </div>
                     </div>
+                  </section>
+                  <div className='box'>
+                    <StakingCalc />
                   </div>
-                </section>
-                <div className='box'>
-                  <StakingCalc />
                 </div>
-              </div>
-            </section>
-          </main>
+              </section>
+            </main>
+          </div>
         </div>
       </div>
     );
