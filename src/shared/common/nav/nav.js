@@ -257,7 +257,7 @@ export class Nav extends Component {
                           className='navbar-item nav-dropdown-item'
                           href={HOW_TO_STAKE.INDEX}
                         >
-                          How to Stake
+                          How to Vote
                         </a>
                       </div>
                     </div>
@@ -438,7 +438,7 @@ export class Nav extends Component {
                           className='navbar-item nav-dropdown-item'
                           href={HOW_TO_STAKE.INDEX}
                         >
-                          How to Stake
+                          How to Vote
                         </a>
                       </div>
                     </div>

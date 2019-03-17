@@ -1,6 +1,5 @@
 import Component from "inferno-component";
 import { Link } from "inferno-router";
-import { NavLink } from "inferno-router";
 
 export class StakingDashboardNav extends Component {
   render() {
@@ -22,7 +21,7 @@ export class StakingDashboardNav extends Component {
             <p class='menu-label'>Voting/Staking</p>
             <ul class='menu-list'>
               <li>
-                <Link to='/staking/howto'>How To Stake</Link>
+                <Link to='/staking/howto'>How To Vote</Link>
                 <ul>
                   <li>Definitions</li>
                   <li>FAQ</li>
@@ -32,7 +31,7 @@ export class StakingDashboardNav extends Component {
           </nav>
         </aside>
       );
-    } else if (this.props.activeClass === "how-to-stake") {
+    } else if (this.props.activeClass === "how-to-vote") {
       return (
         <aside class='column is-2'>
           <nav class='menu'>
@@ -49,7 +48,7 @@ export class StakingDashboardNav extends Component {
             <ul class='menu-list'>
               <li>
                 <Link to='/staking/howto' className='is-active'>
-                  How To Stake
+                  How To Vote
                 </Link>
                 <ul>
                   <li>Definitions</li>
@@ -78,7 +77,7 @@ export class StakingDashboardNav extends Component {
             <p class='menu-label'>Voting/Staking</p>
             <ul class='menu-list'>
               <li>
-                <Link to='/staking/howto'>How To Stake</Link>
+                <Link to='/staking/howto'>How To Vote</Link>
                 <ul>
                   <li>Definitions</li>
                   <li>FAQ</li>

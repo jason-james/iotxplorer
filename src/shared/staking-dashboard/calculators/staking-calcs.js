@@ -24,14 +24,19 @@ export class Calculators extends Component {
           <StakingDashboardNav activeClass='calculators' />
           <main class='column'>
             <section>
-              <div class='level'>
-                <div class='level-left'>
-                  <div class='level-item'>
-                    <div class='title'>Calculators</div>
-                  </div>
-                </div>
-              </div>
               <div className='container is-fluid'>
+                <section
+                  class='hero welcome is-small is-primary'
+                  style={{
+                    marginBottom: "26px"
+                  }}
+                >
+                  <div class='hero-body'>
+                    <div class='container' style={{ margin: "0px" }}>
+                      <h1 class='title'>Calculators</h1>
+                    </div>
+                  </div>
+                </section>
                 <div className='box'>
                   <StakingCalc />
                 </div>

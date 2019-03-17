@@ -5,6 +5,7 @@ import {
   ChartistGraph,
   TradingViewWidget
 } from "../../shared/chart-helper/chart-helper";
+import { assetURL } from "../../lib/asset-url";
 
 export class StakingDashboard extends Component {
   constructor(props: any) {
@@ -91,7 +92,50 @@ export class StakingDashboard extends Component {
 
     return (
       <div class='section'>
-        <Helmet title={`iotxplorer: Staking dashboard`} />
+        <Helmet
+          title={`iotxplorer: Dashboard`}
+          meta={[
+            {
+              name: "description",
+              content:
+                "Statistics and rewards tracking for iotxlorer supporters."
+            },
+            {
+              property: "og:title",
+              content: "iotxplorer: Dashboard"
+            },
+            {
+              property: "og:description",
+              content:
+                "Statistics and rewards tracking for iotxlorer supporters."
+            },
+            {
+              property: "og:image",
+              content: `${assetURL("/dashboard-meta-image.png")}`
+            },
+            {
+              name: "twitter:card",
+              content: "summary_large_image"
+            },
+            {
+              name: "twitter:site",
+              content: "@iotxplorer"
+            },
+            {
+              name: "twitter:title",
+              content: "iotxplorer: iotex network explorer"
+            },
+            {
+              name: "twitter:description",
+              content:
+                "An IoTeX explorer by iotxplorer. An open source collective of IoTeX community leaders, dedicated to adding value to the IoTeX network."
+            },
+            {
+              name: "twitter:image",
+              content: `${assetURL("/dashboard-meta-image-TWITTER.png")}`
+            }
+          ]}
+        />
         <div class='columns'>
           <StakingDashboardNav activeClass='dashboard' />
           <main class='column'>
@@ -106,7 +150,7 @@ export class StakingDashboard extends Component {
                   <div class='hero-body'>
                     <div class='container' style={{ margin: "0px" }}>
                       <h1 class='title'>Dashboard</h1>
-                      <h2 class='subtitle'>iotxplorer</h2>
+                      <h2 class='subtitle'>version 0.1.1</h2>
                     </div>
                   </div>
                 </section>

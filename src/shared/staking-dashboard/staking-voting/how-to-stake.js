@@ -7,17 +7,22 @@ export class HowToStake extends Component {
     return (
       <div class='section'>
         <div class='columns'>
-          <StakingDashboardNav activeClass='how-to-stake' />
+          <StakingDashboardNav activeClass='how-to-vote' />
           <main class='column'>
             <section>
-              <div class='level'>
-                <div class='level-left'>
-                  <div class='level-item'>
-                    <div class='title'>How To Stake</div>
-                  </div>
-                </div>
-              </div>
               <div className='container is-fluid'>
+                <section
+                  class='hero welcome is-small is-primary'
+                  style={{
+                    marginBottom: "26px"
+                  }}
+                >
+                  <div class='hero-body'>
+                    <div class='container' style={{ margin: "0px" }}>
+                      <h1 class='title'>How To Vote</h1>
+                    </div>
+                  </div>
+                </section>
                 <HowToStakeContent />
               </div>
             </section>
