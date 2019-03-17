@@ -151,7 +151,19 @@ export class StakingDashboard extends Component {
                     <div class='hero-body'>
                       <div class='container' style={{ margin: "0px" }}>
                         <h1 class='title'>Dashboard</h1>
-                        <h2 class='subtitle'>version 0.1.1</h2>
+                        <h2 class='subtitle'>
+                          version 0.1.1{" "}
+                          <span
+                            className='tag is-light'
+                            style={{
+                              paddingLeft: "0px",
+                              verticalAlign: "inherit"
+                            }}
+                          >
+                            <i className='fas fa-circle live-tag-icon' />
+                            Live
+                          </span>
+                        </h2>
                       </div>
                     </div>
                   </section>
