@@ -132,7 +132,7 @@ export class StakingDashboard extends Component {
             },
             {
               name: "twitter:image",
-              content: `${assetURL("/dashboard-meta-image-TWITTER.png")}`
+              content: `${assetURL("/dashboard-meta-image-template-twit.png")}`
             }
           ]}
         />
