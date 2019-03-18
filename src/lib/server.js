@@ -1,16 +1,16 @@
 // @flow
-import path from 'path';
-import process from 'process';
-import {hostname} from 'os';
-import config from 'config';
-import Koa from 'koa';
-import type {Application} from 'koa';
-import methods from 'methods';
-import Router from 'koa-router';
-import {Logger} from 'winston';
+import path from "path";
+import process from "process";
+import { hostname } from "os";
+import config from "config";
+import Koa from "koa";
+import type { Application } from "koa";
+import methods from "methods";
+import Router from "koa-router";
+import { Logger } from "winston";
 
-import {initMiddleware} from './middleware';
-import {IntegratedGateways} from './integrated-gateways/integrated-gateways';
+import { initMiddleware } from "./middleware";
+import { IntegratedGateways } from "./integrated-gateways/integrated-gateways";
 
 export type Config = {
   project: string,
@@ -18,38 +18,38 @@ export type Config = {
     routePrefix: string,
     host: string,
     port: string,
-    protocol: 'http:' | 'https:'
+    protocol: "http:" | "https:"
   },
   gateways: {
     logger: {
       enabled: boolean,
       baseDir: string,
       topicName: string,
-      level: 'debug' | 'info' | 'warn' | 'error',
+      level: "debug" | "info" | "warn" | "error"
     },
     mysql: {
-      enabled: boolean,
+      enabled: boolean
     },
     iotexCore: {
-      serverUrl: string,
+      serverUrl: string
     }
   },
   analytics: {
-    googleTid: string,
+    googleTid: string
   }
-}
+};
 
 export class Server {
-  app: Application
-  gateways: IntegratedGateways
-  logger: Logger
-  config: Config
-  siteURL: string
-  httpServer: any
-  router: any
+  app: Application;
+  gateways: IntegratedGateways;
+  logger: Logger;
+  config: Config;
+  siteURL: string;
+  httpServer: any;
+  router: any;
 
   // routes
-  all: any
+  all: any;
 
   constructor() {
     this.config = config;
@@ -60,7 +60,10 @@ export class Server {
     this.logger = this.gateways.logger;
     this.initRouter();
 
-    this.app.keys = ['THIS IS INSECURE, I KNOW', 'will replace once found a correct way'];
+    this.app.keys = [
+      "THIS IS INSECURE, I KNOW",
+      "will replace once found a correct way"
+    ];
 
     initMiddleware(this);
   }
@@ -70,7 +73,7 @@ export class Server {
     const self = this;
 
     methods.forEach(setRouterOnVerb);
-    setRouterOnVerb('all');
+    setRouterOnVerb("all");
 
     function setRouterOnVerb(verb) {
       // $FlowFixMe
@@ -78,7 +81,7 @@ export class Server {
         const args = [].slice.call(arguments);
 
         let expressRoute = args.shift();
-        if (typeof args[0] === 'string') {
+        if (typeof args[0] === "string") {
           expressRoute = args.shift();
         }
 
@@ -101,9 +104,9 @@ export class Server {
   }
 
   use(...args: any) {
-    if (typeof args[0] === 'function') {
+    if (typeof args[0] === "function") {
       // default route to '/' => add prefix if necessary
-      args.unshift(this.getRoute('/'));
+      args.unshift(this.getRoute("/"));
     } else {
       // route passed in, add prefix if necessary
       args[0] = this.getRoute(args[0]);
@@ -111,9 +114,11 @@ export class Server {
     this.router.use(...args);
   }
 
-  listen(port: number, done: (server: any) => void = server => { }) {
+  listen(port: number, done: (server: any) => void = server => {}) {
     this.httpServer = this.app.listen(port, () => {
-      this.logger.info(`${process.title} listening on http://localhost:${port}`);
+      this.logger.info(
+        `${process.title} listening on http://localhost:${port}`
+      );
       return done(this);
     });
     return this.httpServer;
@@ -127,7 +132,7 @@ export class Server {
     return path.join(this.config.server.routePrefix, relativePath);
   }
 
-  close(done: ()=>void = () => { }) {
+  close(done: () => void = () => {}) {
     this.gateways.close();
 
     this.httpServer.close(done);
@@ -135,5 +140,5 @@ export class Server {
 }
 
 function siteURL(cfg: Config): string {
-  return '';
+  return "";
 }
