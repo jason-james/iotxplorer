@@ -88,6 +88,17 @@ export class StakingDashboard extends Component {
       labelDirection: "explode",
       chartPadding: 30
     };
+
+    var responsiveOptions = [
+      [
+        "screen and (min-width: 640px)",
+        {
+          width: 400,
+          height: 300
+        }
+      ]
+    ];
+
     var type = "Pie";
 
     return (
@@ -245,6 +256,7 @@ export class StakingDashboard extends Component {
                             <ChartistGraph
                               data={data}
                               options={options}
+                              responsiveOptions={responsiveOptions}
                               type={type}
                             />
                           </div>
