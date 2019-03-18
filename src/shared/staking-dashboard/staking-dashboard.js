@@ -93,8 +93,8 @@ export class StakingDashboard extends Component {
       [
         "screen and (max-width: 640px)",
         {
-          width: 400,
-          height: 300
+          width: 350,
+          height: 270
         }
       ]
     ];
@@ -247,7 +247,7 @@ export class StakingDashboard extends Component {
                           />
                         </div>
                       </div>
-                      <div class='column is-6'>
+                      <div class='column is-6 mobile-spacing'>
                         <div class='panel'>
                           <p class='panel-heading'>
                             Delegate Vote Percent (closest 10)

@@ -3,6 +3,7 @@ import path from "path";
 import process from "process";
 import { hostname } from "os";
 import config from "config";
+import compress from "koa-compress";
 import Koa from "koa";
 import type { Application } from "koa";
 import methods from "methods";
@@ -58,6 +59,7 @@ export class Server {
     this.app = new Koa();
     this.gateways = new IntegratedGateways(this.config);
     this.logger = this.gateways.logger;
+    this.enableGzip();
     this.initRouter();
 
     this.app.keys = [
@@ -66,6 +68,18 @@ export class Server {
     ];
 
     initMiddleware(this);
+  }
+
+  enableGzip() {
+    this.app.use(
+      compress({
+        filter: function(content_type) {
+          return /text/i.test(content_type);
+        },
+        threshold: 2048,
+        flush: require("zlib").Z_SYNC_FLUSH
+      })
+    );
   }
 
   initRouter() {

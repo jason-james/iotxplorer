@@ -1,7 +1,6 @@
 // @flow
 import config from "config";
 import bodyParser from "koa-bodyparser";
-import compress from "koa-compress";
 import type { Server } from "../server";
 import { viewBaseState } from "./view-base-state";
 import { initI18nMiddleware } from "./i18n-middleware";
@@ -13,16 +12,6 @@ import { consentCookieMiddleware } from "./consent-cookie-middleware";
 import { uncaughtErrorMiddleware } from "./uncaught-error-middleware";
 
 export function initMiddleware(server: Server) {
-  server.use(
-    compress({
-      filter: function(content_type) {
-        return /text/i.test(content_type);
-      },
-      threshold: 2048,
-      flush: require("zlib").Z_SYNC_FLUSH
-    })
-  );
-
   server.use(uncaughtErrorMiddleware(server));
   initI18nMiddleware(server);
 
