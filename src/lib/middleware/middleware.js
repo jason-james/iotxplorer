@@ -10,8 +10,10 @@ import { manifestMiddleware } from "./manifest-middleware";
 import { isoRenderMiddleware } from "./iso-render-middleware";
 import { consentCookieMiddleware } from "./consent-cookie-middleware";
 import { uncaughtErrorMiddleware } from "./uncaught-error-middleware";
+import { enableGzip } from "./gzip-compression-middleware";
 
 export function initMiddleware(server: Server) {
+  enableGzip(server);
   server.use(uncaughtErrorMiddleware(server));
   initI18nMiddleware(server);
 
