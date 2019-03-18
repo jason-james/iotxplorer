@@ -136,9 +136,9 @@ export class StakingDashboard extends Component {
             }
           ]}
         />
-        <div className='container is-fluid'>
-          <div class='columns'>
-            <StakingDashboardNav activeClass='dashboard' />
+        <div class='columns'>
+          <StakingDashboardNav activeClass='dashboard' />
+          <div className='container is-fluid'>
             <main class='column'>
               <section>
                 <div className='container is-fluid'>
