@@ -1,6 +1,8 @@
 @media only screen and (max-width: 640px) {
   .mobile-spacing {
-    margin-top: 32px; } }
+    margin-top: 32px; }
+  .staking-spacing {
+    padding: 1rem; } }
 
 .ct-label {
   color: #4c4c4c;

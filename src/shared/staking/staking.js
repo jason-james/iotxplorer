@@ -57,7 +57,10 @@ export class Staking extends Component {
           />
           <div className='columns' style={{ marginBottom: "0px" }}>
             <div className='column is-two-fifths staking-bg-image' />
-            <div className='column' style={{ padding: "18rem" }}>
+            <div
+              className='column staking-spacing'
+              style={{ padding: "18rem" }}
+            >
               <h1 class='title'>Always add value.</h1>
               <h2 class='subtitle'>
                 Add value to the IoTeX network whilst adding to your wallet.
