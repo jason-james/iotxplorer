@@ -11,17 +11,15 @@ const ANALYZE = false;
 
 module.exports = {
   mode: "production",
-  entry: glob
-    .sync("./src/client/javascripts/*.js")
-    .reduce(
-      (entries, entry) =>
-        Object.assign(entries, {
-          [entry
-            .replace("./src/client/javascripts/", "")
-            .replace(".js", "")]: entry
-        }),
-      {}
-    ),
+  entry: glob.sync("./src/client/javascripts/*.js").reduce(
+    (entries, entry) =>
+      Object.assign(entries, {
+        [entry
+          .replace("./src/client/javascripts/", "")
+          .replace(".js", "")]: entry
+      }),
+    {}
+  ),
   output: {
     filename: "[name]-[chunkhash].js",
     path: path.resolve(__dirname, "dist/")
@@ -44,7 +42,7 @@ module.exports = {
       cache: true,
       parallel: true,
       uglifyOptions: {
-        compress: {},
+        compress: true,
         ecma: 6,
         mangle: true,
         comments: false

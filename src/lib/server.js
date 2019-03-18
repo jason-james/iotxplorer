@@ -7,6 +7,7 @@ import Koa from "koa";
 import type { Application } from "koa";
 import methods from "methods";
 import Router from "koa-router";
+import compress from "koa-compress";
 import { Logger } from "winston";
 
 import { initMiddleware } from "./middleware";
@@ -58,6 +59,7 @@ export class Server {
     this.app = new Koa();
     this.gateways = new IntegratedGateways(this.config);
     this.logger = this.gateways.logger;
+    this.app.use(compress());
     this.initRouter();
 
     this.app.keys = [
