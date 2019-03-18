@@ -1,3 +1,4 @@
+const CompressionPlugin = require("compression-webpack-plugin");
 const fs = require("fs");
 const path = require("path");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
@@ -57,6 +58,7 @@ module.exports = {
     }),
     new ManifestPlugin({
       basePath: "/"
-    })
+    }),
+    new CompressionPlugin()
   ]
 };
