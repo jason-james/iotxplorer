@@ -91,7 +91,7 @@ export class StakingDashboard extends Component {
 
     var responsiveOptions = [
       [
-        "screen and (min-width: 640px)",
+        "screen and (max-width: 640px)",
         {
           width: 400,
           height: 300
