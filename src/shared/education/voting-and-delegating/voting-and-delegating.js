@@ -29,20 +29,20 @@ export class VotingAndDelegating extends Component {
                     <EducationButton>
                       <li>
                         <Link
-                          to='/education/usingthetestnet/'
+                          to='/education/votingdelegating/'
                           style={{ backgroundColor: "#00d1b2", color: "#fff" }}
                         >
-                          1. Using the testnet
+                          1. Voting and Delegating
                         </Link>
                       </li>
                     </EducationButton>
                     <EducationButton>
                       <li>
                         <Link
-                          to='/education/votingdelegating/'
-                          style={{ backgroundColor: "#00d1b2", color: "#fff" }}
+                          to='/education/usingthetestnet/'
+                          className='is-active'
                         >
-                          2. Voting and Delegating
+                          2. Using the testnet
                         </Link>
                       </li>
                     </EducationButton>
@@ -316,8 +316,11 @@ function HowToStakeContent() {
           </div>
 
           <li>
-            A popup window will appear. In the Name field, enter "
-            <strong>iotxplorerio</strong>" and press “OK”.
+            A popup window will appear. In the Name field, enter the Candidate
+            Name of the delegate you want to vote for and press “OK”. Note
+            Candidate Name and delegate name aren't always the same. For
+            example, our delegate name is "iotxplorer" but our Candidate Name is
+            "<strong>iotxplorerio</strong>"
           </li>
 
           <br />

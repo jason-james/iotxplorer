@@ -29,20 +29,20 @@ export class UsingTheTestnet extends Component {
                     <EducationButton>
                       <li>
                         <Link
-                          to='/education/usingthetestnet/'
+                          to='/education/votingdelegating/'
                           style={{ backgroundColor: "#00d1b2", color: "#fff" }}
                         >
-                          1. Using the testnet
+                          1. Voting and Delegating
                         </Link>
                       </li>
                     </EducationButton>
                     <EducationButton>
                       <li>
                         <Link
-                          to='/education/votingdelegating/'
-                          className='is-active'
+                          to='/education/usingthetestnet/'
+                          style={{ backgroundColor: "#00d1b2", color: "#fff" }}
                         >
-                          2. Voting and Delegating
+                          2. Using the testnet
                         </Link>
                       </li>
                     </EducationButton>

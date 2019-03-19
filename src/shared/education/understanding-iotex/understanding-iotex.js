@@ -31,20 +31,20 @@ export class UnderstandingIoTeX extends Component {
                     <EducationButton>
                       <li>
                         <Link
-                          to='/education/usingthetestnet/'
+                          to='/education/votingdelegating/'
                           className='is-active'
                         >
-                          1. Using the testnet
+                          1. Voting and Delegating
                         </Link>
                       </li>
                     </EducationButton>
                     <EducationButton>
                       <li>
                         <Link
-                          to='/education/votingdelegating/'
+                          to='/education/usingthetestnet/'
                           className='is-active'
                         >
-                          2. Voting and Delegating
+                          2. Using the testnet
                         </Link>
                       </li>
                     </EducationButton>
