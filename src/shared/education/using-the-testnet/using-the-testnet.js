@@ -52,17 +52,17 @@ export class UsingTheTestnet extends Component {
                     <li>
                       <a
                         className='button is-light education-tag'
-                        href='#docker-windows'
+                        href='#docker-unix'
                       >
-                        via Docker for Windows
+                        Launching a testnet node
                       </a>
                     </li>
                     <li>
                       <a
                         className='button is-light education-tag'
-                        href='#docker-bash'
+                        href='#interactingwithiotex'
                       >
-                        via Docker for Mac/Linux
+                        Interacting with IoTeX blockchain
                       </a>
                     </li>
                     <li>
@@ -70,7 +70,7 @@ export class UsingTheTestnet extends Component {
                         className='button is-light education-tag'
                         href='#running-the-testnet'
                       >
-                        Exploring with ioctl
+                        Getting elected
                       </a>
                     </li>
                   </ul>
@@ -79,8 +79,11 @@ export class UsingTheTestnet extends Component {
               <div className='column is-9'>
                 <div className='content is-medium'>
                   <h3 className='title is-3'>Using the testnet</h3>
-                  <div id='#docker-windows' className='box'>
-                    <InstallingDockerWindows />
+                  <div id='#docker-unix' className='box'>
+                    <UsingTestnetUnix />
+                  </div>
+                  <div id='#interactingwithiotex' className='box'>
+                    <InteractingWithIoTeX />
                   </div>
                 </div>
               </div>
@@ -96,11 +99,11 @@ const EducationButton = styled("education-buttons", props => ({
   margin: "2px"
 }));
 
-class InstallingDockerWindows extends Component {
+class UsingTestnetUnix extends Component {
   render() {
     return (
       <section>
-        <h4 className='title is-4'>IoTeX testnet via Docker for Windows</h4>
+        <h4 className='title is-4'>IoTeX testnet via MacOS/Linux</h4>
         <hr />
         <article className='message is-primary'>
           <div className='message-body'>
@@ -142,16 +145,13 @@ class InstallingDockerWindows extends Component {
           Google.
         </p>
         <p>
-          The first 7 lines of the config file should look something like this:{" "}
+          The first 6 lines of the config file should look something like this:{" "}
         </p>
         <pre>
           <code>
             network:
             <br />
-            # If you have external IP, put it here and config the port you want
-            to map from docker to host
-            <br />
-            externalHost: 'xx.xx.xxx.xxx'
+            externalHost: xx.xx.xxx.xxx
             <br />
             externalPort: 4689
             <br />
@@ -162,57 +162,135 @@ class InstallingDockerWindows extends Component {
             '/dns4/a12f5c5ca34a211e9809c02f3dedec74-0c7145ef4e7091ef.elb.us-west-2.amazonaws.com/tcp/4689/ipfs/12D3KooWEgPtefxSeWQHjXFdrze1NicjzqKyVmMgyxqRBRByqi2Q'
           </code>
         </pre>
-        <h5 className='title is-5'>Start-up</h5>
-        <p>We're already ready to run our testnet node! Open cmd and run:</p>
+        <h5 className='title is-5'>Using the config</h5>
+        <p>
+          We can now use that edited config file to tell our docker container
+          how to run and where to store blockchain data. In your terminal, do
+          the following:
+        </p>
         <pre>
           <code>
-            docker run --name iotxplorer-testnet-tutorial ^
+            cd iotex-testnet
             <br />
-            -p 14014:14014 ^
+            mkdir -p $IOTEX_HOME/data
             <br />
-            -p 8080:8080 ^
+            mkdir -p $IOTEX_HOME/log
             <br />
-            -p 7788:7788 ^
+            mkdir -p $IOTEX_HOME/etc
             <br />
-            -p 4689:4689 ^
+            cp config.yaml $IOTEX_HOME/etc/
             <br />
-            -v=C:/Users/iotxplorer:/var/data:rw ^
+            cp genesis.yaml $IOTEX_HOME/etc/
+          </code>
+        </pre>
+        <h5 className='title is-5'>Start-up</h5>
+        <p>
+          We're already ready to run our testnet node! Open your terminal and
+          run:
+        </p>
+        <pre>
+          <code>
+            docker run -d --name iotxplorer-testnet-tutorial \
             <br />
-            -v=C:/Users/iotxplorer/iotex-testnet/config.yaml:/etc/iotex/config_override.yaml:ro
-            ^
+            -p 4689:4689 \
             <br />
-            -v=C:/Users/iotxplorer/iotex-testnet/testnet_actions.yaml:/etc/iotex/testnet_actions_override.yaml:ro
-            ^
+            -p 14014:14014 \
             <br />
-            -v=C:/Users/iotxplorer/iotex-testnet/genesis.yaml:/etc/iotex/genesis.yaml:ro
-            ^
+            -p 8080:8080 \
             <br />
-            iotex/iotex-core:v0.5.0-rc2 ^
+            -v=$IOTEX_HOME/data:/var/data:rw \
             <br />
-            iotex-server -config-path=/etc/iotex/config_override.yaml
-            -genesis-path=/etc/iotex/genesis.yaml
+            -v=$IOTEX_HOME/log:/var/log:rw \
+            <br />
+            -v=$IOTEX_HOME/etc/config.yaml:/etc/iotex/config_override.yaml:ro \
+            <br />
+            -v=$IOTEX_HOME/etc/genesis.yaml:/etc/iotex/genesis.yaml:ro \
+            <br />
+            iotex/iotex-core:v0.5.0-rc5-hotfix1 \
+            <br />
+            iotex-server \<br />
+            -config-path=/etc/iotex/config_override.yaml \<br />
+            -genesis-path=/etc/iotex/genesis.yaml \<br />
+            -plugin=gateway
           </code>
         </pre>
         <article className='message is-warning'>
           <div className='message-body'>
-            NOTE: You have to replace C:/Users/iotxplorer in the above block to
-            the path where you installed your testnet file. Chances are it will
-            be something like C:/Users/YOURNAME.
+            NOTE: You have to replace v0.5.0-rc5-hotfix1 in the above block to
+            be the correct name of the current testnet version. At the time of
+            writing this guide, the version is v0.5.0-rc5-hotfix1.
           </div>
         </article>{" "}
         <h5 className='title is-5'>Is it working?</h5>
         <p>
-          To check that it's all working correctly you should see a lot of
-          logging going on in the console. If you can't tell, hit{" "}
-          <code>Ctrl+C</code> to stop following the logs, then run:{" "}
-          <pre>
-            <code>docker exec -i -t iotxplorer-testnet-tutorial /bin/bash</code>
-          </pre>
-          After, start the IoTeX command line tool by doing:{" "}
-          <pre>
-            <code>ioctl</code>
-          </pre>
-          You should then see some welcoming introductory text:
+          To check that it's all working correctly let's ask docker. In your
+          terminal, type <code>docker container ls</code>. This will bring up a
+          list of all running containers. You should see a container id, image
+          name, and iotxplorer-testnet-tutorial in the entry.
+        </p>
+        <p>
+          Now that we've confirmed the container is running, lets check the
+          logs. Logs tell us everything going on in the blockchain. First open
+          terminal. You have two choices, you can run
+        </p>
+        <pre>
+          <code>docker logs -f iotxplorer-testnet-tutorial</code>
+        </pre>
+        <p>
+          but that will get you some unformatted/hard to follow logs. For a
+          prettier logging experience, we use
+        </p>
+        <pre>
+          <code>
+            docker logs -f --tail 20 IoTeX-Node | sed
+            's/,"errorVerbose":"[^"]*"//g' | jq
+          </code>
+        </pre>
+        <p>which puts the responses in a readable JSON format.</p>
+        <h5 className='title is-5'>Ok, so I started a node. What now?</h5>
+        Read the next section on 'Interacting with the IoTeX network' to find
+        out.
+      </section>
+    );
+  }
+}
+
+class InteractingWithIoTeX extends Component {
+  render() {
+    return (
+      <div>
+        <h4 className='title is-4'>Interacting with the IoTeX blockchain</h4>
+        <hr />
+        <h5 className='title is-5'>ioctl</h5>
+
+        <p>
+          ioctl is a command-line interface for interacting with IoTeX
+          blockchains. With it, we can do things like check our delegate status,
+          claim rewards, make accounts, wallets, post smart contracts, etc.
+        </p>
+
+        <h5 className='title is-5'>Installation</h5>
+        <p>
+          ioctl can actually be used outside of the container we just ran! You
+          can use it anywhere on your computer after installing it. To install,
+          open terminal and run:
+        </p>
+        <pre>
+          <code>
+            curl
+            https://raw.githubusercontent.com/iotexproject/iotex-core/master/install-cli.sh
+            | sh
+          </code>
+        </pre>
+        <p>Then make sure ioctl is pointing to the testnet to get its data:</p>
+        <pre>
+          <code>ioctl config set endpoint api.testnet.iotex.one:80</code>
+        </pre>
+        <p>
+          After it has finished downloading, simply type <code>ioctl</code>. You
+          should then see some welcoming introductory text:
+        </p>
+        <p>
           <pre>
             <code>
               ioctl is a command-line interface for interacting with IoTeX
@@ -250,12 +328,23 @@ class InstallingDockerWindows extends Component {
           </pre>
         </p>
         <p>
-          This is help text for ioctl, the IoTeX command line tool. It's used to
-          explore the testnet and do things like account creation, wallet
-          creation, data fetching etc. We will explore it more in depth in the
-          following sections.
+          This is help text for ioctl, it is fairly self explanatory, but lets
+          do one test for clarity.
         </p>
-      </section>
+        <h5 className='title is-5'>Making an iotex account</h5>
+        <p>
+          One use of ioctl is making accounts. To see how this works, type{" "}
+          <code>ioctl account create</code> and bam! Like magic, you will get a
+          response object containing a public and private key which you can use
+          to do whatever you wish.
+        </p>
+        <p>
+          The other commands all work in a similar fashion, be encouraged to try
+          out all the commands and explore the different things you can do
+          alone. The next section will be all about how to get elected and use
+          the testnet as a delegate.
+        </p>
+      </div>
     );
   }
 }
