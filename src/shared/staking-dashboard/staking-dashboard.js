@@ -81,7 +81,7 @@ export class StakingDashboard extends Component {
     var data = this.formPieChartData(this.props.delegateData);
     var options = {
       width: 684,
-      height: 540,
+      height: 379,
       labelOffset: 50,
       donut: true,
 
@@ -149,10 +149,16 @@ export class StakingDashboard extends Component {
         />
         <div class='columns'>
           <StakingDashboardNav activeClass='dashboard' />
-          <div className='container is-fluid'>
+          <div
+            className='container is-fluid'
+            style={{ marginLeft: "0px", paddingLeft: "0px" }}
+          >
             <main class='column'>
               <section>
-                <div className='container is-fluid'>
+                <div
+                  className='container is-fluid'
+                  style={{ marginLeft: "0px", paddingLeft: "0px" }}
+                >
                   <section
                     class='hero welcome is-small is-primary'
                     style={{
@@ -239,7 +245,7 @@ export class StakingDashboard extends Component {
                       style={{ paddingTop: "16px" }}
                     >
                       <div class='column is-6'>
-                        <div class='panel' style={{ height: "560px" }}>
+                        <div class='panel' style={{ height: "400px" }}>
                           <p class='panel-heading'>IOTX/BTC: 24h</p>
                           <TradingViewWidget
                             symbol='BINANCE:IOTXBTC'

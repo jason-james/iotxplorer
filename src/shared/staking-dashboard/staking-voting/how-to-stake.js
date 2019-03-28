@@ -8,10 +8,16 @@ export class HowToStake extends Component {
       <div class='section'>
         <div class='columns'>
           <StakingDashboardNav activeClass='how-to-vote' />
-          <div className='container is-fluid'>
+          <div
+            className='container is-fluid'
+            style={{ marginLeft: "0px", paddingLeft: "0px" }}
+          >
             <main class='column'>
               <section>
-                <div className='container is-fluid'>
+                <div
+                  className='container is-fluid'
+                  style={{ marginLeft: "0px", paddingLeft: "0px" }}
+                >
                   <section
                     class='hero welcome is-small is-primary'
                     style={{
