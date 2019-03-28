@@ -6,35 +6,26 @@ export class HowToStake extends Component {
   render() {
     return (
       <div class='section'>
-        <div class='columns'>
+        <div class='columns' style={{ paddingRight: "6rem" }}>
           <StakingDashboardNav activeClass='how-to-vote' />
-          <div
-            className='container is-fluid'
-            style={{ marginLeft: "0px", paddingLeft: "0px" }}
-          >
-            <main class='column'>
-              <section>
-                <div
-                  className='container is-fluid'
-                  style={{ marginLeft: "0px", paddingLeft: "0px" }}
-                >
-                  <section
-                    class='hero welcome is-small is-primary'
-                    style={{
-                      marginBottom: "26px"
-                    }}
-                  >
-                    <div class='hero-body'>
-                      <div class='container' style={{ margin: "0px" }}>
-                        <h1 class='title'>How To Vote</h1>
-                      </div>
-                    </div>
-                  </section>
-                  <HowToStakeContent />
+
+          <main class='column'>
+            <section>
+              <section
+                class='hero welcome is-small is-primary'
+                style={{
+                  marginBottom: "26px"
+                }}
+              >
+                <div class='hero-body'>
+                  <div class='container' style={{ margin: "0px" }}>
+                    <h1 class='title'>How To Vote</h1>
+                  </div>
                 </div>
               </section>
-            </main>
-          </div>
+              <HowToStakeContent />
+            </section>
+          </main>
         </div>
       </div>
     );

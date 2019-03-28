@@ -81,7 +81,7 @@ export class StakingDashboard extends Component {
     var data = this.formPieChartData(this.props.delegateData);
     var options = {
       width: 684,
-      height: 379,
+      height: 400,
       labelOffset: 50,
       donut: true,
 
@@ -147,133 +147,109 @@ export class StakingDashboard extends Component {
             }
           ]}
         />
-        <div class='columns'>
+        <div class='columns' style={{ paddingRight: "6rem" }}>
           <StakingDashboardNav activeClass='dashboard' />
-          <div
-            className='container is-fluid'
-            style={{ marginLeft: "0px", paddingLeft: "0px" }}
-          >
-            <main class='column'>
-              <section>
-                <div
-                  className='container is-fluid'
-                  style={{ marginLeft: "0px", paddingLeft: "0px" }}
-                >
-                  <section
-                    class='hero welcome is-small is-primary'
-                    style={{
-                      marginBottom: "26px"
-                    }}
-                  >
-                    <div class='hero-body'>
-                      <div class='container' style={{ margin: "0px" }}>
-                        <h1 class='title'>Dashboard</h1>
-                        <h2 class='subtitle'>
-                          version 0.1.1{" "}
-                          <span
-                            className='tag is-light'
-                            style={{
-                              paddingLeft: "0px",
-                              verticalAlign: "inherit"
-                            }}
-                          >
-                            <i className='fas fa-circle live-tag-icon' />
-                            Live
-                          </span>
-                        </h2>
-                      </div>
-                    </div>
-                  </section>
-
-                  <section class='info-tiles'>
-                    <div class='tile is-ancestor has-text-centered'>
-                      <div class='tile is-parent'>
-                        <article class='tile is-child box'>
-                          <p class='title'>
-                            {this.rankHandler(
-                              this.props.iotxplorerDelegateData
-                            )}
-                          </p>
-                          <p class='subtitle' style={{ color: "#b5b5b5" }}>
-                            Rank
-                          </p>
-                        </article>
-                      </div>
-                      <div class='tile is-parent'>
-                        <article class='tile is-child box'>
-                          <p class='title'>
-                            {
-                              this.formDashboardStats(
-                                this.props.delegateData
-                              )[0]
-                            }
-                          </p>
-                          <p class='subtitle' style={{ color: "#b5b5b5" }}>
-                            Votes
-                          </p>
-                        </article>
-                      </div>
-                      <div class='tile is-parent'>
-                        <article class='tile is-child box'>
-                          <p class='title'>
-                            {
-                              this.formDashboardStats(
-                                this.props.delegateData
-                              )[1]
-                            }
-                            %
-                          </p>
-                          <p class='subtitle' style={{ color: "#b5b5b5" }}>
-                            Vote Percent
-                          </p>
-                        </article>
-                      </div>
-                      <div class='tile is-parent'>
-                        <article class='tile is-child box'>
-                          <p class='title'>Coming Soon</p>
-                          <p class='subtitle' style={{ color: "#b5b5b5" }}>
-                            Current Epoch Reward Share
-                          </p>
-                        </article>
-                      </div>
-                    </div>
-                  </section>
-
-                  <section>
-                    <div
-                      class='columns is-multiline'
-                      style={{ paddingTop: "16px" }}
-                    >
-                      <div class='column is-6'>
-                        <div class='panel' style={{ height: "400px" }}>
-                          <p class='panel-heading'>IOTX/BTC: 24h</p>
-                          <TradingViewWidget
-                            symbol='BINANCE:IOTXBTC'
-                            autosize
-                          />
-                        </div>
-                      </div>
-                      <div class='column is-6 mobile-spacing'>
-                        <div class='panel'>
-                          <p class='panel-heading'>
-                            Delegate Vote Percent (closest 10)
-                          </p>
-                          <div class='panel-block'>
-                            <ChartistGraph
-                              data={data}
-                              options={options}
-                              responsiveOptions={responsiveOptions}
-                              type={type}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
+          <main class='column'>
+            <section>
+              <section
+                class='hero welcome is-small is-primary'
+                style={{
+                  marginBottom: "26px"
+                }}
+              >
+                <div class='hero-body'>
+                  <div class='container' style={{ margin: "0px" }}>
+                    <h1 class='title'>Dashboard</h1>
+                    <h2 class='subtitle'>
+                      version 0.1.1{" "}
+                      <span
+                        className='tag is-light'
+                        style={{
+                          paddingLeft: "0px",
+                          verticalAlign: "inherit"
+                        }}
+                      >
+                        <i className='fas fa-circle live-tag-icon' />
+                        Live
+                      </span>
+                    </h2>
+                  </div>
                 </div>
               </section>
-            </main>
-          </div>
+
+              <section class='info-tiles'>
+                <div class='tile is-ancestor has-text-centered'>
+                  <div class='tile is-parent'>
+                    <article class='tile is-child box'>
+                      <p class='title'>
+                        {this.rankHandler(this.props.iotxplorerDelegateData)}
+                      </p>
+                      <p class='subtitle' style={{ color: "#b5b5b5" }}>
+                        Rank
+                      </p>
+                    </article>
+                  </div>
+                  <div class='tile is-parent'>
+                    <article class='tile is-child box'>
+                      <p class='title'>
+                        {this.formDashboardStats(this.props.delegateData)[0]}
+                      </p>
+                      <p class='subtitle' style={{ color: "#b5b5b5" }}>
+                        Votes
+                      </p>
+                    </article>
+                  </div>
+                  <div class='tile is-parent'>
+                    <article class='tile is-child box'>
+                      <p class='title'>
+                        {this.formDashboardStats(this.props.delegateData)[1]}%
+                      </p>
+                      <p class='subtitle' style={{ color: "#b5b5b5" }}>
+                        Vote Percent
+                      </p>
+                    </article>
+                  </div>
+                  <div class='tile is-parent'>
+                    <article class='tile is-child box'>
+                      <p class='title'>Coming Soon</p>
+                      <p class='subtitle' style={{ color: "#b5b5b5" }}>
+                        Current Epoch Reward Share
+                      </p>
+                    </article>
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <div
+                  class='columns is-multiline'
+                  style={{ paddingTop: "16px" }}
+                >
+                  <div class='column is-6'>
+                    <div class='panel' style={{ height: "425px" }}>
+                      <p class='panel-heading'>IOTX/BTC: 24h</p>
+                      <TradingViewWidget symbol='BINANCE:IOTXBTC' autosize />
+                    </div>
+                  </div>
+                  <div class='column is-6 mobile-spacing'>
+                    <div class='panel'>
+                      <p class='panel-heading'>
+                        Delegate Vote Percent (closest 10)
+                      </p>
+                      <div class='panel-block'>
+                        <ChartistGraph
+                          data={data}
+                          options={options}
+                          responsiveOptions={responsiveOptions}
+                          type={type}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </section>
+          </main>
         </div>
       </div>
     );
