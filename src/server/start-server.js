@@ -17,7 +17,7 @@ export async function startServer() {
   setServerRoutes(server);
 
   // eslint-disable-next-line no-process-env,no-undef
-  const port = parseInt(process.env.PORT || config.get("server.port"), 10);
+  const port = process.env.PORT || config.get("server.port");
 
   initDB((err, db) => {
     if (err) {
