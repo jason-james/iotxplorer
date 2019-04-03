@@ -1,6 +1,8 @@
 import Component from "inferno-component";
-import { StakingDashboardNav } from "./staking-dashboard-nav";
 import Helmet from "inferno-helmet";
+import axios from "axios";
+import { RewardsInfo } from "./rewards-info";
+import { StakingDashboardNav } from "./staking-dashboard-nav";
 import {
   ChartistGraph,
   TradingViewWidget
@@ -19,7 +21,6 @@ export class StakingDashboard extends Component {
   componentDidMount() {
     this.props.fetchDelegateData();
     this.props.fetchIotxplorerDelegateData();
-
     const fetchDelegateData = window.setInterval(
       () => this.props.fetchDelegateData(),
       10000
@@ -77,11 +78,34 @@ export class StakingDashboard extends Component {
     }
   };
 
+  calculateROI() {
+    if (!this.props.delegateData) {
+      return "...";
+    } else {
+      const CONSTANT = 100000;
+      const overallRedist =
+        0.87 *
+        366667 *
+        365 *
+        (this.formDashboardStats(this.props.delegateData)[1] / 100);
+
+      const bonusVotes = Math.log(350) / Math.log(1.2);
+      const effectiveVotes = CONSTANT * (1 + bonusVotes / 100);
+      const percentOfTotalVotes =
+        effectiveVotes /
+        this.props.delegateData[this.props.iotxplorerDelegateData - 1]
+          .liveVotes;
+      const amountGivenBack = percentOfTotalVotes * overallRedist + CONSTANT;
+      const ROI = ((parseInt(amountGivenBack) - CONSTANT) / CONSTANT) * 100;
+      return ROI.toFixed(1);
+    }
+  }
+
   render() {
     var data = this.formPieChartData(this.props.delegateData);
     var options = {
       width: 684,
-      height: 400,
+      height: 360,
       labelOffset: 50,
       donut: true,
 
@@ -147,14 +171,14 @@ export class StakingDashboard extends Component {
             }
           ]}
         />
-        <div class='columns' style={{ paddingRight: "6rem" }}>
+        <div class='columns' style={{ paddingRight: "18rem" }}>
           <StakingDashboardNav activeClass='dashboard' />
           <main class='column'>
             <section>
               <section
                 class='hero welcome is-small is-primary'
                 style={{
-                  marginBottom: "26px"
+                  marginBottom: "12px"
                 }}
               >
                 <div class='hero-body'>
@@ -175,6 +199,10 @@ export class StakingDashboard extends Component {
                     </h2>
                   </div>
                 </div>
+              </section>
+
+              <section>
+                <RewardsInfo />
               </section>
 
               <section class='info-tiles'>
@@ -211,9 +239,9 @@ export class StakingDashboard extends Component {
                   </div>
                   <div class='tile is-parent'>
                     <article class='tile is-child box'>
-                      <p class='title'>Coming Soon</p>
+                      <p class='title'>~{this.calculateROI()}%</p>
                       <p class='subtitle' style={{ color: "#b5b5b5" }}>
-                        Current Epoch Reward Share
+                        Live ROI
                       </p>
                     </article>
                   </div>
@@ -226,7 +254,7 @@ export class StakingDashboard extends Component {
                   style={{ paddingTop: "16px" }}
                 >
                   <div class='column is-6'>
-                    <div class='panel' style={{ height: "425px" }}>
+                    <div class='panel' style={{ height: "385px" }}>
                       <p class='panel-heading'>IOTX/BTC: 24h</p>
                       <TradingViewWidget symbol='BINANCE:IOTXBTC' autosize />
                     </div>

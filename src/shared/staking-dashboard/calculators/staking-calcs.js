@@ -11,11 +11,6 @@ export class Calculators extends Component {
     };
   }
 
-  componentDidMount() {
-    const fetchDelegateData = this.props.fetchDelegateData();
-    this.setState({ fetchDelegateData });
-  }
-
   render() {
     return (
       <div class='section'>

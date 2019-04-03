@@ -7,6 +7,10 @@ export class ChartistGraph extends Component {
     this.updateChart(newProps);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props !== nextProps;
+  }
+
   componentWillUnmount() {
     if (this.chartist) {
       try {
@@ -118,7 +122,7 @@ export class TradingViewWidget extends Component {
     locale: "en",
     save_image: true,
     show_popup_button: false,
-    style: BarStyles.CANDLES,
+    style: BarStyles.HEIKIN_ASHI,
     theme: Themes.LIGHT,
     timezone: "Etc/UTC",
     toolbar_bg: "#F1F3F6",
