@@ -171,7 +171,7 @@ export class StakingDashboard extends Component {
             }
           ]}
         />
-        <div class='columns' style={{ paddingRight: "18rem" }}>
+        <div class='columns' style={{ paddingRight: "26rem" }}>
           <StakingDashboardNav activeClass='dashboard' />
           <main class='column'>
             <section>

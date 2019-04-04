@@ -22,9 +22,9 @@ export class RewardsInfo extends Component {
 
   fetchVoterHistory = async event => {
     event.preventDefault();
-    const url = `http://localhost:4004/api/getVoter/${
-      this.state.address
-    }?page=${this.state.pageNumber}`;
+    const url = `/api/getVoter/${this.state.address}?page=${
+      this.state.pageNumber
+    }`;
     try {
       const response = await axios.get(url);
       const tableContent = response.data.rewardHistory;
@@ -40,7 +40,7 @@ export class RewardsInfo extends Component {
 
   fetchChartData = async event => {
     event.preventDefault();
-    const url = `http://localhost:4004/api/getVoter/${this.state.address}`;
+    const url = `/api/getVoter/${this.state.address}`;
     try {
       const response = await axios.get(url);
       const chartData = response.data.rewardHistory;
