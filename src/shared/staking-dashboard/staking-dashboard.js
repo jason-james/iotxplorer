@@ -171,6 +171,7 @@ export class StakingDashboard extends Component {
             }
           ]}
         />
+
         <div class='columns dashboard-spacing'>
           <StakingDashboardNav activeClass='dashboard' />
           <main class='column'>
@@ -208,41 +209,35 @@ export class StakingDashboard extends Component {
               <section class='info-tiles'>
                 <div class='tile is-ancestor has-text-centered'>
                   <div class='tile is-parent'>
-                    <article class='tile is-child box'>
-                      <p class='title'>
+                    <article class='tile is-child box dashboard-card'>
+                      <p class='title' style={{ color: "#ffffff" }}>
                         {this.rankHandler(this.props.iotxplorerDelegateData)}
                       </p>
-                      <p class='subtitle' style={{ color: "#b5b5b5" }}>
-                        Rank
-                      </p>
+                      <p class='subtitle'>Rank</p>
                     </article>
                   </div>
                   <div class='tile is-parent'>
-                    <article class='tile is-child box'>
-                      <p class='title'>
+                    <article class='tile is-child box dashboard-card'>
+                      <p class='title' style={{ color: "#ffffff" }}>
                         {this.formDashboardStats(this.props.delegateData)[0]}
                       </p>
-                      <p class='subtitle' style={{ color: "#b5b5b5" }}>
-                        Votes
-                      </p>
+                      <p class='subtitle'>Votes</p>
                     </article>
                   </div>
                   <div class='tile is-parent'>
-                    <article class='tile is-child box'>
-                      <p class='title'>
+                    <article class='tile is-child box dashboard-card'>
+                      <p class='title' style={{ color: "#ffffff" }}>
                         {this.formDashboardStats(this.props.delegateData)[1]}%
                       </p>
-                      <p class='subtitle' style={{ color: "#b5b5b5" }}>
-                        Vote Percent
-                      </p>
+                      <p class='subtitle'>Vote Percent</p>
                     </article>
                   </div>
                   <div class='tile is-parent'>
-                    <article class='tile is-child box'>
-                      <p class='title'>~{this.calculateROI()}%</p>
-                      <p class='subtitle' style={{ color: "#b5b5b5" }}>
-                        Live ROI
+                    <article class='tile is-child box dashboard-card'>
+                      <p class='title' style={{ color: "#ffffff" }}>
+                        ~{this.calculateROI()}%
                       </p>
+                      <p class='subtitle'>Live ROI</p>
                     </article>
                   </div>
                 </div>
