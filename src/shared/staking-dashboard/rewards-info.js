@@ -172,8 +172,8 @@ export class RewardsInfo extends Component {
           ) : (
             <div class='columns is-multiline' style={{ paddingTop: "12px" }}>
               <div
-                class='column is-6'
-                style={{ paddingTop: "0px", marginBottom: "12px" }}
+                class='column is-6 mobile-chartist'
+                style={{ paddingTop: "0px" }}
               >
                 <div class='panel' style={{ height: "425px" }}>
                   <p class='panel-heading'>Rewards</p>
@@ -210,47 +210,49 @@ export class RewardsInfo extends Component {
               </div>
               <div class='column is-6' style={{ paddingTop: "0px" }}>
                 <div className='card'>
-                  <table
-                    class='table is-fullwidth is-striped is-scrollable'
-                    style={{ marginBottom: "0px" }}
-                  >
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th>Votes</th>
-                        <th>Share</th>
-                        <th>Reward</th>
-                        <th />
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {this.state.tableContent
-                        .slice(0, 8)
-                        .map(currentElement => (
-                          <tr>
-                            <td>
-                              {new Date(
-                                currentElement.timestamp * 1000
-                              ).toLocaleString("en-US", { timeZone: "UTC" })}
-                            </td>
-                            <td>{currentElement.votes.toFixed(2)}</td>
-                            <td>{currentElement.rewardsShare.toFixed(2)}%</td>
-                            <td>{currentElement.rewards.toFixed(2)} IOTX</td>
-                            <td>
-                              <a
-                                className='button is-primary is-small'
-                                href={`https://iotexscan.io/action/${
-                                  currentElement.txHash
-                                }`}
-                                target='_blank'
-                              >
-                                More
-                              </a>
-                            </td>
-                          </tr>
-                        ))}
-                    </tbody>
-                  </table>
+                  <div className='table-container'>
+                    <table
+                      class='table is-fullwidth is-striped is-scrollable table-container'
+                      style={{ marginBottom: "0px" }}
+                    >
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Votes</th>
+                          <th>Share</th>
+                          <th>Reward</th>
+                          <th />
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {this.state.tableContent
+                          .slice(0, 8)
+                          .map(currentElement => (
+                            <tr>
+                              <td>
+                                {new Date(
+                                  currentElement.timestamp * 1000
+                                ).toLocaleString("en-US", { timeZone: "UTC" })}
+                              </td>
+                              <td>{currentElement.votes.toFixed(2)}</td>
+                              <td>{currentElement.rewardsShare.toFixed(2)}%</td>
+                              <td>{currentElement.rewards.toFixed(2)} IOTX</td>
+                              <td>
+                                <a
+                                  className='button is-primary is-small'
+                                  href={`https://iotexscan.io/action/${
+                                    currentElement.txHash
+                                  }`}
+                                  target='_blank'
+                                >
+                                  More
+                                </a>
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                  </div>
                   <footer class='card-footer' style={{ padding: "0.5rem" }}>
                     <nav className='level' style={{ width: "641px" }}>
                       <div className='level-left'>

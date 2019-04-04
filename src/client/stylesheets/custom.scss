@@ -10,14 +10,24 @@
   .dashboard-spacing {
     padding-right: 0rem;
   }
+
+  .mobile-chartist {
+    margin-bottom: 0px;
+  }
 }
 
-.dashboard-spacing {
-  padding-right: 26rem;
-}
+@media only screen and (min-width: 640px) {
+  .dashboard-spacing {
+    padding-right: 26rem;
+  }
 
-.staking-spacing {
-  padding: 18rem;
+  .staking-spacing {
+    padding: 18rem;
+  }
+
+  .mobile-chartist {
+    margin-bottom: 12px;
+  }
 }
 
 .ct-series-a .ct-area {

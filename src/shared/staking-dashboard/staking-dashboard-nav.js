@@ -5,7 +5,7 @@ export class StakingDashboardNav extends Component {
   render() {
     if (this.props.activeClass === "calculators") {
       return (
-        <aside class='column is-2'>
+        <aside class='column is-2 mobile-spacing'>
           <nav class='menu'>
             <p class='menu-label'>General</p>
             <ul class='menu-list'>
@@ -33,7 +33,7 @@ export class StakingDashboardNav extends Component {
       );
     } else if (this.props.activeClass === "how-to-vote") {
       return (
-        <aside class='column is-2'>
+        <aside class='column is-2 mobile-spacing'>
           <nav class='menu'>
             <p class='menu-label'>General</p>
             <ul class='menu-list'>
