@@ -167,7 +167,8 @@ export class StakingDashboard extends Component {
             },
             {
               name: "twitter:image",
-              content: `${assetURL("/dashboard-meta-image-template-twit.png")}`
+              content:
+                "https://www.iotxplorer.io/dashboard-meta-image-template-twit.png"
             }
           ]}
         />
