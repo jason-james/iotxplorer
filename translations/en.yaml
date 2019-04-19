@@ -27,9 +27,9 @@ address.nonce: Nonce
 address.voteDetails: Vote Details
 address.listOfTransfers: List of Transfers
 address.listOfExecutions: List of Executions
-address.error.failGetAddress: 'Could not get address details for ${id}'
-address.error.failGetTransfers: 'Could not get transfers for address ${id}'
-address.error.failGetVotes: 'Could not get votes for address ${id}'
+address.error.failGetAddress: "Could not get address details for ${id}"
+address.error.failGetTransfers: "Could not get transfers for address ${id}"
+address.error.failGetVotes: "Could not get votes for address ${id}"
 address.listOfSettleDeposits: List of Settle Deposits
 settleDeposits.timestamp: Minted At
 settleDeposits.id: Settle Deposit Id
@@ -55,25 +55,26 @@ block.generatedBy: Producer Public Key
 block.size: Size (in Bytes)
 block.listOfTransfers: List of Transfers
 block.listOfVotes: List of Votes
-block.error.failGetBlock: 'Could not retrieve block details for ${id}'
-block.error.failGetTransfers: 'Could not retrieve transfers for block ${id}'
-block.error.failGetVotes: 'Could not get retrieve for block ${id}'
-dashboard.epochs: '# of Epochs'
-dashboard.blocks: '# of Blocks'
-dashboard.transfers: '# of Transfers'
-dashboard.votes: '# of Votes'
-dashboard.faps: IFTPS
+block.error.failGetBlock: "Could not retrieve block details for ${id}"
+block.error.failGetTransfers: "Could not retrieve transfers for block ${id}"
+block.error.failGetVotes: "Could not get retrieve for block ${id}"
+dashboard.epochs: "Epoch"
+dashboard.blocks: "Latest Block"
+dashboard.transfers: "Total Actions"
+dashboard.staked: "IOTX Staked"
+dashboard.votes: "Votes"
+dashboard.faps: TPS
 dashboard.bbh: BBH
 dashboard.epochsMsg: >-
-  Total number of Epochs that have been running on IoTeX blockchain. Epoch
+  Epoch
   refers to a period when the same set of elected delegates take turns to
-  produce the blocks on behalf of the whole network.
-dashboard.blocksMsg: Total number of blocks built on IoTeX blockchain.
-dashboard.transfersMsg: Total number of token transfer created/recorded on IoTeX blockchain.
-dashboard.votesMsg: Total number of votes for delegates on IoTeX blockchain.
+  produce the blocks on behalf of the whole network. Current length is 1 hour.
+dashboard.blocksMsg: Total number of blocks on the IoTeX network.
+dashboard.transfersMsg: Total number of actions (votes, transfers, contract invocations) on the IoTeX network.
+dashboard.StakedMsg: Percentage of all circulating IOTX that is locked up in the election contract for staking and voting.
+dashboard.votesMsg: Total number of votes for delegates on IoTeX network.
 dashboard.fapsMsg: >-
-  Instant Finalized Transaction Rate (IFTPS) - The number of instantly finalized
-  actions (transfers + votes) per second.
+  TPS = Transactions per second. It is the current TPS based on the amount of transactions happening this very second, not the maximum capable TPS.
 dashboard.bbhMsg: >-
   Block Building History - How long the IoTeX blockchain has been running
   (timestamp of the latest block - timestamp of the first block)
@@ -91,7 +92,7 @@ transfer.recipient: Recipient
 transfer.fee: Fee
 transfer.hash: Transfer Hash
 transfer.coinBase: Coinbase
-transfer.error.get: 'Could not get retrieve transfer details for ${id}'
+transfer.error.get: "Could not get retrieve transfer details for ${id}"
 transfers.error.get: Could not get transfers
 footer.website: Website
 footer.blog: Blog
@@ -113,12 +114,12 @@ nav.error.coin: Could not get coin price
 nav.explorer: Explorer
 consensus.error.fail: Could not get consensus metrics
 delegates.error.fail: Could not get delegates
-empty.no: 'No'
+empty.no: "No"
 empty.noMore: No More
 empty.yet: Yet
 error.unknown: Something Went Wrong
 stakingInfo.secure: >-
-  Vote on iotex.io using Metamask or directly from your desktop. Your IOTX never leaves your wallet – you are always in control. 
+  Vote on iotex.io using Metamask or directly from your desktop. Your IOTX never leaves your wallet – you are always in control.
 stakingInfo.rewarding: >-
   Every epoch, we’ll receive rewards based on our delegate rank. We give you 87% of our rewards for ranking in the top 100, and we’ll take the consensus rewards
   to cover operating costs associated with the hardware and dApp development.
@@ -132,12 +133,12 @@ vote.voter: Voter
 vote.voters: Voters
 vote.blockId: Block ID
 vote.nonce: Nonce
-vote.error.getVote: 'Could not get vote ${id}'
+vote.error.getVote: "Could not get vote ${id}"
 votes.out: Vote sent out
 votes.in: Vote received
 votes.error.get: Could not get votes
-'rolldpos:title': Roll-DPoS
-'rolldpos:msg': >-
+"rolldpos:title": Roll-DPoS
+"rolldpos:msg": >-
   A randomized delegated proof of stake algorithm, which inherits all the
   advantages of the original DPoS consensus framework and further enhances its
   capability in terms of decentralization as well as extensibility to complex
@@ -151,13 +152,13 @@ breadcrumbs.address: address
 breadcrumbs.executions: executions
 base.message.close: Close
 wallet.title.wallet: Wallet
-wallet.tab.transfer: 'Send ${token}'
+wallet.tab.transfer: "Send ${token}"
 wallet.tab.vote: Vote for delegate
 wallet.tab.contract: Smart Contracts
 wallet.transactionDetail.title: Transaction Detail
 wallet.transactionDetail.raw: Raw Transaction
 wallet.transactionDetail.signed: Transaction Signature
-wallet.account.hidden: '******************************************************************'
+wallet.account.hidden: "******************************************************************"
 wallet.account.header: Unlock / Create new wallet
 wallet.account.enterPrivateKey: Private Key
 wallet.account.addressPlaceHolder: IoTeX Address...
@@ -220,8 +221,8 @@ wallet.contract.interact: Interact
 wallet.contract.deploy: Deploy
 wallet.deploy.deploy: Deploy Contract
 wallet.deploy.signTransaction: Sign Transaction
-input.bool.true: 'True'
-input.bool.false: 'False'
+input.bool.true: "True"
+input.bool.false: "False"
 wallet.account.placehold.privateKey: Paste your private key here
 wallet.input.solidity: Solidity (optional)
 wallet.deploy.generateAbiAndByteCode: Generate ABI and Byte Code
@@ -229,7 +230,7 @@ wallet.generate.fail: Something went wrong. Please check your internet connect/ 
 meta.executions: Executions
 meta.execution: Execution
 latestExecutions.title: Latest Executions
-dashboard.executions: '# of Executions'
+dashboard.executions: "# of Executions"
 dashboard.executionsMsg: Total number of contract execution created/recorded on IoTeX blockchain.
 execution.title: Execution Details
 execution.timestamp: Minted At
@@ -237,7 +238,7 @@ execution.executor: Executor
 execution.contract: Contract
 execution.hash: Execution Hash
 block.listOfExecutions: List of Executions
-execution.error.failGetExecution: 'Could not get execution details for ${id}'
+execution.error.failGetExecution: "Could not get execution details for ${id}"
 executions.error.get: Could not get executions
 receipt.title: Receipt
 receipt.contract: Contract Address
@@ -255,10 +256,10 @@ input.error.raw_address.invalid: IOTX address must start with io
 input.error.number.invalid: Only number 0-9
 input.error.float.invalid: Only number
 input.error.bytes.length: Bytes must be of even length
-input.error.bytes.invalid: 'Invalid bytes, must be a character in 0-9 A-F'
+input.error.bytes.invalid: "Invalid bytes, must be a character in 0-9 A-F"
 wallet.missing_solidity_pragma: Incorrect Solidity
 wallet.input.required: This field is required
-'': ''
+"": ""
 wallet.input.fix: Please fix form errors
 wallet.input.unknown: Unknown error
 wallet.cannot_find_solidity_version: Cannot find solidity version
@@ -278,7 +279,7 @@ new-wallet.warn.do-not-share: Do not share private key!
 new-wallet.warn.stolen: Your funds will be stolen if you use this file on a malicious/phishing site.
 new-wallet.warn.backup: Make a backup!
 new-wallet.warn.secure: Secure it like the millions of dollars it may one day be worth.
-new-wallet.button.unlock: 'I understand, Unlock Wallet'
+new-wallet.button.unlock: "I understand, Unlock Wallet"
 new-wallet.button.generate: Generate wallet
 new-wallet.loading: Creating new wallet...
 new-wallet.created: Wallet is created! Save your
@@ -290,12 +291,12 @@ broadcast.warn.one: >-
 broadcast.warn.two: >-
   You can check the status right now by clicking the following button or save
   your TX hash and check the status later
-broadcast.warn.three: 'Your TX hash:'
+broadcast.warn.three: "Your TX hash:"
 broadcast.button.check: Check TX Status
 broadcast.fail: Fail to broadcast transaction
 broadcast.fail.network: The transaction failed to be broadcast to the network
-broadcast.error.message: 'Error message:'
-broadcast.suggested.action: 'Suggested actions:'
+broadcast.error.message: "Error message:"
+broadcast.suggested.action: "Suggested actions:"
 account.why: Why save your private key?
 account.save: Save your private key to access your wallet later
 account.pay-attention: Pay attention
@@ -325,15 +326,15 @@ wallet.transfer.fromAddress: From Address
 wallet.transfer.toAddress: To address
 wallet.transfer.nonce: Nonce
 wallet.transfer.data: Data
-wallet.transfer.balance-after: 'After sending this, your account balance will be ${balance}'
+wallet.transfer.balance-after: "After sending this, your account balance will be ${balance}"
 wallet.transfer.sendNew: Send new
 wallet.transfer.send: Send
-wallet.transfer.broadcast.fail: 'Please try to send ${token} & token later'
+wallet.transfer.broadcast.fail: "Please try to send ${token} & token later"
 wallet.interact.title: Interact with contract
 wallet.interact.amount-to-send: Amount to send. In most cases you should leave it as 0
 wallet.interact.execute-fn: You are about to execute a function on contract
 wallet.interact.deployed-to-testnet: It will be deployed on the testnet
-wallet.interact.yes-button: 'Yes, make transaction'
+wallet.interact.yes-button: "Yes, make transaction"
 wallet.interact.warning: Warning
 wallet.interact.broadcast.fail: Please try to interact with contract later
 wallet.interact.button: Interact with contract
@@ -358,9 +359,9 @@ wallet.unlock.new.p1: >-
 wallet.unlock.new.p2: >-
   Back up your private key because you will use it to access your wallet. If you
   lose your private key, it cannot be recovered.
-wallet.unlock.new.yes: 'I understand, continue'
-wallet.transactioNDetail.yes: 'Yes, make transaction'
-wallet.input.nonce.suggestion: 'Note: nonce <= ${nonce} will be rejected.'
+wallet.unlock.new.yes: "I understand, continue"
+wallet.transactioNDetail.yes: "Yes, make transaction"
+wallet.input.nonce.suggestion: "Note: nonce <= ${nonce} will be rejected."
 input.error.nonceTooLow: Nonce too low
 transaction.pending: >-
   This transaction has been broadcasted to the network and will be verified

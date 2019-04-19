@@ -24,12 +24,11 @@ module.exports = {
         leafPort: 9093
       }
     },
-    iotexCore: {
-      serverUrl: process.env.IOTEX_CORE_URL || "http://localhost:14004/"
-    },
     walletCore: {
       serverUrl: process.env.IOTEX_WALLET_URL || "localhost:42124"
-    }
+    },
+    iotexAntenna: "35.239.122.109:80"
+    // iotexAntenna: process.env.IOTEX_CORE_URL || "35.239.122.109:80"
   },
   analytics: {
     googleTid: process.env.GOOGLE_TID || "UA-XXXXXXXXX-1"

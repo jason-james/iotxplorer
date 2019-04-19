@@ -1,13 +1,16 @@
-import {connect} from 'inferno-redux';
+import { connect } from "inferno-redux";
 
-import {fetchExecutions} from '../executions/executions-actions';
-import {fetchTransfers} from '../transfers/transfers-actions';
-import {fetchBlocks} from '../blocks/blocks-actions';
-import {fetchVotes} from '../votes/votes-actions';
-import {fetchConsensusMetrics} from '../consensus-metrics/consensus-metrics-actions';
-import {BlockchainExplorer} from './blockchain-explorer';
-import {fetchMarketData} from './market-dashboard-actions';
-import {fetchChartData} from './line-chart-actions'
+import { fetchExecutions } from "../executions/executions-actions";
+import { fetchTransfers } from "../transfers/transfers-actions";
+import { fetchBlocks } from "../blocks/blocks-actions";
+import { fetchVotes } from "../votes/votes-actions";
+import {
+  fetchConsensusMetrics,
+  fetchElectionStats
+} from "../consensus-metrics/consensus-metrics-actions";
+import { BlockchainExplorer } from "./blockchain-explorer";
+import { fetchMarketData } from "./market-dashboard-actions";
+import { fetchChartData } from "./line-chart-actions";
 
 export const BlockchainExplorerContainer = connect(
   function mapStateToProps(state) {
@@ -23,7 +26,7 @@ export const BlockchainExplorerContainer = connect(
       marketData: state.marketDashboard.marketData,
       chartData: state.lineChart.chartData,
       fetching: state.fetching,
-      error: state.error,
+      error: state.error
     };
   },
   dispatch => ({
@@ -34,5 +37,6 @@ export const BlockchainExplorerContainer = connect(
     fetchConsensusMetrics: () => dispatch(fetchConsensusMetrics()),
     fetchMarketData: () => dispatch(fetchMarketData()),
     fetchChartData: () => dispatch(fetchChartData()),
-  }),
+    fetchElectionStats: () => dispatch(fetchElectionStats())
+  })
 )(BlockchainExplorer);

@@ -83,7 +83,8 @@ export class BlockchainExplorer extends Component {
     width: number,
     statistic: TCoinStatistic,
     consensus: {
-      metrics: TConsensusMetrics
+      metrics: Object,
+      electionStats: Object
     },
     chainId: number
   };
@@ -92,6 +93,7 @@ export class BlockchainExplorer extends Component {
     super(props);
     this.state = {
       fetchConsensusMetricsId: 0,
+      fetchElectionStats: 0,
       fetchMarketData: 0,
       fetchChartData: 0,
       height: 0,
@@ -138,10 +140,15 @@ export class BlockchainExplorer extends Component {
 
   componentDidMount() {
     this.props.fetchConsensusMetrics();
+    this.props.fetchElectionStats();
     this.props.fetchMarketData();
     const fetchChartData = this.props.fetchChartData();
     const fetchConsensusMetricsId = window.setInterval(
       () => this.props.fetchConsensusMetrics(),
+      5000
+    );
+    const fetchElectionStats = window.setInterval(
+      () => this.props.fetchElectionStats(),
       5000
     );
     const fetchMarketData = window.setInterval(
@@ -149,7 +156,12 @@ export class BlockchainExplorer extends Component {
       10000
     );
 
-    this.setState({ fetchConsensusMetricsId, fetchMarketData, fetchChartData });
+    this.setState({
+      fetchConsensusMetricsId,
+      fetchMarketData,
+      fetchChartData,
+      fetchElectionStats
+    });
   }
 
   componentWillUnmount() {
@@ -207,13 +219,12 @@ export class BlockchainExplorer extends Component {
     return retval;
   };
 
-  formStats(chainId: number, latestEpoch: number, stats: TCoinStatistic) {
-    const epochs = Number(latestEpoch).toLocaleString();
+  formStats(stats, supply) {
     if (!stats) {
       return [
         {
           title: t("dashboard.epochs"),
-          subtitle: epochs,
+          subtitle: "Data could not be displayed",
           icon: "fas fa-question-circle",
           msg: "dashboard.epochsMsg"
         }
@@ -222,49 +233,41 @@ export class BlockchainExplorer extends Component {
 
     // Sets empty array return value to hold dashboard info. Dashboard is the info to the right of plasmaball
     const retval = [];
+    const percentStaked =
+      (parseFloat(stats.electionStats.totalVotedStakes) /
+        parseFloat(supply.replace(/,/g, ""))) *
+      100;
+
     retval.push({
       title: t("dashboard.blocks"),
-      subtitle: Number((stats.height || 0) + 1).toLocaleString(),
+      subtitle: Number((stats.metrics.height || 0) + 1).toLocaleString(),
       icon: "fas fa-question-circle",
       msg: "dashboard.blocksMsg"
     });
     retval.push({
-      title: t("dashboard.transfers"),
-      subtitle: Number(stats.transfers || 0).toLocaleString(),
-      icon: "fas fa-question-circle",
-      msg: "dashboard.transfersMsg"
-    });
-    retval.push({
       title: t("dashboard.epochs"),
-      subtitle: epochs,
+      subtitle: stats.metrics.epoch.num,
       icon: "fas fa-question-circle",
       msg: "dashboard.epochsMsg"
     });
     retval.push({
-      title: `${t("dashboard.executions")}`,
-      subtitle: Number(stats.executions || 0).toLocaleString(),
+      title: t("dashboard.votes"),
+      subtitle: Number(stats.electionStats.totalVotes || 0).toLocaleString(),
       icon: "fas fa-question-circle",
-      msg: "dashboard.executionsMsg"
+      msg: "dashboard.votesMsg"
     });
+    retval.push({
+      title: t("dashboard.staked"),
+      subtitle: `${percentStaked.toFixed(1)}%`,
+      icon: "fas fa-question-circle",
+      msg: "dashboard.StakedMsg"
+    });
+
     retval.push({
       title: t("dashboard.faps"),
-      subtitle: Number(stats.aps || 0).toLocaleString(),
+      subtitle: Number(stats.metrics.tps || 0).toLocaleString(),
       icon: "fas fa-question-circle",
       msg: "dashboard.fapsMsg"
-    });
-    if (chainId === 1) {
-      retval.push({
-        title: t("dashboard.votes"),
-        subtitle: Number(stats.votes || 0).toLocaleString(),
-        icon: "fas fa-question-circle",
-        msg: "dashboard.votesMsg"
-      });
-    }
-    retval.push({
-      title: t("dashboard.bbh"),
-      subtitle: stats.bh || 0,
-      icon: "fas fa-question-circle",
-      msg: "dashboard.bbhMsg"
     });
 
     return retval;
@@ -545,6 +548,14 @@ export class BlockchainExplorer extends Component {
               </div>
             </div>
           </div>
+          <div class='box cta'>
+            <p class='has-text-centered'>
+              <span class='tag is-warning'>Note</span> Blockchain data will not
+              be displayed until mainnet is released and the iotxplorer code is
+              adjusted to account for the jsonRPC vs gRPC difference between
+              testnet and mainnet.
+            </p>
+          </div>
           <div className='section' style={{ padding: "0px", margin: "0rem" }}>
             <div className='container' style={{ marginTop: "42px" }}>
               <div className='card'>
@@ -559,11 +570,8 @@ export class BlockchainExplorer extends Component {
                     <div className='columns'>
                       <Dashboard
                         stats={this.formStats(
-                          this.props.chainId,
-                          consensusMetrics
-                            ? consensusMetrics.latestEpoch || 0
-                            : 0,
-                          this.props.statistic
+                          this.props.consensus,
+                          this.props.marketData.supply
                         )}
                       />
                     </div>

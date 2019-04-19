@@ -170,6 +170,10 @@ export class DASHBOARD {
   static get MARKET_DATA(): String {
     return "/api/getMarketData";
   }
+
+  static get ELECTION_STATS(): String {
+    return "/api/getElectionStats";
+  }
 }
 
 export class CHART {

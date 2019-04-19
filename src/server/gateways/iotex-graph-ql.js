@@ -36,4 +36,23 @@ export class IotexGraphQL {
       }
     });
   }
+
+  fetchElectionStats() {
+    return axios({
+      url: "https://member.iotex.io/api-gateway/",
+      method: "post",
+      data: {
+        query: `
+              query {
+                stats {
+                    totalVotedStakes
+                    totalVotes
+                    totalCandidates
+                    nextEpoch
+                  }
+                }
+              `
+      }
+    });
+  }
 }

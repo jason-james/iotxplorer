@@ -11,6 +11,7 @@ export class RewardsInfo extends Component {
       tableContent: [],
       chartData: [],
       pageNumber: 1,
+      maxPages: null,
       height: 0,
       error: null
     };
@@ -70,19 +71,20 @@ export class RewardsInfo extends Component {
   };
 
   handleNextClick = () => {
-    if (
-      this.state.pageNumber <= Math.ceil(this.state.tableContent.length / 8)
-    ) {
+    if (this.state.maxPages === null) {
+      this.setState({
+        maxPages: Math.ceil(this.state.tableContent.length / 8)
+      });
+    }
+    if (this.state.pageNumber <= this.state.maxPages) {
       this.setState({ pageNumber: this.state.pageNumber + 1 });
     }
-    console.log(this.state.pageNumber);
   };
 
   handlePrevClick = () => {
     if (this.state.pageNumber !== 1) {
       this.setState({ pageNumber: this.state.pageNumber - 1 });
     }
-    console.log(this.state.pageNumber);
   };
 
   findChartHigh = () => {
