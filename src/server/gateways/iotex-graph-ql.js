@@ -13,6 +13,10 @@ export class IotexGraphQL {
                     liveVotes
                     percent
                     id
+                    registeredName
+                    logo
+                    website
+                    socialMedia
                   }
                 }
               `
@@ -49,6 +53,23 @@ export class IotexGraphQL {
                     totalVotes
                     totalCandidates
                     nextEpoch
+                  }
+                }
+              `
+      }
+    });
+  }
+
+  fetchbpCandidatesOnContract() {
+    return axios({
+      url: "https://member.iotex.io/api-gateway/",
+      method: "post",
+      data: {
+        query: `
+              query {
+                bpCandidatesOnContract {
+                  name
+                  ioOperatorAddr
                   }
                 }
               `

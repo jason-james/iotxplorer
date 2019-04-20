@@ -6,11 +6,14 @@ import { fetchBlocks } from "../blocks/blocks-actions";
 import { fetchVotes } from "../votes/votes-actions";
 import {
   fetchConsensusMetrics,
-  fetchElectionStats
+  fetchElectionStats,
+  fetchbpCandidatesOnContract,
+  fetchBlockMetasByIndex
 } from "../consensus-metrics/consensus-metrics-actions";
 import { BlockchainExplorer } from "./blockchain-explorer";
 import { fetchMarketData } from "./market-dashboard-actions";
 import { fetchChartData } from "./line-chart-actions";
+import { fetchDelegateData } from "../staking-dashboard/staking-dashboard-actions";
 
 export const BlockchainExplorerContainer = connect(
   function mapStateToProps(state) {
@@ -25,6 +28,7 @@ export const BlockchainExplorerContainer = connect(
       chainId: state.base.chainId,
       marketData: state.marketDashboard.marketData,
       chartData: state.lineChart.chartData,
+      delegateData: state.stakingDashboard.delegateData,
       fetching: state.fetching,
       error: state.error
     };
@@ -34,9 +38,12 @@ export const BlockchainExplorerContainer = connect(
     fetchTransfers: data => dispatch(fetchTransfers(data)),
     fetchBlocks: data => dispatch(fetchBlocks(data)),
     fetchVotes: data => dispatch(fetchVotes(data)),
+    fetchBlockMetasByIndex: data => dispatch(fetchBlockMetasByIndex(data)),
     fetchConsensusMetrics: () => dispatch(fetchConsensusMetrics()),
     fetchMarketData: () => dispatch(fetchMarketData()),
     fetchChartData: () => dispatch(fetchChartData()),
-    fetchElectionStats: () => dispatch(fetchElectionStats())
+    fetchElectionStats: () => dispatch(fetchElectionStats()),
+    fetchbpCandidatesOnContract: () => dispatch(fetchbpCandidatesOnContract()),
+    fetchDelegateData: () => dispatch(fetchDelegateData())
   })
 )(BlockchainExplorer);

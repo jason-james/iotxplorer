@@ -34,6 +34,8 @@ import { Tab } from "./tab";
 import { MarketDashboard } from "./market-dashboard";
 import { LineChart } from "./line-chart";
 import { assetURL } from "../../lib/asset-url";
+import { ChartistGraph } from "../chart-helper/chart-helper";
+import { CurrentProducer } from "./current-producer";
 
 type PropsType = {
   statistic: TCoinStatistic
@@ -96,6 +98,9 @@ export class BlockchainExplorer extends Component {
       fetchElectionStats: 0,
       fetchMarketData: 0,
       fetchChartData: 0,
+      fetchDelegateData: 0,
+      fetchbpCandidatesOnContract: 0,
+      fetchBlockMetasByIndex: 0,
       height: 0,
       activeTab: "Market"
     };
@@ -142,6 +147,26 @@ export class BlockchainExplorer extends Component {
     this.props.fetchConsensusMetrics();
     this.props.fetchElectionStats();
     this.props.fetchMarketData();
+    this.props.fetchDelegateData();
+    this.props.fetchbpCandidatesOnContract();
+
+    const fetchBlockMetasByIndex = window.setInterval(() => {
+      if (this.props.consensus.metrics.height) {
+        this.props.fetchBlockMetasByIndex({
+          start: this.props.consensus.metrics.height - 15,
+          count: 16
+        });
+      }
+    }, 5000);
+
+    const fetchDelegateData = window.setInterval(
+      () => this.props.fetchDelegateData(),
+      5000
+    );
+    const fetchbpCandidatesOnContract = window.setInterval(
+      () => this.props.fetchbpCandidatesOnContract(),
+      5000
+    );
     const fetchChartData = this.props.fetchChartData();
     const fetchConsensusMetricsId = window.setInterval(
       () => this.props.fetchConsensusMetrics(),
@@ -160,7 +185,10 @@ export class BlockchainExplorer extends Component {
       fetchConsensusMetricsId,
       fetchMarketData,
       fetchChartData,
-      fetchElectionStats
+      fetchElectionStats,
+      fetchbpCandidatesOnContract,
+      fetchDelegateData,
+      fetchBlockMetasByIndex
     });
   }
 
@@ -181,8 +209,28 @@ export class BlockchainExplorer extends Component {
       return [];
     }
 
-    return chartData;
+    const axes = {
+      labels: [],
+      series: [[]]
+    };
+
+    chartData.forEach(current => {
+      let date = new Date(current.time * 1000).toDateString();
+      var parsedDate = date.slice(3, -4);
+      axes.labels.push(parsedDate);
+      axes.series[0].push(current.close);
+    });
+    axes.labels[7] = "";
+    return axes;
   };
+
+  // formCurrentProducer = (chainData, contractData, websiteData) => {
+  //     // 1. Find current producer via getChainMeta, pass as prop
+  //     const currentProducerAddr = chainData.
+  //     // 2. Get delegates info from graph-ql. Compare ioOperatorAddr with producer address and extract the name
+
+  //     // 3. Get the logo and website and iotex member page link from graph-ql comparing name from 2 with registeredName
+  // }
 
   formMarketStats = marketData => {
     if (!marketData) {
@@ -240,7 +288,7 @@ export class BlockchainExplorer extends Component {
 
     retval.push({
       title: t("dashboard.blocks"),
-      subtitle: Number((stats.metrics.height || 0) + 1).toLocaleString(),
+      subtitle: Number(stats.metrics.height || 0).toLocaleString(),
       icon: "fas fa-question-circle",
       msg: "dashboard.blocksMsg"
     });
@@ -274,12 +322,35 @@ export class BlockchainExplorer extends Component {
   }
 
   renderContent() {
-    const consensusMetrics =
-      (this.props.consensus && this.props.consensus.metrics) || {};
-    const delegates = consensusMetrics.latestDelegates || [];
-    const currentProducer = consensusMetrics.latestBlockProducer;
-    const candidates = consensusMetrics.candidates || [];
-    let plasmaBall = null;
+    var type = "Line";
+    var options2 = {
+      width: 650,
+      height: 400,
+      showPoint: false,
+      showArea: true,
+      fullWidth: true,
+      axisY: {
+        labelInterpolationFnc: function skipLabels(value, index) {
+          return index % 2 === 0 ? `$${value.toFixed(4)}` : null;
+        }
+      }
+    };
+
+    var responsiveOptions = [
+      [
+        "screen and (max-width: 640px)",
+        {
+          width: 350,
+          height: 270
+        }
+      ]
+    ];
+
+    let data = {
+      labels: [1, 2, 3, 4, 5, 6, 7, 8],
+      series: [[5, 9, 7, 8, 5, 3, 5, 4]]
+    };
+
     const tabList = [
       {
         name: "Market"
@@ -433,14 +504,6 @@ export class BlockchainExplorer extends Component {
               </div>
             </div>
           </div>
-          <div class='box cta'>
-            <p class='has-text-centered'>
-              <span class='tag is-warning'>Note</span> Blockchain data will not
-              be displayed until mainnet is released and the iotxplorer code is
-              adjusted to account for the jsonRPC vs gRPC difference between
-              testnet and mainnet.
-            </p>
-          </div>
           <div className='section' style={{ padding: "0px", margin: "0rem" }}>
             <div className='container' style={{ marginTop: "42px" }}>
               <div className='card'>
@@ -451,11 +514,38 @@ export class BlockchainExplorer extends Component {
                 />
 
                 <div className='card-content' style={{ paddingTop: "3px" }}>
-                  <div className='column'>
+                  <div className='column' style={{ padding: "0px" }}>
                     <div className='columns'>
-                      <div className='column is-half'>
-                        <LineChart
-                          chartData={this.formChartData(this.props.chartData)}
+                      <div
+                        className='column is-half'
+                        style={{ paddingLeft: "0px" }}
+                      >
+                        <ChartistGraph
+                          data={this.formChartData(this.props.chartData)}
+                          options={options2}
+                          responsiveOptions={responsiveOptions}
+                          type={type}
+                          // listener={{
+                          //   draw: function(data) {
+                          //     let Chartist = require("chartist");
+
+                          //     if (data.type === "line" || data.type === "area") {
+                          //       data.element.animate({
+                          //         d: {
+                          //           begin: 2000 * data.index,
+                          //           dur: 2000,
+                          //           from: data.path
+                          //             .clone()
+                          //             .scale(1, 0)
+                          //             .translate(0, data.chartRect.height())
+                          //             .stringify(),
+                          //           to: data.path.clone().stringify(),
+                          //           easing: Chartist.Svg.Easing.easeOutQuint
+                          //         }
+                          //       });
+                          //     }
+                          //   }
+                          // }}
                         />
                       </div>
                       <MarketDashboard
@@ -548,14 +638,6 @@ export class BlockchainExplorer extends Component {
               </div>
             </div>
           </div>
-          <div class='box cta'>
-            <p class='has-text-centered'>
-              <span class='tag is-warning'>Note</span> Blockchain data will not
-              be displayed until mainnet is released and the iotxplorer code is
-              adjusted to account for the jsonRPC vs gRPC difference between
-              testnet and mainnet.
-            </p>
-          </div>
           <div className='section' style={{ padding: "0px", margin: "0rem" }}>
             <div className='container' style={{ marginTop: "42px" }}>
               <div className='card'>
@@ -566,8 +648,20 @@ export class BlockchainExplorer extends Component {
                 />
 
                 <div className='card-content' style={{ paddingTop: "3px" }}>
-                  <div className='column'>
+                  <div className='column' style={{ padding: "0px" }}>
                     <div className='columns'>
+                      <div
+                        className='column is-half'
+                        style={{ paddingLeft: "0px" }}
+                      >
+                        <CurrentProducer
+                          tipBlockMeta={this.props.consensus.blockMetas}
+                          allContractData={
+                            this.props.consensus.bpCandidatesOnContract
+                          }
+                          memberInfo={this.props.delegateData}
+                        />
+                      </div>
                       <Dashboard
                         stats={this.formStats(
                           this.props.consensus,

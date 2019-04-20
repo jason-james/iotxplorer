@@ -31,6 +31,48 @@ export function setConsensusMetricsRoutes(server) {
     }
   }
 
+  async function getbpCandidatesOnContract(ctx, next) {
+    try {
+      const response = await iotexgraphql.fetchbpCandidatesOnContract();
+      const bpCandidatesOnContract = response.data.data.bpCandidatesOnContract;
+      ctx.body = { ok: true, bpCandidatesOnContract };
+    } catch (error) {
+      ctx.body = {
+        ok: false,
+        error: { code: "FAIL_GET_DELEGATE_DATA", message: "error.unknown" }
+      };
+    }
+  }
+
+  async function getBlockMetasByIndex(ctx, next) {
+    try {
+      const response = await RpcMethod.getBlockMetas({
+        byIndex: {
+          start: ctx.request.body.start,
+          count: ctx.request.body.count
+        }
+      });
+      const blockMetas = response.blkMetas;
+      ctx.body = {
+        ok: true,
+        blockMetas,
+        start: ctx.request.body.start,
+        count: ctx.request.body.count
+      };
+    } catch (error) {
+      ctx.body = {
+        ok: false,
+        error: { code: "FAIL_GET_BLKMETA", message: "blkmeta.error.fail" }
+      };
+    }
+  }
+
+  server.post(
+    "getbpCandidatesOnContract",
+    DASHBOARD.CANDIDATE_DATA,
+    getbpCandidatesOnContract
+  );
+  server.post("getBlockMetas", DASHBOARD.BLOCK_METAS, getBlockMetasByIndex);
   server.post("getConsensusMetrics", CONSENSUS_API, getConsensusMetrics);
   server.post("getElectionStats", DASHBOARD.ELECTION_STATS, getElectionStats);
 }

@@ -171,6 +171,14 @@ export class DASHBOARD {
     return "/api/getMarketData";
   }
 
+  static get BLOCK_METAS(): String {
+    return "/api/getBlockMetas";
+  }
+
+  static get CANDIDATE_DATA(): String {
+    return "/api/getCandidateData";
+  }
+
   static get ELECTION_STATS(): String {
     return "/api/getElectionStats";
   }
