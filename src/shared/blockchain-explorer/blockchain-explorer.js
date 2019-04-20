@@ -232,7 +232,7 @@ export class BlockchainExplorer extends Component {
   //     // 3. Get the logo and website and iotex member page link from graph-ql comparing name from 2 with registeredName
   // }
 
-  formMarketStats = marketData => {
+  formMarketStats = (marketData, daily) => {
     if (!marketData) {
       return [
         {
@@ -253,7 +253,7 @@ export class BlockchainExplorer extends Component {
     });
     retval.push({
       title: t("marketDashboard.supply"),
-      subtitle: `${marketData.supply} IOTX`,
+      subtitle: `${marketData.supply} ⬡`,
       icon: "fas fa-question-circle has-text-primary",
       msg: "marketDashboard.supplyMsg"
     });
@@ -263,7 +263,18 @@ export class BlockchainExplorer extends Component {
       icon: "fas fa-question-circle has-text-primary",
       msg: "marketDashboard.volumeMsg"
     });
-
+    retval.push({
+      title: t("marketDashboard.close"),
+      subtitle: `$ ${daily[7].close} USD`,
+      icon: "fas fa-question-circle has-text-primary",
+      msg: "marketDashboard.closeMsg"
+    });
+    retval.push({
+      title: t("marketDashboard.High"),
+      subtitle: `$ ${daily[7].high} USD`,
+      icon: "fas fa-question-circle has-text-primary",
+      msg: "marketDashboard.HighMsg"
+    });
     return retval;
   };
 
@@ -300,7 +311,9 @@ export class BlockchainExplorer extends Component {
     });
     retval.push({
       title: t("dashboard.votes"),
-      subtitle: Number(stats.electionStats.totalVotes || 0).toLocaleString(),
+      subtitle: `${Math.round(
+        Number(stats.electionStats.totalVotes)
+      ).toLocaleString()} ⬡`,
       icon: "fas fa-question-circle",
       msg: "dashboard.votesMsg"
     });
@@ -325,7 +338,7 @@ export class BlockchainExplorer extends Component {
     var type = "Line";
     var options2 = {
       width: 650,
-      height: 400,
+      height: 440,
       showPoint: false,
       showArea: true,
       fullWidth: true,
@@ -549,7 +562,10 @@ export class BlockchainExplorer extends Component {
                         />
                       </div>
                       <MarketDashboard
-                        stats={this.formMarketStats(this.props.marketData)}
+                        stats={this.formMarketStats(
+                          this.props.marketData,
+                          this.props.chartData
+                        )}
                       />
                     </div>
                   </div>

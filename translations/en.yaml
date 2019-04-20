@@ -100,6 +100,10 @@ footer.chat: Chat
 votes.title: Votes
 marketDashboard.marketCap: Market Cap
 marketDashboard.supply: Circulating Supply
+marketDashboard.close: Current Price
+marketDashboard.closeMsg: The current spot price of IOTX in USD.
+marketDashboard.High: 24h High
+marketDashboard.HighMsg: The highest price of the last 24 hours.
 marketDashboard.volume: Total Volume (24h)
 marketDashboard.marketCapMsg: >-
   Market Capitalisation is one way to quantify the size and value of a cryptocurrency. It's calculated by multiplying the Price by the Circulating Supply.

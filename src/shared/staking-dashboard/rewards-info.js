@@ -238,7 +238,7 @@ export class RewardsInfo extends Component {
                               </td>
                               <td>{currentElement.votes.toFixed(2)}</td>
                               <td>{currentElement.rewardsShare.toFixed(2)}%</td>
-                              <td>{currentElement.rewards.toFixed(2)} IOTX</td>
+                              <td>{currentElement.rewards.toFixed(2)} ⬡</td>
                               <td>
                                 <a
                                   className='button is-primary is-small'
