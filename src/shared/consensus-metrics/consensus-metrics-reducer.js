@@ -68,6 +68,7 @@ export default function reducer(
         count: action.payload.count
       };
     }
+
     default: {
       return state;
     }

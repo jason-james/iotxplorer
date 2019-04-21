@@ -175,6 +175,10 @@ export class DASHBOARD {
     return "/api/getBlockMetas";
   }
 
+  static get BLOCK_META(): String {
+    return "/api/getBlockMeta";
+  }
+
   static get CANDIDATE_DATA(): String {
     return "/api/getCandidateData";
   }

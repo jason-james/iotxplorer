@@ -67,12 +67,32 @@ export function setConsensusMetricsRoutes(server) {
     }
   }
 
+  async function getBlockMeta(ctx, next) {
+    try {
+      const response = await RpcMethod.getBlockMetas({
+        byHash: { blkHash: ctx.request.body.blkHash }
+      });
+      const blockMeta = response.blkMetas;
+      ctx.body = {
+        ok: true,
+        blockMeta,
+        blkHash: ctx.request.body.blkHash
+      };
+    } catch (error) {
+      ctx.body = {
+        ok: false,
+        error: { code: "FAIL_GET_BLKMETA", message: "blkmeta.error.fail" }
+      };
+    }
+  }
+
   server.post(
     "getbpCandidatesOnContract",
     DASHBOARD.CANDIDATE_DATA,
     getbpCandidatesOnContract
   );
   server.post("getBlockMetas", DASHBOARD.BLOCK_METAS, getBlockMetasByIndex);
+  server.post("getBlockMetasHash", DASHBOARD.BLOCK_META, getBlockMeta);
   server.post("getConsensusMetrics", CONSENSUS_API, getConsensusMetrics);
   server.post("getElectionStats", DASHBOARD.ELECTION_STATS, getElectionStats);
 }

@@ -1,6 +1,6 @@
 {
   "name": "@iotex/iotex-explorer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "field_description",
   "main": "server.js",
   "scripts": {
@@ -105,12 +105,13 @@
     "grpc-tools": "^1.7.1",
     "hex2ascii": "0.0.3",
     "hex2dec": "^1.1.2",
-    "history": "^4.6.3",
+    "history": "^4.9.0",
     "inferno": "^3.10.1",
     "inferno-clone-vnode": "^7.1.10",
     "inferno-compat": "^7.1.10",
     "inferno-component": "^3.9.0",
     "inferno-create-element": "^7.1.10",
+    "inferno-devtools": "^7.1.11",
     "inferno-dom": "^1.0.7",
     "inferno-helmet": "^4.0.2",
     "inferno-outside-click-handler": "^0.1.1",
