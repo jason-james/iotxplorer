@@ -27,7 +27,8 @@ import {
   STAKING,
   STAKING_DASHBOARD,
   HOW_TO_STAKE,
-  EDUCATION
+  EDUCATION,
+  ACTION
 } from "./common/site-url";
 import { VoteContainer } from "./vote/vote-container";
 import { VotesContainer } from "./votes/votes-container";
@@ -42,6 +43,7 @@ import { UnderstandingIoTeXContainer } from "./education/understanding-iotex/und
 import { UsingTheTestnetContainer } from "./education/using-the-testnet/using-the-testnet-container";
 import { VotingAndDelegatingContainer } from "./education/voting-and-delegating/voting-and-delegating-container";
 import { CalculatorsContainer } from "./staking-dashboard/calculators/staking-calcs-container";
+import { ActionContainer } from "./action/action-container";
 
 export function createViewRoutes(routePrefix = "/") {
   return (
@@ -101,6 +103,8 @@ export function createViewRoutes(routePrefix = "/") {
         path={STAKING_DASHBOARD.CALCULATORS}
         component={CalculatorsContainer}
       />
+
+      <RoutePage path={ACTION.INDEX} component={ActionContainer} />
 
       {/* <RoutePage path={DELEGATES.INDEX} component={DelegatesContainer}/>*/}
 

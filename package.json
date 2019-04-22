@@ -94,6 +94,7 @@
     "d3": "^5.9.1",
     "deep-extend": "^0.5.1",
     "dotenv": "^6.2.0",
+    "dottie": "^2.0.1",
     "dotty": "0.0.2",
     "ethereumjs-abi": "^0.6.6",
     "extend": "^3.0.0",

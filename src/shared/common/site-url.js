@@ -134,6 +134,16 @@ export class TRANSFERS {
   }
 }
 
+export class ACTION {
+  static get INDEX(): string {
+    return "/actions/:id/";
+  }
+
+  static get GET(): string {
+    return "/api/getAction";
+  }
+}
+
 export class DEPOSIT {
   static get INDEX_SETTLE(): string {
     return "/settle-deposit/:id";

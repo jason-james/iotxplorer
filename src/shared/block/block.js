@@ -69,7 +69,7 @@ export class Block extends Component {
   render() {
     return (
       <div className='column container'>
-        <Helmet title={`${t("block.title")} - IoTeX`} />
+        <Helmet title={`${t("block.title")} - iotxplorer`} />
         <div>
           <h1 className='title'>{t("block.title")}</h1>
           <BlockSummary

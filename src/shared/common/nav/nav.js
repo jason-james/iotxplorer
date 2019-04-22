@@ -90,42 +90,6 @@ export class Nav extends Component {
     window.clearInterval(this.state.fetchCoinPrice);
   }
 
-  handleSubmit(e: { preventDefault: any }) {
-    e.preventDefault();
-
-    const formData = serialize(this._form, { hash: true });
-    this.setState({ fetching: true });
-    if (formData.search !== "") {
-      fetchPost(NAV.FUZZY_SEARCH, { hashStr: `${formData.search}` }).then(
-        res => {
-          if (res.ok === true) {
-            if (res.result.block) {
-              window.location = `/blocks/${formData.search}`;
-              return;
-            }
-
-            if (res.result.transfer) {
-              window.location = `/transfers/${formData.search}`;
-              return;
-            }
-
-            if (res.result.vote) {
-              window.location = `/votes/${formData.search}`;
-              return;
-            }
-
-            if (res.result.execution) {
-              window.location = `/executions/${formData.search}`;
-              return;
-            }
-          } else {
-            this.setState({ error: true });
-          }
-        }
-      );
-    }
-  }
-
   render() {
     const { chains, href } = this.props;
     let name = "";

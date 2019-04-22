@@ -62,6 +62,7 @@ module.exports = {
     "object-src": ["self"],
     "script-src": [
       "self",
+      "unsafe-eval",
       "https://s3.tradingview.com/tv.js",
       "https://use.fontawesome.com/releases/v5.0.9/js/all.js",
       "https://www.google-analytics.com/analytics.js",

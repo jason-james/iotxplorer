@@ -1,21 +1,9 @@
 import Component from "inferno-component";
 import { t } from "../../lib/iso-i18n";
-import { ToolTip } from "../common/tooltip";
 import { publicKeyToAddress } from "iotex-antenna/lib/crypto/crypto";
 
-import {
-  BLOCKS,
-  DASHBOARD,
-  SITE_URL,
-  EXECUTIONS,
-  TRANSFERS,
-  VOTES,
-  WALLET,
-  IOTEX_URL,
-  NAV
-} from "../common/site-url";
+import { DASHBOARD, ACTION } from "../common/site-url";
 import { fetchPost } from "../../lib/fetch-post";
-import serialize from "form-serialize";
 import window from "global/window";
 
 export class SearchBar extends Component {
@@ -35,118 +23,58 @@ export class SearchBar extends Component {
     };
   }
 
-  // handleSubmit(e: { preventDefault: any }) {
-  //   e.preventDefault();
-
-  //   const formData = serialize(this._form, { hash: true });
-  //   this.setState({ fetching: true });
-  //   if (formData.search !== "") {
-  //     fetchPost(NAV.FUZZY_SEARCH, { hashStr: `${formData.search}` }).then(
-  //       res => {
-  //         if (res.ok === true) {
-  //           if (res.result.block) {
-  //             window.location = `/blocks/${formData.search}`;
-  //             return;
-  //           }
-
-  //           if (res.result.transfer) {
-  //             window.location = `/transfers/${formData.search}`;
-  //             return;
-  //           }
-
-  //           if (res.result.vote) {
-  //             window.location = `/votes/${formData.search}`;
-  //             return;
-  //           }
-
-  //           if (res.result.execution) {
-  //             window.location = `/executions/${formData.search}`;
-  //             return;
-  //           }
-  //         } else {
-  //           this.setState({ error: true });
-  //         }
-  //       }
-  //     );
-  //   }
-  // }
-
-  searchInput = e => {
+  handleSearch = e => {
     e.preventDefault();
 
     let { value } = this.state;
-    const height = parseInt(value, 10);
     value = value.trim();
 
     if (value.startsWith("io")) {
       window.location = `/address/${value}`;
     } else if (value.length === 130) {
       window.location = `/address/${publicKeyToAddress(value)}`;
-    } else if (height) {
+    } else if (isNormalInteger(value)) {
       fetchPost(DASHBOARD.BLOCK_METAS, {
         start: +value,
         count: 1
       }).then(res => {
         window.location = `/blocks/${res.blockMetas[0].hash}`;
       });
-
-      //block by hash
     } else {
-      try {
-        fetchPost(DASHBOARD.BLOCK_META, { blkHash: value }).then(res => {
+      // block by hash
+      fetchPost(DASHBOARD.BLOCK_META, { blkHash: value }).then(res => {
+        try {
           const validBlockHash = res.blockMeta[0].hash;
           if (validBlockHash) {
             window.location = `blocks/${validBlockHash}`;
           }
-        });
-      } catch (err) {
-        try {
-          //actions by hash
         } catch (err) {
-          window.location = "/notfound";
+          // actions by hash
+          fetchPost(ACTION.GET, {
+            byHash: {
+              actionHash: value,
+              checkingPending: true
+            }
+          }).then(res => {
+            try {
+              const actionInfo = res.actionInfo[0];
+              if (actionInfo) {
+                window.location = `actions/${actionInfo.actHash}`;
+              }
+            } catch (err) {
+              // invalid block num/block hash/action hash/address
+              console.log(err);
+              window.location = "/notfound";
+            }
+          });
         }
-      }
-
-      // } else {
-      //   try {
-      //     const validAction = await client.query({
-      //       query: GET_ACTIONS,
-      //       variables: {
-      //         byHash: {
-      //           actionHash: value,
-      //           checkingPending: true
-      //         }
-      //       }
-      //     });
-      //     if (validAction) {
-      //       window.location = `/action/${value}`
-      //     }
-      //   } catch (error) {
-      //     try {
-      //       const validBlock = await client.query({
-      //         query: GET_ACTIONS,
-      //         variables: {
-      //           byBlk: {
-      //             blkHash: value,
-      //             start: 0,
-      //             count: 1
-      //           }
-      //         } as GetActionsRequest
-      //       });
-
-      //       if (validBlock) {
-      //         history.push(`/blocks/${value}`);
-      //       }
-      //     } catch (error) {
-      //       history.push(`/notfound`);
-      //     }
-      //   }
+      });
     }
   };
 
   render() {
     return (
-      <form onSubmit={e => this.searchInput(e)}>
+      <form onSubmit={e => this.handleSearch(e)}>
         <div className='field has-addons'>
           <div className='container main-search-bar control'>
             <input
@@ -187,4 +115,9 @@ export class SearchBar extends Component {
       </form>
     );
   }
+}
+
+function isNormalInteger(str) {
+  const n = Math.floor(Number(str));
+  return n !== Infinity && String(n) === str && n >= 0;
 }

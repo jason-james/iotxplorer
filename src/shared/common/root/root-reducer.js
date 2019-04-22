@@ -20,6 +20,7 @@ import delegates from "../../delegates/delegates-reducer";
 import marketDashboard from "../../blockchain-explorer/market-dashboard-reducer";
 import lineChart from "../../blockchain-explorer/line-chart-reducer";
 import stakingDashboard from "../../staking-dashboard/staking-dashboard-reducer";
+import action from "../../action/action-reducer";
 
 export type Reducer = (state: any, action: any) => any;
 
@@ -47,5 +48,6 @@ export const rootReducer = combineReducers({
   settleDeposit,
   consensus,
   dialogue,
-  delegates
+  delegates,
+  action
 });

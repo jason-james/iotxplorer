@@ -33,6 +33,7 @@ import { setVotingAndDelegatingRoutes } from "../shared/education/voting-and-del
 import { setCalculatorsRoutes } from "../shared/staking-dashboard/calculators/staking-calcs-handler";
 import { fetchVotersId } from "../shared/vote/vote-actions";
 import { getDB } from "../database/db";
+import { setActionRoutes } from "../shared/action/action-handler";
 
 // eslint-disable-next-line max-statements
 export function setServerRoutes(server: Server) {
@@ -168,4 +169,6 @@ export function setServerRoutes(server: Server) {
   setVotingAndDelegatingRoutes(server);
 
   setCalculatorsRoutes(server);
+
+  setActionRoutes(server);
 }
