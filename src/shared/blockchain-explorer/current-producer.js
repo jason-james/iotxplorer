@@ -22,7 +22,6 @@ export class CurrentProducer extends Component {
 
       if (newArray !== [] && newArray[0]) {
         let registeredName = newArray[0].name;
-        console.log(registeredName);
 
         var prod = this.props.memberInfo.filter(function(el) {
           return el.registeredName === registeredName;
@@ -31,7 +30,9 @@ export class CurrentProducer extends Component {
         var producerName = prod[0].name;
         var producerLogo = prod[0].logo;
         var producerWebsite = prod[0].website;
-        var profile = `https://member.iotex.io/delegate/${prod[0].id}`;
+        var profile = `https://member.iotex.io/delegate/${
+          prod[0].id
+        }/?utm_source=iotxplorer`;
       } else {
         var producerName = `RoboDelegate`;
         var producerWebsite = "https://www.iotex.io";

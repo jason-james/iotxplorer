@@ -272,7 +272,9 @@ table {
   width: 100%;
   border-bottom: 1px solid #73fbe0;
 }
-.bx--data-table-v2 a,
+.bx--data-table-v2 a {
+  color: #00d1b2;
+}
 .bx--data-table-v2 td {
   color: #ffffff;
 }

@@ -9,6 +9,10 @@ export class ADDRESS {
     return "/address/:id/";
   }
 
+  static get GET_ACTIONS(): string {
+    return "/api/getActionsAddress";
+  }
+
   static get GET_ADDRESS(): string {
     return "/api/getAddressId";
   }
