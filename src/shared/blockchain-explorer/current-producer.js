@@ -15,19 +15,23 @@ export class CurrentProducer extends Component {
 
     if (this.props.tipBlockMeta) {
       let producerAddr = this.props.tipBlockMeta[15].producerAddress;
-      if (
-        this.props.allContractData.some(e => e.ioOperatorAddr === producerAddr)
-      ) {
-        let registeredName = e.name;
 
-        if (
-          this.props.memberInfo.some(i => i.registeredName === registeredName)
-        ) {
-          var producerName = i.name;
-          var producerLogo = i.logo;
-          var producerWebsite = i.website;
-          var profile = `https://member.iotex.io/delegate/${i.id}`;
-        }
+      var newArray = this.props.allContractData.filter(function(el) {
+        return el.ioOperatorAddr === producerAddr;
+      });
+
+      if (newArray !== [] && newArray[0]) {
+        let registeredName = newArray[0].name;
+        console.log(registeredName);
+
+        var prod = this.props.memberInfo.filter(function(el) {
+          return el.registeredName === registeredName;
+        });
+
+        var producerName = prod[0].name;
+        var producerLogo = prod[0].logo;
+        var producerWebsite = prod[0].website;
+        var profile = `https://member.iotex.io/delegate/${prod[0].id}`;
       } else {
         var producerName = `RoboDelegate`;
         var producerWebsite = "https://www.iotex.io";
