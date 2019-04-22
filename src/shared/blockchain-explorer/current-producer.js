@@ -30,7 +30,7 @@ export class CurrentProducer extends Component {
         }
       } else {
         var producerName = `RoboDelegate`;
-        var producerWebsite = "https://www.iotex.io`";
+        var producerWebsite = "https://www.iotex.io";
         var producerLogo = assetURL("/robodelegate.png");
         var profile = `https://www.iotex.io`;
       }
