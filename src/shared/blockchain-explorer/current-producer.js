@@ -1,6 +1,7 @@
 import Component from "inferno-component";
 import { ToolTip } from "../common/tooltip";
 import { t } from "../../lib/iso-i18n";
+import { assetURL } from "../../lib/asset-url";
 
 export class CurrentProducer extends Component {
   // 1. Find current producer via getChainMeta, pass as prop
@@ -10,6 +11,8 @@ export class CurrentProducer extends Component {
   // 3. Get the logo and website and iotex member page link from graph-ql comparing name from 2 with registeredName
 
   render() {
+    var producerLogo = assetURL("/blocks-spinner.svg");
+
     if (this.props.tipBlockMeta) {
       let producerAddr = this.props.tipBlockMeta[15].producerAddress;
       if (
@@ -23,16 +26,15 @@ export class CurrentProducer extends Component {
           var producerName = i.name;
           var producerLogo = i.logo;
           var producerWebsite = i.website;
-          var profileID = i.id;
+          var profile = `https://member.iotex.io/delegate/${i.id}`;
         }
+      } else {
+        var producerName = `RoboDelegate`;
+        var producerWebsite = "https://www.iotex.io`";
+        var producerLogo = assetURL("/robodelegate.png");
+        var profile = `https://www.iotex.io`;
       }
     }
-    profileID = "5c736ba72d01e727d88b9dea";
-    producerName = "iotxplorer";
-    producerWebsite = "https://www.iotxplorer.io";
-    producerLogo =
-      "https://imgc.iotex.io/dokc3pa1x/image/upload/v1551121446/delegates/iotxplorer/Group_2.png";
-    let profile = `https://member.iotex.io/delegate/${profileID}`;
 
     return (
       <div
@@ -50,7 +52,10 @@ export class CurrentProducer extends Component {
           />
         </div>
         <div className='has-text-centered'>
-          <img src={producerLogo} width='200' height='200' />
+          <img
+            src={producerLogo}
+            style={{ objectFit: "contain", height: "200px", width: "200px" }}
+          />
         </div>
         <div className='has-text-centered'>
           <p className='title has-text-centered' style={{ fontSize: "1.8rem" }}>
