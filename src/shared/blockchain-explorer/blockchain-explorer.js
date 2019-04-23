@@ -616,7 +616,12 @@ export class BlockchainExplorer extends Component {
           <div className='section' style={{ padding: "24px", margin: "0rem" }}>
             <div className='container'>
               <div className='card'>
-                <h1 className='title'>{t("action.title")}</h1>
+                <h1
+                  className='title has-text-centered is-centered'
+                  style={{ paddingTop: "1.5rem", marginBottom: "0px" }}
+                >
+                  Latest Blocks
+                </h1>
 
                 <div className='card-content'>
                   <div className='column'>

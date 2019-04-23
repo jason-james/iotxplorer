@@ -2,6 +2,7 @@ import Component from "inferno-component";
 import { ToolTip } from "../common/tooltip";
 import { t } from "../../lib/iso-i18n";
 import { assetURL } from "../../lib/asset-url";
+import { Link } from "inferno-router";
 
 export class CurrentProducer extends Component {
   // 1. Find current producer via getChainMeta, pass as prop
@@ -14,7 +15,7 @@ export class CurrentProducer extends Component {
     var producerLogo = assetURL("/blocks-spinner.svg");
 
     if (this.props.tipBlockMeta) {
-      let producerAddr = this.props.tipBlockMeta[15].producerAddress;
+      var producerAddr = this.props.tipBlockMeta[15].producerAddress;
 
       var newArray = this.props.allContractData.filter(function(el) {
         return el.ioOperatorAddr === producerAddr;
@@ -63,8 +64,17 @@ export class CurrentProducer extends Component {
           />
         </div>
         <div className='has-text-centered'>
-          <p className='title has-text-centered' style={{ fontSize: "1.8rem" }}>
-            {producerName}
+          <p
+            className='title has-text-centered'
+            style={{ fontSize: "1.8rem", color: "#363636" }}
+          >
+            <a
+              href={`/address/${producerAddr}`}
+              target='_blank'
+              style={{ color: "#363636" }}
+            >
+              {producerName}
+            </a>
           </p>
         </div>
         <div className='has-text-centered'>
