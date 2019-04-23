@@ -52,7 +52,9 @@ export function setConsensusMetricsRoutes(server) {
           count: ctx.request.body.count
         }
       });
-      const blockMetas = response.blkMetas;
+      const blockMetas = response.blkMetas.sort((m1: any, m2: any) => {
+        return m2.height - m1.height;
+      });
       ctx.body = {
         ok: true,
         blockMetas,

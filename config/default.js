@@ -27,8 +27,7 @@ module.exports = {
     walletCore: {
       serverUrl: process.env.IOTEX_WALLET_URL || "localhost:42124"
     },
-    iotexAntenna: "35.197.200.233:14014"
-    // iotexAntenna: process.env.IOTEX_CORE_URL || "35.239.122.109:80"
+    iotexAntenna: process.env.IOTEX_CORE_URL || "35.239.122.109:14014"
   },
   analytics: {
     googleTid: process.env.GOOGLE_TID || "UA-XXXXXXXXX-1"

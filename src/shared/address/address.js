@@ -140,11 +140,6 @@ export class AddressSummary extends Component {
   componentWillMount() {
     if (isBrowser) {
       this.props.fetchAccount({ address: this.props.id });
-      this.props.fetchActionsByAddress({
-        address: this.props.id,
-        start: this.props.state.account.numActions - 15 * this.state.pageNumber,
-        count: 15
-      });
     }
   }
 
@@ -153,6 +148,22 @@ export class AddressSummary extends Component {
       this.props.fetchAccount({ address: this.props.id });
     }, 20000);
     this.setState({ fetchAccount });
+
+    setTimeout(
+      function() {
+        //Start the timer
+        this.props.fetchActionsByAddress({
+          address: this.props.id,
+          start:
+            this.props.state.account.numActions - 15 * this.state.pageNumber < 0
+              ? 0
+              : this.props.state.account.numActions -
+                15 * this.state.pageNumber,
+          count: 15
+        }); //After 1 second, set render to true
+      }.bind(this),
+      1000
+    );
   }
 
   componentWillUnmount() {
@@ -347,28 +358,35 @@ export class AddressSummary extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.props.state.actions.map(currentElement => (
+              {this.props.state.actions.reverse().map(currentElement => (
                 <tr>
                   <td>
-                    <Link to={`/actions/${currentElement.actHash}`}>
+                    <Link
+                      to={`/actions/${currentElement.actHash}`}
+                      className='link'
+                    >
                       {currentElement.actHash.substr(0, 8)}..
                     </Link>
                   </td>
                   <td>{fromNow(currentElement.timestamp.seconds)}</td>
                   <td>
                     {" "}
-                    <Link to={`/blocks/${currentElement.blkHash}`}>
+                    <Link
+                      to={`/blocks/${currentElement.blkHash}`}
+                      className='link'
+                    >
                       {currentElement.blkHash.substr(0, 8)}..
                     </Link>
                   </td>
                   <td>{this.getActionType(currentElement)}</td>
                   <td>
-                    <Link
-                      to={`/address/${publicKeyToAddress(
+                    <a
+                      href={`/address/${publicKeyToAddress(
                         Buffer.from(
                           currentElement.action.senderPubKey
                         ).toString("Hex")
                       )}`}
+                      className='link'
                     >
                       {publicKeyToAddress(
                         Buffer.from(
@@ -376,12 +394,12 @@ export class AddressSummary extends Component {
                         ).toString("Hex")
                       ).substr(0, 14)}
                       ..
-                    </Link>
+                    </a>
                   </td>
                   <td>
-                    <Link to={`/address/${this.getAddress(currentElement)[0]}`}>
+                    <a href={`/address/${this.getAddress(currentElement)[0]}`}>
                       {this.getAddress(currentElement)[1]}
-                    </Link>
+                    </a>
                   </td>
                   <td>{this.getAmount(currentElement)}</td>
 

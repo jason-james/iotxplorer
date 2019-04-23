@@ -195,7 +195,9 @@ export function setAddressRoutes(server) {
       ctx.body = {
         ok: true,
         actions,
-        address: ctx.request.body.address
+        address: ctx.request.body.address,
+        count: ctx.request.body.count,
+        start: ctx.request.body.start
       };
     } catch (error) {
       ctx.body = {

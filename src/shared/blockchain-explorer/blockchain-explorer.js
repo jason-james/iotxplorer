@@ -19,7 +19,7 @@ import { t } from "../../lib/iso-i18n";
 import { SingleColTable } from "../common/single-col-table";
 import { ExecutionsListOnlyId } from "../executions/executions";
 import { TransfersListOnlyId } from "../transfers/transfers";
-import { BlocksListOnlyId } from "../blocks/blocks";
+import { BlocksList } from "../blocks/blocks";
 import { VotesListOnlyId } from "../votes/votes";
 import { fetchVotes } from "../votes/votes-actions";
 import { fetchConsensusMetrics } from "../consensus-metrics/consensus-metrics-actions";
@@ -157,7 +157,7 @@ export class BlockchainExplorer extends Component {
           count: 16
         });
       }
-    }, 5000);
+    }, 500);
 
     const fetchDelegateData = window.setInterval(
       () => this.props.fetchDelegateData(),
@@ -359,11 +359,6 @@ export class BlockchainExplorer extends Component {
       ]
     ];
 
-    let data = {
-      labels: [1, 2, 3, 4, 5, 6, 7, 8],
-      series: [[5, 9, 7, 8, 5, 3, 5, 4]]
-    };
-
     const tabList = [
       {
         name: "Market"
@@ -373,88 +368,11 @@ export class BlockchainExplorer extends Component {
       }
     ];
 
-    let votesTable = (
-      <SingleColTable
-        title={t("latestVotes.title")}
-        items={this.props.votes.items}
-        fetching={this.props.votes.fetching}
-        error={this.props.votes.error}
-        offset={this.props.votes.offset}
-        count={this.props.votes.count}
-        fetch={this.props.fetchVotes}
-        tip={this.props.votes.tip}
-        name={t("votes.title")}
-        displayViewMore={true}
-      >
-        <VotesListOnlyId
-          votes={this.props.votes.items}
-          width={this.props.width}
-          isHome={true}
-        />
-      </SingleColTable>
-    );
-
     let blocksTable = (
-      <SingleColTable
-        title={t("latestBlocks.title")}
-        items={this.props.blocks.items}
-        fetching={this.props.blocks.fetching}
-        error={this.props.blocks.error}
-        offset={this.props.blocks.offset}
-        count={this.props.blocks.count}
-        fetch={this.props.fetchBlocks}
-        tip={this.props.blocks.tip}
-        name={t("blocks.title")}
-        displayViewMore={true}
-      >
-        <BlocksListOnlyId
-          blocks={this.props.blocks.items}
-          width={this.props.width}
-          isHome={true}
-        />
-      </SingleColTable>
-    );
-
-    let executionsTable = (
-      <SingleColTable
-        title={t("latestExecutions.title")}
-        items={this.props.executions.items}
-        fetching={this.props.executions.fetching}
-        error={this.props.executions.error}
-        offset={this.props.executions.offset}
-        count={this.props.executions.count}
-        fetch={this.props.executions}
-        tip={this.props.executions.tip}
-        name={t("meta.executions")}
-        displayViewMore={true}
-      >
-        <ExecutionsListOnlyId
-          executions={this.props.executions.items}
-          width={this.props.width}
-          isHome={true}
-        />
-      </SingleColTable>
-    );
-
-    let transfersTable = (
-      <SingleColTable
-        title={t("latestTransfers.title")}
-        items={this.props.transfers.items}
-        fetching={this.props.transfers.fetching}
-        error={this.props.transfers.error}
-        offset={this.props.transfers.offset}
-        count={this.props.transfers.count}
-        fetch={this.props.transfers}
-        tip={this.props.transfers.tip}
-        name={t("meta.transfers")}
-        displayViewMore={true}
-      >
-        <TransfersListOnlyId
-          transfers={this.props.transfers.items}
-          width={this.props.width}
-          isHome={true}
-        />
-      </SingleColTable>
+      <BlocksList
+        blocks={this.props.consensus.blockMetas}
+        width={this.props.width}
+      />
     );
 
     if (this.state.activeTab === "Market") {
@@ -578,13 +496,16 @@ export class BlockchainExplorer extends Component {
           <div className='section' style={{ padding: "24px", margin: "0rem" }}>
             <div className='container'>
               <div className='card'>
+                <h1
+                  className='title has-text-centered is-centered'
+                  style={{ paddingTop: "1.5rem", marginBottom: "0px" }}
+                >
+                  Latest Blocks
+                </h1>
                 <div className='card-content'>
                   <div className='column'>
                     <div className='columns'>
                       <div className='column'>{blocksTable}</div>
-                      <div className='column'>{executionsTable}</div>
-                      <div className='column'>{transfersTable}</div>
-                      <div className='column'>{votesTable}</div>
                     </div>
                   </div>
                 </div>
@@ -695,13 +616,12 @@ export class BlockchainExplorer extends Component {
           <div className='section' style={{ padding: "24px", margin: "0rem" }}>
             <div className='container'>
               <div className='card'>
+                <h1 className='title'>{t("action.title")}</h1>
+
                 <div className='card-content'>
                   <div className='column'>
                     <div className='columns'>
                       <div className='column'>{blocksTable}</div>
-                      <div className='column'>{executionsTable}</div>
-                      <div className='column'>{transfersTable}</div>
-                      <div className='column'>{votesTable}</div>
                     </div>
                   </div>
                 </div>
