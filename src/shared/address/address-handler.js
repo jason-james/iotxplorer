@@ -191,7 +191,7 @@ export function setAddressRoutes(server) {
           start: ctx.request.body.start
         }
       });
-      const actions = response.actionInfo;
+      const actions = response.actionInfo.reverse();
       ctx.body = {
         ok: true,
         actions,

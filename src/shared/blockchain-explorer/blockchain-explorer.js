@@ -292,11 +292,19 @@ export class BlockchainExplorer extends Component {
 
     // Sets empty array return value to hold dashboard info. Dashboard is the info to the right of plasmaball
     const retval = [];
-    const percentStaked =
-      (parseFloat(stats.electionStats.totalVotedStakes) /
-        parseFloat(supply.replace(/,/g, ""))) *
-      100;
+    if (!stats.electionStats) {
+      var percentStaked = 0;
+      var totalVotes = "Cannot Fetch";
+    } else {
+      var percentStaked =
+        (parseFloat(stats.electionStats.totalVotedStakes) /
+          parseFloat(supply.replace(/,/g, ""))) *
+        100;
 
+      var totalVotes = Math.round(
+        Number(stats.electionStats.totalVotes)
+      ).toLocaleString();
+    }
     retval.push({
       title: t("dashboard.blocks"),
       subtitle: Number(stats.metrics.height || 0).toLocaleString(),
@@ -311,9 +319,7 @@ export class BlockchainExplorer extends Component {
     });
     retval.push({
       title: t("dashboard.votes"),
-      subtitle: `${Math.round(
-        Number(stats.electionStats.totalVotes)
-      ).toLocaleString()} ⬡`,
+      subtitle: totalVotes,
       icon: "fas fa-question-circle",
       msg: "dashboard.votesMsg"
     });

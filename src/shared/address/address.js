@@ -351,14 +351,15 @@ export class AddressSummary extends Component {
                 <th>Age</th>
                 <th>Block</th>
                 <th>Type</th>
-                <th>Sender</th>
-                <th>Recipient</th>
-                <th>Amount</th>
+                <th>From</th>
+                <th />
+                <th>To</th>
+                <th>Value</th>
                 <th>Data</th>
               </tr>
             </thead>
             <tbody>
-              {this.props.state.actions.reverse().map(currentElement => (
+              {this.props.state.actions.map(currentElement => (
                 <tr>
                   <td>
                     <Link
@@ -382,22 +383,36 @@ export class AddressSummary extends Component {
                   <td>
                     <a
                       href={`/address/${publicKeyToAddress(
-                        Buffer.from(
-                          currentElement.action.senderPubKey
-                        ).toString("Hex")
-                      )}`}
-                      className='link'
+                        Buffer.from(currentElement.action.senderPubKey)
+                      ).toString("Hex")}`}
                     >
                       {publicKeyToAddress(
-                        Buffer.from(
-                          currentElement.action.senderPubKey
-                        ).toString("Hex")
-                      ).substr(0, 14)}
+                        Buffer.from(currentElement.action.senderPubKey)
+                      )
+                        .toString("Hex")
+                        .substr(0, 14)}
                       ..
                     </a>
                   </td>
                   <td>
-                    <a href={`/address/${this.getAddress(currentElement)[0]}`}>
+                    {(() => {
+                      let sender = publicKeyToAddress(
+                        Buffer.from(
+                          currentElement.action.senderPubKey
+                        ).toString("Hex")
+                      );
+                      if (sender === this.props.id) {
+                        return <span class='tag is-warning'>OUT</span>;
+                      } else {
+                        return <span class='tag is-light'>IN</span>;
+                      }
+                    })()}
+                  </td>
+                  <td>
+                    <a
+                      href={`/address/${this.getAddress(currentElement)[0]}`}
+                      className='link'
+                    >
                       {this.getAddress(currentElement)[1]}
                     </a>
                   </td>
