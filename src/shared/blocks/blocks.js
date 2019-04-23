@@ -6,6 +6,7 @@ import { Link } from "inferno-router";
 import { CommonMargin } from "../common/common-margin";
 import type { TBlock } from "../../entities/explorer-types";
 import { TableWrapper } from "../common/table-wrapper";
+import { fromRau } from "iotex-client-js/dist/account/utils";
 import {
   ellipsisText,
   hideColClass,
@@ -173,7 +174,7 @@ export class BlocksList extends Component {
               <td
                 className={hideColClass(this.props.width) ? "" : "none-on-palm"}
               >
-                {b.transferAmount}
+                {fromRau(b.transferAmount, "IOTX")} ⬡
               </td>
             </tr>
           ))}

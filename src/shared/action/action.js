@@ -154,7 +154,7 @@ export class TransferSummary extends Component {
           )
         },
         {
-          c1: "Sender",
+          c1: "From",
           c2: (
             <Link to={`/address/${address}`} className='link'>
               {address}
@@ -166,7 +166,7 @@ export class TransferSummary extends Component {
           c2: fromRau(action[0].action.core.transfer.amount) + " ⬡"
         },
         {
-          c1: "Recipient",
+          c1: "To",
           c2: (
             <Link
               to={`/address/${action[0].action.core.transfer.recipient}`}
@@ -182,11 +182,11 @@ export class TransferSummary extends Component {
         },
         {
           c1: "Gas Price",
-          c2: action[0].action.core.gasPrice + " Rau"
+          c2: fromRau(action[0].action.core.gasPrice, "Qev") + " Qev"
         },
         {
           c1: "Gas Limit",
-          c2: action[0].action.core.gasLimit + " Qev"
+          c2: action[0].action.core.gasLimit + " Rau"
         },
         {
           c1: "Type",
@@ -232,14 +232,17 @@ export class TransferSummary extends Component {
           c2: fromRau(action[0].action.core.execution.amount) + " ⬡"
         },
         {
-          c1: "Contract",
+          c1: "To",
           c2: (
-            <Link
-              to={`/address/${action[0].action.core.execution.contract}`}
-              className='link'
-            >
-              {action[0].action.core.execution.contract}
-            </Link>
+            <div>
+              Contract{" "}
+              <Link
+                to={`/address/${action[0].action.core.execution.contract}`}
+                className='link'
+              >
+                {action[0].action.core.execution.contract}
+              </Link>
+            </div>
           )
         },
         {
@@ -248,11 +251,11 @@ export class TransferSummary extends Component {
         },
         {
           c1: "Gas Price",
-          c2: action[0].action.core.gasPrice + " Rau"
+          c2: fromRau(action[0].action.core.gasPrice, "Qev") + " Qev"
         },
         {
           c1: "Gas Limit",
-          c2: action[0].action.core.gasLimit + " Qev"
+          c2: action[0].action.core.gasLimit + " Rau"
         },
         {
           c1: "Type",
