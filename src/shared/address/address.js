@@ -4,7 +4,7 @@ import Component from "inferno-component";
 import Helmet from "inferno-helmet";
 import isBrowser from "is-browser";
 import { Link } from "inferno-router";
-
+import { get } from "dottie";
 import { fromNow } from "../common/from-now";
 import { publicKeyToAddress } from "iotex-antenna/lib/crypto/crypto";
 import window from "global/window";
@@ -224,6 +224,82 @@ export class AddressSummary extends Component {
     }
   };
 
+  getAddress = ActionInfo => {
+    const addr =
+      get(ActionInfo, "action.core.transfer.recipient") ||
+      get(ActionInfo, "action.core.execution.contract") ||
+      get(ActionInfo, "action.core.createDeposit.recipient") ||
+      get(ActionInfo, "action.core.settleDeposit.recipient") ||
+      get(ActionInfo, "action.core.plumCreateDeposit.recipient") ||
+      get(ActionInfo, "action.core.plumTransfer.recipient") ||
+      get(ActionInfo, "action.core.createPlumChain.contract") ||
+      "";
+    if (!addr) {
+      return ["-", "-"];
+    }
+    return [addr, `${addr.substr(0, 14)}..`];
+  };
+
+  getAmount = ActionInfo => {
+    const amount =
+      get(ActionInfo, "action.core.execution.amount") ||
+      get(ActionInfo, "action.core.grantReward.amount") ||
+      get(ActionInfo, "action.core.transfer.amount") ||
+      get(ActionInfo, "action.core.createDeposit.amount") ||
+      get(ActionInfo, "action.core.settleDeposit.amount") ||
+      get(ActionInfo, "action.core.createPlumChain.amount") ||
+      get(ActionInfo, "action.core.plumCreateDeposit.amount") ||
+      "";
+    if (!amount) {
+      return "-";
+    }
+    return `${fromRau(amount, "IOTX")} ⬡`;
+  };
+
+  getPayload = ActionInfo => {
+    const payLoad =
+      get(ActionInfo, "action.core.transfer.payload") ||
+      get(ActionInfo, "action.core.execution.data") ||
+      "";
+    if (!payLoad || Buffer.from(payLoad).toString("Hex") === "") {
+      return "[ ]";
+    }
+    return Buffer.from(payLoad).toString("Hex");
+  };
+
+  getActionType = ActionInfo => {
+    const actionsTypes = [
+      "execution",
+      "grantReward",
+      "transfer",
+      "depositToRewardingFund",
+      "claimFromRewardingFund",
+      "startSubChain",
+      "stopSubChain",
+      "putBlock",
+      "createDeposit",
+      "settleDeposit",
+      "createPlumChain",
+      "terminatePlumChain",
+      "plumPutBlock",
+      "plumCreateDeposit",
+      "plumStartExit",
+      "plumChallengeExit",
+      "plumResponseChallengeExit",
+      "plumFinalizeExit",
+      "plumSettleDeposit",
+      "plumTransfer",
+      "putPollResult"
+    ];
+
+    for (let i = 0; i < actionsTypes.length; i++) {
+      if (get(ActionInfo, `action.core.${actionsTypes[i]}`)) {
+        return actionsTypes[i];
+      }
+    }
+    return "";
+  };
+
   render() {
     if (this.props.fetching) {
       return <LoadingMessage fakeRows={false} />;
@@ -285,7 +361,7 @@ export class AddressSummary extends Component {
                       {currentElement.blkHash.substr(0, 8)}..
                     </Link>
                   </td>
-                  <td>TODO</td>
+                  <td>{this.getActionType(currentElement)}</td>
                   <td>
                     <Link
                       to={`/address/${publicKeyToAddress(
@@ -303,28 +379,13 @@ export class AddressSummary extends Component {
                     </Link>
                   </td>
                   <td>
-                    {" "}
-                    <Link
-                      to={`/address/${
-                        currentElement.action.core.transfer.recipient
-                      }`}
-                    >
-                      {currentElement.action.core.transfer.recipient.substr(
-                        0,
-                        14
-                      )}
-                      ..
+                    <Link to={`/address/${this.getAddress(currentElement)[0]}`}>
+                      {this.getAddress(currentElement)[1]}
                     </Link>
                   </td>
-                  <td>
-                    {fromRau(currentElement.action.core.transfer.amount) + " ⬡"}
-                  </td>
+                  <td>{this.getAmount(currentElement)}</td>
 
-                  <td>
-                    {Buffer.from(
-                      currentElement.action.core.transfer.payload
-                    ).toString("Hex") || "[]"}
-                  </td>
+                  <td>{this.getPayload(currentElement).substr(0, 8)}</td>
                 </tr>
               ))}
             </tbody>
@@ -333,7 +394,11 @@ export class AddressSummary extends Component {
             <div className='level-left'>
               <div className='level-item'>
                 <div>
-                  Page {this.state.pageNumber} of {Math.ceil(a.numActions / 15)}
+                  {!a.numActions
+                    ? ""
+                    : `Page ${this.state.pageNumber} of ${Math.ceil(
+                        a.numActions / 15
+                      )}`}
                 </div>
               </div>
             </div>
