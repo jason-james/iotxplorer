@@ -205,6 +205,72 @@ export class TransferSummary extends Component {
           )
         }
       ];
+    } else if (actionType === "execution") {
+      rows = [
+        {
+          c1: "Action Hash",
+          c2: action[0].actHash
+        },
+        {
+          c1: "Block Hash",
+          c2: (
+            <Link to={`/blocks/${action[0].blkHash}`} className='link'>
+              {action[0].blkHash}
+            </Link>
+          )
+        },
+        {
+          c1: "From",
+          c2: (
+            <Link to={`/address/${address}`} className='link'>
+              {address}
+            </Link>
+          )
+        },
+        {
+          c1: "Amount",
+          c2: fromRau(action[0].action.core.execution.amount) + " ⬡"
+        },
+        {
+          c1: "Contract",
+          c2: (
+            <Link
+              to={`/address/${action[0].action.core.execution.contract}`}
+              className='link'
+            >
+              {action[0].action.core.execution.contract}
+            </Link>
+          )
+        },
+        {
+          c1: "Timestamp",
+          c2: fromNow(action[0].timestamp.seconds)
+        },
+        {
+          c1: "Gas Price",
+          c2: action[0].action.core.gasPrice + " Rau"
+        },
+        {
+          c1: "Gas Limit",
+          c2: action[0].action.core.gasLimit + " Qev"
+        },
+        {
+          c1: "Type",
+          c2: action[0].action.core.action
+        },
+        {
+          c1: "Payload",
+          c2: (
+            <pre>
+              <code>
+                {Buffer.from(action[0].action.core.execution.data).toString(
+                  "Hex"
+                ) || "[]"}
+              </code>
+            </pre>
+          )
+        }
+      ];
     } else {
       rows = [
         {
