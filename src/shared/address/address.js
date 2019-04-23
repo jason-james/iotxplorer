@@ -3,6 +3,7 @@ import { fromRau } from "iotex-client-js/dist/account/utils";
 import Component from "inferno-component";
 import Helmet from "inferno-helmet";
 import isBrowser from "is-browser";
+import jdenticon from "jdenticon";
 import { Link } from "inferno-router";
 import { get } from "dottie";
 import { fromNow } from "../common/from-now";
@@ -56,20 +57,49 @@ export class Address extends Component {
   };
 
   render() {
+    jdenticon.config = {
+      hues: [170],
+      lightness: {
+        color: [0.29, 0.7],
+        grayscale: [0.27, 0.27]
+      },
+      saturation: {
+        color: 0.5,
+        grayscale: 0.21
+      },
+      backColor: "#86444400"
+    };
     return (
       <div className='column container'>
         <Helmet title={`${t("address.title")} - IoTeX`} />
         <div>
-          <h1 className='title'>{t("address.title")}</h1>
-          <AddressSummary
-            id={this.props.params.id}
-            state={this.props.state}
-            fetchAccount={this.props.fetchAccount}
-            fetchActionsByAddress={this.props.fetchActionsByAddress}
-            width={this.props.width}
-          />
+          <div>
+            <nav class='level' style={{ marginBottom: "0.5rem" }}>
+              <div class='level-left'>
+                <div class='level-item'>
+                  <span
+                    style={{ display: "inline-block" }}
+                    dangerouslySetInnerHTML={{
+                      __html: `${jdenticon.toSvg(this.props.params.id, 100)}`
+                    }}
+                  />
+                </div>
+                <div class='level-item'>
+                  <h1 className='title'>{t("address.title")}</h1>
+                </div>
+              </div>
+            </nav>
+
+            <AddressSummary
+              id={this.props.params.id}
+              state={this.props.state}
+              fetchAccount={this.props.fetchAccount}
+              fetchActionsByAddress={this.props.fetchActionsByAddress}
+              width={this.props.width}
+            />
+          </div>
+          <CommonMargin />
         </div>
-        <CommonMargin />
       </div>
     );
   }
