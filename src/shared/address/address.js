@@ -431,9 +431,13 @@ export class AddressSummary extends Component {
                           currentElement.action.senderPubKey
                         ).toString("Hex")
                       );
-                      if (sender === this.props.id) {
+                      if (
+                        sender === this.props.id &&
+                        this.getAddress(currentElement)[0] !== "-"
+                      ) {
                         return <span class='tag is-warning'>OUT</span>;
-                      } else {
+                      }
+                      if (sender !== this.props.id) {
                         return <span class='tag is-light'>IN</span>;
                       }
                     })()}
