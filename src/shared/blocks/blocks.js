@@ -1,22 +1,22 @@
 // @flow
 
-import Component from 'inferno-component';
-import Helmet from 'inferno-helmet';
-import {Link} from 'inferno-router';
-import {fromRau} from 'iotex-client-js/dist/account/utils';
-import {CommonMargin} from '../common/common-margin';
-import type {TBlock} from '../../entities/explorer-types';
-import {TableWrapper} from '../common/table-wrapper';
+import Component from "inferno-component";
+import Helmet from "inferno-helmet";
+import { Link } from "inferno-router";
+import { fromRau } from "iotex-client-js/dist/account/utils";
+import { CommonMargin } from "../common/common-margin";
+import type { TBlock } from "../../entities/explorer-types";
+import { TableWrapper } from "../common/table-wrapper";
 import {
   ellipsisText,
   hideColClass,
-  singleColEllipsisText,
-} from '../common/utils';
-import {t} from '../../lib/iso-i18n';
-import {EmptyMessage, LoadingMessage} from '../common/message';
-import type {Error} from '../../entities/common-types';
-import {fromNow} from '../common/from-now';
-import {fetchBlocks} from './blocks-actions';
+  singleColEllipsisText
+} from "../common/utils";
+import { t } from "../../lib/iso-i18n";
+import { EmptyMessage, LoadingMessage } from "../common/message";
+import type { Error } from "../../entities/common-types";
+import { fromNow } from "../common/from-now";
+import { fetchBlocks } from "./blocks-actions";
 
 type PropsType = {
   statistic: {
@@ -45,7 +45,7 @@ export class Blocks extends Component {
   constructor(props: any) {
     super(props);
     this.state = {
-      height: 0,
+      height: 0
     };
   }
 
@@ -63,7 +63,7 @@ export class Blocks extends Component {
             this.props.fetchBlocks({
               tip: this.state.height,
               offset: 0,
-              count: this.props.state.count,
+              count: this.props.state.count
             });
           }
         }
@@ -74,8 +74,8 @@ export class Blocks extends Component {
   render() {
     return (
       <div className='column container'>
-        <Helmet title={`${t('blocks.title')} - IoTeX`} />
-        <h1 className='title'>{t('blocks.title')}</h1>
+        <Helmet title={`${t("blocks.title")} - iotxplorer`} />
+        <h1 className='title'>{t("blocks.title")}</h1>
         <TableWrapper
           fetching={this.props.state.fetching}
           error={this.props.state.error}
@@ -84,7 +84,7 @@ export class Blocks extends Component {
           items={this.props.state.items}
           fetch={this.props.fetchBlocks}
           tip={this.props.state.tip}
-          name={t('blocks.title')}
+          name={t("blocks.title")}
           displayPagination={true}
         >
           {
@@ -112,26 +112,26 @@ export class BlocksList extends Component {
         <thead>
           <tr>
             <th
-              className={hideColClass(this.props.width) ? '' : 'none-on-palm'}
+              className={hideColClass(this.props.width) ? "" : "none-on-palm"}
             >
               Block Hash
             </th>
             <th
               className={
-                hideColClass(this.props.width) ? '' : 'second-to-none-header'
+                hideColClass(this.props.width) ? "" : "second-to-none-header"
               }
             >
-              {t('meta.height')}
+              {t("meta.height")}
             </th>
             <th
-              className={hideColClass(this.props.width) ? '' : 'none-on-palm'}
+              className={hideColClass(this.props.width) ? "" : "none-on-palm"}
             >
-              {t('meta.timestamp')}
+              {t("meta.timestamp")}
             </th>
             <th>Actions</th>
             <th>Produced By</th>
             <th
-              className={hideColClass(this.props.width) ? '' : 'none-on-palm'}
+              className={hideColClass(this.props.width) ? "" : "none-on-palm"}
             >
               Amount Transacted
             </th>
@@ -141,7 +141,7 @@ export class BlocksList extends Component {
           {blocks.map((b: TBlock) => (
             <tr className='bx--parent-row-v2' data-parent-row>
               <td
-                className={hideColClass(this.props.width) ? '' : 'none-on-palm'}
+                className={hideColClass(this.props.width) ? "" : "none-on-palm"}
               >
                 <Link to={`/blocks/${b.hash}`} className='link'>
                   {ellipsisText(b.hash, this.props.width)}
@@ -149,7 +149,7 @@ export class BlocksList extends Component {
               </td>
               <td
                 className={
-                  hideColClass(this.props.width) ? '' : 'second-to-none'
+                  hideColClass(this.props.width) ? "" : "second-to-none"
                 }
               >
                 {hideColClass(this.props.width) ? (
@@ -161,7 +161,7 @@ export class BlocksList extends Component {
                 )}
               </td>
               <td
-                className={hideColClass(this.props.width) ? '' : 'none-on-palm'}
+                className={hideColClass(this.props.width) ? "" : "none-on-palm"}
               >
                 {fromNow(b.timestamp.seconds)}
               </td>
@@ -172,9 +172,9 @@ export class BlocksList extends Component {
                 </Link>
               </td>
               <td
-                className={hideColClass(this.props.width) ? '' : 'none-on-palm'}
+                className={hideColClass(this.props.width) ? "" : "none-on-palm"}
               >
-                {fromRau(b.transferAmount, 'IOTX')} ⬡
+                {fromRau(b.transferAmount, "IOTX")} ⬡
               </td>
             </tr>
           ))}
@@ -204,10 +204,10 @@ export class BlocksListOnlyId extends Component {
       <table className='bx--data-table-v2'>
         <thead>
           <tr>
-            <th className={isHome ? 'single-col-header' : ''}>
-              {t('block.id')}
+            <th className={isHome ? "single-col-header" : ""}>
+              {t("block.id")}
             </th>
-            {!isHome && <th>{t('meta.timestamp')}</th>}
+            {!isHome && <th>{t("meta.timestamp")}</th>}
           </tr>
         </thead>
         <tbody>
@@ -250,10 +250,10 @@ export class BlocksSummaryList extends Component {
       <table className='bx--data-table-v2'>
         <thead>
           <tr>
-            <th>{t('block.id')}</th>
-            <th>{t('meta.transactions')}</th>
-            <th>{t('meta.executions')}</th>
-            <th>{t('meta.timestamp')}</th>
+            <th>{t("block.id")}</th>
+            <th>{t("meta.transactions")}</th>
+            <th>{t("meta.executions")}</th>
+            <th>{t("meta.timestamp")}</th>
           </tr>
         </thead>
         <tbody>

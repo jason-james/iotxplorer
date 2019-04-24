@@ -1,10 +1,16 @@
-import Helmet from 'inferno-helmet';
+import Helmet from "inferno-helmet";
 
-import {assetURL} from '../../../lib/asset-url';
+import { assetURL } from "../../../lib/asset-url";
 
-export function rootHtml({styletron, jsonGlobals, reactMarkup, clientScript, nonce}) {
-  const styleBody = styletron.injectDeclaration({prop: 'margin', val: 0});
-  const stylesheets = styletron.getStylesheetsHtml('styletron-global');
+export function rootHtml({
+  styletron,
+  jsonGlobals,
+  reactMarkup,
+  clientScript,
+  nonce
+}) {
+  const styleBody = styletron.injectDeclaration({ prop: "margin", val: 0 });
+  const stylesheets = styletron.getStylesheetsHtml("styletron-global");
   const head = Helmet.rewind();
 
   return `<!DOCType html>
@@ -14,21 +20,46 @@ export function rootHtml({styletron, jsonGlobals, reactMarkup, clientScript, non
     ${head.meta.toString()}
     ${head.link.toString()}
     ${head.style.toString()}
-    <link rel="icon" type="image/png" sizes="any" href="${assetURL('/iotxplorer-favicon.png')}" />
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="${assetURL(
+      "/apple-touch-icon.png"
+    )}"> 
+<link rel="icon" type="image/png" sizes="32x32" href="${assetURL(
+    "/favicon-32x32.png"
+  )}">
+<link rel="icon" type="image/png" sizes="16x16" href="${assetURL(
+    "/favicon-16x16.png"
+  )}">
+<link rel="manifest" href="${assetURL("/site.webmanifest")}">
+<link rel="mask-icon" href="${assetURL(
+    "/safari-pinned-tab.svg"
+  )}" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     ${stylesheets}
     ${jsonGlobals}
     ${head.script.toString()}
-    ${loadDeferredStyles(`
-      <link rel="stylesheet" type="text/css" href="${assetURL('/stylesheets/main.css')}">
-     `, nonce)}
+    ${loadDeferredStyles(
+      `
+      <link rel="stylesheet" type="text/css" href="${assetURL(
+        "/stylesheets/main.css"
+      )}">
+     `,
+      nonce
+    )}
   </head>
   <body class=${styleBody}>
     <div id='root'>${reactMarkup}</div>
-    ${clientScript ?
-    `<script type="text/javascript" crossorigin="" src="${assetURL(clientScript)}"></script>` :
-    ''
-}
+    ${
+      clientScript
+        ? `<script type="text/javascript" crossorigin="" src="${assetURL(
+            clientScript
+          )}"></script>`
+        : ""
+    }
   </body>
 </html>
 `;

@@ -392,21 +392,21 @@ export class BlockchainExplorer extends Component {
       return (
         <section>
           <Helmet
-            title={"iotxplorer: iotex network explorer"}
+            title={"iotxplorer: iotex search engine"}
             meta={[
               {
                 name: "description",
                 content:
-                  "An open source collective by IoTeX community leaders, dedicated to adding value to the IoTeX network."
+                  "IoTeX network explorer and proud delegate #AlwaysAddValue"
               },
               {
                 property: "og:title",
-                content: "iotxplorer: iotex network explorer"
+                content: "iotxplorer: iotex search engine"
               },
               {
                 property: "og:description",
                 content:
-                  "An open source collective by IoTeX community leaders, dedicated to adding value to the IoTeX network #IoTeXDelegate"
+                  "IoTeX network explorer and proud delegate #AlwaysAddValue"
               },
               {
                 property: "og:image",
@@ -422,12 +422,12 @@ export class BlockchainExplorer extends Component {
               },
               {
                 name: "twitter:title",
-                content: "iotxplorer: iotex network explorer"
+                content: "iotxplorer: iotex search engine"
               },
               {
                 name: "twitter:description",
                 content:
-                  "An IoTeX explorer by iotxplorer. An open source collective of IoTeX community leaders, dedicated to adding value to the IoTeX network."
+                  "IoTeX network explorer and proud delegate #AlwaysAddValue"
               },
               {
                 name: "twitter:image",
@@ -532,21 +532,21 @@ export class BlockchainExplorer extends Component {
       return (
         <section>
           <Helmet
-            title={"iotxplorer: iotex network explorer"}
+            title={"iotxplorer: iotex search engine"}
             meta={[
               {
                 name: "description",
                 content:
-                  "An open source collective by IoTeX community leaders, dedicated to adding value to the IoTeX network."
+                  "IoTeX network explorer and proud delegate #AlwaysAddValue"
               },
               {
                 property: "og:title",
-                content: "iotxplorer: iotex network explorer"
+                content: "iotxplorer: iotex search engine"
               },
               {
                 property: "og:description",
                 content:
-                  "An open source collective by IoTeX community leaders, dedicated to adding value to the IoTeX network #IoTeXDelegate"
+                  "IoTeX network explorer and proud delegate #AlwaysAddValue"
               },
               {
                 property: "og:image",
@@ -562,12 +562,12 @@ export class BlockchainExplorer extends Component {
               },
               {
                 name: "twitter:title",
-                content: "iotxplorer: iotex network explorer"
+                content: "iotxplorer: iotex search engine"
               },
               {
                 name: "twitter:description",
                 content:
-                  "An IoTeX explorer by iotxplorer. An open source collective of IoTeX community leaders, dedicated to adding value to the IoTeX network."
+                  "IoTeX network explorer and proud delegate #AlwaysAddValue"
               },
               {
                 name: "twitter:image",

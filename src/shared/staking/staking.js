@@ -1,8 +1,8 @@
-import Component from 'inferno-component';
-import Helmet from 'inferno-helmet';
-import {assetURL} from '../../lib/asset-url';
-import {t} from '../../lib/iso-i18n';
-import {STAKING_DASHBOARD, SITE_URL} from '../common/site-url';
+import Component from "inferno-component";
+import Helmet from "inferno-helmet";
+import { assetURL } from "../../lib/asset-url";
+import { t } from "../../lib/iso-i18n";
+import { STAKING_DASHBOARD, SITE_URL } from "../common/site-url";
 
 // TODO: Impletment mailing list at bottom of page. Convert appropriate strings below into translatables.
 
@@ -12,50 +12,50 @@ export class Staking extends Component {
       <section>
         <section class='hero is-primary is-large is-bold'>
           <Helmet
-            title={'iotxplorer: Stake with us <3'}
+            title={"iotxplorer: Stake with us <3"}
             meta={[
               {
-                name: 'description',
+                name: "description",
                 content:
-                  'An open source collective by IoTeX community leaders, dedicated to adding value to the IoTeX network.',
+                  "Add value to the IoTeX network whilst adding to your wallet. Learn how and why you should vote for iotxplorer."
               },
               {
-                property: 'og:title',
-                content: 'iotxplorer: Stake with us <3',
+                property: "og:title",
+                content: "iotxplorer: Stake with us <3"
               },
               {
-                property: 'og:description',
+                property: "og:description",
                 content:
-                  'Add value to the IoTeX network whilst adding to your wallet. Learn how and why you should vote for iotxplorer.',
+                  "Add value to the IoTeX network whilst adding to your wallet. Learn how and why you should vote for iotxplorer."
               },
               {
-                property: 'og:image',
-                content: `${assetURL('/staking-meta-image.png')}`,
+                property: "og:image",
+                content: `${assetURL("/staking-meta-image.png")}`
               },
               {
-                name: 'twitter:card',
-                content: 'summary_large_image',
+                name: "twitter:card",
+                content: "summary_large_image"
               },
               {
-                name: 'twitter:site',
-                content: '@iotxplorer',
+                name: "twitter:site",
+                content: "@iotxplorer"
               },
               {
-                name: 'twitter:title',
-                content: 'iotxplorer: Stake with us <3',
+                name: "twitter:title",
+                content: "iotxplorer: Stake with us <3"
               },
               {
-                name: 'twitter:description',
+                name: "twitter:description",
                 content:
-                  'Add value to the IoTeX network whilst adding to your wallet. Learn how and why you should vote for iotxplorer.',
+                  "Add value to the IoTeX network whilst adding to your wallet. Learn how and why you should vote for iotxplorer."
               },
               {
-                name: 'twitter:image',
-                content: `${assetURL('/staking-meta-img.png')}`,
-              },
+                name: "twitter:image",
+                content: `${assetURL("/staking-meta-img.png")}`
+              }
             ]}
           />
-          <div className='columns' style={{marginBottom: '0px'}}>
+          <div className='columns' style={{ marginBottom: "0px" }}>
             <div className='column is-two-fifths staking-bg-image' />
             <div className='column staking-spacing'>
               <h1 class='title'>Always add value.</h1>
@@ -82,7 +82,7 @@ export class Staking extends Component {
                     name='EMAIL'
                     placeholder='Trust us, you want to be subscribed.'
                     required={true}
-                    style={{width: '400px'}}
+                    style={{ width: "400px" }}
                   />
                   <span class='icon is-small is-left'>
                     <i class='fas fa-envelope' />
@@ -96,14 +96,14 @@ export class Staking extends Component {
                 />
                 <button
                   className='button is-outlined is-light'
-                  style={{width: '130px', marginTop: '16px'}}
+                  style={{ width: "130px", marginTop: "16px" }}
                 >
                   SUBSCRIBE
                 </button>
               </form>
             </div>
           </div>
-          <div class='hero-body' style={{padding: '0px'}}>
+          <div class='hero-body' style={{ padding: "0px" }}>
             <div class='container has-text-centered'>
               {/* <div className='columns'>
                     <div className='column is-half'>
@@ -124,33 +124,33 @@ export class Staking extends Component {
         </section>
         <div class='box cta'>
           <p class='has-text-centered'>
-            <span class='tag is-primary'>New</span> Read our{' '}
+            <span class='tag is-primary'>New</span> Read our{" "}
             <a
               href='https://medium.com/@iotxplorer/who-we-are-an-introduction-to-iotxplorer-35005c020867'
               target='_blank'
             >
               full introduction
-            </a>{' '}
+            </a>{" "}
             to the community on our blog
           </p>
         </div>
 
-        <div style={{textAlign: 'center'}}>
+        <div style={{ textAlign: "center" }}>
           <h2
             className='title'
-            style={{marginTop: '48px', marginBottom: '1.8em'}}
+            style={{ marginTop: "48px", marginBottom: "1.8em" }}
           >
-            Why iotxplorer?{' '}
+            Why iotxplorer?{" "}
           </h2>
         </div>
 
         <section class='container'>
           <div class='columns features'>
             <div class='column is-4'>
-              <div class='card is-shady' style={{paddingTop: '1.5em'}}>
+              <div class='card is-shady' style={{ paddingTop: "1.5em" }}>
                 <div class='card-image has-text-centered'>
                   <img
-                    src={assetURL('/undraw-safe.svg')}
+                    src={assetURL("/undraw-safe.svg")}
                     alt='secure'
                     width='275'
                     height='275'
@@ -158,14 +158,14 @@ export class Staking extends Component {
                 </div>
                 <div class='card-content'>
                   <div class='content'>
-                    <h4 style={{display: 'flex', justifyContent: 'center'}}>
-                      {' '}
-                      Secure.{' '}
+                    <h4 style={{ display: "flex", justifyContent: "center" }}>
+                      {" "}
+                      Secure.{" "}
                     </h4>
                     <p>
-                      {' '}
+                      {" "}
                       Vote on iotex.io using Metamask or directly from your
-                      desktop. Your IOTX is sent to a{' '}
+                      desktop. Your IOTX is sent to a{" "}
                       <strong>secure smart contract</strong> on the ethereum
                       blockchain and is sent back to you when you want it to be
                       - you are in control.
@@ -177,10 +177,10 @@ export class Staking extends Component {
               </div>
             </div>
             <div class='column is-4'>
-              <div class='card is-shady' style={{paddingTop: '1.5em'}}>
+              <div class='card is-shady' style={{ paddingTop: "1.5em" }}>
                 <div class='card-image has-text-centered'>
                   <img
-                    src={assetURL('/undraw-financial-data.png')}
+                    src={assetURL("/undraw-financial-data.png")}
                     alt='profitable'
                     width='250'
                     height='250'
@@ -188,19 +188,19 @@ export class Staking extends Component {
                 </div>
                 <div class='card-content'>
                   <div class='content'>
-                    <h4 style={{display: 'flex', justifyContent: 'center'}}>
-                      {' '}
-                      Rewarding.{' '}
+                    <h4 style={{ display: "flex", justifyContent: "center" }}>
+                      {" "}
+                      Rewarding.{" "}
                     </h4>
                     <p>
-                      {' '}
+                      {" "}
                       Every epoch, we’ll receive rewards based on our delegate
-                      rank.{' '}
+                      rank.{" "}
                       <strong>
-                        We give you{' '}
-                        <span style={{color: '#00d1b2'}}>87%</span> of our
+                        We give you{" "}
+                        <span style={{ color: "#00d1b2" }}>87%</span> of our
                         rewards
-                      </strong>{' '}
+                      </strong>{" "}
                       for ranking in the top 100, and we’ll take the consensus
                       rewards to cover operating costs associated with the
                       hardware and dApp development.
@@ -211,10 +211,10 @@ export class Staking extends Component {
               </div>
             </div>
             <div class='column is-4'>
-              <div class='card is-shady' style={{paddingTop: '1.5em'}}>
+              <div class='card is-shady' style={{ paddingTop: "1.5em" }}>
                 <div class='card-image has-text-centered'>
                   <img
-                    src={assetURL('/undraw-transparent.svg')}
+                    src={assetURL("/undraw-transparent.svg")}
                     alt='transparent'
                     width='207'
                     height='207'
@@ -222,13 +222,13 @@ export class Staking extends Component {
                 </div>
                 <div class='card-content'>
                   <div class='content'>
-                    <h4 style={{display: 'flex', justifyContent: 'center'}}>
-                      {' '}
-                      Transparent.{' '}
+                    <h4 style={{ display: "flex", justifyContent: "center" }}>
+                      {" "}
+                      Transparent.{" "}
                     </h4>
                     <p>
-                      {' '}
-                      The voting process is{' '}
+                      {" "}
+                      The voting process is{" "}
                       <strong>
                         completely transparent – you’ll always know our ranking
                         and reward structure
@@ -244,27 +244,27 @@ export class Staking extends Component {
             </div>
           </div>
         </section>
-        <div style={{textAlign: 'center'}}>
+        <div style={{ textAlign: "center" }}>
           <h2
             className='title is-3'
-            style={{marginTop: '48px', marginBottom: '1.8em'}}
+            style={{ marginTop: "48px", marginBottom: "1.8em" }}
           >
-            Our mission{' '}
+            Our mission{" "}
           </h2>
           <img
-            src={assetURL('/iotxplorer-mission.svg')}
+            src={assetURL("/iotxplorer-mission.svg")}
             alt='secure'
             width='1400'
             height='1400'
-            style={{marginLeft: '48px'}}
+            style={{ marginLeft: "48px" }}
           />
         </div>
 
         <section>
-          <div style={{textAlign: 'center'}}>
+          <div style={{ textAlign: "center" }}>
             <h2
               className='title'
-              style={{marginTop: '48px', marginBottom: '1em'}}
+              style={{ marginTop: "48px", marginBottom: "1em" }}
             >
               How it works
             </h2>
@@ -276,7 +276,7 @@ export class Staking extends Component {
                 <div className='card'>
                   <div className='card-image'>
                     <img
-                      src={assetURL('/delegates-program.png')}
+                      src={assetURL("/delegates-program.png")}
                       alt='delegates program'
                       width='660'
                     />
@@ -284,16 +284,16 @@ export class Staking extends Component {
                   <div
                     className='card-content subtitle'
                     style={{
-                      color: '#4c4c4c',
-                      paddingBottom: '0.5rem',
-                      marginBottom: '0',
-                      fontWeight: '600',
+                      color: "#4c4c4c",
+                      paddingBottom: "0.5rem",
+                      marginBottom: "0",
+                      fontWeight: "600"
                     }}
                   >
                     <a
                       href='https://medium.com/iotex/iotex-delegates-program-application-voting-and-rewards-5cab7e87bd20'
                       target='_blank'
-                      style={{color: 'inherit'}}
+                      style={{ color: "inherit" }}
                     >
                       IoTeX Delegates Program — Requirements (Medium)
                     </a>
@@ -307,7 +307,7 @@ export class Staking extends Component {
                       overview of the IoTeX Delegates Program, focusing on
                       application, voting and election guidelines.
                     </p>
-                    <p style={{paddingTop: '8px'}}>
+                    <p style={{ paddingTop: "8px" }}>
                       <a
                         href='https://medium.com/iotex/iotex-delegates-program-application-voting-and-rewards-5cab7e87bd20'
                         target='_blank'
@@ -333,16 +333,16 @@ export class Staking extends Component {
                   <div
                     className='card-content subtitle'
                     style={{
-                      color: '#4c4c4c',
-                      paddingBottom: '0.5rem',
-                      marginBottom: '0',
-                      fontWeight: '600',
+                      color: "#4c4c4c",
+                      paddingBottom: "0.5rem",
+                      marginBottom: "0",
+                      fontWeight: "600"
                     }}
                   >
                     IoTeX Delegates Program — Introduction Video
                   </div>
                   <div className='card-content'>
-                    <p style={{marginBottom: '6px'}}>
+                    <p style={{ marginBottom: "6px" }}>
                       The IoTeX Delegates Program defines the rules and
                       processes that allow IoTeX to maintain consensus and
                       evolve sustainably over time. IoTeX is a digital
@@ -359,7 +359,7 @@ export class Staking extends Component {
 
           <section
             class='hero is-light is-medium is-bold'
-            style={{marginTop: '64px'}}
+            style={{ marginTop: "64px" }}
           >
             <div class='hero-body'>
               <div class='container has-text-centered'>

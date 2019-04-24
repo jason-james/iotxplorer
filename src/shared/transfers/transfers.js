@@ -1,24 +1,28 @@
 // @flow
 
-import Component from 'inferno-component';
-import Helmet from 'inferno-helmet';
-import {Link} from 'inferno-router';
-import isBrowser from 'is-browser';
-import {fromRau} from 'iotex-client-js/dist/account/utils';
-import {CommonMargin} from '../common/common-margin';
-import type {TTransfer} from '../../entities/explorer-types';
-import {TableWrapper} from '../common/table-wrapper';
-import {ellipsisText, hideColClass, singleColEllipsisText} from '../common/utils';
-import type {Error} from '../../entities/common-types';
-import {t} from '../../lib/iso-i18n';
-import {EmptyMessage} from '../common/message';
-import {fromNow} from '../common/from-now';
-import type {fetchTransfers} from './transfers-actions';
+import Component from "inferno-component";
+import Helmet from "inferno-helmet";
+import { Link } from "inferno-router";
+import isBrowser from "is-browser";
+import { fromRau } from "iotex-client-js/dist/account/utils";
+import { CommonMargin } from "../common/common-margin";
+import type { TTransfer } from "../../entities/explorer-types";
+import { TableWrapper } from "../common/table-wrapper";
+import {
+  ellipsisText,
+  hideColClass,
+  singleColEllipsisText
+} from "../common/utils";
+import type { Error } from "../../entities/common-types";
+import { t } from "../../lib/iso-i18n";
+import { EmptyMessage } from "../common/message";
+import { fromNow } from "../common/from-now";
+import type { fetchTransfers } from "./transfers-actions";
 
 type PropsType = {
   statistic: {
-    height: number,
-  },
+    height: number
+  }
 };
 
 export class Transfers extends Component {
@@ -30,48 +34,60 @@ export class Transfers extends Component {
       count: number,
       items: Array<TTransfer>,
       total: number,
-      tip: number,
+      tip: number
     },
     fetchTransfers: fetchTransfers,
     width: number,
     statistic: {
-      height: number,
-    },
+      height: number
+    }
   };
 
   constructor(props: any) {
     super(props);
     this.state = {
-      height: 0,
+      height: 0
     };
   }
 
   componentWillMount() {
     if (isBrowser) {
-      this.props.fetchTransfers({tip: this.state.height, offset: 0, count: this.props.state.count});
+      this.props.fetchTransfers({
+        tip: this.state.height,
+        offset: 0,
+        count: this.props.state.count
+      });
     }
   }
 
   componentWillReceiveProps(nextProps: PropsType, nextContext: any) {
-    if (nextProps.statistic && this.state.height !== nextProps.statistic.height) {
-      this.setState(state => {
-        state.height = nextProps.statistic.height;
-      }, () => {
-        if (this.props.state.offset === 0) {
-          this.props.fetchTransfers({tip: this.state.height, offset: 0, count: this.props.state.count});
+    if (
+      nextProps.statistic &&
+      this.state.height !== nextProps.statistic.height
+    ) {
+      this.setState(
+        state => {
+          state.height = nextProps.statistic.height;
+        },
+        () => {
+          if (this.props.state.offset === 0) {
+            this.props.fetchTransfers({
+              tip: this.state.height,
+              offset: 0,
+              count: this.props.state.count
+            });
+          }
         }
-      });
+      );
     }
   }
 
   render() {
     return (
       <div className='column container'>
-        <Helmet
-          title={`${t('meta.transfers')} - IoTeX`}
-        />
+        <Helmet title={`${t("meta.transfers")} - iotxplorer`} />
         <div>
-          <h1 className='title'>{t('meta.transfers')}</h1>
+          <h1 className='title'>{t("meta.transfers")}</h1>
           <TableWrapper
             fetching={this.props.state.fetching}
             error={this.props.state.error}
@@ -80,16 +96,18 @@ export class Transfers extends Component {
             items={this.props.state.items}
             fetch={this.props.fetchTransfers}
             tip={this.props.state.tip}
-            name={t('meta.transfers')}
+            name={t("meta.transfers")}
             displayPagination={true}
           >
-            {<TransfersSummaryList
-              transfers={this.props.state.items}
-              width={this.props.width}
-            />}
+            {
+              <TransfersSummaryList
+                transfers={this.props.state.items}
+                width={this.props.width}
+              />
+            }
           </TableWrapper>
         </div>
-        <CommonMargin/>
+        <CommonMargin />
       </div>
     );
   }
@@ -98,16 +116,14 @@ export class Transfers extends Component {
 export class TransfersList extends Component {
   props: {
     transfers: Array<TTransfer>,
-    width: string,
+    width: string
   };
 
   render() {
     let transfers = this.props.transfers;
     // null
     if (!transfers) {
-      return (
-        <EmptyMessage item={t('meta.transfers')}/>
-      );
+      return <EmptyMessage item={t("meta.transfers")} />;
     }
     // only 1 item
     if (!Array.isArray(transfers)) {
@@ -117,22 +133,63 @@ export class TransfersList extends Component {
       <table className='bx--data-table-v2'>
         <thead>
           <tr>
-            <th className={hideColClass(this.props.width) ? 'first-col' : 'none-on-palm'}>{t('transfer.hash')}</th>
-            <th className={hideColClass(this.props.width) ? '' : 'second-to-none-header'}>{t('transfer.sender')}</th>
-            <th>{t('transfer.recipient')}</th>
-            <th>{t('meta.amount')}</th>
+            <th
+              className={
+                hideColClass(this.props.width) ? "first-col" : "none-on-palm"
+              }
+            >
+              {t("transfer.hash")}
+            </th>
+            <th
+              className={
+                hideColClass(this.props.width) ? "" : "second-to-none-header"
+              }
+            >
+              {t("transfer.sender")}
+            </th>
+            <th>{t("transfer.recipient")}</th>
+            <th>{t("meta.amount")}</th>
           </tr>
         </thead>
         <tbody>
           {transfers.map((transfer: TTransfer) => (
             <tr className='bx--parent-row-v2' data-parent-row>
-              <td className={hideColClass(this.props.width) ? 'first-col' : 'none-on-palm'}><Link to={`/transfers/${transfer.ID}`} className='link'>{ellipsisText(transfer.ID, this.props.width)}</Link></td>
-              {transfer.sender === '' ?
-                <td>{t('transfer.coinBase')}</td> :
-                <td className={hideColClass(this.props.width) ? '' : 'second-to-none'}><Link to={`/address/${transfer.sender}`} className='link'>{ellipsisText(transfer.sender, this.props.width)}</Link></td>
-              }
-              <td><Link to={`/address/${transfer.recipient}`} className='link'>{ellipsisText(transfer.recipient, this.props.width)}</Link></td>
-              <td>{hideColClass(this.props.width) ? transfer.amount : <Link to={`/transfers/${transfer.ID}`} className='link'>{transfer.amount}</Link>}</td>
+              <td
+                className={
+                  hideColClass(this.props.width) ? "first-col" : "none-on-palm"
+                }
+              >
+                <Link to={`/transfers/${transfer.ID}`} className='link'>
+                  {ellipsisText(transfer.ID, this.props.width)}
+                </Link>
+              </td>
+              {transfer.sender === "" ? (
+                <td>{t("transfer.coinBase")}</td>
+              ) : (
+                <td
+                  className={
+                    hideColClass(this.props.width) ? "" : "second-to-none"
+                  }
+                >
+                  <Link to={`/address/${transfer.sender}`} className='link'>
+                    {ellipsisText(transfer.sender, this.props.width)}
+                  </Link>
+                </td>
+              )}
+              <td>
+                <Link to={`/address/${transfer.recipient}`} className='link'>
+                  {ellipsisText(transfer.recipient, this.props.width)}
+                </Link>
+              </td>
+              <td>
+                {hideColClass(this.props.width) ? (
+                  transfer.amount
+                ) : (
+                  <Link to={`/transfers/${transfer.ID}`} className='link'>
+                    {transfer.amount}
+                  </Link>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -145,7 +202,7 @@ export class TransfersListOnlyId extends Component {
   props: {
     transfers: Array<TTransfer>,
     width: number,
-    isHome: boolean,
+    isHome: boolean
   };
 
   render() {
@@ -153,9 +210,7 @@ export class TransfersListOnlyId extends Component {
     const isHome = this.props.isHome;
     // null
     if (!transfers) {
-      return (
-        <EmptyMessage item={t('meta.transfers')}/>
-      );
+      return <EmptyMessage item={t("meta.transfers")} />;
     }
     // only 1 item
     if (!Array.isArray(transfers)) {
@@ -165,21 +220,25 @@ export class TransfersListOnlyId extends Component {
       <table className='bx--data-table-v2'>
         <thead>
           <tr>
-            <th className={isHome ? 'single-col-header' : ''}>{t('transfer.hash')}</th>
-            {!isHome && (
-              <th>{t('meta.timestamp')}</th>
-            )}
+            <th className={isHome ? "single-col-header" : ""}>
+              {t("transfer.hash")}
+            </th>
+            {!isHome && <th>{t("meta.timestamp")}</th>}
           </tr>
         </thead>
         <tbody>
           {transfers.map((transfer: TTransfer) => (
             <tr className='bx--parent-row-v2' data-parent-row>
-              <td className='single-col-row'><Link to={`/transfers/${transfer.ID}`} className='link'>{singleColEllipsisText(transfer.ID, this.props.width, this.props.isHome)}</Link></td>
-              {!isHome && (
-                <td>
-                  {fromNow(transfer.timestamp)}
-                </td>
-              )}
+              <td className='single-col-row'>
+                <Link to={`/transfers/${transfer.ID}`} className='link'>
+                  {singleColEllipsisText(
+                    transfer.ID,
+                    this.props.width,
+                    this.props.isHome
+                  )}
+                </Link>
+              </td>
+              {!isHome && <td>{fromNow(transfer.timestamp)}</td>}
             </tr>
           ))}
         </tbody>
@@ -198,9 +257,7 @@ export class TransfersSummaryList extends Component {
     let transfers = this.props.transfers;
     // null
     if (!transfers) {
-      return (
-        <EmptyMessage item={t('meta.transfers')}/>
-      );
+      return <EmptyMessage item={t("meta.transfers")} />;
     }
     // only 1 item
     if (!Array.isArray(transfers)) {
@@ -210,27 +267,35 @@ export class TransfersSummaryList extends Component {
       <table className='bx--data-table-v2'>
         <thead>
           <tr>
-            <th>{t('transfer.hash')}</th>
-            <th>{t('transfer.sender')}</th>
-            <th>{t('meta.amount')}</th>
-            <th>{t('meta.timestamp')}</th>
+            <th>{t("transfer.hash")}</th>
+            <th>{t("transfer.sender")}</th>
+            <th>{t("meta.amount")}</th>
+            <th>{t("meta.timestamp")}</th>
           </tr>
         </thead>
         <tbody>
           {transfers.map((transfer: TTransfer) => (
             <tr className='bx--parent-row-v2' data-parent-row>
               <td>
-                <Link to={`/transfers/${transfer.ID}`} className='link'>{singleColEllipsisText(transfer.ID, this.props.width, false)}</Link>
+                <Link to={`/transfers/${transfer.ID}`} className='link'>
+                  {singleColEllipsisText(transfer.ID, this.props.width, false)}
+                </Link>
               </td>
               <td>
-                {transfer.sender === '' ? t('transfer.coinBase') : (<Link to={`/address/${transfer.sender}`} className='link'>{singleColEllipsisText(transfer.sender, this.props.width, false)}</Link>)}
+                {transfer.sender === "" ? (
+                  t("transfer.coinBase")
+                ) : (
+                  <Link to={`/address/${transfer.sender}`} className='link'>
+                    {singleColEllipsisText(
+                      transfer.sender,
+                      this.props.width,
+                      false
+                    )}
+                  </Link>
+                )}
               </td>
-              <td style='text-align:center'>
-                {fromRau(transfer.amount)}
-              </td>
-              <td>
-                {fromNow(transfer.timestamp)}
-              </td>
+              <td style='text-align:center'>{fromRau(transfer.amount)}</td>
+              <td>{fromNow(transfer.timestamp)}</td>
             </tr>
           ))}
         </tbody>
