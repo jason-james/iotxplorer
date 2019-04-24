@@ -1,12 +1,12 @@
 // @flow
-import config from "config";
+import config from 'config';
 
-import { Server } from "../lib/server";
-import { setMiddleware } from "./middleware";
-import { setServerRoutes } from "./server-routes";
-import { setGateways } from "./gateways/gateways";
-import { setService } from "./service/service";
-import { initDB } from "../database/db";
+import {Server} from '../lib/server';
+import {initDB} from '../database/db';
+import {setMiddleware} from './middleware';
+import {setServerRoutes} from './server-routes';
+import {setGateways} from './gateways/gateways';
+import {setService} from './service/service';
 
 export async function startServer() {
   const server = new Server();
@@ -17,7 +17,7 @@ export async function startServer() {
   setServerRoutes(server);
 
   // eslint-disable-next-line no-process-env,no-undef
-  const port = process.env.PORT || config.get("server.port");
+  const port = process.env.PORT || config.get('server.port');
 
   initDB((err, db) => {
     if (err) {

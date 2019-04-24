@@ -1,13 +1,13 @@
-import { connect } from "inferno-redux";
+import {connect} from 'inferno-redux';
 
-import * as actions from "../address/address-actions";
-import { Address } from "./address";
+import * as actions from '../address/address-actions';
+import {Address} from './address';
 
 export const AddressContainer = connect(
   function mapStateToProps(state) {
     return {
       state: state.address,
-      width: state.app.width
+      width: state.app.width,
     };
   },
   dispatch => ({
@@ -21,6 +21,6 @@ export const AddressContainer = connect(
     fetchAddressCreateDepositsId: data =>
       dispatch(actions.fetchAddressCreateDepositsId(data)),
     fetchAccount: data => dispatch(actions.fetchAccount(data)),
-    fetchActionsByAddress: data => dispatch(actions.fetchActionsByAddress(data))
+    fetchActionsByAddress: data => dispatch(actions.fetchActionsByAddress(data)),
   })
 )(Address);

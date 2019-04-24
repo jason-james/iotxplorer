@@ -1,15 +1,15 @@
-import { connect } from "inferno-redux";
+import {connect} from 'inferno-redux';
 
-import * as actions from "../block/block-actions";
-import { Block } from "./block";
-import { fetchBlockMeta } from "../block/block-actions";
+import * as actions from '../block/block-actions';
+import {fetchBlockMeta} from '../block/block-actions';
+import {Block} from './block';
 
 export const BlockContainer = connect(
   function mapStateToProps(state) {
     return {
       width: state.app.width,
       chainId: state.base.chainId,
-      block: state.block
+      block: state.block,
     };
   },
   dispatch => ({
@@ -19,6 +19,6 @@ export const BlockContainer = connect(
     fetchBlockTransfersId: data =>
       dispatch(actions.fetchBlockTransfersId(data)),
     fetchBlockVotesId: data => dispatch(actions.fetchBlockVotesId(data)),
-    fetchBlockMeta: data => dispatch(fetchBlockMeta(data))
+    fetchBlockMeta: data => dispatch(fetchBlockMeta(data)),
   })
 )(Block);

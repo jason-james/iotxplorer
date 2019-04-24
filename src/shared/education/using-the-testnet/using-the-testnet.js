@@ -1,8 +1,8 @@
-import { styled } from "styletron-inferno";
-import Component from "inferno-component";
-import { Link } from "inferno-router";
+import {styled} from 'styletron-inferno';
+import Component from 'inferno-component';
+import {Link} from 'inferno-router';
 
-import { EducationHeader } from "../education-header";
+import {EducationHeader} from '../education-header';
 
 export class UsingTheTestnet extends Component {
   render() {
@@ -20,7 +20,7 @@ export class UsingTheTestnet extends Component {
                       <li className='is-right'>
                         <Link
                           to='/education/understandingiotex/'
-                          style={{ backgroundColor: "#00d1b2", color: "#fff" }}
+                          style={{backgroundColor: '#00d1b2', color: '#fff'}}
                         >
                           0. Understanding IoTeX
                         </Link>
@@ -30,7 +30,7 @@ export class UsingTheTestnet extends Component {
                       <li>
                         <Link
                           to='/education/votingdelegating/'
-                          style={{ backgroundColor: "#00d1b2", color: "#fff" }}
+                          style={{backgroundColor: '#00d1b2', color: '#fff'}}
                         >
                           1. Voting and Delegating
                         </Link>
@@ -40,7 +40,7 @@ export class UsingTheTestnet extends Component {
                       <li>
                         <Link
                           to='/education/usingthetestnet/'
-                          style={{ backgroundColor: "#00d1b2", color: "#fff" }}
+                          style={{backgroundColor: '#00d1b2', color: '#fff'}}
                         >
                           2. Using the testnet
                         </Link>
@@ -87,7 +87,7 @@ export class UsingTheTestnet extends Component {
                   </div>
                 </div>
               </div>
-            </div>{" "}
+            </div>{' '}
           </div>
         </section>
       </div>
@@ -95,8 +95,8 @@ export class UsingTheTestnet extends Component {
   }
 }
 
-const EducationButton = styled("education-buttons", props => ({
-  margin: "2px"
+const EducationButton = styled('education-buttons', props => ({
+  margin: '2px',
 }));
 
 class UsingTestnetUnix extends Component {
@@ -108,7 +108,7 @@ class UsingTestnetUnix extends Component {
         <article className='message is-primary'>
           <div className='message-body'>
             If you don't already have Docker installed on your machine, you can
-            download it{" "}
+            download it{' '}
             <a
               href='https://hub.docker.com/search/?type=edition&offering=community'
               target='_blank'
@@ -127,13 +127,13 @@ class UsingTestnetUnix extends Component {
           </code>
         </pre>
         <p>
-          Or if you don't have Git installed, you can simply{" "}
+          Or if you don't have Git installed, you can simply{' '}
           <a
             href='https://github.com/iotexproject/iotex-testnet'
             target='_blank'
           >
-            {" "}
-            download the .zip{" "}
+            {' '}
+            download the .zip{' '}
           </a>
           and extract it.
         </p>
@@ -145,7 +145,7 @@ class UsingTestnetUnix extends Component {
           Google.
         </p>
         <p>
-          The first 6 lines of the config file should look something like this:{" "}
+          The first 6 lines of the config file should look something like this:{' '}
         </p>
         <pre>
           <code>
@@ -220,7 +220,7 @@ class UsingTestnetUnix extends Component {
             be the correct name of the current testnet version. At the time of
             writing this guide, the version is v0.5.0-rc5-hotfix1.
           </div>
-        </article>{" "}
+        </article>{' '}
         <h5 className='title is-5'>Is it working?</h5>
         <p>
           To check that it's all working correctly let's ask docker. In your
@@ -304,24 +304,24 @@ class InteractingWithIoTeX extends Component {
               <br />
               Available Commands:
               <br />
-              {"  "}account{"     "}Deal with accounts of IoTeX blockchain
+              {'  '}account{'     '}Deal with accounts of IoTeX blockchain
               <br />
-              {"  "}action{"      "}Deal with actions of IoTeX blockchain
+              {'  '}action{'      '}Deal with actions of IoTeX blockchain
               <br />
-              {"  "}bc{"          "}Deal with block chain of IoTeX blockchain
+              {'  '}bc{'          '}Deal with block chain of IoTeX blockchain
               <br />
-              {"  "}config{"      "}Set or get configuration for ioctl
+              {'  '}config{'      '}Set or get configuration for ioctl
               <br />
-              {"  "}help{"        "}Help about any command
+              {'  '}help{'        '}Help about any command
               <br />
-              {"  "}version{"     "}Print the version number of ioctl
+              {'  '}version{'     '}Print the version number of ioctl
               <br />
-              {"  "}wallet{"      "}Manage accounts
+              {'  '}wallet{'      '}Manage accounts
               <br />
               <br />
               Flags:
               <br />
-              {"  "}-h, --help{"   "}help for ioctl
+              {'  '}-h, --help{'   '}help for ioctl
               <br />
               Use "ioctl [command] --help" for more information about a command.
             </code>
@@ -333,7 +333,7 @@ class InteractingWithIoTeX extends Component {
         </p>
         <h5 className='title is-5'>Making an iotex account</h5>
         <p>
-          One use of ioctl is making accounts. To see how this works, type{" "}
+          One use of ioctl is making accounts. To see how this works, type{' '}
           <code>ioctl account create</code> and bam! Like magic, you will get a
           response object containing a public and private key which you can use
           to do whatever you wish.

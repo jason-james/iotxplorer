@@ -1,13 +1,13 @@
-import Component from "inferno-component";
-import { assetURL } from "../../../lib/asset-url";
-import { ToolTip } from "../../../shared/common/tooltip";
-import { nav } from "../../common/nav/nav";
+import Component from 'inferno-component';
+import {assetURL} from '../../../lib/asset-url';
+import {ToolTip} from '../../../shared/common/tooltip';
+import {nav} from '../../common/nav/nav';
 
 export class StakingCalc extends Component {
   state = {
     stakeAmount: 300000,
     stakeDuration: 14,
-    tokenPrice: null
+    tokenPrice: null,
   };
 
   calculateROI() {
@@ -30,7 +30,7 @@ export class StakingCalc extends Component {
       ROI.toFixed(1),
       amountGivenBack.toFixed(1),
       profitUSD.toFixed(2),
-      profitIOTX.toFixed(1)
+      profitIOTX.toFixed(1),
     ];
   }
 
@@ -39,17 +39,17 @@ export class StakingCalc extends Component {
       <section>
         <div className='level'>
           <div className='level-left'>
-            <img src={assetURL("/one.svg")} width='100' height='100' />
+            <img src={assetURL('/one.svg')} width='100' height='100' />
           </div>
-          <p style={{ paddingLeft: "24px" }}>
+          <p style={{paddingLeft: '24px'}}>
             Set the amount of IOTX you will stake
           </p>
           <ToolTip
-            iconClass={"fas fa-question-circle has-text-primary"}
+            iconClass={'fas fa-question-circle has-text-primary'}
             message={
-              "Set the amount of IOTX that you want to use for voting/staking. The more you stake, the greater your returns will be."
+              'Set the amount of IOTX that you want to use for voting/staking. The more you stake, the greater your returns will be.'
             }
-            customPadClass={"dashboard-tooltip"}
+            customPadClass={'dashboard-tooltip'}
           />
           <div className='field has-addons'>
             <div className='control'>
@@ -57,15 +57,15 @@ export class StakingCalc extends Component {
                 className='input is-primary has-addons'
                 placeholder='The higher the better.'
                 type='number'
-                style={{ marginLeft: "32px" }}
+                style={{marginLeft: '32px'}}
                 value={this.state.stakeAmount}
                 onChange={e =>
-                  this.setState({ stakeAmount: parseInt(e.target.value) })
+                  this.setState({stakeAmount: parseInt(e.target.value)})
                 }
               />
             </div>
             <div className='control'>
-              <a className='button' style={{ marginRight: "24px" }}>
+              <a className='button' style={{marginRight: '24px'}}>
                 IOTX
               </a>
             </div>
@@ -74,15 +74,15 @@ export class StakingCalc extends Component {
 
         <div className='level'>
           <div className='level-left'>
-            <img src={assetURL("/two.svg")} width='100' height='100' />
+            <img src={assetURL('/two.svg')} width='100' height='100' />
           </div>
-          <p style={{ paddingLeft: "24px" }}>Set your stake duration</p>
+          <p style={{paddingLeft: '24px'}}>Set your stake duration</p>
           <ToolTip
-            iconClass={"fas fa-question-circle has-text-primary"}
+            iconClass={'fas fa-question-circle has-text-primary'}
             message={
-              "Enter your stake duration. This time period commits you to locking up your coins for the time specified. Longer stake periods get more bonus votes which results in greater returns."
+              'Enter your stake duration. This time period commits you to locking up your coins for the time specified. Longer stake periods get more bonus votes which results in greater returns.'
             }
-            customPadClass={"dashboard-tooltip"}
+            customPadClass={'dashboard-tooltip'}
           />
           <div className='field has-addons'>
             <div className='control'>
@@ -90,13 +90,13 @@ export class StakingCalc extends Component {
                 className='input is-primary'
                 placeholder='The higher the better, again.'
                 type='number'
-                style={{ width: "80%", maxWidth: "391px", marginLeft: "97px" }}
+                style={{width: '80%', maxWidth: '391px', marginLeft: '97px'}}
                 value={this.state.stakeDuration}
-                onChange={e => this.setState({ stakeDuration: e.target.value })}
+                onChange={e => this.setState({stakeDuration: e.target.value})}
               />
             </div>
             <div className='control'>
-              <a className='button' style={{ marginRight: "24px" }}>
+              <a className='button' style={{marginRight: '24px'}}>
                 Days
               </a>
             </div>
@@ -105,28 +105,28 @@ export class StakingCalc extends Component {
 
         <div className='level'>
           <div className='level-left'>
-            <img src={assetURL("/three.svg")} width='100' height='100' />
+            <img src={assetURL('/three.svg')} width='100' height='100' />
           </div>
-          <p style={{ paddingLeft: "24px" }}>Enter the price of 1 IOTX</p>
+          <p style={{paddingLeft: '24px'}}>Enter the price of 1 IOTX</p>
           <ToolTip
-            iconClass={"fas fa-question-circle has-text-primary"}
+            iconClass={'fas fa-question-circle has-text-primary'}
             message={
-              "Enter the price of 1 IOTX in USD. You can vary this number to estimate what your USD returns might look like depending on the price."
+              'Enter the price of 1 IOTX in USD. You can vary this number to estimate what your USD returns might look like depending on the price.'
             }
-            customPadClass={"dashboard-tooltip"}
+            customPadClass={'dashboard-tooltip'}
           />
           <div className='field has-addons'>
             <div className='control'>
               <input
                 className='input is-primary'
-                placeholder={`Current price is in nav bar.`}
-                style={{ width: "80%", marginLeft: "80px" }}
+                placeholder={'Current price is in nav bar.'}
+                style={{width: '80%', marginLeft: '80px'}}
                 value={this.state.tokenPrice}
-                onChange={e => this.setState({ tokenPrice: e.target.value })}
+                onChange={e => this.setState({tokenPrice: e.target.value})}
               />
             </div>
             <div className='control'>
-              <a className='button' style={{ marginRight: "24px" }}>
+              <a className='button' style={{marginRight: '24px'}}>
                 USD
               </a>
             </div>
@@ -165,7 +165,7 @@ export class StakingCalc extends Component {
               calculations) has 1.2% of total votes.
             </li>
             <li>
-              iotxplorer{" "}
+              iotxplorer{' '}
               <strong>redistributes 87% of the entire epoch bonus</strong>,
               keeping 13% as a ‘service fee’ to cover operating costs and fund
               IoTeX development projects and developer bounties.
@@ -182,7 +182,7 @@ export class StakingCalc extends Component {
     return (
       <div>
         <div className='columns is-centered'>
-          <div className='title is-4' style={{ paddingTop: "16px" }}>
+          <div className='title is-4' style={{paddingTop: '16px'}}>
             Staking ROI calculator
           </div>
         </div>
@@ -193,7 +193,7 @@ export class StakingCalc extends Component {
 
           <div className='columns is-centered'>
             <div className='column is-7'>
-              <div className='box' style={{ boxShadow: "none" }}>
+              <div className='box' style={{boxShadow: 'none'}}>
                 {this.calculatorContent()}
               </div>
             </div>
@@ -244,22 +244,22 @@ export class StakingCalc extends Component {
         </div>
 
         <div className='columns is-centered'>
-          <p style={{ paddingTop: "16px", paddingBottom: "16px" }}>
-            That's{" "}
+          <p style={{paddingTop: '16px', paddingBottom: '16px'}}>
+            That's{' '}
             <strong>
-              {" "}
+              {' '}
               {isNaN(results[0]) ? 0 : (results[0] / 4.66).toFixed(2)}x
-            </strong>{" "}
-            better than EOS,{" "}
+            </strong>{' '}
+            better than EOS,{' '}
             <strong>
-              {" "}
-              {isNaN(results[0]) ? 0 : (results[0] / 7.85).toFixed(2)}x{" "}
+              {' '}
+              {isNaN(results[0]) ? 0 : (results[0] / 7.85).toFixed(2)}x{' '}
             </strong>
-            better than Tezos and{" "}
+            better than Tezos and{' '}
             <strong>
-              {" "}
-              {isNaN(results[0]) ? 0 : (results[0] / 3.7).toFixed(2)}x{" "}
-            </strong>{" "}
+              {' '}
+              {isNaN(results[0]) ? 0 : (results[0] / 3.7).toFixed(2)}x{' '}
+            </strong>{' '}
             better than Cardano staking returns on average.
           </p>
         </div>

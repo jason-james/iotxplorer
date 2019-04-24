@@ -231,8 +231,12 @@ export class BlockSummary extends Component {
         c2: fromNow(blockMeta.timestamp.seconds) || 0
       },
       {
-        c1: t("block.generatedBy"),
-        c2: blockMeta.producerAddress
+        c1: "Producer",
+        c2: (
+          <a href={`/address/${blockMeta.producerAddress}`}>
+            {blockMeta.producerAddress}
+          </a>
+        )
       }
     ];
     return (

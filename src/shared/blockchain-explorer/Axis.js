@@ -1,6 +1,6 @@
-import Component from "inferno-component";
-import * as d3Axis from "d3-axis";
-import { select as d3Select } from "d3-selection";
+import Component from 'inferno-component';
+import * as d3Axis from 'd3-axis';
+import {select as d3Select} from 'd3-selection';
 
 export default class Axis extends Component {
   constructor() {

@@ -2,18 +2,18 @@ import Component from "inferno-component";
 import { get } from "dottie";
 import { fromRau } from "iotex-client-js/dist/account/utils";
 
-import { t } from "../../lib/iso-i18n";
 import { Link } from "inferno-router";
 import { publicKeyToAddress } from "iotex-antenna/lib/crypto/crypto";
-import { ToolTip } from "../common/tooltip";
 import isBrowser from "is-browser";
 import Helmet from "inferno-helmet";
+import { SuggestGasPriceRequest } from "iotex-antenna/protogen/proto/api/api_pb";
+import { t } from "../../lib/iso-i18n";
+import { ToolTip } from "../common/tooltip";
 import { fromNow } from "../common/from-now";
 import { CommonMargin } from "../common/common-margin";
 import { EmptyMessage, ErrorMessage, LoadingMessage } from "../common/message";
 import type { Error } from "../../../src/entities/common-types";
 import { SingleItemTable } from "../common/single-item-table";
-import { SuggestGasPriceRequest } from "iotex-antenna/protogen/proto/api/api_pb";
 
 export class Action extends Component {
   render() {
@@ -97,7 +97,7 @@ export class TransferSummary extends Component {
       return <EmptyMessage item={t("meta.transfer")} />;
     }
 
-    let pubkey = Buffer.from(action[0].action.senderPubKey).toString("Hex");
+    const pubkey = Buffer.from(action[0].action.senderPubKey).toString("Hex");
     const address = publicKeyToAddress(pubkey);
 
     if (actionType === "grantReward") {
@@ -163,7 +163,7 @@ export class TransferSummary extends Component {
         },
         {
           c1: "Amount",
-          c2: fromRau(action[0].action.core.transfer.amount) + " ⬡"
+          c2: `${fromRau(action[0].action.core.transfer.amount)} ⬡`
         },
         {
           c1: "To",
@@ -182,11 +182,11 @@ export class TransferSummary extends Component {
         },
         {
           c1: "Gas Price",
-          c2: fromRau(action[0].action.core.gasPrice, "Qev") + " Qev"
+          c2: `${fromRau(action[0].action.core.gasPrice, "Qev")} Qev`
         },
         {
           c1: "Gas Limit",
-          c2: action[0].action.core.gasLimit + " Rau"
+          c2: `${action[0].action.core.gasLimit} Rau`
         },
         {
           c1: "Type",
@@ -229,7 +229,7 @@ export class TransferSummary extends Component {
         },
         {
           c1: "Amount",
-          c2: fromRau(action[0].action.core.execution.amount) + " ⬡"
+          c2: `${fromRau(action[0].action.core.execution.amount)} ⬡`
         },
         {
           c1: "To",
@@ -251,11 +251,11 @@ export class TransferSummary extends Component {
         },
         {
           c1: "Gas Price",
-          c2: fromRau(action[0].action.core.gasPrice, "Qev") + " Qev"
+          c2: `${fromRau(action[0].action.core.gasPrice, "Qev")} Qev`
         },
         {
           c1: "Gas Limit",
-          c2: action[0].action.core.gasLimit + " Rau"
+          c2: `${action[0].action.core.gasLimit} Rau`
         },
         {
           c1: "Type",

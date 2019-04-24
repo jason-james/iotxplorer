@@ -1,41 +1,41 @@
 // @flow
-import { fromRau } from "iotex-client-js/dist/account/utils";
-import Component from "inferno-component";
-import Helmet from "inferno-helmet";
-import isBrowser from "is-browser";
-import jdenticon from "jdenticon";
-import { Link } from "inferno-router";
-import { get } from "dottie";
-import { fromNow } from "../common/from-now";
-import { publicKeyToAddress } from "iotex-antenna/lib/crypto/crypto";
-import window from "global/window";
-import { CommonMargin } from "../common/common-margin";
-import { ExecutionsListOnlyId } from "../executions/executions";
-import { TransfersListOnlyId } from "../transfers/transfers";
+import {fromRau} from 'iotex-client-js/dist/account/utils';
+import Component from 'inferno-component';
+import Helmet from 'inferno-helmet';
+import isBrowser from 'is-browser';
+import jdenticon from 'jdenticon';
+import {Link} from 'inferno-router';
+import {get} from 'dottie';
+import {publicKeyToAddress} from 'iotex-antenna/lib/crypto/crypto';
+import window from 'global/window';
+import {fromNow} from '../common/from-now';
+import {CommonMargin} from '../common/common-margin';
+import {ExecutionsListOnlyId} from '../executions/executions';
+import {TransfersListOnlyId} from '../transfers/transfers';
 import type {
   TAddressDetails,
   TTransfer,
-  TVote
-} from "../../entities/explorer-types";
-import { EmptyMessage, ErrorMessage, LoadingMessage } from "../common/message";
-import type { Error } from "../../entities/common-types";
-import { t } from "../../lib/iso-i18n";
-import { SingleItemTable } from "../common/single-item-table";
-import { SingleColTable } from "../common/single-col-table";
-import { VotesListOnlyId } from "../votes/votes";
-import { SettleDepositsListOnlyId } from "../deposit/settle-deposit-list";
-import { CreateDepositsListOnlyId } from "../deposit/create-deposit-list";
-import { isValidRawAddress } from "../wallet/validator";
-import type { TExecution } from "../../entities/explorer-types";
-import type { TSettleDeposit } from "../../entities/wallet-types";
+  TVote,
+} from '../../entities/explorer-types';
+import {EmptyMessage, ErrorMessage, LoadingMessage} from '../common/message';
+import type {Error} from '../../entities/common-types';
+import {t} from '../../lib/iso-i18n';
+import {SingleItemTable} from '../common/single-item-table';
+import {SingleColTable} from '../common/single-col-table';
+import {VotesListOnlyId} from '../votes/votes';
+import {SettleDepositsListOnlyId} from '../deposit/settle-deposit-list';
+import {CreateDepositsListOnlyId} from '../deposit/create-deposit-list';
+import {isValidRawAddress} from '../wallet/validator';
+import type {TExecution} from '../../entities/explorer-types';
+import type {TSettleDeposit} from '../../entities/wallet-types';
 import type {
   fetchAddressId,
   fetchAddressTransfersId,
   fetchAddressExecutionsId,
   fetchAddressSettleDepositsId,
-  fetchAddressCreateDepositsId
-} from "./address-actions";
-import { fetchAddressVotersId } from "./address-actions";
+  fetchAddressCreateDepositsId,
+} from './address-actions';
+import {fetchAddressVotersId} from './address-actions';
 
 type PropsType = {
   id: string
@@ -61,31 +61,31 @@ export class Address extends Component {
       hues: [170],
       lightness: {
         color: [0.29, 0.7],
-        grayscale: [0.27, 0.27]
+        grayscale: [0.27, 0.27],
       },
       saturation: {
         color: 0.5,
-        grayscale: 0.21
+        grayscale: 0.21,
       },
-      backColor: "#86444400"
+      backColor: '#86444400',
     };
     return (
       <div className='column container'>
-        <Helmet title={`${t("address.title")} - IoTeX`} />
+        <Helmet title={`${t('address.title')} - IoTeX`} />
         <div>
           <div>
-            <nav class='level' style={{ marginBottom: "0.5rem" }}>
+            <nav class='level' style={{marginBottom: '0.5rem'}}>
               <div class='level-left'>
                 <div class='level-item'>
                   <span
-                    style={{ display: "inline-block" }}
+                    style={{display: 'inline-block'}}
                     dangerouslySetInnerHTML={{
-                      __html: `${jdenticon.toSvg(this.props.params.id, 100)}`
+                      __html: `${jdenticon.toSvg(this.props.params.id, 100)}`,
                     }}
                   />
                 </div>
                 <div class='level-item'>
-                  <h1 className='title'>{t("address.title")}</h1>
+                  <h1 className='title'>{t('address.title')}</h1>
                 </div>
               </div>
             </nav>
@@ -163,34 +163,34 @@ export class AddressSummary extends Component {
       fetchAccount: 0,
       fetchActions: 0,
       pageNumber: 1,
-      maxPages: null
+      maxPages: null,
     };
   }
 
   componentWillMount() {
     if (isBrowser) {
-      this.props.fetchAccount({ address: this.props.id });
+      this.props.fetchAccount({address: this.props.id});
     }
   }
 
   componentDidMount() {
     const fetchAccount = window.setInterval(() => {
-      this.props.fetchAccount({ address: this.props.id });
+      this.props.fetchAccount({address: this.props.id});
     }, 20000);
-    this.setState({ fetchAccount });
+    this.setState({fetchAccount});
 
     setTimeout(
       function() {
-        //Start the timer
+        // Start the timer
         this.props.fetchActionsByAddress({
           address: this.props.id,
           start:
-            this.props.state.account.numActions - 15 * this.state.pageNumber < 0
-              ? 0
-              : this.props.state.account.numActions -
+            this.props.state.account.numActions - 15 * this.state.pageNumber < 0 ?
+              0 :
+              this.props.state.account.numActions -
                 15 * this.state.pageNumber,
-          count: 15
-        }); //After 1 second, set render to true
+          count: 15,
+        }); // After 1 second, set render to true
       }.bind(this),
       1000
     );
@@ -203,31 +203,31 @@ export class AddressSummary extends Component {
   componentWillReceiveProps(nextProps: PropsType, nextContext: any) {
     if (this.props.id !== nextProps.id) {
       if (isBrowser) {
-        this.props.fetchAddressId({ id: nextProps.id });
+        this.props.fetchAddressId({id: nextProps.id});
         this.props.fetchAddressVotersId({
           id: nextProps.id,
           offset: 0,
-          count: this.props.state.voters.count
+          count: this.props.state.voters.count,
         });
         this.props.fetchAddressTransfersId({
           id: nextProps.id,
           offset: 0,
-          count: this.props.state.transfers.count
+          count: this.props.state.transfers.count,
         });
         this.props.fetchAddressExecutionsId({
           id: nextProps.id,
           offset: 0,
-          count: this.props.state.executions.count
+          count: this.props.state.executions.count,
         });
         this.props.fetchAddressSettleDepositsId({
           id: nextProps.id,
           offset: 0,
-          count: this.props.state.settleDeposits.count
+          count: this.props.state.settleDeposits.count,
         });
         this.props.fetchAddressCreateDepositsId({
           id: nextProps.id,
           offset: 0,
-          count: this.props.state.createDeposits.count
+          count: this.props.state.createDeposits.count,
         });
       }
     }
@@ -235,11 +235,11 @@ export class AddressSummary extends Component {
 
   handlePrevClick = () => {
     if (this.state.pageNumber !== 1) {
-      this.setState({ pageNumber: this.state.pageNumber - 1 });
+      this.setState({pageNumber: this.state.pageNumber - 1});
       this.props.fetchActionsByAddress({
         address: this.props.id,
         start: this.props.state.account.numActions - 15 * this.state.pageNumber,
-        count: 15
+        count: 15,
       });
     }
   };
@@ -247,90 +247,90 @@ export class AddressSummary extends Component {
   handleNextClick = () => {
     if (this.state.maxPages === null) {
       this.setState({
-        maxPages: Math.ceil(this.props.state.account.numActions / 15)
+        maxPages: Math.ceil(this.props.state.account.numActions / 15),
       });
     }
     if (this.state.pageNumber < this.state.maxPages) {
-      this.setState({ pageNumber: this.state.pageNumber + 1 });
+      this.setState({pageNumber: this.state.pageNumber + 1});
 
       this.props.fetchActionsByAddress({
         address: this.props.id,
         start:
           this.props.state.account.numActions - 15 * this.state.pageNumber >
-          this.props.state.account.numActions
-            ? this.props.state.account.numActions - 15
-            : this.props.state.account.numActions - 15 * this.state.pageNumber,
-        count: 15
+          this.props.state.account.numActions ?
+            this.props.state.account.numActions - 15 :
+            this.props.state.account.numActions - 15 * this.state.pageNumber,
+        count: 15,
       });
     }
   };
 
   getAddress = ActionInfo => {
     const addr =
-      get(ActionInfo, "action.core.transfer.recipient") ||
-      get(ActionInfo, "action.core.execution.contract") ||
-      get(ActionInfo, "action.core.createDeposit.recipient") ||
-      get(ActionInfo, "action.core.settleDeposit.recipient") ||
-      get(ActionInfo, "action.core.plumCreateDeposit.recipient") ||
-      get(ActionInfo, "action.core.plumTransfer.recipient") ||
-      get(ActionInfo, "action.core.createPlumChain.contract") ||
-      "";
+      get(ActionInfo, 'action.core.transfer.recipient') ||
+      get(ActionInfo, 'action.core.execution.contract') ||
+      get(ActionInfo, 'action.core.createDeposit.recipient') ||
+      get(ActionInfo, 'action.core.settleDeposit.recipient') ||
+      get(ActionInfo, 'action.core.plumCreateDeposit.recipient') ||
+      get(ActionInfo, 'action.core.plumTransfer.recipient') ||
+      get(ActionInfo, 'action.core.createPlumChain.contract') ||
+      '';
     if (!addr) {
-      return ["-", "-"];
+      return ['-', '-'];
     }
     return [addr, `${addr.substr(0, 14)}..`];
   };
 
   getAmount = ActionInfo => {
     const amount =
-      get(ActionInfo, "action.core.execution.amount") ||
-      get(ActionInfo, "action.core.grantReward.amount") ||
-      get(ActionInfo, "action.core.transfer.amount") ||
-      get(ActionInfo, "action.core.createDeposit.amount") ||
-      get(ActionInfo, "action.core.settleDeposit.amount") ||
-      get(ActionInfo, "action.core.createPlumChain.amount") ||
-      get(ActionInfo, "action.core.plumCreateDeposit.amount") ||
-      "";
+      get(ActionInfo, 'action.core.execution.amount') ||
+      get(ActionInfo, 'action.core.grantReward.amount') ||
+      get(ActionInfo, 'action.core.transfer.amount') ||
+      get(ActionInfo, 'action.core.createDeposit.amount') ||
+      get(ActionInfo, 'action.core.settleDeposit.amount') ||
+      get(ActionInfo, 'action.core.createPlumChain.amount') ||
+      get(ActionInfo, 'action.core.plumCreateDeposit.amount') ||
+      '';
     if (!amount) {
-      return "-";
+      return '-';
     }
-    return `${fromRau(amount, "IOTX")} ⬡`;
+    return `${fromRau(amount, 'IOTX')} ⬡`;
   };
 
   getPayload = ActionInfo => {
     const payLoad =
-      get(ActionInfo, "action.core.transfer.payload") ||
-      get(ActionInfo, "action.core.execution.data") ||
-      "";
-    if (!payLoad || Buffer.from(payLoad).toString("Hex") === "") {
-      return "[ ]";
+      get(ActionInfo, 'action.core.transfer.payload') ||
+      get(ActionInfo, 'action.core.execution.data') ||
+      '';
+    if (!payLoad || Buffer.from(payLoad).toString('Hex') === '') {
+      return '[ ]';
     }
-    return Buffer.from(payLoad).toString("Hex");
+    return Buffer.from(payLoad).toString('Hex');
   };
 
   getActionType = ActionInfo => {
     const actionsTypes = [
-      "execution",
-      "grantReward",
-      "transfer",
-      "depositToRewardingFund",
-      "claimFromRewardingFund",
-      "startSubChain",
-      "stopSubChain",
-      "putBlock",
-      "createDeposit",
-      "settleDeposit",
-      "createPlumChain",
-      "terminatePlumChain",
-      "plumPutBlock",
-      "plumCreateDeposit",
-      "plumStartExit",
-      "plumChallengeExit",
-      "plumResponseChallengeExit",
-      "plumFinalizeExit",
-      "plumSettleDeposit",
-      "plumTransfer",
-      "putPollResult"
+      'execution',
+      'grantReward',
+      'transfer',
+      'depositToRewardingFund',
+      'claimFromRewardingFund',
+      'startSubChain',
+      'stopSubChain',
+      'putBlock',
+      'createDeposit',
+      'settleDeposit',
+      'createPlumChain',
+      'terminatePlumChain',
+      'plumPutBlock',
+      'plumCreateDeposit',
+      'plumStartExit',
+      'plumChallengeExit',
+      'plumResponseChallengeExit',
+      'plumFinalizeExit',
+      'plumSettleDeposit',
+      'plumTransfer',
+      'putPollResult',
     ];
 
     for (let i = 0; i < actionsTypes.length; i++) {
@@ -338,7 +338,7 @@ export class AddressSummary extends Component {
         return actionsTypes[i];
       }
     }
-    return "";
+    return '';
   };
 
   render() {
@@ -354,25 +354,25 @@ export class AddressSummary extends Component {
     }
     const a = this.props.state.account;
     if (!a) {
-      return <EmptyMessage item={t("meta.address")} />;
+      return <EmptyMessage item={t('meta.address')} />;
     }
     const rows = [
       {
-        c1: t("address.totalBalance"),
-        c2: <span>{fromRau(a.balance || 0)} ⬡</span>
+        c1: t('address.totalBalance'),
+        c2: <span>{fromRau(a.balance || 0)} ⬡</span>,
       },
       {
-        c1: "Total Actions",
-        c2: a.numActions || 0
-      }
+        c1: 'Total Actions',
+        c2: a.numActions || 0,
+      },
     ];
     return (
       <div>
-        <SingleItemTable subtitle={a.address || ""} rows={rows} />
+        <SingleItemTable subtitle={a.address || ''} rows={rows} />
         <br />
         <div className='bx--data-table-container'>
           <h1 className='title'>Transactions</h1>
-          <table className='bx--data-table-v2' style={{ marginBottom: "0px" }}>
+          <table className='bx--data-table-v2' style={{marginBottom: '0px'}}>
             <thead>
               <tr>
                 <th>
@@ -401,7 +401,7 @@ export class AddressSummary extends Component {
                   </td>
                   <td>{fromNow(currentElement.timestamp.seconds)}</td>
                   <td>
-                    {" "}
+                    {' '}
                     <Link
                       to={`/blocks/${currentElement.blkHash}`}
                       className='link'
@@ -414,26 +414,26 @@ export class AddressSummary extends Component {
                     <a
                       href={`/address/${publicKeyToAddress(
                         Buffer.from(currentElement.action.senderPubKey)
-                      ).toString("Hex")}`}
+                      ).toString('Hex')}`}
                     >
                       {publicKeyToAddress(
                         Buffer.from(currentElement.action.senderPubKey)
                       )
-                        .toString("Hex")
+                        .toString('Hex')
                         .substr(0, 14)}
                       ..
                     </a>
                   </td>
                   <td>
                     {(() => {
-                      let sender = publicKeyToAddress(
+                      const sender = publicKeyToAddress(
                         Buffer.from(
                           currentElement.action.senderPubKey
-                        ).toString("Hex")
+                        ).toString('Hex')
                       );
                       if (
                         sender === this.props.id &&
-                        this.getAddress(currentElement)[0] !== "-"
+                        this.getAddress(currentElement)[0] !== '-'
                       ) {
                         return <span class='tag is-warning'>OUT</span>;
                       }
@@ -457,15 +457,15 @@ export class AddressSummary extends Component {
               ))}
             </tbody>
           </table>
-          <nav className='level' style={{ marginTop: "12px" }}>
+          <nav className='level' style={{marginTop: '12px'}}>
             <div className='level-left'>
               <div className='level-item'>
                 <div>
-                  {!a.numActions
-                    ? ""
-                    : `Page ${this.state.pageNumber} of ${Math.ceil(
-                        a.numActions / 15
-                      )}`}
+                  {!a.numActions ?
+                    '' :
+                    `Page ${this.state.pageNumber} of ${Math.ceil(
+                      a.numActions / 15
+                    )}`}
                 </div>
               </div>
             </div>

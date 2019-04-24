@@ -2,7 +2,6 @@ import Component from 'inferno-component';
 import {t} from '../../lib/iso-i18n';
 import {ToolTip} from '../common/tooltip';
 
-
 export class MarketDashboard extends Component {
   props: {
     stats: Array<any>,
@@ -29,7 +28,7 @@ export class MarketDashboard extends Component {
                 {row.map(s => (
                   <div className='tile is-parent'>
                     <article className='tile is-child box box-custom'>
-                      <div style={{display:'flex', justifyContent:'center'}}>
+                      <div style={{display: 'flex', justifyContent: 'center'}}>
                         <p className='subtitle dashboard-title' style={{color: '#4c4c4c'}}>{s.title}</p>
                         <ToolTip
                           iconClass={s.icon}
@@ -37,7 +36,7 @@ export class MarketDashboard extends Component {
                           customPadClass={'dashboard-tooltip'}
                         />
                       </div>
-                      <p className='title has-text-centered' style={{display:'flex', justifyContent:'center'}}>{s.subtitle}</p>
+                      <p className='title has-text-centered' style={{display: 'flex', justifyContent: 'center'}}>{s.subtitle}</p>
                     </article>
                   </div>
                 ))}

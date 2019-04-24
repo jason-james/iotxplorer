@@ -1,33 +1,33 @@
-import { createViewRoutes } from "../view-routes";
-import { rootReducer } from "../common/root/root-reducer";
-import { ADDRESS } from "../common/site-url";
+import {createViewRoutes} from '../view-routes';
+import {rootReducer} from '../common/root/root-reducer';
+import {ADDRESS} from '../common/site-url';
 
 export function setAddressRoutes(server) {
   const {
-    gateways: { RpcMethod }
+    gateways: {RpcMethod},
   } = server;
 
   function addressHandler(ctx, next) {
     ctx.isoRender({
       vDom: createViewRoutes(server.routePrefix()),
       reducer: rootReducer,
-      clientScript: "/main.js"
+      clientScript: '/main.js',
     });
   }
 
   async function getAddressId(ctx, next) {
-    const { id } = ctx.request.body;
+    const {id} = ctx.request.body;
 
     try {
-      ctx.body = { ok: true, address: await iotexCore.getAddressDetails(id) };
+      ctx.body = {ok: true, address: await iotexCore.getAddressDetails(id)};
     } catch (error) {
       ctx.body = {
         ok: false,
         error: {
-          code: "FAIL_GET_ADDRESS",
-          message: "address.error.failGetAddress",
-          data: { id }
-        }
+          code: 'FAIL_GET_ADDRESS',
+          message: 'address.error.failGetAddress',
+          data: {id},
+        },
       };
     }
   }
@@ -42,31 +42,31 @@ export function setAddressRoutes(server) {
           ctx.request.body.count
         ),
         offset: ctx.request.body.offset,
-        count: ctx.request.body.count
+        count: ctx.request.body.count,
       };
     } catch (error) {
-      ctx.body = { ok: false, error };
+      ctx.body = {ok: false, error};
     }
   }
 
   async function getAddressTransfersId(ctx, next) {
-    const { id, offset, count } = ctx.request.body;
+    const {id, offset, count} = ctx.request.body;
 
     try {
       ctx.body = {
         ok: true,
         transfers: await iotexCore.getTransfersByAddress(id, offset, count),
         offset: ctx.request.body.offset,
-        count: ctx.request.body.count
+        count: ctx.request.body.count,
       };
     } catch (error) {
       ctx.body = {
         ok: false,
         error: {
-          code: "FAIL_GET_ADDRESS_TRANSFERS",
-          message: "address.error.failGetTransfers",
-          data: { id }
-        }
+          code: 'FAIL_GET_ADDRESS_TRANSFERS',
+          message: 'address.error.failGetTransfers',
+          data: {id},
+        },
       };
     }
   }
@@ -74,7 +74,7 @@ export function setAddressRoutes(server) {
   function cleanVotes(votes) {
     const res = [];
     if (votes) {
-      let prevId = "";
+      let prevId = '';
       for (let i = 0; i < votes.length; i++) {
         if (votes[i] !== undefined) {
           if (prevId !== votes[i].id) {
@@ -89,7 +89,7 @@ export function setAddressRoutes(server) {
   }
 
   async function getAddressSettleDepositsId(ctx, next) {
-    const { id, offset, count } = ctx.request.body;
+    const {id, offset, count} = ctx.request.body;
 
     try {
       ctx.body = {
@@ -100,22 +100,22 @@ export function setAddressRoutes(server) {
           count
         ),
         offset: ctx.request.body.offset,
-        count: ctx.request.body.count
+        count: ctx.request.body.count,
       };
     } catch (error) {
       ctx.body = {
         ok: false,
         error: {
-          code: "FAIL_GET_SETTLE_DEPOSITS",
-          message: "address.error.failGetSettleDeposits",
-          data: { id }
-        }
+          code: 'FAIL_GET_SETTLE_DEPOSITS',
+          message: 'address.error.failGetSettleDeposits',
+          data: {id},
+        },
       };
     }
   }
 
   async function getAddressCreateDepositsId(ctx, next) {
-    const { id, offset, count } = ctx.request.body;
+    const {id, offset, count} = ctx.request.body;
 
     try {
       ctx.body = {
@@ -126,22 +126,22 @@ export function setAddressRoutes(server) {
           count
         ),
         offset: ctx.request.body.offset,
-        count: ctx.request.body.count
+        count: ctx.request.body.count,
       };
     } catch (error) {
       ctx.body = {
         ok: false,
         error: {
-          code: "FAIL_GET_CREATE_DEPOSITS",
-          message: "address.error.failGetCreateDeposits",
-          data: { id }
-        }
+          code: 'FAIL_GET_CREATE_DEPOSITS',
+          message: 'address.error.failGetCreateDeposits',
+          data: {id},
+        },
       };
     }
   }
 
   async function getAddressVotersId(ctx, next) {
-    const { id, offset, count } = ctx.request.body;
+    const {id, offset, count} = ctx.request.body;
 
     try {
       const votes = await iotexCore.getVotesByAddress(id, offset, count);
@@ -149,16 +149,16 @@ export function setAddressRoutes(server) {
         ok: true,
         voters: cleanVotes(votes),
         offset,
-        count
+        count,
       };
     } catch (error) {
       ctx.body = {
         ok: false,
         error: {
-          code: "FAIL_GET_ADDRESS_VOTES",
-          message: "address.error.failGetVotes",
-          data: { id }
-        }
+          code: 'FAIL_GET_ADDRESS_VOTES',
+          message: 'address.error.failGetVotes',
+          data: {id},
+        },
       };
     }
   }
@@ -166,18 +166,18 @@ export function setAddressRoutes(server) {
   async function getAccount(ctx, next) {
     try {
       const response = await RpcMethod.getAccount({
-        address: ctx.request.body.address
+        address: ctx.request.body.address,
       });
       const account = response.accountMeta;
       ctx.body = {
         ok: true,
         account,
-        address: ctx.request.body.address
+        address: ctx.request.body.address,
       };
     } catch (error) {
       ctx.body = {
         ok: false,
-        error: { code: "FAIL_GET_ACCOUNT", message: "account.error.fail" }
+        error: {code: 'FAIL_GET_ACCOUNT', message: 'account.error.fail'},
       };
     }
   }
@@ -188,8 +188,8 @@ export function setAddressRoutes(server) {
         byAddr: {
           address: ctx.request.body.address,
           count: ctx.request.body.count,
-          start: ctx.request.body.start
-        }
+          start: ctx.request.body.start,
+        },
       });
       const actions = response.actionInfo.reverse();
       ctx.body = {
@@ -197,71 +197,71 @@ export function setAddressRoutes(server) {
         actions,
         address: ctx.request.body.address,
         count: ctx.request.body.count,
-        start: ctx.request.body.start
+        start: ctx.request.body.start,
       };
     } catch (error) {
       ctx.body = {
         ok: false,
-        error: { code: "FAIL_GET_ACTIONS", message: "actions.error.fail" }
+        error: {code: 'FAIL_GET_ACTIONS', message: 'actions.error.fail'},
       };
     }
   }
 
   const routes = [
     {
-      method: "get",
-      name: "address",
+      method: 'get',
+      name: 'address',
       endPoint: ADDRESS.INDEX,
-      handler: addressHandler
+      handler: addressHandler,
     },
     {
-      method: "post",
-      name: "getAccount",
+      method: 'post',
+      name: 'getAccount',
       endPoint: ADDRESS.GET_ADDRESS,
-      handler: getAccount
+      handler: getAccount,
     },
     {
-      method: "post",
-      name: "getActionsAddress",
+      method: 'post',
+      name: 'getActionsAddress',
       endPoint: ADDRESS.GET_ACTIONS,
-      handler: getActionsByAddress
+      handler: getActionsByAddress,
     },
     {
-      method: "post",
-      name: "getAddressTransfersId",
+      method: 'post',
+      name: 'getAddressTransfersId',
       endPoint: ADDRESS.GET_TRANSFERS,
-      handler: getAddressTransfersId
+      handler: getAddressTransfersId,
     },
     {
-      method: "post",
-      name: "getAddressExecutionsId",
+      method: 'post',
+      name: 'getAddressExecutionsId',
       endPoint: ADDRESS.GET_EXECUTIONS,
-      handler: getAddressExecutionsId
+      handler: getAddressExecutionsId,
     },
     {
-      method: "post",
-      name: "getAddressVotersId",
+      method: 'post',
+      name: 'getAddressVotersId',
       endPoint: ADDRESS.GET_VOTERS,
-      handler: getAddressVotersId
+      handler: getAddressVotersId,
     },
     {
-      method: "post",
-      name: "getAddressSettleDepositsId",
+      method: 'post',
+      name: 'getAddressSettleDepositsId',
       endPoint: ADDRESS.GET_SETTLE_DEPOSITS,
-      handler: getAddressSettleDepositsId
+      handler: getAddressSettleDepositsId,
     },
     {
-      method: "post",
-      name: "getAddressCreateDepositsId",
+      method: 'post',
+      name: 'getAddressCreateDepositsId',
       endPoint: ADDRESS.GET_CREATE_DEPOSITS,
-      handler: getAddressCreateDepositsId
-    }
+      handler: getAddressCreateDepositsId,
+    },
   ];
 
   routes.map(route => {
-    if (route.method === "get") {
+    if (route.method === 'get') {
       server.get(route.name, route.endPoint, route.handler);
-    } else if (route.method === "post") {
+    } else if (route.method === 'post') {
       server.post(route.name, route.endPoint, route.handler);
     }
   });

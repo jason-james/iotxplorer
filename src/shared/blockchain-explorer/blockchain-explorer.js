@@ -26,15 +26,15 @@ import { fetchConsensusMetrics } from "../consensus-metrics/consensus-metrics-ac
 import type { TConsensusMetrics } from "../../entities/explorer-types";
 import { ToolTip } from "../common/tooltip";
 import type { TExecution } from "../../entities/explorer-types";
+import { TitleContainer } from "../common/iotex-explorer-title";
+import { assetURL } from "../../lib/asset-url";
+import { ChartistGraph } from "../chart-helper/chart-helper";
 import { Dashboard } from "./dashboard";
 import { SearchBar } from "./search-bar";
-import { TitleContainer } from "../common/iotex-explorer-title";
 import { Tabs } from "./tabs";
 import { Tab } from "./tab";
 import { MarketDashboard } from "./market-dashboard";
 import { LineChart } from "./line-chart";
-import { assetURL } from "../../lib/asset-url";
-import { ChartistGraph } from "../chart-helper/chart-helper";
 import { CurrentProducer } from "./current-producer";
 
 type PropsType = {
@@ -204,7 +204,7 @@ export class BlockchainExplorer extends Component {
   }
 
   formChartData = chartData => {
-    //to avoid component using chartData prop before promise has been resolved (ie null)
+    // to avoid component using chartData prop before promise has been resolved (ie null)
     if (!chartData) {
       return [];
     }
@@ -215,8 +215,8 @@ export class BlockchainExplorer extends Component {
     };
 
     chartData.forEach(current => {
-      let date = new Date(current.time * 1000).toDateString();
-      var parsedDate = date.slice(3, -4);
+      const date = new Date(current.time * 1000).toDateString();
+      const parsedDate = date.slice(3, -4);
       axes.labels.push(parsedDate);
       axes.series[0].push(current.close);
     });
@@ -341,8 +341,8 @@ export class BlockchainExplorer extends Component {
   }
 
   renderContent() {
-    var type = "Line";
-    var options2 = {
+    const type = "Line";
+    const options2 = {
       width: 650,
       height: 440,
       showPoint: false,
@@ -355,12 +355,19 @@ export class BlockchainExplorer extends Component {
       }
     };
 
-    var responsiveOptions = [
+    const responsiveOptions = [
       [
         "screen and (max-width: 640px)",
         {
           width: 350,
           height: 270
+        }
+      ],
+      [
+        "screen and (max-width: 2559px)",
+        {
+          width: 555,
+          height: 460
         }
       ]
     ];
@@ -374,7 +381,7 @@ export class BlockchainExplorer extends Component {
       }
     ];
 
-    let blocksTable = (
+    const blocksTable = (
       <BlocksList
         blocks={this.props.consensus.blockMetas}
         width={this.props.width}
@@ -385,7 +392,7 @@ export class BlockchainExplorer extends Component {
       return (
         <section>
           <Helmet
-            title={`iotxplorer: iotex network explorer`}
+            title={"iotxplorer: iotex network explorer"}
             meta={[
               {
                 name: "description",
@@ -525,7 +532,7 @@ export class BlockchainExplorer extends Component {
       return (
         <section>
           <Helmet
-            title={`iotxplorer: iotex network explorer`}
+            title={"iotxplorer: iotex network explorer"}
             meta={[
               {
                 name: "description",

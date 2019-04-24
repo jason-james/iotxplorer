@@ -1,10 +1,10 @@
 import Component from "inferno-component";
-import { t } from "../../lib/iso-i18n";
 import { publicKeyToAddress } from "iotex-antenna/lib/crypto/crypto";
+import window from "global/window";
+import { t } from "../../lib/iso-i18n";
 
 import { DASHBOARD, ACTION } from "../common/site-url";
 import { fetchPost } from "../../lib/fetch-post";
-import window from "global/window";
 
 export class SearchBar extends Component {
   _form: any;
@@ -35,7 +35,7 @@ export class SearchBar extends Component {
       window.location = `/address/${publicKeyToAddress(value)}`;
     } else if (isNormalInteger(value)) {
       fetchPost(DASHBOARD.BLOCK_METAS, {
-        start: +value,
+        start: Number(value),
         count: 1
       }).then(res => {
         window.location = `/blocks/${res.blockMetas[0].hash}`;
@@ -92,7 +92,7 @@ export class SearchBar extends Component {
                 borderBottomLeftRadius: "3px",
                 borderTopLeftRadius: "3px"
               }}
-              placeholder='Search an address, block hash, block height or action hash'
+              placeholder='Search an address, block hash, block height or action'
               onChange={e => {
                 this.setState({ error: false, value: e.target.value });
               }}

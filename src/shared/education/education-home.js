@@ -1,8 +1,8 @@
-import { styled } from "styletron-inferno";
-import Component from "inferno-component";
-import { Link } from "inferno-router";
+import {styled} from 'styletron-inferno';
+import Component from 'inferno-component';
+import {Link} from 'inferno-router';
 
-import { EducationHeader } from "./education-header";
+import {EducationHeader} from './education-header';
 
 export class Education extends Component {
   render() {
@@ -96,13 +96,13 @@ export class Education extends Component {
                     </p>
                     <pre>
                       <code className='language-javascript'>
-                        contactDetails = {"{"}
+                        contactDetails = {'{'}
                         <br />
-                        {"  "}telegram: t.me/iotxplorer,
+                        {'  '}telegram: t.me/iotxplorer,
                         <br />
-                        {"  "}email: contact@iotxplorer.io
+                        {'  '}email: contact@iotxplorer.io
                         <br />
-                        {"}"}
+                        {'}'}
                       </code>
                     </pre>
                   </div>
@@ -119,7 +119,7 @@ export class Education extends Component {
                   </div>
                 </div>
               </div>
-            </div>{" "}
+            </div>{' '}
           </div>
         </section>
       </div>
@@ -127,6 +127,6 @@ export class Education extends Component {
   }
 }
 
-const EducationButton = styled("education-buttons", props => ({
-  margin: "2px"
+const EducationButton = styled('education-buttons', props => ({
+  margin: '2px',
 }));

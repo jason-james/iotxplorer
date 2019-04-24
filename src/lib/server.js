@@ -1,17 +1,17 @@
 // @flow
-import path from "path";
-import process from "process";
-import { hostname } from "os";
-import config from "config";
-import Koa from "koa";
-import type { Application } from "koa";
-import methods from "methods";
-import Router from "koa-router";
-import compress from "koa-compress";
-import { Logger } from "winston";
+import path from 'path';
+import process from 'process';
+import {hostname} from 'os';
+import config from 'config';
+import Koa from 'koa';
+import type {Application} from 'koa';
+import methods from 'methods';
+import Router from 'koa-router';
+import compress from 'koa-compress';
+import {Logger} from 'winston';
 
-import { initMiddleware } from "./middleware";
-import { IntegratedGateways } from "./integrated-gateways/integrated-gateways";
+import {initMiddleware} from './middleware';
+import {IntegratedGateways} from './integrated-gateways/integrated-gateways';
 
 export type Config = {
   project: string,
@@ -63,8 +63,8 @@ export class Server {
     this.initRouter();
 
     this.app.keys = [
-      "THIS IS INSECURE, I KNOW",
-      "will replace once found a correct way"
+      'THIS IS INSECURE, I KNOW',
+      'will replace once found a correct way',
     ];
 
     initMiddleware(this);
@@ -75,7 +75,7 @@ export class Server {
     const self = this;
 
     methods.forEach(setRouterOnVerb);
-    setRouterOnVerb("all");
+    setRouterOnVerb('all');
 
     function setRouterOnVerb(verb) {
       // $FlowFixMe
@@ -83,7 +83,7 @@ export class Server {
         const args = [].slice.call(arguments);
 
         let expressRoute = args.shift();
-        if (typeof args[0] === "string") {
+        if (typeof args[0] === 'string') {
           expressRoute = args.shift();
         }
 
@@ -106,9 +106,9 @@ export class Server {
   }
 
   use(...args: any) {
-    if (typeof args[0] === "function") {
+    if (typeof args[0] === 'function') {
       // default route to '/' => add prefix if necessary
-      args.unshift(this.getRoute("/"));
+      args.unshift(this.getRoute('/'));
     } else {
       // route passed in, add prefix if necessary
       args[0] = this.getRoute(args[0]);
@@ -142,5 +142,5 @@ export class Server {
 }
 
 function siteURL(cfg: Config): string {
-  return "";
+  return '';
 }

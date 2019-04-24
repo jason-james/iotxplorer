@@ -1,7 +1,7 @@
-import { DASHBOARD } from "../common/site-url";
+import {DASHBOARD} from '../common/site-url';
 
 export function setSearchBarRoutes(server) {
   const {
-    gateways: { iotexAntenna }
+    gateways: {iotexAntenna},
   } = server;
 }

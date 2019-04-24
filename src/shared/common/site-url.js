@@ -1,232 +1,232 @@
 // @flow
 
-export const SITE_URL = "/";
-export const CONSENSUS_API = "/api/getConsensusMetrics";
-export const IOTXPLORER_URL = "https://iotxplorer.io/";
+export const SITE_URL = '/';
+export const CONSENSUS_API = '/api/getConsensusMetrics';
+export const IOTXPLORER_URL = 'https://iotxplorer.io/';
 
 export class ADDRESS {
   static get INDEX(): string {
-    return "/address/:id/";
+    return '/address/:id/';
   }
 
   static get GET_ACTIONS(): string {
-    return "/api/getActionsAddress";
+    return '/api/getActionsAddress';
   }
 
   static get GET_ADDRESS(): string {
-    return "/api/getAddressId";
+    return '/api/getAddressId';
   }
 
   static get GET_TRANSFERS(): string {
-    return "/api/getAddressTransfersId";
+    return '/api/getAddressTransfersId';
   }
 
   static get GET_EXECUTIONS(): string {
-    return "/api/getAddressExecutionsId";
+    return '/api/getAddressExecutionsId';
   }
 
   static get GET_VOTERS(): string {
-    return "/api/getAddressVotersId";
+    return '/api/getAddressVotersId';
   }
 
   static get GET_SETTLE_DEPOSITS(): string {
-    return "/api/getAddressSettleDepositsId";
+    return '/api/getAddressSettleDepositsId';
   }
 
   static get GET_CREATE_DEPOSITS(): string {
-    return "/api/getAddressCreateDepositsId";
+    return '/api/getAddressCreateDepositsId';
   }
 }
 
 export class VOTE {
   static get INDEX(): string {
-    return "/votes/:id/";
+    return '/votes/:id/';
   }
 
   static get GET_VOTE(): string {
-    return "/api/getVoteId";
+    return '/api/getVoteId';
   }
 }
 
 export class VOTES {
   static get INDEX(): string {
-    return "/votes/";
+    return '/votes/';
   }
 
   static get GET(): string {
-    return "/api/getVotes";
+    return '/api/getVotes';
   }
 }
 
 export class BLOCK {
   static get INDEX(): string {
-    return "/blocks/:id/";
+    return '/blocks/:id/';
   }
 
   static get GET_BLOCK(): string {
-    return "/api/getBlockId";
+    return '/api/getBlockId';
   }
 
   static get GET_TRANSFERS(): string {
-    return "/api/getBlockTransfersId";
+    return '/api/getBlockTransfersId';
   }
 
   static get GET_VOTES(): string {
-    return "/api/getBlockVotesId";
+    return '/api/getBlockVotesId';
   }
 
   static get GET_EXECUTIONS(): string {
-    return "/api/getBlockExecutionsId";
+    return '/api/getBlockExecutionsId';
   }
 }
 
 export class BLOCKS {
   static get INDEX(): string {
-    return "/blocks/";
+    return '/blocks/';
   }
 
   static get GET(): string {
-    return "/api/getBlocks";
+    return '/api/getBlocks';
   }
 }
 
 export class EXECUTION {
   static get INDEX(): string {
-    return "/executions/:id/";
+    return '/executions/:id/';
   }
 
   static get GET(): string {
-    return "/api/getExecutionId";
+    return '/api/getExecutionId';
   }
 
   static get GET_RECEIPT(): string {
-    return "/api/getExecutionReceipt";
+    return '/api/getExecutionReceipt';
   }
 
   static get GET_EXECUTIONS(): string {
-    return "/api/getContractExecutions";
+    return '/api/getContractExecutions';
   }
 }
 
 export class EXECUTIONS {
   static get INDEX(): string {
-    return "/executions/";
+    return '/executions/';
   }
 
   static get GET(): string {
-    return "/api/getExecutions";
+    return '/api/getExecutions';
   }
 }
 
 export class TRANSFER {
   static get INDEX(): string {
-    return "/transfers/:id/";
+    return '/transfers/:id/';
   }
 
   static get GET(): string {
-    return "/api/getTransferId";
+    return '/api/getTransferId';
   }
 }
 
 export class TRANSFERS {
   static get INDEX(): string {
-    return "/transfers/";
+    return '/transfers/';
   }
 
   static get GET(): string {
-    return "/api/getTransfers";
+    return '/api/getTransfers';
   }
 }
 
 export class ACTION {
   static get INDEX(): string {
-    return "/actions/:id/";
+    return '/actions/:id/';
   }
 
   static get GET(): string {
-    return "/api/getAction";
+    return '/api/getAction';
   }
 }
 
 export class DEPOSIT {
   static get INDEX_SETTLE(): string {
-    return "/settle-deposit/:id";
+    return '/settle-deposit/:id';
   }
 
   static get INDEX_CREATE(): string {
-    return "/create-deposit/:id";
+    return '/create-deposit/:id';
   }
 
   static get GET_SETTLE(): string {
-    return "/api/getSettleDepositId";
+    return '/api/getSettleDepositId';
   }
 
   static get GET_CREATE(): string {
-    return "/api/getcreateDepositId";
+    return '/api/getcreateDepositId';
   }
 }
 
 export class NAV {
   static get STATISTIC(): string {
-    return "/api/getStatistic";
+    return '/api/getStatistic';
   }
 
   static get PRICE(): string {
-    return "/api/getPrice";
+    return '/api/getPrice';
   }
 
   static get FUZZY_SEARCH(): string {
-    return "/api/getBlockOrActionByHash";
+    return '/api/getBlockOrActionByHash';
   }
 }
 
 export class DASHBOARD {
   static get MARKET_DATA(): String {
-    return "/api/getMarketData";
+    return '/api/getMarketData';
   }
 
   static get BLOCK_METAS(): String {
-    return "/api/getBlockMetas";
+    return '/api/getBlockMetas';
   }
 
   static get BLOCK_META(): String {
-    return "/api/getBlockMeta";
+    return '/api/getBlockMeta';
   }
 
   static get CANDIDATE_DATA(): String {
-    return "/api/getCandidateData";
+    return '/api/getCandidateData';
   }
 
   static get ELECTION_STATS(): String {
-    return "/api/getElectionStats";
+    return '/api/getElectionStats';
   }
 }
 
 export class CHART {
   static get CHART_DATA(): String {
-    return "/api/getChartData";
+    return '/api/getChartData';
   }
 }
 
 export class WALLET {
   static get INDEX(): string {
-    return "/wallet";
+    return '/wallet';
   }
 
   static get GENERATE_KEY_PAIR(): string {
-    return "/api/wallet/generateKeyPair";
+    return '/api/wallet/generateKeyPair';
   }
 
   static get UNLOCK_WALLET(): string {
-    return "/api/wallet/unlockWallet";
+    return '/api/wallet/unlockWallet';
   }
 
   static get TRANSACTION(): string {
-    return "/wallet/transaction";
+    return '/wallet/transaction';
   }
 
   static get CONTRACT(): string {
-    return "/wallet/transaction";
+    return '/wallet/transaction';
   }
 
   static get GENERATE_TRANSFER(): string {
@@ -264,58 +264,58 @@ export class WALLET {
 
 export class DELEGATES {
   static get INDEX(): string {
-    return "/delegates";
+    return '/delegates';
   }
 
   static get GET(): string {
-    return "/api/getDelegates";
+    return '/api/getDelegates';
   }
 }
 
 export class STAKING {
   static get INDEX(): string {
-    return "/staking";
+    return '/staking';
   }
 }
 
 export class STAKING_DASHBOARD {
   static get INDEX(): string {
-    return "/staking/dashboard";
+    return '/staking/dashboard';
   }
 
   static get CALCULATORS(): string {
-    return "/staking/calculators";
+    return '/staking/calculators';
   }
 
   static get DELEGATE_DATA(): string {
-    return "/api/getDelegateData";
+    return '/api/getDelegateData';
   }
 
   static get IOTXPLORER_DELEGATE_DATA(): string {
-    return "/api/getIotxplorerDelegateData";
+    return '/api/getIotxplorerDelegateData';
   }
 }
 
 export class HOW_TO_STAKE {
   static get INDEX(): string {
-    return "/staking/howto";
+    return '/staking/howto';
   }
 }
 
 export class EDUCATION {
   static get INDEX(): string {
-    return "/education";
+    return '/education';
   }
 
   static get UNDERSTANDING_IOTEX(): string {
-    return "/education/understandingiotex";
+    return '/education/understandingiotex';
   }
 
   static get USING_THE_TESTNET(): string {
-    return "/education/usingthetestnet";
+    return '/education/usingthetestnet';
   }
 
   static get VOTING_AND_DELEGATING(): string {
-    return "/education/votingdelegating";
+    return '/education/votingdelegating';
   }
 }

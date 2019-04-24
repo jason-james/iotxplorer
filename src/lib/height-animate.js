@@ -1,31 +1,31 @@
-import Component from "inferno-component";
-import cx from "classnames";
+import Component from 'inferno-component';
+import cx from 'classnames';
 
 const ANIMATION_STATE_CLASSES = {
-  animating: "rah-animating",
-  animatingUp: "rah-animating--up",
-  animatingDown: "rah-animating--down",
-  animatingToHeightZero: "rah-animating--to-height-zero",
-  animatingToHeightAuto: "rah-animating--to-height-auto",
-  animatingToHeightSpecific: "rah-animating--to-height-specific",
-  static: "rah-static",
-  staticHeightZero: "rah-static--height-zero",
-  staticHeightAuto: "rah-static--height-auto",
-  staticHeightSpecific: "rah-static--height-specific"
+  animating: 'rah-animating',
+  animatingUp: 'rah-animating--up',
+  animatingDown: 'rah-animating--down',
+  animatingToHeightZero: 'rah-animating--to-height-zero',
+  animatingToHeightAuto: 'rah-animating--to-height-auto',
+  animatingToHeightSpecific: 'rah-animating--to-height-specific',
+  static: 'rah-static',
+  staticHeightZero: 'rah-static--height-zero',
+  staticHeightAuto: 'rah-static--height-auto',
+  staticHeightSpecific: 'rah-static--height-specific',
 };
 
 const PROPS_TO_OMIT = [
-  "animateOpacity",
-  "animationStateClasses",
-  "applyInlineTransitions",
-  "children",
-  "contentClassName",
-  "delay",
-  "duration",
-  "easing",
-  "height",
-  "onAnimationEnd",
-  "onAnimationStart"
+  'animateOpacity',
+  'animationStateClasses',
+  'applyInlineTransitions',
+  'children',
+  'contentClassName',
+  'delay',
+  'duration',
+  'easing',
+  'height',
+  'onAnimationEnd',
+  'onAnimationStart',
 ];
 
 function omit(obj, ...keys) {
@@ -63,14 +63,14 @@ function isNumber(n) {
 function isPercentage(height) {
   // Percentage height
   return (
-    typeof height === "string" &&
-    height.search("%") === height.length - 1 &&
+    typeof height === 'string' &&
+    height.search('%') === height.length - 1 &&
     isNumber(height.substr(0, height.length - 1))
   );
 }
 
 function runCallback(callback, params) {
-  if (callback && typeof callback === "function") {
+  if (callback && typeof callback === 'function') {
     callback(params);
   }
 }
@@ -79,20 +79,20 @@ const AnimateHeight = class extends Component {
   constructor(props) {
     super(props);
 
-    let height = "auto";
-    let overflow = "visible";
+    let height = 'auto';
+    let overflow = 'visible';
 
     if (isNumber(props.height)) {
       height = props.height < 0 ? 0 : props.height;
-      overflow = "hidden";
+      overflow = 'hidden';
     } else if (isPercentage(props.height)) {
       height = props.height;
-      overflow = "hidden";
+      overflow = 'hidden';
     }
 
     this.animationStateClasses = {
       ...ANIMATION_STATE_CLASSES,
-      ...props.animationStateClasses
+      ...props.animationStateClasses,
     };
 
     const animationStateClasses = this.getStaticStateClasses(height);
@@ -101,12 +101,12 @@ const AnimateHeight = class extends Component {
       animationStateClasses,
       height,
       overflow,
-      shouldUseTransitions: false
+      shouldUseTransitions: false,
     };
   }
 
   componentDidMount() {
-    const { height } = this.state;
+    const {height} = this.state;
 
     // Hide content if height is 0 (to prevent tabbing into it)
     // Check for contentElement is added cause this would fail in tests (react-test-renderer)
@@ -122,7 +122,7 @@ const AnimateHeight = class extends Component {
       duration,
       height,
       onAnimationEnd,
-      onAnimationStart
+      onAnimationStart,
     } = this.props;
 
     // Check if 'height' prop has changed
@@ -132,9 +132,9 @@ const AnimateHeight = class extends Component {
       this.showContent(prevState.height);
 
       // Cache content height
-      this.contentElement.style.overflow = "hidden";
+      this.contentElement.style.overflow = 'hidden';
       const contentHeight = this.contentElement.offsetHeight;
-      this.contentElement.style.overflow = "";
+      this.contentElement.style.overflow = '';
 
       // set total animation time
       const totalDuration = duration + delay;
@@ -142,9 +142,9 @@ const AnimateHeight = class extends Component {
       let newHeight = null;
       const timeoutState = {
         height: null, // it will be always set to either 'auto' or specific number
-        overflow: "hidden"
+        overflow: 'hidden',
       };
-      const isCurrentHeightAuto = prevState.height === "auto";
+      const isCurrentHeightAuto = prevState.height === 'auto';
 
       if (isNumber(height)) {
         // If new height is a number
@@ -157,7 +157,7 @@ const AnimateHeight = class extends Component {
         // If not, animate to content height
         // and then reset to auto
         newHeight = contentHeight; // TODO solve contentHeight = 0
-        timeoutState.height = "auto";
+        timeoutState.height = 'auto';
         timeoutState.overflow = null;
       }
 
@@ -174,15 +174,15 @@ const AnimateHeight = class extends Component {
       const animationStateClasses = cx({
         [this.animationStateClasses.animating]: true,
         [this.animationStateClasses.animatingUp]:
-          prevProps.height === "auto" || height < prevProps.height,
+          prevProps.height === 'auto' || height < prevProps.height,
         [this.animationStateClasses.animatingDown]:
-          height === "auto" || height > prevProps.height,
+          height === 'auto' || height > prevProps.height,
         [this.animationStateClasses.animatingToHeightZero]:
           timeoutState.height === 0,
         [this.animationStateClasses.animatingToHeightAuto]:
-          timeoutState.height === "auto",
+          timeoutState.height === 'auto',
         [this.animationStateClasses.animatingToHeightSpecific]:
-          timeoutState.height > 0
+          timeoutState.height > 0,
       });
 
       // Animation classes to be put after animation is complete
@@ -197,10 +197,10 @@ const AnimateHeight = class extends Component {
         // eslint-disable-line react/no-did-update-set-state
         animationStateClasses,
         height: newHeight,
-        overflow: "hidden",
+        overflow: 'hidden',
         // When animating from 'auto' we first need to set fixed height
         // that change should be animated
-        shouldUseTransitions: !isCurrentHeightAuto
+        shouldUseTransitions: !isCurrentHeightAuto,
       });
 
       // Clear timeouts
@@ -216,25 +216,25 @@ const AnimateHeight = class extends Component {
           this.setState(timeoutState);
 
           // ANIMATION STARTS, run a callback if it exists
-          runCallback(onAnimationStart, { newHeight: timeoutState.height });
+          runCallback(onAnimationStart, {newHeight: timeoutState.height});
         });
 
         // Set static classes and remove transitions when animation ends
         this.animationClassesTimeoutID = setTimeout(() => {
           this.setState({
             animationStateClasses: timeoutAnimationStateClasses,
-            shouldUseTransitions: false
+            shouldUseTransitions: false,
           });
 
           // ANIMATION ENDS
           // Hide content if height is 0 (to prevent tabbing into it)
           this.hideContent(timeoutState.height);
           // Run a callback if it exists
-          runCallback(onAnimationEnd, { newHeight: timeoutState.height });
+          runCallback(onAnimationEnd, {newHeight: timeoutState.height});
         }, totalDuration);
       } else {
         // ANIMATION STARTS, run a callback if it exists
-        runCallback(onAnimationStart, { newHeight });
+        runCallback(onAnimationStart, {newHeight});
 
         // Set end height, classes and remove transitions when animation is complete
         this.timeoutID = setTimeout(() => {
@@ -246,12 +246,12 @@ const AnimateHeight = class extends Component {
           // ANIMATION ENDS
           // If height is auto, don't hide the content
           // (case when element is empty, therefore height is 0)
-          if (height !== "auto") {
+          if (height !== 'auto') {
             // Hide content if height is 0 (to prevent tabbing into it)
             this.hideContent(newHeight); // TODO solve newHeight = 0
           }
           // Run a callback if it exists
-          runCallback(onAnimationEnd, { newHeight });
+          runCallback(onAnimationEnd, {newHeight});
         }, totalDuration);
       }
     }
@@ -267,13 +267,13 @@ const AnimateHeight = class extends Component {
 
   showContent(height) {
     if (height === 0) {
-      this.contentElement.style.display = "";
+      this.contentElement.style.display = '';
     }
   }
 
   hideContent(newHeight) {
     if (newHeight === 0) {
-      this.contentElement.style.display = "none";
+      this.contentElement.style.display = 'none';
     }
   }
 
@@ -282,7 +282,7 @@ const AnimateHeight = class extends Component {
       [this.animationStateClasses.static]: true,
       [this.animationStateClasses.staticHeightZero]: height === 0,
       [this.animationStateClasses.staticHeightSpecific]: height > 0,
-      [this.animationStateClasses.staticHeightAuto]: height === "auto"
+      [this.animationStateClasses.staticHeightAuto]: height === 'auto',
     });
   }
 
@@ -296,19 +296,19 @@ const AnimateHeight = class extends Component {
       duration,
       easing,
       delay,
-      style
+      style,
     } = this.props;
     const {
       height,
       overflow,
       animationStateClasses,
-      shouldUseTransitions
+      shouldUseTransitions,
     } = this.state;
 
     const componentStyle = {
       ...style,
       height,
-      overflow: overflow || style.overflow
+      overflow: overflow || style.overflow,
     };
 
     if (shouldUseTransitions && applyInlineTransitions) {
@@ -339,7 +339,7 @@ const AnimateHeight = class extends Component {
 
     const componentClasses = cx({
       [animationStateClasses]: true,
-      [className]: className
+      [className]: className,
     });
 
     return (
@@ -367,8 +367,8 @@ AnimateHeight.defaultProps = {
   applyInlineTransitions: true,
   duration: 250,
   delay: 0,
-  easing: "ease",
-  style: {}
+  easing: 'ease',
+  style: {},
 };
 
 export default AnimateHeight;

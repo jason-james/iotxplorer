@@ -1,20 +1,20 @@
-import Component from "inferno-component";
-import Helmet from "inferno-helmet";
-import axios from "axios";
-import { RewardsInfo } from "./rewards-info";
-import { StakingDashboardNav } from "./staking-dashboard-nav";
+import Component from 'inferno-component';
+import Helmet from 'inferno-helmet';
+import axios from 'axios';
 import {
   ChartistGraph,
-  TradingViewWidget
-} from "../../shared/chart-helper/chart-helper";
-import { assetURL } from "../../lib/asset-url";
+  TradingViewWidget,
+} from '../../shared/chart-helper/chart-helper';
+import {assetURL} from '../../lib/asset-url';
+import {RewardsInfo} from './rewards-info';
+import {StakingDashboardNav} from './staking-dashboard-nav';
 
 export class StakingDashboard extends Component {
   constructor(props: any) {
     super(props);
     this.state = {
       fetchDelegateData: 0,
-      fetchIotxplorerDelegateData: 0
+      fetchIotxplorerDelegateData: 0,
     };
   }
 
@@ -31,145 +31,145 @@ export class StakingDashboard extends Component {
       10000
     );
 
-    this.setState({ fetchDelegateData, fetchIotxplorerDelegateData });
+    this.setState({fetchDelegateData, fetchIotxplorerDelegateData});
   }
 
   rankHandler = iotxplorerDelegateData => {
     if (!iotxplorerDelegateData) {
-      return "...";
-    } else {
-      return iotxplorerDelegateData;
+      return '...';
     }
+    return iotxplorerDelegateData;
+
   };
 
   formDashboardStats = delegateData => {
     if (!delegateData) {
-      return ["...", "..."];
-    } else {
-      const iotxplorerStats =
-        delegateData[this.props.iotxplorerDelegateData - 1];
-      const votes = new Intl.NumberFormat("en-US", {
-        maximumFractionDigits: 1
-      }).format(iotxplorerStats.liveVotes);
-
-      const votePercent = parseFloat(iotxplorerStats.percent);
-      return [votes, votePercent];
+      return ['...', '...'];
     }
+    const iotxplorerStats =
+        delegateData[this.props.iotxplorerDelegateData - 1];
+    const votes = new Intl.NumberFormat('en-US', {
+      maximumFractionDigits: 1,
+    }).format(iotxplorerStats.liveVotes);
+
+    const votePercent = parseFloat(iotxplorerStats.percent);
+    return [votes, votePercent];
+
   };
 
   formPieChartData = delegateData => {
     if (!delegateData) {
       return {};
-    } else {
-      const data = {
-        labels: [],
-        series: []
-      };
-
-      for (
-        let i = this.props.iotxplorerDelegateData - 5;
-        i < this.props.iotxplorerDelegateData + 5;
-        i++
-      ) {
-        data.labels.push(delegateData[i].name);
-        data.series.push(parseFloat(delegateData[i].percent));
-      }
-      return data;
     }
+    const data = {
+      labels: [],
+      series: [],
+    };
+
+    for (
+      let i = this.props.iotxplorerDelegateData - 5;
+      i < this.props.iotxplorerDelegateData + 5;
+      i++
+    ) {
+      data.labels.push(delegateData[i].name);
+      data.series.push(parseFloat(delegateData[i].percent));
+    }
+    return data;
+
   };
 
   calculateROI() {
     if (!this.props.delegateData) {
-      return "...";
-    } else {
-      const CONSTANT = 100000;
-      const overallRedist =
+      return '...';
+    }
+    const CONSTANT = 100000;
+    const overallRedist =
         0.87 *
         366667 *
         365 *
         (this.formDashboardStats(this.props.delegateData)[1] / 100);
 
-      const bonusVotes = Math.log(350) / Math.log(1.2);
-      const effectiveVotes = CONSTANT * (1 + bonusVotes / 100);
-      const percentOfTotalVotes =
+    const bonusVotes = Math.log(350) / Math.log(1.2);
+    const effectiveVotes = CONSTANT * (1 + bonusVotes / 100);
+    const percentOfTotalVotes =
         effectiveVotes /
         this.props.delegateData[this.props.iotxplorerDelegateData - 1]
           .liveVotes;
-      const amountGivenBack = percentOfTotalVotes * overallRedist + CONSTANT;
-      const ROI = ((parseInt(amountGivenBack) - CONSTANT) / CONSTANT) * 100;
-      return ROI.toFixed(1);
-    }
+    const amountGivenBack = percentOfTotalVotes * overallRedist + CONSTANT;
+    const ROI = ((parseInt(amountGivenBack) - CONSTANT) / CONSTANT) * 100;
+    return ROI.toFixed(1);
+
   }
 
   render() {
-    var data = this.formPieChartData(this.props.delegateData);
-    var options = {
+    const data = this.formPieChartData(this.props.delegateData);
+    const options = {
       width: 684,
       height: 360,
       labelOffset: 50,
       donut: true,
 
-      labelDirection: "explode",
-      chartPadding: 30
+      labelDirection: 'explode',
+      chartPadding: 30,
     };
 
-    var responsiveOptions = [
+    const responsiveOptions = [
       [
-        "screen and (max-width: 640px)",
+        'screen and (max-width: 640px)',
         {
           width: 350,
-          height: 270
-        }
-      ]
+          height: 270,
+        },
+      ],
     ];
 
-    var type = "Pie";
+    const type = 'Pie';
 
     return (
       <div class='section'>
         <Helmet
-          title={`iotxplorer: Dashboard`}
+          title={'iotxplorer: Dashboard'}
           meta={[
             {
-              name: "description",
+              name: 'description',
               content:
-                "Statistics and rewards tracking for iotxlorer supporters."
+                'Statistics and rewards tracking for iotxlorer supporters.',
             },
             {
-              property: "og:title",
-              content: "iotxplorer: Dashboard"
+              property: 'og:title',
+              content: 'iotxplorer: Dashboard',
             },
             {
-              property: "og:description",
+              property: 'og:description',
               content:
-                "Statistics and rewards tracking for iotxlorer supporters."
+                'Statistics and rewards tracking for iotxlorer supporters.',
             },
             {
-              property: "og:image",
-              content: `${assetURL("/dashboard-meta-image.png")}`
+              property: 'og:image',
+              content: `${assetURL('/dashboard-meta-image.png')}`,
             },
             {
-              name: "twitter:card",
-              content: "summary_large_image"
+              name: 'twitter:card',
+              content: 'summary_large_image',
             },
             {
-              name: "twitter:site",
-              content: "@iotxplorer"
+              name: 'twitter:site',
+              content: '@iotxplorer',
             },
             {
-              name: "twitter:title",
-              content: "iotxplorer: iotex network explorer"
+              name: 'twitter:title',
+              content: 'iotxplorer: iotex network explorer',
             },
             {
-              name: "twitter:description",
+              name: 'twitter:description',
               content:
-                "An IoTeX explorer by iotxplorer. An open source collective of IoTeX community leaders, dedicated to adding value to the IoTeX network."
+                'An IoTeX explorer by iotxplorer. An open source collective of IoTeX community leaders, dedicated to adding value to the IoTeX network.',
             },
             {
-              name: "twitter:image",
+              name: 'twitter:image',
               content:
-                "https://www.iotxplorer.io/dashboard-meta-image-template-twit.png"
-            }
+                'https://www.iotxplorer.io/dashboard-meta-image-template-twit.png',
+            },
           ]}
         />
 
@@ -180,19 +180,19 @@ export class StakingDashboard extends Component {
               <section
                 class='hero welcome is-small is-primary'
                 style={{
-                  marginBottom: "12px"
+                  marginBottom: '12px',
                 }}
               >
                 <div class='hero-body'>
-                  <div class='container' style={{ margin: "0px" }}>
+                  <div class='container' style={{margin: '0px'}}>
                     <h1 class='title'>Dashboard</h1>
                     <h2 class='subtitle'>
-                      version 0.1.2{" "}
+                      version 0.1.2{' '}
                       <span
                         className='tag is-light'
                         style={{
-                          paddingLeft: "0px",
-                          verticalAlign: "inherit"
+                          paddingLeft: '0px',
+                          verticalAlign: 'inherit',
                         }}
                       >
                         <i className='fas fa-circle live-tag-icon' />
@@ -211,7 +211,7 @@ export class StakingDashboard extends Component {
                 <div class='tile is-ancestor has-text-centered'>
                   <div class='tile is-parent'>
                     <article class='tile is-child box dashboard-card'>
-                      <p class='title' style={{ color: "#ffffff" }}>
+                      <p class='title' style={{color: '#ffffff'}}>
                         {this.rankHandler(this.props.iotxplorerDelegateData)}
                       </p>
                       <p class='subtitle'>Rank</p>
@@ -219,7 +219,7 @@ export class StakingDashboard extends Component {
                   </div>
                   <div class='tile is-parent'>
                     <article class='tile is-child box dashboard-card'>
-                      <p class='title' style={{ color: "#ffffff" }}>
+                      <p class='title' style={{color: '#ffffff'}}>
                         {this.formDashboardStats(this.props.delegateData)[0]}
                       </p>
                       <p class='subtitle'>Votes</p>
@@ -227,7 +227,7 @@ export class StakingDashboard extends Component {
                   </div>
                   <div class='tile is-parent'>
                     <article class='tile is-child box dashboard-card'>
-                      <p class='title' style={{ color: "#ffffff" }}>
+                      <p class='title' style={{color: '#ffffff'}}>
                         {this.formDashboardStats(this.props.delegateData)[1]}%
                       </p>
                       <p class='subtitle'>Vote Percent</p>
@@ -235,7 +235,7 @@ export class StakingDashboard extends Component {
                   </div>
                   <div class='tile is-parent'>
                     <article class='tile is-child box dashboard-card'>
-                      <p class='title' style={{ color: "#ffffff" }}>
+                      <p class='title' style={{color: '#ffffff'}}>
                         ~{this.calculateROI()}%
                       </p>
                       <p class='subtitle'>Live ROI</p>
@@ -247,10 +247,10 @@ export class StakingDashboard extends Component {
               <section>
                 <div
                   class='columns is-multiline'
-                  style={{ paddingTop: "16px" }}
+                  style={{paddingTop: '16px'}}
                 >
                   <div class='column is-6'>
-                    <div class='panel' style={{ height: "385px" }}>
+                    <div class='panel' style={{height: '385px'}}>
                       <p class='panel-heading'>IOTX/BTC: 24h</p>
                       <TradingViewWidget symbol='BINANCE:IOTXBTC' autosize />
                     </div>

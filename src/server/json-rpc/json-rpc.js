@@ -1,14 +1,14 @@
 // @flow
 export function setJsonRpcRoutes(server: any) {
-  server.all("api/wallet-core/", "api/wallet-core/", async ctx => {
-    const { jsonrpc, id, method, params } = ctx.request.body;
+  server.all('api/wallet-core/', 'api/wallet-core/', async ctx => {
+    const {jsonrpc, id, method, params} = ctx.request.body;
     setCors(ctx);
     try {
       const result = await server.gateways.walletCore[method](...params);
       return (ctx.response.body = {
         id,
         jsonrpc,
-        result
+        result,
       });
     } catch (e) {
       return (ctx.response.body = {
@@ -16,18 +16,18 @@ export function setJsonRpcRoutes(server: any) {
         jsonrpc,
         error: {
           code: -32600,
-          message: JSON.stringify(e)
-        }
+          message: JSON.stringify(e),
+        },
       });
     }
   });
 }
 
 function setCors(ctx) {
-  ctx.set("Access-Control-Allow-Origin", "*");
-  ctx.set("Access-Control-Allow-Methods", "POST", "GET");
+  ctx.set('Access-Control-Allow-Origin', '*');
+  ctx.set('Access-Control-Allow-Methods', 'POST', 'GET');
   ctx.set(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+    'Access-Control-Allow-Headers',
+    'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
   );
 }

@@ -1,6 +1,6 @@
 import {createViewRoutes} from '../../view-routes';
 import {rootReducer} from '../../common/root/root-reducer';
-import { HOW_TO_STAKE } from '../../common/site-url';
+import {HOW_TO_STAKE} from '../../common/site-url';
 
 export function setHowToStakeRoutes(server) {
 

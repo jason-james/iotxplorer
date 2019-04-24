@@ -6,7 +6,6 @@ import document from 'global/document';
 import window from 'global/window';
 import {assetURL} from '../../lib/asset-url';
 
-
 class IotexExplorerTitle extends Component {
 
   render() {

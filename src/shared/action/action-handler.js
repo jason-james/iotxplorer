@@ -1,18 +1,18 @@
-import { createViewRoutes } from "../view-routes";
-import { rootReducer } from "../common/root/root-reducer";
-import { ACTION } from "../common/site-url";
+import {createViewRoutes} from '../view-routes';
+import {rootReducer} from '../common/root/root-reducer';
+import {ACTION} from '../common/site-url';
 
 export function setActionRoutes(server) {
   function actionHandler(ctx, next) {
     ctx.isoRender({
       vDom: createViewRoutes(server.routePrefix()),
       reducer: rootReducer,
-      clientScript: "/main.js"
+      clientScript: '/main.js',
     });
   }
 
   const {
-    gateways: { RpcMethod }
+    gateways: {RpcMethod},
   } = server;
 
   async function getAction(ctx, next) {
@@ -20,24 +20,24 @@ export function setActionRoutes(server) {
       const response = await RpcMethod.getActions({
         byHash: {
           actionHash: ctx.request.body.byHash.actionHash,
-          checkingPending: false
-        }
+          checkingPending: false,
+        },
       });
       const actionInfo = response.actionInfo;
       ctx.body = {
         ok: true,
-        actionInfo
+        actionInfo,
       };
     } catch (error) {
       ctx.body = {
         ok: false,
-        error: { code: "FAIL_GET_ACTION", message: "action.error.fail" }
+        error: {code: 'FAIL_GET_ACTION', message: 'action.error.fail'},
       };
     }
   }
 
-  server.get("action", ACTION.INDEX, actionHandler);
-  server.post("getAction", ACTION.GET, getAction);
+  server.get('action', ACTION.INDEX, actionHandler);
+  server.post('getAction', ACTION.GET, getAction);
 }
 
 const FULL_ACTION_INFO = `

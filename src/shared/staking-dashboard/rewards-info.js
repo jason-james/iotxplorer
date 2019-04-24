@@ -1,19 +1,19 @@
-import Component from "inferno-component";
-import axios from "axios";
-import AnimateHeight from "../../lib/height-animate";
-import "babel-polyfill";
-import { ChartistGraph } from "../../shared/chart-helper/chart-helper";
+import Component from 'inferno-component';
+import axios from 'axios';
+import AnimateHeight from '../../lib/height-animate';
+import 'babel-polyfill';
+import {ChartistGraph} from '../../shared/chart-helper/chart-helper';
 export class RewardsInfo extends Component {
   constructor(props: any) {
     super(props);
     this.state = {
-      address: "",
+      address: '',
       tableContent: [],
       chartData: [],
       pageNumber: 1,
       maxPages: null,
       height: 0,
-      error: null
+      error: null,
     };
   }
 
@@ -30,8 +30,8 @@ export class RewardsInfo extends Component {
       const response = await axios.get(url);
       const tableContent = response.data.rewardHistory;
       this.setState({
-        tableContent: tableContent,
-        pageNumber: this.state.pageNumber
+        tableContent,
+        pageNumber: this.state.pageNumber,
       });
       return tableContent;
     } catch (err) {
@@ -45,50 +45,50 @@ export class RewardsInfo extends Component {
     try {
       const response = await axios.get(url);
       const chartData = response.data.rewardHistory;
-      this.setState({ chartData, error: false });
+      this.setState({chartData, error: false});
     } catch (err) {
       console.log(err);
-      this.setState({ error: true });
+      this.setState({error: true});
     }
   };
 
   formChartData = data => {
     const axes = {
       labels: [],
-      series: [[]]
+      series: [[]],
     };
     const toChart = data.slice(0, 8);
     toChart.forEach(current => {
-      let date = new Date(current.timestamp * 1000).toDateString();
-      var parsedDate = date.slice(3, -4);
+      const date = new Date(current.timestamp * 1000).toDateString();
+      const parsedDate = date.slice(3, -4);
       axes.labels.push(parsedDate);
       axes.series[0].push(current.rewards);
     });
     axes.labels = axes.labels.reverse();
     axes.series[0] = axes.series[0].reverse();
-    axes.labels[7] = "";
+    axes.labels[7] = '';
     return axes;
   };
 
   handleNextClick = () => {
     if (this.state.maxPages === null) {
       this.setState({
-        maxPages: Math.ceil(this.state.tableContent.length / 8)
+        maxPages: Math.ceil(this.state.tableContent.length / 8),
       });
     }
     if (this.state.pageNumber <= this.state.maxPages) {
-      this.setState({ pageNumber: this.state.pageNumber + 1 });
+      this.setState({pageNumber: this.state.pageNumber + 1});
     }
   };
 
   handlePrevClick = () => {
     if (this.state.pageNumber !== 1) {
-      this.setState({ pageNumber: this.state.pageNumber - 1 });
+      this.setState({pageNumber: this.state.pageNumber - 1});
     }
   };
 
   findChartHigh = () => {
-    let arr = [];
+    const arr = [];
     this.state.chartData.map(current => {
       arr.push(current.rewards);
     });
@@ -96,28 +96,28 @@ export class RewardsInfo extends Component {
   };
 
   render() {
-    var type = "Line";
-    var options = {
+    const type = 'Line';
+    const options = {
       low: 0,
       high: this.findChartHigh(),
       width: 684,
       height: 368,
       showArea: true,
       fullWidth: true,
-      chartPadding: { right: 40 }
+      chartPadding: {right: 40},
     };
 
-    var responsiveOptions = [
+    const responsiveOptions = [
       [
-        "screen and (max-width: 640px)",
+        'screen and (max-width: 640px)',
         {
           width: 350,
-          height: 270
-        }
-      ]
+          height: 270,
+        },
+      ],
     ];
 
-    let data = this.formChartData(this.state.tableContent);
+    const data = this.formChartData(this.state.tableContent);
 
     return (
       <section>
@@ -125,28 +125,28 @@ export class RewardsInfo extends Component {
           onSubmit={e => {
             this.fetchVoterHistory(e);
             this.fetchChartData(e);
-            this.setState({ height: "auto" });
+            this.setState({height: 'auto'});
           }}
-          style={{ marginBottom: "4px" }}
+          style={{marginBottom: '4px'}}
         >
-          <div class='field has-addons' style={{ height: "60px" }}>
-            <div class='control' style={{ width: "100%" }}>
+          <div class='field has-addons' style={{height: '60px'}}>
+            <div class='control' style={{width: '100%'}}>
               <input
                 class='input'
                 type='text'
                 placeholder='Enter your ethereum address'
-                style={{ height: "50px", border: "2px solid #00d1b2" }}
-                onChange={e => this.setState({ address: e.target.value })}
+                style={{height: '50px', border: '2px solid #00d1b2'}}
+                onChange={e => this.setState({address: e.target.value})}
               />
             </div>
             <div class='control'>
               <a
                 class='button is-primary'
-                style={{ height: "50px" }}
+                style={{height: '50px'}}
                 onClick={e => {
                   this.fetchVoterHistory(e);
                   this.fetchChartData(e);
-                  this.setState({ height: "auto" });
+                  this.setState({height: 'auto'});
                 }}
               >
                 Search
@@ -157,7 +157,7 @@ export class RewardsInfo extends Component {
 
         <AnimateHeight duration={500} height={this.state.height}>
           {this.state.error === true ? (
-            <article class='message is-info' style={{ marginBottom: "12px" }}>
+            <article class='message is-info' style={{marginBottom: '12px'}}>
               <div class='message-header'>
                 <p>Oh, no!</p>
               </div>
@@ -165,19 +165,19 @@ export class RewardsInfo extends Component {
                 You didn't enter a valid address. Either you have not yet voted
                 for iotxplorer or you have not been voting long enough to be a
                 part of the most recent reward cycle. To find out when your
-                first reward will be, visit{" "}
+                first reward will be, visit{' '}
                 <a href='https://t.me/iotxplorer' target='_blank'>
                   t.me/iotxplorer.
                 </a>
               </div>
             </article>
           ) : (
-            <div class='columns is-multiline' style={{ paddingTop: "12px" }}>
+            <div class='columns is-multiline' style={{paddingTop: '12px'}}>
               <div
                 class='column is-6 mobile-chartist'
-                style={{ paddingTop: "0px" }}
+                style={{paddingTop: '0px'}}
               >
-                <div class='panel' style={{ height: "425px" }}>
+                <div class='panel' style={{height: '425px'}}>
                   <p class='panel-heading'>Rewards</p>
                   <div class='panel-block'>
                     <ChartistGraph
@@ -210,12 +210,12 @@ export class RewardsInfo extends Component {
                   </div>
                 </div>
               </div>
-              <div class='column is-6' style={{ paddingTop: "0px" }}>
+              <div class='column is-6' style={{paddingTop: '0px'}}>
                 <div className='card'>
                   <div className='table-container'>
                     <table
                       class='table is-fullwidth is-striped is-scrollable table-container'
-                      style={{ marginBottom: "0px" }}
+                      style={{marginBottom: '0px'}}
                     >
                       <thead>
                         <tr>
@@ -234,7 +234,7 @@ export class RewardsInfo extends Component {
                               <td>
                                 {new Date(
                                   currentElement.timestamp * 1000
-                                ).toLocaleString("en-US", { timeZone: "UTC" })}
+                                ).toLocaleString('en-US', {timeZone: 'UTC'})}
                               </td>
                               <td>{currentElement.votes.toFixed(2)}</td>
                               <td>{currentElement.rewardsShare.toFixed(2)}%</td>
@@ -255,8 +255,8 @@ export class RewardsInfo extends Component {
                       </tbody>
                     </table>
                   </div>
-                  <footer class='card-footer' style={{ padding: "0.5rem" }}>
-                    <nav className='level' style={{ width: "641px" }}>
+                  <footer class='card-footer' style={{padding: '0.5rem'}}>
+                    <nav className='level' style={{width: '641px'}}>
                       <div className='level-left'>
                         <div className='level-item'>
                           <nav
@@ -288,8 +288,8 @@ export class RewardsInfo extends Component {
                       </div>
                       <div className='level-right'>
                         <div className='level-item'>
-                          <div style={{ fontSize: "12px" }}>
-                            Page {this.state.pageNumber} of{" "}
+                          <div style={{fontSize: '12px'}}>
+                            Page {this.state.pageNumber} of{' '}
                             {Math.ceil(this.state.chartData.length / 8)}
                           </div>
                         </div>

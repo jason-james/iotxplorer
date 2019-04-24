@@ -1,10 +1,10 @@
-import { styled } from "styletron-inferno";
-import Component from "inferno-component";
-import inferno from "inferno-component";
-import { Link } from "inferno-router";
+import {styled} from 'styletron-inferno';
+import Component from 'inferno-component';
+import inferno from 'inferno-component';
+import {Link} from 'inferno-router';
 
-import { EducationHeader } from "../education-header";
-import { assetURL } from "../../../lib/asset-url";
+import {EducationHeader} from '../education-header';
+import {assetURL} from '../../../lib/asset-url';
 
 export class UnderstandingIoTeX extends Component {
   render() {
@@ -22,7 +22,7 @@ export class UnderstandingIoTeX extends Component {
                       <li className='is-right'>
                         <Link
                           to='/education/understandingiotex/'
-                          style={{ backgroundColor: "#00d1b2", color: "#fff" }}
+                          style={{backgroundColor: '#00d1b2', color: '#fff'}}
                         >
                           0. Understanding IoTeX
                         </Link>
@@ -235,7 +235,7 @@ export class UnderstandingIoTeX extends Component {
                       </li>
                       <li>
                         <a href='https://t.me/iotxplorer'>
-                          Iotxplorer official Telegram channel{" "}
+                          Iotxplorer official Telegram channel{' '}
                         </a>
                       </li>
                     </ul>
@@ -300,7 +300,7 @@ export class UnderstandingIoTeX extends Component {
                   </div>
                 </div>
               </div>
-            </div>{" "}
+            </div>{' '}
           </div>
         </section>
       </div>
@@ -308,14 +308,14 @@ export class UnderstandingIoTeX extends Component {
   }
 }
 
-const EducationButton = styled("education-buttons", props => ({
-  margin: "2px"
+const EducationButton = styled('education-buttons', props => ({
+  margin: '2px',
 }));
 
 function Introduction() {
   return (
     <div>
-      <h5 style={{ color: "#00d1b2" }}>What is IoTeX?</h5>
+      <h5 style={{color: '#00d1b2'}}>What is IoTeX?</h5>
       <p>
         IoTeX is the auto-scalable and privacy-centric blockchain infrastructure
         for the Internet of Things (IoT). IoTeX is developing several in-house
@@ -327,7 +327,7 @@ function Introduction() {
         “connecting the physical world, block by block.”
       </p>
 
-      <h5 style={{ color: "#00d1b2" }}>Who is the IoTeX team?</h5>
+      <h5 style={{color: '#00d1b2'}}>Who is the IoTeX team?</h5>
       <p>
         IoTeX’s global team is comprised of leading cryptography research
         scientists, top tier engineers (Google, Facebook, Uber, Intel, Bosch),
@@ -336,7 +336,7 @@ function Introduction() {
           <li>
             <a href='https://www.linkedin.com/in/raullenchai/' target='_blank'>
               Raullen Chai
-            </a>{" "}
+            </a>{' '}
             - Ph.D in Cryptography and Research Scientist at University of
             Waterloo. Former Head of Cryptography R&D at Uber and Security
             Engineer at Google. 8+ years of experience in cryptography and
@@ -345,7 +345,7 @@ function Introduction() {
           <li>
             <a href='https://www.linkedin.com/in/donguo/' target='_blank'>
               Qevan Guo
-            </a>{" "}
+            </a>{' '}
             - Ph.D in Machine Learning and Computer Vision at National
             University of Singapore. Former Engineering Manager and Research
             Scientist at Facebook. Investor and advisor to several startups. 20+
@@ -357,7 +357,7 @@ function Introduction() {
               target='_blank'
             >
               Xinxin Fan
-            </a>{" "}
+            </a>{' '}
             - Ph.D in Cryptography at University of Waterloo. Senior Research
             Engineer at Bosch, with 14 years of research and industry experience
             in information security and cryptography. 40+ publications and
@@ -366,7 +366,7 @@ function Introduction() {
           <li>
             <a href='https://www.linkedin.com/in/cbetasun/' target='_blank'>
               Jing Sun
-            </a>{" "}
+            </a>{' '}
             - Founding partner of Sparkland Capital. Led 40+ investments in
             blockchain, security, and IoT. Board director on numerous companies,
             with extensive experience in startups, investments, and building
@@ -375,7 +375,7 @@ function Introduction() {
         </ul>
       </p>
 
-      <h5 style={{ color: "#00d1b2" }}>
+      <h5 style={{color: '#00d1b2'}}>
         What is IoTeX trying to solve and how is it different from other
         projects?
       </h5>
@@ -391,7 +391,7 @@ function Introduction() {
         coordination.
       </p>
       <div className='column is-centered'>
-        <img src={assetURL("/architecture.JPG")} />
+        <img src={assetURL('/architecture.JPG')} />
       </div>
       <p>
         IoTeX is a long term, "technology first" project that is pushing the
@@ -402,27 +402,27 @@ function Introduction() {
         with the future in mind. The team's main innovations include:
         <ul>
           <li>
-            <span style={{ color: "00d1b2" }}>
+            <span style={{color: '00d1b2'}}>
               <strong>Blockchain-in-blockchain architecture</strong>
-            </span>{" "}
+            </span>{' '}
             - utilization of a permissionless root chain and flexible sub-chains
             that enable private networks of connected device data, while also
             allowing for interoperability and secure cross-chain transfers of
             value and data.
           </li>
           <li>
-            <span style={{ color: "00d1b2" }}>
+            <span style={{color: '00d1b2'}}>
               <strong>Privacy-preserving techniques</strong>
-            </span>{" "}
+            </span>{' '}
             - innovative and lightweight cryptography schemes, such as
             lightweight stealth addresses, bulletproofs, and constant size ring
             signatures, are utilized in sub-chains to hide sender, receiver, and
             transaction value, while still allowing for massive throughput.
           </li>
           <li>
-            <span style={{ color: "00d1b2" }}>
+            <span style={{color: '00d1b2'}}>
               <strong>Roll-DPoS consensus mechanism</strong>
-            </span>{" "}
+            </span>{' '}
             - a randomized, delegated proof of stake consensus mechanism that
             provides lightning fast consensus and a more democratic governance
             model than other DPoS schemes.
@@ -437,7 +437,7 @@ function Introduction() {
 function UseCases() {
   return (
     <section>
-      <h4 style={{ color: "#00d1b2" }}>Smart Homes</h4>
+      <h4 style={{color: '#00d1b2'}}>Smart Homes</h4>
       <p>
         In the existing smart home market, many IoT device manufacturers are
         still using out-of-date technologies to develop their products. They
@@ -477,7 +477,7 @@ function UseCases() {
       </p>
 
       <div className='column is-centered'>
-        <img src={assetURL("/smart-home.JPG")} />
+        <img src={assetURL('/smart-home.JPG')} />
       </div>
 
       <p>
@@ -488,7 +488,7 @@ function UseCases() {
         chip to get their devices supported by IoTeX blockchain.
       </p>
 
-      <h4 style={{ color: "#00d1b2" }}>Shared Economies</h4>
+      <h4 style={{color: '#00d1b2'}}>Shared Economies</h4>
       <p>
         In recent years, many companies have focused on shared economies, from
         rides sharing such as Uber/Lyft/Didi, home sharing such as Airbnb, bikes
@@ -536,7 +536,7 @@ function UseCases() {
       </p>
 
       <div className='column is-centered'>
-        <img src={assetURL("/sharing-economy.JPG")} />
+        <img src={assetURL('/sharing-economy.JPG')} />
       </div>
 
       <p>

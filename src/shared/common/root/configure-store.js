@@ -1,10 +1,10 @@
 // @flow
-import isBrowser from "is-browser";
-import thunk from "redux-thunk";
-import window from "global/window";
-import { createStore, applyMiddleware, compose } from "redux";
-import { rootReducer } from "./root-reducer";
-import type { Reducer } from "./root-reducer";
+import isBrowser from 'is-browser';
+import thunk from 'redux-thunk';
+import window from 'global/window';
+import {createStore, applyMiddleware, compose} from 'redux';
+import {rootReducer} from './root-reducer';
+import type {Reducer} from './root-reducer';
 
 export function configureStore(
   initialState: { base: any },

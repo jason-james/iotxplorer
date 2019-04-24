@@ -15,7 +15,7 @@ type Breadcrumb = {
 };
 
 const _paths = ["address", "blocks", "executions", "transfers", "votes"];
-const _restrictedPaths = ["address"];
+const _restrictedPaths = ["address", "blocks", "actions"];
 
 export function cleanPath(paths: string): Array<Breadcrumb> {
   const p = paths.split("/").filter(p => p !== "");
@@ -95,9 +95,8 @@ export class Breadcrumbs extends Component {
           </nav>
         </BreadCrumbStyle>
       );
-    } else {
-      return <div />;
     }
+    return <div />;
   }
 }
 

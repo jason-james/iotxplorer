@@ -1,19 +1,19 @@
 import Component from 'inferno-component';
-import { Tab } from './tab'
+import {Tab} from './tab';
 
-export class Tabs extends Component { 
+export class Tabs extends Component {
 
   render() {
     return (
-      <div className="tabs is-fullwidth is-centered">
+      <div className='tabs is-fullwidth is-centered'>
         <ul>
-          { this.props.tabList.map(tab => 
-              <Tab  tab={tab}
-                    key={tab.name}
-                    activeTab={this.props.activeTab}
-                    changeActiveTab={this.props.changeActiveTab}
-              />
-           )}
+          { this.props.tabList.map(tab =>
+            <Tab tab={tab}
+              key={tab.name}
+              activeTab={this.props.activeTab}
+              changeActiveTab={this.props.changeActiveTab}
+            />
+          )}
         </ul>
       </div>
     );

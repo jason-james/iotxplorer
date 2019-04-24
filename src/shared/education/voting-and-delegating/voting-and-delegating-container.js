@@ -1,12 +1,12 @@
-import { connect } from "inferno-redux";
+import {connect} from 'inferno-redux';
 
-import { VotingAndDelegating } from "./voting-and-delegating";
+import {VotingAndDelegating} from './voting-and-delegating';
 // import * as actions from './education-actions';
 
 export const VotingAndDelegatingContainer = connect(
   function mapStateToProps(state) {
     return {
-      state: state.votingAndDelegating || null
+      state: state.votingAndDelegating || null,
     };
   },
   dispatch => ({})

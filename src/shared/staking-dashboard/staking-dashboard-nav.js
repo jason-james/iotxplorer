@@ -1,9 +1,9 @@
-import Component from "inferno-component";
-import { Link } from "inferno-router";
+import Component from 'inferno-component';
+import {Link} from 'inferno-router';
 
 export class StakingDashboardNav extends Component {
   render() {
-    if (this.props.activeClass === "calculators") {
+    if (this.props.activeClass === 'calculators') {
       return (
         <aside class='column is-2 mobile-spacing'>
           <nav class='menu'>
@@ -31,7 +31,7 @@ export class StakingDashboardNav extends Component {
           </nav>
         </aside>
       );
-    } else if (this.props.activeClass === "how-to-vote") {
+    } else if (this.props.activeClass === 'how-to-vote') {
       return (
         <aside class='column is-2 mobile-spacing'>
           <nav class='menu'>
@@ -59,7 +59,7 @@ export class StakingDashboardNav extends Component {
           </nav>
         </aside>
       );
-    } else if (this.props.activeClass === "dashboard") {
+    } else if (this.props.activeClass === 'dashboard') {
       return (
         <aside class='column is-2'>
           <nav class='menu'>

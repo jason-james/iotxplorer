@@ -19,7 +19,8 @@ import {
   STAKING,
   STAKING_DASHBOARD,
   EDUCATION,
-  HOW_TO_STAKE
+  HOW_TO_STAKE,
+  DASHBOARD
 } from "../site-url";
 import { titleFont } from "../../../shared/common/styles/style-font";
 import { fetchPost } from "../../../lib/fetch-post";
@@ -137,39 +138,12 @@ export class Nav extends Component {
                 >
                   <div className='navbar-end'>
                     <div className='navbar-item has-dropdown is-hoverable'>
-                      <p className='navbar-link'>Blockchain</p>
-                      <div
-                        className='navbar-dropdown'
-                        style={{ paddingTop: "0px", borderTop: "0px" }}
+                      <a
+                        className='navbar-link is-arrowless'
+                        href={STAKING_DASHBOARD.INDEX}
                       >
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={EXECUTIONS.INDEX}
-                        >
-                          {t("meta.executions")}
-                        </a>
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={TRANSFERS.INDEX}
-                        >
-                          {t("meta.transfers")}
-                        </a>
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={BLOCKS.INDEX}
-                        >
-                          {t("meta.blocks")}
-                        </a>
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={VOTES.INDEX}
-                        >
-                          {t("meta.votes")}
-                        </a>
-                      </div>
-                    </div>
-                    <div className='navbar-item has-dropdown is-hoverable'>
-                      <p className='navbar-link'>Resources</p>
+                        Dashboard
+                      </a>
                       <div
                         className='navbar-dropdown'
                         style={{ paddingTop: "0px", borderTop: "0px" }}
@@ -178,13 +152,50 @@ export class Nav extends Component {
                           className='navbar-item nav-dropdown-item'
                           href={STAKING_DASHBOARD.INDEX}
                         >
-                          Dashboard
+                          Member's Portal
                         </a>
                         <a
                           className='navbar-item nav-dropdown-item'
-                          href={EDUCATION.INDEX}
+                          href={STAKING_DASHBOARD.HOW_TO_STAKE}
                         >
-                          Education
+                          How To
+                        </a>
+                        <a
+                          className='navbar-item nav-dropdown-item'
+                          href={STAKING_DASHBOARD.CALCULATORS}
+                        >
+                          Calculators
+                        </a>
+                      </div>
+                    </div>
+                    <div className='navbar-item has-dropdown is-hoverable'>
+                      <a
+                        className='navbar-link is-arrowless'
+                        href={EDUCATION.INDEX}
+                      >
+                        Education
+                      </a>
+                      <div
+                        className='navbar-dropdown'
+                        style={{ paddingTop: "0px", borderTop: "0px" }}
+                      >
+                        <a
+                          className='navbar-item nav-dropdown-item'
+                          href={EDUCATION.UNDERSTANDING_IOTEX}
+                        >
+                          Understanding IoTeX
+                        </a>
+                        <a
+                          className='navbar-item nav-dropdown-item'
+                          href={EDUCATION.VOTING_AND_DELEGATING}
+                        >
+                          Voting and Delegating
+                        </a>
+                        <a
+                          className='navbar-item nav-dropdown-item'
+                          href={EDUCATION.USING_THE_TESTNET}
+                        >
+                          Using the Testnet
                         </a>
                       </div>
                     </div>
@@ -207,32 +218,21 @@ export class Nav extends Component {
                         </a>
                         <a
                           className='navbar-item nav-dropdown-item'
-                          href={STAKING_DASHBOARD.INDEX}
+                          href='https://member.iotex.io/delegate/5c736ba72d01e727d88b9dea'
+                          target='_blank'
                         >
-                          Dashboard
-                        </a>
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={STAKING_DASHBOARD.CALCULATORS}
-                        >
-                          Calculators
-                        </a>
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={HOW_TO_STAKE.INDEX}
-                        >
-                          How to Vote
+                          Voting Profile
                         </a>
                       </div>
                     </div>
-                    <div className='navbar-item has-dropdown is-hoverable'>
+                    {/* <div className='navbar-item has-dropdown is-hoverable'>
                       <p className='navbar-link'>
                         <Icon />
                         {name}
                       </p>
                       <div
                         className='navbar-dropdown'
-                        style={{ paddingTop: "0px", borderTop: "0px" }}
+                        style={{paddingTop: '0px', borderTop: '0px'}}
                       >
                         {chains.map((c, i) => (
                           <a
@@ -247,7 +247,7 @@ export class Nav extends Component {
                           </a>
                         ))}
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -284,136 +284,135 @@ export class Nav extends Component {
           </NavWrapper>
         </div>
       );
-    } else {
-      return (
-        <div className='navbar is-fixed-top' role='navigation'>
-          <NavWrapper>
-            <nav className='navbar is-primary'>
-              <div className='container'>
-                <div className='navbar-brand'>
-                  <a className='navbar-item small-nav-logo' href={SITE_URL}>
-                    <img
-                      src={assetURL("/dark-iotxplorer-logo.png")}
-                      alt='IoTeX Explorer'
-                      width='120'
-                      height='29'
-                    />
-                  </a>
-                  <div
-                    className={`navbar-burger burger ${
-                      this.state.displayDropdownMenu ? "is-active" : ""
-                    }`}
-                    data-target='navMenuColordark-example'
-                    onClick={() => this.toggleDropdownMenu()}
-                  >
-                    <span aria-hidden='true' />
-                    <span aria-hidden='true' />
-                    <span aria-hidden='true' />
-                  </div>
-                </div>
+    }
+    return (
+      <div className='navbar is-fixed-top' role='navigation'>
+        <NavWrapper>
+          <nav className='navbar is-primary'>
+            <div className='container'>
+              <div className='navbar-brand'>
+                <a className='navbar-item small-nav-logo' href={SITE_URL}>
+                  <img
+                    src={assetURL("/dark-iotxplorer-logo.png")}
+                    alt='IoTeX Explorer'
+                    width='120'
+                    height='29'
+                  />
+                </a>
                 <div
-                  className={`navbar-menu is-primary ${
+                  className={`navbar-burger burger ${
                     this.state.displayDropdownMenu ? "is-active" : ""
                   }`}
+                  data-target='navMenuColordark-example'
+                  onClick={() => this.toggleDropdownMenu()}
                 >
-                  <div className='navbar-end'>
-                    <div className='navbar-item has-dropdown is-hoverable'>
-                      <p className='navbar-link'>Blockchain</p>
-                      <div
-                        className='navbar-dropdown'
-                        style={{ paddingTop: "0px", borderTop: "0px" }}
-                      >
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={EXECUTIONS.INDEX}
-                        >
-                          {t("meta.executions")}
-                        </a>
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={TRANSFERS.INDEX}
-                        >
-                          {t("meta.transfers")}
-                        </a>
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={BLOCKS.INDEX}
-                        >
-                          {t("meta.blocks")}
-                        </a>
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={VOTES.INDEX}
-                        >
-                          {t("meta.votes")}
-                        </a>
-                      </div>
-                    </div>
-                    <div className='navbar-item has-dropdown is-hoverable'>
-                      <p className='navbar-link'>Resources</p>
-                      <div
-                        className='navbar-dropdown'
-                        style={{ paddingTop: "0px", borderTop: "0px" }}
-                      >
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={STAKING_DASHBOARD.INDEX}
-                        >
-                          Dashboard
-                        </a>
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={EDUCATION.INDEX}
-                        >
-                          Education
-                        </a>
-                      </div>
-                    </div>
-                    <div className='navbar-item has-dropdown is-hoverable'>
+                  <span aria-hidden='true' />
+                  <span aria-hidden='true' />
+                  <span aria-hidden='true' />
+                </div>
+              </div>
+              <div
+                className={`navbar-menu is-primary ${
+                  this.state.displayDropdownMenu ? "is-active" : ""
+                }`}
+              >
+                <div className='navbar-end'>
+                  <div className='navbar-item has-dropdown is-hoverable'>
+                    <a
+                      className='navbar-link is-arrowless'
+                      href={STAKING_DASHBOARD.INDEX}
+                    >
+                      Dashboard
+                    </a>
+                    <div
+                      className='navbar-dropdown'
+                      style={{ paddingTop: "0px", borderTop: "0px" }}
+                    >
                       <a
-                        className='navbar-link is-arrowless'
+                        className='navbar-item nav-dropdown-item'
+                        href={STAKING_DASHBOARD.INDEX}
+                      >
+                        Member's Portal
+                      </a>
+                      <a
+                        className='navbar-item nav-dropdown-item'
+                        href={STAKING_DASHBOARD.HOW_TO_STAKE}
+                      >
+                        How To
+                      </a>
+                      <a
+                        className='navbar-item nav-dropdown-item'
+                        href={STAKING_DASHBOARD.CALCULATORS}
+                      >
+                        Calculators
+                      </a>
+                    </div>
+                  </div>
+                  <div className='navbar-item has-dropdown is-hoverable'>
+                    <a
+                      className='navbar-link is-arrowless'
+                      href={EDUCATION.INDEX}
+                    >
+                      Education
+                    </a>
+                    <div
+                      className='navbar-dropdown'
+                      style={{ paddingTop: "0px", borderTop: "0px" }}
+                    >
+                      <a
+                        className='navbar-item nav-dropdown-item'
+                        href={EDUCATION.UNDERSTANDING_IOTEX}
+                      >
+                        Understanding IoTeX
+                      </a>
+                      <a
+                        className='navbar-item nav-dropdown-item'
+                        href={EDUCATION.VOTING_AND_DELEGATING}
+                      >
+                        Voting and Delegating
+                      </a>
+                      <a
+                        className='navbar-item nav-dropdown-item'
+                        href={EDUCATION.USING_THE_TESTNET}
+                      >
+                        Using the Testnet
+                      </a>
+                    </div>
+                  </div>
+                  <div className='navbar-item has-dropdown is-hoverable'>
+                    <a
+                      className='navbar-link is-arrowless'
+                      href={STAKING.INDEX}
+                    >
+                      Stake With Us &lt;3
+                    </a>
+                    <div
+                      className='navbar-dropdown'
+                      style={{ paddingTop: "0px", borderTop: "0px" }}
+                    >
+                      <a
+                        className='navbar-item nav-dropdown-item'
                         href={STAKING.INDEX}
                       >
-                        Stake With Us &lt;3
+                        Why Us?
                       </a>
-                      <div
-                        className='navbar-dropdown'
-                        style={{ paddingTop: "0px", borderTop: "0px" }}
+                      <a
+                        className='navbar-item nav-dropdown-item'
+                        href='https://member.iotex.io/delegate/5c736ba72d01e727d88b9dea'
+                        target='_blank'
                       >
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={STAKING.INDEX}
-                        >
-                          Why Us?
-                        </a>
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={STAKING_DASHBOARD.INDEX}
-                        >
-                          Dashboard
-                        </a>
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={STAKING_DASHBOARD.CALCULATORS}
-                        >
-                          Calculators
-                        </a>
-                        <a
-                          className='navbar-item nav-dropdown-item'
-                          href={HOW_TO_STAKE.INDEX}
-                        >
-                          How to Vote
-                        </a>
-                      </div>
+                        Voting Profile
+                      </a>
                     </div>
-                    <div className='navbar-item has-dropdown is-hoverable'>
+                  </div>
+                  {/* <div className='navbar-item has-dropdown is-hoverable'>
                       <p className='navbar-link'>
                         <Icon />
                         {name}
                       </p>
                       <div
                         className='navbar-dropdown'
-                        style={{ paddingTop: "0px", borderTop: "0px" }}
+                        style={{paddingTop: '0px', borderTop: '0px'}}
                       >
                         {chains.map((c, i) => (
                           <a
@@ -428,15 +427,14 @@ export class Nav extends Component {
                           </a>
                         ))}
                       </div>
-                    </div>
-                  </div>
+                    </div> */}
                 </div>
               </div>
-            </nav>
-          </NavWrapper>
-        </div>
-      );
-    }
+            </div>
+          </nav>
+        </NavWrapper>
+      </div>
+    );
   }
 }
 

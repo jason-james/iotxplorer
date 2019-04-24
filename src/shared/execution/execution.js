@@ -157,7 +157,7 @@ class Receipt extends Component {
     if (this.props.fetching) {
       return (
         <LoadingMessage
-          fakeRows={false} 
+          fakeRows={false}
         />
       );
     }

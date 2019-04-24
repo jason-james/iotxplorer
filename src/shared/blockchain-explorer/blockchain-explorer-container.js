@@ -1,19 +1,19 @@
-import { connect } from "inferno-redux";
+import {connect} from 'inferno-redux';
 
-import { fetchExecutions } from "../executions/executions-actions";
-import { fetchTransfers } from "../transfers/transfers-actions";
-import { fetchBlocks } from "../blocks/blocks-actions";
-import { fetchVotes } from "../votes/votes-actions";
+import {fetchExecutions} from '../executions/executions-actions';
+import {fetchTransfers} from '../transfers/transfers-actions';
+import {fetchBlocks} from '../blocks/blocks-actions';
+import {fetchVotes} from '../votes/votes-actions';
 import {
   fetchConsensusMetrics,
   fetchElectionStats,
   fetchbpCandidatesOnContract,
-  fetchBlockMetasByIndex
-} from "../consensus-metrics/consensus-metrics-actions";
-import { BlockchainExplorer } from "./blockchain-explorer";
-import { fetchMarketData } from "./market-dashboard-actions";
-import { fetchChartData } from "./line-chart-actions";
-import { fetchDelegateData } from "../staking-dashboard/staking-dashboard-actions";
+  fetchBlockMetasByIndex,
+} from '../consensus-metrics/consensus-metrics-actions';
+import {fetchDelegateData} from '../staking-dashboard/staking-dashboard-actions';
+import {BlockchainExplorer} from './blockchain-explorer';
+import {fetchMarketData} from './market-dashboard-actions';
+import {fetchChartData} from './line-chart-actions';
 
 export const BlockchainExplorerContainer = connect(
   function mapStateToProps(state) {
@@ -30,7 +30,7 @@ export const BlockchainExplorerContainer = connect(
       chartData: state.lineChart.chartData,
       delegateData: state.stakingDashboard.delegateData,
       fetching: state.fetching,
-      error: state.error
+      error: state.error,
     };
   },
   dispatch => ({
@@ -44,6 +44,6 @@ export const BlockchainExplorerContainer = connect(
     fetchChartData: () => dispatch(fetchChartData()),
     fetchElectionStats: () => dispatch(fetchElectionStats()),
     fetchbpCandidatesOnContract: () => dispatch(fetchbpCandidatesOnContract()),
-    fetchDelegateData: () => dispatch(fetchDelegateData())
+    fetchDelegateData: () => dispatch(fetchDelegateData()),
   })
 )(BlockchainExplorer);

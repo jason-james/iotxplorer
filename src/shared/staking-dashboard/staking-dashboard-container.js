@@ -1,8 +1,8 @@
-import { connect } from "inferno-redux";
+import {connect} from 'inferno-redux';
 
-import { StakingDashboard } from "./staking-dashboard";
-import { fetchDelegateData } from "./staking-dashboard-actions";
-import { fetchIotxplorerDelegateData } from "./staking-dashboard-actions";
+import {StakingDashboard} from './staking-dashboard';
+import {fetchDelegateData} from './staking-dashboard-actions';
+import {fetchIotxplorerDelegateData} from './staking-dashboard-actions';
 // import * as actions from './staking-actions';
 
 export const StakingDashboardContainer = connect(
@@ -10,11 +10,11 @@ export const StakingDashboardContainer = connect(
     return {
       state: state.stakingDashboard || null,
       delegateData: state.stakingDashboard.delegateData,
-      iotxplorerDelegateData: state.stakingDashboard.iotxplorerDelegateData
+      iotxplorerDelegateData: state.stakingDashboard.iotxplorerDelegateData,
     };
   },
   dispatch => ({
     fetchDelegateData: () => dispatch(fetchDelegateData()),
-    fetchIotxplorerDelegateData: () => dispatch(fetchIotxplorerDelegateData())
+    fetchIotxplorerDelegateData: () => dispatch(fetchIotxplorerDelegateData()),
   })
 )(StakingDashboard);

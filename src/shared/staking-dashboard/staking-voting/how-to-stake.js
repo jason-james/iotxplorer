@@ -1,12 +1,12 @@
-import Component from "inferno-component";
-import { StakingDashboardNav } from "../staking-dashboard-nav";
-import { assetURL } from "../../../lib/asset-url";
+import Component from 'inferno-component';
+import {StakingDashboardNav} from '../staking-dashboard-nav';
+import {assetURL} from '../../../lib/asset-url';
 
 export class HowToStake extends Component {
   render() {
     return (
       <div class='section'>
-        <div class='columns' style={{ paddingRight: "6rem" }}>
+        <div class='columns' style={{paddingRight: '6rem'}}>
           <StakingDashboardNav activeClass='how-to-vote' />
 
           <main class='column'>
@@ -14,11 +14,11 @@ export class HowToStake extends Component {
               <section
                 class='hero welcome is-small is-primary'
                 style={{
-                  marginBottom: "26px"
+                  marginBottom: '26px',
                 }}
               >
                 <div class='hero-body'>
-                  <div class='container' style={{ margin: "0px" }}>
+                  <div class='container' style={{margin: '0px'}}>
                     <h1 class='title'>How To Vote</h1>
                   </div>
                 </div>
@@ -48,7 +48,7 @@ export class HowToStakeContent extends Component {
           </article>
 
           <br />
-          <h5 className='title is-5' style={{ color: "#00d1b2" }}>
+          <h5 className='title is-5' style={{color: '#00d1b2'}}>
             Vote using an existing bucket
           </h5>
 
@@ -56,12 +56,12 @@ export class HowToStakeContent extends Component {
             <ol>
               <li>
                 <p>
-                  Login to MetaMask and visit the{" "}
+                  Login to MetaMask and visit the{' '}
                   <span>
                     <a href='https://member.iotex.io/my-votes' target='_blank'>
                       "My Votes"
                     </a>
-                  </span>{" "}
+                  </span>{' '}
                   page on the voting website. You will see your existing
                   buckets. If you have no existing buckets, go to the “Vote
                   using a new bucket” section below.
@@ -124,7 +124,7 @@ export class HowToStakeContent extends Component {
 
           <hr />
 
-          <h5 className='title is-5' style={{ color: "#00d1b2" }}>
+          <h5 className='title is-5' style={{color: '#00d1b2'}}>
             Vote using a new bucket
           </h5>
 
@@ -137,7 +137,7 @@ export class HowToStakeContent extends Component {
 
               <br />
               <div className='columns is-centered'>
-                <img src={assetURL("/voting-1.png")} />
+                <img src={assetURL('/voting-1.png')} />
               </div>
 
               <li>
@@ -158,7 +158,7 @@ export class HowToStakeContent extends Component {
                 </ul>
                 <br />
                 <div className='columns is-centered'>
-                  <img src={assetURL("/voting-4.JPG")} />
+                  <img src={assetURL('/voting-4.JPG')} />
                 </div>
               </li>
 
@@ -170,7 +170,7 @@ export class HowToStakeContent extends Component {
 
               <br />
               <div className='columns is-centered'>
-                <img src={assetURL("/voting-5.JPG")} />
+                <img src={assetURL('/voting-5.JPG')} />
               </div>
 
               <li>
@@ -192,7 +192,7 @@ export class HowToStakeContent extends Component {
 
               <br />
               <div className='columns is-centered'>
-                <img src={assetURL("/voting-6.png")} />
+                <img src={assetURL('/voting-6.png')} />
               </div>
 
               <li>
@@ -202,7 +202,7 @@ export class HowToStakeContent extends Component {
             </ol>
           </p>
 
-          <h5 className='title is-5' style={{ color: "#00d1b2" }}>
+          <h5 className='title is-5' style={{color: '#00d1b2'}}>
             RECOMMENDED GAS LIMITS:
           </h5>
           <p>
@@ -211,18 +211,18 @@ export class HowToStakeContent extends Component {
                 <strong>Vote/Stake:</strong>
                 <ul>
                   <li>
-                    1st window (approve):{" "}
-                    <span style={{ color: "#00d1b2" }}>50,000</span>
+                    1st window (approve):{' '}
+                    <span style={{color: '#00d1b2'}}>50,000</span>
                   </li>
                   <li>
-                    2nd window (process):{" "}
-                    <span style={{ color: "#00d1b2" }}>350,000</span>
+                    2nd window (process):{' '}
+                    <span style={{color: '#00d1b2'}}>350,000</span>
                   </li>
                 </ul>
               </li>
               <li>
                 <strong>Re-stake:</strong> (extend duration or turn auto-stake
-                on/off): <span style={{ color: "#00d1b2" }}>200,000</span>
+                on/off): <span style={{color: '#00d1b2'}}>200,000</span>
               </li>
             </ul>
           </p>

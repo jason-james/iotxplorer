@@ -1,8 +1,8 @@
-import { styled } from "styletron-inferno";
-import Component from "inferno-component";
-import { Link } from "inferno-router";
-import { assetURL } from "../../../lib/asset-url";
-import { EducationHeader } from "../education-header";
+import {styled} from 'styletron-inferno';
+import Component from 'inferno-component';
+import {Link} from 'inferno-router';
+import {assetURL} from '../../../lib/asset-url';
+import {EducationHeader} from '../education-header';
 
 export class VotingAndDelegating extends Component {
   render() {
@@ -20,7 +20,7 @@ export class VotingAndDelegating extends Component {
                       <li className='is-right'>
                         <Link
                           to='/education/understandingiotex/'
-                          style={{ backgroundColor: "#00d1b2", color: "#fff" }}
+                          style={{backgroundColor: '#00d1b2', color: '#fff'}}
                         >
                           0. Understanding IoTeX
                         </Link>
@@ -30,7 +30,7 @@ export class VotingAndDelegating extends Component {
                       <li>
                         <Link
                           to='/education/votingdelegating/'
-                          style={{ backgroundColor: "#00d1b2", color: "#fff" }}
+                          style={{backgroundColor: '#00d1b2', color: '#fff'}}
                         >
                           1. Voting and Delegating
                         </Link>
@@ -87,7 +87,7 @@ export class VotingAndDelegating extends Component {
                   </div>
                 </div>
               </div>
-            </div>{" "}
+            </div>{' '}
           </div>
         </section>
       </div>
@@ -95,8 +95,8 @@ export class VotingAndDelegating extends Component {
   }
 }
 
-const EducationButton = styled("education-buttons", props => ({
-  margin: "2px"
+const EducationButton = styled('education-buttons', props => ({
+  margin: '2px',
 }));
 
 class VotersHandbook extends Component {
@@ -104,13 +104,13 @@ class VotersHandbook extends Component {
     return (
       <section>
         <h5>IoTeX Delegate Program Overview</h5>
-        <h6 style={{ color: "#00d1b2" }}>What is the role of a Voter?</h6>
+        <h6 style={{color: '#00d1b2'}}>What is the role of a Voter?</h6>
         <p>
-          IoTeX is a digital democracy where token holders vote for{" "}
+          IoTeX is a digital democracy where token holders vote for{' '}
           <strong>Delegates</strong> to maintain and grow the network.
         </p>
         <p>
-          The top 36 voted delegates are <strong>Consensus Delegates</strong>{" "}
+          The top 36 voted delegates are <strong>Consensus Delegates</strong>{' '}
           that manage consensus on behalf of the entire IoTeX network and so are
           responsible for:
           <ul>
@@ -119,7 +119,7 @@ class VotersHandbook extends Component {
             <li>Processing smart contracts and transactions</li>
           </ul>
         </p>
-        <h6 style={{ color: "#00d1b2" }}>How to become a Voter?</h6>
+        <h6 style={{color: '#00d1b2'}}>How to become a Voter?</h6>
         <div className='columns is-centered'>
           <img
             src='https://cdn-images-1.medium.com/max/800/1*0HrnSl0R7r70Ihw5ae2cgg.png'
@@ -169,7 +169,7 @@ class VotersHandbook extends Component {
           </ol>
         </p>
 
-        <h6 style={{ color: "#00d1b2" }}>Staking</h6>
+        <h6 style={{color: '#00d1b2'}}>Staking</h6>
         <p>
           There are two concepts that voters need to be aware of:
           <ol>
@@ -201,7 +201,7 @@ class VotersHandbook extends Component {
           />
         </div>
 
-        <h6 style={{ color: "#00d1b2" }}>Voting</h6>
+        <h6 style={{color: '#00d1b2'}}>Voting</h6>
         <p>
           To vote for a delegate, you must use a voting smart contract. One
           wallet can create multiple "buckets" which means you can vote for
@@ -216,7 +216,7 @@ class VotersHandbook extends Component {
           you won't receive any bonus voting power.
         </p>
 
-        <h6 style={{ color: "#00d1b2" }}>Ranking</h6>
+        <h6 style={{color: '#00d1b2'}}>Ranking</h6>
         <p>
           Delegates are rank-ordered in real time based on their total votes
         </p>
@@ -229,7 +229,7 @@ class VotersHandbook extends Component {
           epoch, and of these 36, 24 are randomly
         </p>
 
-        <h6 style={{ color: "#00d1b2" }}>Rewards for Delegates</h6>
+        <h6 style={{color: '#00d1b2'}}>Rewards for Delegates</h6>
         <p>Delegates are rewarded in IOTX tokens every epoch</p>
         <p>
           Rewards are distributed from the rewards pool, consisting of:
@@ -245,7 +245,7 @@ class VotersHandbook extends Component {
           </ul>
         </p>
 
-        <h6 style={{ color: "#00d1b2" }}>Rewards for Voters</h6>
+        <h6 style={{color: '#00d1b2'}}>Rewards for Voters</h6>
         <p>
           Rewards for voters will vary based upon which delegate the voter has
           voted for.
@@ -286,7 +286,7 @@ function HowToStakeContent() {
       </article>
 
       <br />
-      <h5 className='title is-5' style={{ color: "#00d1b2" }}>
+      <h5 className='title is-5' style={{color: '#00d1b2'}}>
         Vote using an existing bucket
       </h5>
 
@@ -294,12 +294,12 @@ function HowToStakeContent() {
         <ol>
           <li>
             <p>
-              Login to MetaMask and visit the{" "}
+              Login to MetaMask and visit the{' '}
               <span>
                 <a href='https://member.iotex.io/my-votes' target='_blank'>
                   "My Votes"
                 </a>
-              </span>{" "}
+              </span>{' '}
               page on the voting website. You will see your existing buckets. If
               you have no existing buckets, go to the “Vote using a new bucket”
               section below.
@@ -358,7 +358,7 @@ function HowToStakeContent() {
 
       <hr />
 
-      <h5 className='title is-5' style={{ color: "#00d1b2" }}>
+      <h5 className='title is-5' style={{color: '#00d1b2'}}>
         Vote using a new bucket
       </h5>
 
@@ -372,7 +372,7 @@ function HowToStakeContent() {
 
           <br />
           <div className='columns is-centered'>
-            <img src={assetURL("/voting-1.png")} />
+            <img src={assetURL('/voting-1.png')} />
           </div>
 
           <li>
@@ -394,7 +394,7 @@ function HowToStakeContent() {
             </ul>
             <br />
             <div className='columns is-centered'>
-              <img src={assetURL("/voting-4.JPG")} />
+              <img src={assetURL('/voting-4.JPG')} />
             </div>
           </li>
 
@@ -406,7 +406,7 @@ function HowToStakeContent() {
 
           <br />
           <div className='columns is-centered'>
-            <img src={assetURL("/voting-5.JPG")} />
+            <img src={assetURL('/voting-5.JPG')} />
           </div>
 
           <li>
@@ -428,7 +428,7 @@ function HowToStakeContent() {
 
           <br />
           <div className='columns is-centered'>
-            <img src={assetURL("/voting-6.png")} />
+            <img src={assetURL('/voting-6.png')} />
           </div>
 
           <li>
@@ -438,7 +438,7 @@ function HowToStakeContent() {
         </ol>
       </p>
 
-      <h5 className='title is-5' style={{ color: "#00d1b2" }}>
+      <h5 className='title is-5' style={{color: '#00d1b2'}}>
         RECOMMENDED GAS LIMITS:
       </h5>
       <p>
@@ -447,18 +447,18 @@ function HowToStakeContent() {
             <strong>Vote/Stake:</strong>
             <ul>
               <li>
-                1st window (approve):{" "}
-                <span style={{ color: "#00d1b2" }}>50,000</span>
+                1st window (approve):{' '}
+                <span style={{color: '#00d1b2'}}>50,000</span>
               </li>
               <li>
-                2nd window (process):{" "}
-                <span style={{ color: "#00d1b2" }}>350,000</span>
+                2nd window (process):{' '}
+                <span style={{color: '#00d1b2'}}>350,000</span>
               </li>
             </ul>
           </li>
           <li>
             <strong>Re-stake:</strong> (extend duration or turn auto-stake
-            on/off): <span style={{ color: "#00d1b2" }}>200,000</span>
+            on/off): <span style={{color: '#00d1b2'}}>200,000</span>
           </li>
         </ul>
       </p>
