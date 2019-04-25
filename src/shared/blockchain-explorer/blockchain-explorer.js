@@ -364,7 +364,7 @@ export class BlockchainExplorer extends Component {
         }
       ],
       [
-        "screen and (max-width: 2559px)",
+        "screen and (max-width: 2270px)",
         {
           width: 555,
           height: 460
