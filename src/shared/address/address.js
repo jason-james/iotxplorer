@@ -364,9 +364,9 @@ export class AddressSummary extends Component {
       },
       {
         c1: "USD Value",
-        c2: `$${(this.props.price.usd * fromRau(a.balance))
-          .toFixed(2)
-          .toLocaleString()}`
+        c2: `$${Number(
+          (this.props.price.usd * fromRau(a.balance)).toFixed(2)
+        ).toLocaleString()}`
       },
       {
         c1: "Total Actions",
