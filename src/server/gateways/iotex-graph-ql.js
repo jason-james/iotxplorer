@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
 export class IotexGraphQL {
   fetchDelegateData() {
     return axios({
-      url: 'https://member.iotex.io/api-gateway/',
-      method: 'post',
+      url: "https://member.iotex.io/api-gateway/",
+      method: "post",
       data: {
         query: `
               query {
@@ -17,17 +17,20 @@ export class IotexGraphQL {
                     logo
                     website
                     socialMedia
+                    serverStatus
+                    location
+                    liveVotesDelta
                   }
                 }
-              `,
-      },
+              `
+      }
     });
   }
 
   fetchIotxplorerData() {
     return axios({
-      url: 'https://member.iotex.io/api-gateway/',
-      method: 'post',
+      url: "https://member.iotex.io/api-gateway/",
+      method: "post",
       data: {
         query: `
               query {
@@ -36,15 +39,15 @@ export class IotexGraphQL {
                     rank
                   }
                 }
-              `,
-      },
+              `
+      }
     });
   }
 
   fetchElectionStats() {
     return axios({
-      url: 'https://member.iotex.io/api-gateway/',
-      method: 'post',
+      url: "https://member.iotex.io/api-gateway/",
+      method: "post",
       data: {
         query: `
               query {
@@ -55,15 +58,15 @@ export class IotexGraphQL {
                     nextEpoch
                   }
                 }
-              `,
-      },
+              `
+      }
     });
   }
 
   fetchbpCandidatesOnContract() {
     return axios({
-      url: 'https://member.iotex.io/api-gateway/',
-      method: 'post',
+      url: "https://member.iotex.io/api-gateway/",
+      method: "post",
       data: {
         query: `
               query {
@@ -72,8 +75,8 @@ export class IotexGraphQL {
                   ioOperatorAddr
                   }
                 }
-              `,
-      },
+              `
+      }
     });
   }
 }

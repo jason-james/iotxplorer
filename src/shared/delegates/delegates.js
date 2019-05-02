@@ -2,35 +2,36 @@
 
 import Component from "inferno-component";
 import Helmet from "inferno-helmet";
+import { styled } from "styletron-inferno";
+import { colors } from "../common/styles/style-color";
+import { colorHover } from "../common/color-hover";
 import isBrowser from "is-browser";
 import window from "global";
 import { CommonMargin } from "../common/common-margin";
+import { EmptyMessage, LoadingMessage } from "../common/message";
+
 import { TableWrapper } from "../common/table-wrapper";
 import type { TDelegate } from "../../entities/delegate-types";
 
 export class Delegates extends Component {
   constructor(props: any) {
     super(props);
-  }
 
-  componentWillMount() {
-    if (isBrowser) {
-      this.props.fetchDelegates();
-    }
+    this.state = {
+      fetchDelegateData: 0
+    };
   }
 
   componentDidMount() {
-    if (isBrowser) {
-      const fetchDelegates = window.setInterval(
-        () => this.props.fetchDelegates(),
-        5000
-      );
-      this.setState({ fetchDelegates });
-    }
-  }
+    this.props.fetchDelegateData();
+    const fetchDelegateData = window.setInterval(
+      () => this.props.fetchDelegateData(),
+      5000
+    );
 
-  componentWillUnmount() {
-    window.clearInterval(this.state.fetchDelegates);
+    this.setState({
+      fetchDelegateData
+    });
   }
 
   render() {
@@ -41,22 +42,7 @@ export class Delegates extends Component {
         <Helmet title={"Delegate - iotxplorer"} />
         <div>
           <h1 className='title'>Delegates</h1>
-          <TableWrapper
-            fetching={delegates.fetching}
-            error={delegates.error}
-            items={delegates.items}
-            name={"Delegates"}
-            displayPagination={false}
-            displayViewMore={false}
-          >
-            {
-              <DelegatesList
-                delegates={delegates.items}
-                width={width}
-                sortAddress={this.props.sortAddress}
-              />
-            }
-          </TableWrapper>
+          <DelegatesList delegates={delegates.delegateData} width={width} />
         </div>
         <CommonMargin />
       </div>
@@ -71,42 +57,99 @@ export class DelegatesList extends Component {
     sortAddress: any
   };
 
+  displayServerStatus = status => {
+    if (status === "ONLINE") {
+      return (
+        <span>
+          <i class='fas fa-signal has-text-primary' /> Online{" "}
+        </span>
+      );
+    } else if (status === "NOT_EQUIPPED") {
+      return (
+        <span>
+          <i class='fas fa-times-circle has-text-danger' /> Offline{" "}
+        </span>
+      );
+    } else {
+      return <span>Pinging...</span>;
+    }
+  };
+
   render() {
     const { delegates } = this.props;
+
+    if (!delegates) {
+      return <LoadingMessage />;
+    }
+    let percentArr = [];
+    let cumulativeArr = [];
+    delegates.forEach(el => {
+      percentArr.push(parseFloat(el.percent));
+    });
 
     return (
       <table className='bx--data-table-v2'>
         <thead>
           <tr>
             <th>Rank</th>
-            <th>
-              Address <button onClick={this.props.sortAddress}>Sort</button>
-            </th>
-            <th>Creation Height</th>
-            <th>Last Update Height</th>
-            <th>Total Vote</th>
+            <th>Delegate Name</th>
+            <th>Server Status</th>
+            <th>Votes</th>
+            <th>Cumulative Share</th>
+            <th style={{ textAlign: "center" }}>Location</th>
+            <th />
           </tr>
         </thead>
         <tbody>
-          {delegates.map((d, i) => (
-            <tr
-              style={{
-                backgroundColor: d.isDelegate
-                  ? d.isProducer
-                    ? "green"
-                    : "blue"
-                  : ""
-              }}
-              className='bx--parent-row-v2'
-              data-parent-row
-            >
-              <td>{i + 1}</td>
-              <td>{d.address}</td>
-              <td>{d.creationHeight}</td>
-              <td>{d.lastUpdateHeight}</td>
-              <td>{d.totalVote}</td>
-            </tr>
-          ))}
+          {delegates.map((d, i, arr) => {
+            percentArr.reduce(function(a, b, i) {
+              return (cumulativeArr[i] = a + b);
+            }, 0);
+            return (
+              <tr className='bx--parent-row-v2' data-parent-row>
+                <td>{i + 1}</td>
+                <td>{d.name}</td>
+                <td>{this.displayServerStatus(d.serverStatus)}</td>
+                <td>
+                  {Number(d.liveVotes).toLocaleString()}
+                  <div style={{ color: "#00d1b2", fontSize: "0.8rem" }}>
+                    {d.percent}%
+                  </div>
+                </td>
+                <td>
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "100%",
+                      position: "relative"
+                    }}
+                  >
+                    <div
+                      className='cumulative-table-fill'
+                      style={{
+                        width: `${cumulativeArr[i]}%`
+                      }}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      textAlign: "right",
+                      position: "absolute",
+                      paddingLeft: "120px"
+                    }}
+                  >
+                    <p>{cumulativeArr[i].toFixed(2)}%</p>
+                  </div>
+                </td>
+                <td style={{ textAlign: "center" }}>{d.location}</td>
+                <td>
+                  <a className='button is-small is-primary' href={d.website}>
+                    Website
+                  </a>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     );

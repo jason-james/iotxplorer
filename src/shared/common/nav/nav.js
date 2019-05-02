@@ -20,7 +20,8 @@ import {
   STAKING_DASHBOARD,
   EDUCATION,
   HOW_TO_STAKE,
-  DASHBOARD
+  DASHBOARD,
+  DELEGATES
 } from "../site-url";
 import { titleFont } from "../../../shared/common/styles/style-font";
 import { fetchPost } from "../../../lib/fetch-post";
@@ -137,6 +138,13 @@ export class Nav extends Component {
                   }`}
                 >
                   <div className='navbar-end'>
+                    <a
+                      className='navbar-item  is-hoverable'
+                      href={DELEGATES.INDEX}
+                      style={{ marginRight: "12px" }}
+                    >
+                      Delegates
+                    </a>
                     <div className='navbar-item has-dropdown is-hoverable'>
                       <a
                         className='navbar-link is-arrowless'
@@ -317,9 +325,16 @@ export class Nav extends Component {
                 }`}
               >
                 <div className='navbar-end'>
-                  <div className='navbar-item has-dropdown is-hoverable'>
+                  <a
+                    className='navbar-item is-hoverable is-arrowless'
+                    href={DELEGATES.INDEX}
+                    style={{ marginRight: "12px" }}
+                  >
+                    Delegates
+                  </a>
+                  <div className='navbar-item is-hoverable'>
                     <a
-                      className='navbar-link is-arrowless'
+                      className='navbar-link has-dropdown is-arrowless'
                       href={STAKING_DASHBOARD.INDEX}
                     >
                       Dashboard
