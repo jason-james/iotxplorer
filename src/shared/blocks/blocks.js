@@ -101,6 +101,29 @@ export class Blocks extends Component {
 }
 
 export class BlocksList extends Component {
+  findProducerName = address => {
+    if (this.props.tipBlockMeta) {
+      var producerAddr = address;
+
+      const newArray = this.props.allContractData.filter(function(el) {
+        return el.ioOperatorAddr === producerAddr;
+      });
+
+      if (newArray !== [] && newArray[0]) {
+        const registeredName = newArray[0].name;
+
+        const prod = this.props.memberInfo.filter(function(el) {
+          return el.registeredName === registeredName;
+        });
+
+        var producerName = prod[0].name;
+      } else {
+        var producerName = "Robot Delegate";
+      }
+      return producerName;
+    }
+  };
+
   render() {
     const blocks: Array<TBlock> = this.props.blocks;
     if (!blocks) {
@@ -129,7 +152,7 @@ export class BlocksList extends Component {
               {t("meta.timestamp")}
             </th>
             <th>Actions</th>
-            <th>Produced By</th>
+            <th>Producer</th>
             <th
               className={hideColClass(this.props.width) ? "" : "none-on-palm"}
             >
@@ -153,7 +176,9 @@ export class BlocksList extends Component {
                 }
               >
                 {hideColClass(this.props.width) ? (
-                  b.height
+                  <Link to={`/blocks/${b.hash}`} className='link'>
+                    {b.height}
+                  </Link>
                 ) : (
                   <Link to={`/blocks/${b.hash}`} className='link'>
                     {b.height}
@@ -167,8 +192,8 @@ export class BlocksList extends Component {
               </td>
               <td>{b.numActions}</td>
               <td>
-                <Link to={`/address/${b.producerAddress}`} className='link'>
-                  {ellipsisText(b.producerAddress, this.props.width)}
+                <Link to={`/address/${b.producerAddress}`}>
+                  {this.findProducerName(b.producerAddress)}
                 </Link>
               </td>
               <td

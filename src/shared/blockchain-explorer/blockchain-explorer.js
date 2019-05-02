@@ -153,8 +153,8 @@ export class BlockchainExplorer extends Component {
     const fetchBlockMetasByIndex = window.setInterval(() => {
       if (this.props.consensus.metrics.height) {
         this.props.fetchBlockMetasByIndex({
-          start: this.props.consensus.metrics.height - 15,
-          count: 16
+          start: this.props.consensus.metrics.height - 5,
+          count: 6
         });
       }
     }, 500);
@@ -385,6 +385,9 @@ export class BlockchainExplorer extends Component {
       <BlocksList
         blocks={this.props.consensus.blockMetas}
         width={this.props.width}
+        tipBlockMeta={this.props.consensus.blockMetas}
+        allContractData={this.props.consensus.bpCandidatesOnContract}
+        memberInfo={this.props.delegateData}
       />
     );
 
