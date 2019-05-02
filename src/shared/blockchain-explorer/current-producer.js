@@ -15,7 +15,7 @@ export class CurrentProducer extends Component {
     var producerLogo = assetURL("/blocks-spinner.svg");
 
     if (this.props.tipBlockMeta) {
-      var producerAddr = this.props.tipBlockMeta[5].producerAddress;
+      var producerAddr = this.props.tipBlockMeta[0].producerAddress;
 
       const newArray = this.props.allContractData.filter(function(el) {
         return el.ioOperatorAddr === producerAddr;
