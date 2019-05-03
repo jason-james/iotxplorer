@@ -453,7 +453,7 @@ export class BlockchainExplorer extends Component {
           </div>
           <div className='section' style={{ padding: "0px", margin: "0rem" }}>
             <div className='container' style={{ marginTop: "42px" }}>
-              <div className='card'>
+              <div className='card homepage-card'>
                 <Tabs
                   tabList={tabList}
                   activeTab={this.state.activeTab}
@@ -511,7 +511,7 @@ export class BlockchainExplorer extends Component {
           <br />
           <div className='section' style={{ padding: "24px", margin: "0rem" }}>
             <div className='container'>
-              <div className='card'>
+              <div className='card homepage-card'>
                 <h1
                   className='title has-text-centered is-centered'
                   style={{ paddingTop: "1.5rem", marginBottom: "0px" }}
@@ -593,7 +593,7 @@ export class BlockchainExplorer extends Component {
           </div>
           <div className='section' style={{ padding: "0px", margin: "0rem" }}>
             <div className='container' style={{ marginTop: "42px" }}>
-              <div className='card'>
+              <div className='card homepage-card'>
                 <Tabs
                   tabList={tabList}
                   activeTab={this.state.activeTab}
@@ -631,7 +631,7 @@ export class BlockchainExplorer extends Component {
           <br />
           <div className='section' style={{ padding: "24px", margin: "0rem" }}>
             <div className='container'>
-              <div className='card'>
+              <div className='card homepage-card'>
                 <h1
                   className='title has-text-centered is-centered'
                   style={{ paddingTop: "1.5rem", marginBottom: "0px" }}
