@@ -52,21 +52,57 @@ export class RewardsInfo extends Component {
     }
   };
 
+  average = arr => {
+    var sums = {},
+      results = [],
+      timestamp;
+    for (var i = 0; i < arr.length; i++) {
+      timestamp = Math.trunc(arr[i].timestamp);
+      if (!(timestamp in sums)) {
+        sums[timestamp] = 0;
+      }
+      sums[timestamp] += arr[i].rewards;
+    }
+    for (timestamp in sums) {
+      results.push({
+        timestamp: timestamp,
+        rewards: sums[timestamp]
+      });
+    }
+    return results;
+  };
+
+  totalEarned = sums => {
+    var sum = 0;
+
+    if (!sums) {
+      return "...";
+    }
+
+    for (var i = 0; i < sums.length; i++) {
+      sum += sums[i].rewards;
+    }
+
+    return sum;
+  };
+
   formChartData = data => {
+    var toChart = this.average(data);
     const axes = {
       labels: [],
       series: [[]]
     };
-    const toChart = data.slice(0, 8);
+    // const toChart = data.slice(0, 8);
+
     toChart.forEach(current => {
       const date = new Date(current.timestamp * 1000).toDateString();
       const parsedDate = date.slice(3, -4);
       axes.labels.push(parsedDate);
       axes.series[0].push(current.rewards);
     });
-    axes.labels = axes.labels.reverse();
-    axes.series[0] = axes.series[0].reverse();
-    axes.labels[7] = "";
+    // axes.labels = axes.labels.reverse();
+    // axes.series[0] = axes.series[0].reverse();
+    // axes.labels[7] = "";
     return axes;
   };
 
@@ -100,7 +136,7 @@ export class RewardsInfo extends Component {
     const options = {
       low: 0,
       high: this.findChartHigh(),
-      width: 684,
+      width: 840,
       height: 368,
       showArea: true,
       fullWidth: true,
@@ -117,7 +153,7 @@ export class RewardsInfo extends Component {
       ]
     ];
 
-    const data = this.formChartData(this.state.tableContent);
+    const data = this.formChartData(this.state.chartData);
 
     return (
       <section>
@@ -294,6 +330,19 @@ export class RewardsInfo extends Component {
               </div>
             </div>
           )}
+          <div class='hero is-small is-dark' style={{ marginBottom: "1rem" }}>
+            <div class='hero-body'>
+              <div class='container has-text-centered'>
+                <h1 class='title'>
+                  {this.totalEarned(this.average(this.state.chartData)).toFixed(
+                    2
+                  )}{" "}
+                  ⬡
+                </h1>
+                <h2 class='subtitle'>Total Earned</h2>
+              </div>
+            </div>
+          </div>
         </AnimateHeight>
       </section>
     );
