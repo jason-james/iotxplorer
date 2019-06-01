@@ -332,9 +332,9 @@ export class Nav extends Component {
                   >
                     Delegates
                   </a>
-                  <div className='navbar-item is-hoverable'>
+                  <div className='navbar-item has-dropdown is-hoverable'>
                     <a
-                      className='navbar-link has-dropdown is-arrowless'
+                      className='navbar-link is-arrowless'
                       href={STAKING_DASHBOARD.INDEX}
                     >
                       Dashboard
