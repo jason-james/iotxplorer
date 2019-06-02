@@ -75,6 +75,18 @@ export class DelegatesList extends Component {
     }
   };
 
+  displayProductivity = (prod, base) => {
+    if (!prod || !base) {
+      return "";
+    } else if (base === 0 || base === "0") {
+      return "Not Selected";
+    } else if (base === null) {
+      return "";
+    } else {
+      return `${prod}/${base}`;
+    }
+  };
+
   render() {
     const { delegates } = this.props;
 
@@ -92,11 +104,13 @@ export class DelegatesList extends Component {
         <thead>
           <tr>
             <th>Rank</th>
+            <th />
             <th>Delegate Name</th>
             <th>Server Status</th>
-            <th>Votes</th>
+            <th>Votes & Percent</th>
             <th>Cumulative Share</th>
             <th style={{ textAlign: "center" }}>Location</th>
+            <th style={{ textAlign: "center" }}>Blocks in Epoch</th>
             <th />
           </tr>
         </thead>
@@ -108,6 +122,16 @@ export class DelegatesList extends Component {
             return (
               <tr className='bx--parent-row-v2' data-parent-row>
                 <td>{i + 1}</td>
+                <td>
+                  <img
+                    src={d.logo}
+                    style={{
+                      objectFit: "contain",
+                      height: "40px",
+                      width: "40px"
+                    }}
+                  />
+                </td>
                 <td>{d.name}</td>
                 <td>{this.displayServerStatus(d.serverStatus)}</td>
                 <td>
@@ -142,6 +166,9 @@ export class DelegatesList extends Component {
                   </div>
                 </td>
                 <td style={{ textAlign: "center" }}>{d.location}</td>
+                <td style={{ textAlign: "center" }}>
+                  {this.displayProductivity(d.productivity, d.productivityBase)}
+                </td>
                 <td>
                   <a className='button is-small is-primary' href={d.website}>
                     Website

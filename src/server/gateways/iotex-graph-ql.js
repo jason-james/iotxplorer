@@ -20,6 +20,8 @@ export class IotexGraphQL {
                     serverStatus
                     location
                     liveVotesDelta
+                    productivity 
+                    productivityBase
                   }
                 }
               `
