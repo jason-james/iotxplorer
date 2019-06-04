@@ -1,17 +1,17 @@
-import Component from 'inferno-component';
-import {styled} from 'styletron-inferno';
-import Helmet from 'inferno-helmet';
+import Component from "inferno-component";
+import { styled } from "styletron-inferno";
+import Helmet from "inferno-helmet";
 
-import window from 'global';
-import {assetURL} from '../lib/asset-url';
-import {t} from '../lib/iso-i18n';
-import {fonts} from './common/styles/style-font';
-import {colors} from './common/styles/style-color';
-import {Footer} from './common/footer';
-import {NavContainer} from './common/nav/nav-container';
-import {Breadcrumbs} from './common/breadcrumbs';
-import {TitleContainer} from './common/iotex-explorer-title';
-import {CookieConsentContainer} from './common/cookie-consent-container';
+import window from "global";
+import { assetURL } from "../lib/asset-url";
+import { t } from "../lib/iso-i18n";
+import { fonts } from "./common/styles/style-font";
+import { colors } from "./common/styles/style-color";
+import { Footer } from "./common/footer";
+import { NavContainer } from "./common/nav/nav-container";
+import { Breadcrumbs } from "./common/breadcrumbs";
+import { TitleContainer } from "./common/iotex-explorer-title";
+import { CookieConsentContainer } from "./common/cookie-consent-container";
 
 export class App extends Component {
   constructor(props) {
@@ -21,11 +21,11 @@ export class App extends Component {
 
   componentDidMount() {
     this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
+    window.addEventListener("resize", this.updateWindowDimensions);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
+    window.removeEventListener("resize", this.updateWindowDimensions);
   }
 
   updateWindowDimensions() {
@@ -33,57 +33,62 @@ export class App extends Component {
   }
 
   render() {
-    const {children} = this.props;
+    const { children } = this.props;
     return (
       <RootStyle>
         <Helmet
           link={[
             {
-              rel: 'stylesheet',
+              rel: "stylesheet",
               href:
-                '//cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css',
+                "//cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"
             },
             {
-              rel: 'stylesheet',
-              href: '//fonts.googleapis.com/css?family=Roboto|Share+Tech',
+              rel: "stylesheet",
+              href:
+                "https://cdn.jsdelivr.net/npm/bulma-switch@2.0.0/dist/css/bulma-switch.min.css"
             },
             {
-              rel: 'stylesheet',
-              href: '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css',
+              rel: "stylesheet",
+              href: "//fonts.googleapis.com/css?family=Roboto|Share+Tech"
             },
             {
-              rel: 'stylesheet',
-              type: 'text/css',
-              href: `${assetURL('/stylesheets/blockchain-explorer.css')}`,
+              rel: "stylesheet",
+              href: "//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"
             },
             {
-              rel: 'stylesheet',
-              type: 'text/css',
-              href: `${assetURL('/stylesheets/custom.css')}`,
+              rel: "stylesheet",
+              type: "text/css",
+              href: `${assetURL("/stylesheets/blockchain-explorer.css")}`
             },
             {
-              rel: 'stylesheet',
-              type: 'text/css',
-              href: `${assetURL('/stylesheets/custom.css')}`,
+              rel: "stylesheet",
+              type: "text/css",
+              href: `${assetURL("/stylesheets/custom.css")}`
             },
+            {
+              rel: "stylesheet",
+              type: "text/css",
+              href: `${assetURL("/stylesheets/custom.css")}`
+            }
           ]}
           script={[
             {
               defer: true,
-              src: 'https://use.fontawesome.com/releases/v5.0.9/js/all.js',
+              src: "https://use.fontawesome.com/releases/v5.0.9/js/all.js"
             },
             {
               defer: true,
-              src: '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js',
-            },
+              src: "//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"
+            }
           ]}
         />
         <NavContainer />
         <Breadcrumbs width={this.props.width} />
-        <div style={{minHeight: '100vh'}}>{children}</div>
+        <div style={{ minHeight: "100vh" }}>{children}</div>
         <CookieConsentContainer
-          content={t('other.cookie.content')}
-          accept={t('other.cookie.accept')}
+          content={t("other.cookie.content")}
+          accept={t("other.cookie.accept")}
         />
         <Footer />
       </RootStyle>
@@ -91,8 +96,8 @@ export class App extends Component {
   }
 }
 
-const RootStyle = styled('div', props => ({
+const RootStyle = styled("div", props => ({
   ...fonts.body,
   backgroundColor: colors.ui02,
-  color: colors.text01,
+  color: colors.text01
 }));
