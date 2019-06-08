@@ -129,21 +129,9 @@ export class Calculators extends Component {
         />
         <div class='columns calc-spacing'>
           <StakingDashboardNav activeClass='calculators' />
-          <div
-            className={
-              this.props.width <= 680
-                ? "column calculator-right"
-                : "column is-2 calculator-right"
-            }
-          />
+          <div className='column is-2 calculator-right' />
 
-          <div
-            className={
-              this.props.width <= 680
-                ? "column calculator-left"
-                : "column is-3 calculator-left"
-            }
-          >
+          <div className='column is-3 calculator-left'>
             <h4 className='title is-4'> Live Rewards Calculator</h4>
             <p>
               The IoTeX Foundation are rewarding Delegates 8 IOTX per block
