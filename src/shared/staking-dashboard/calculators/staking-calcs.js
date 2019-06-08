@@ -123,7 +123,8 @@ export class Calculators extends Component {
             },
             {
               name: "twitter:image",
-              content: `${assetURL("/calculator-preview-meta.jpg")}`
+              content:
+                "https://www.iotxplorer.io/calculator-twitter-meta-image.png"
             }
           ]}
         />

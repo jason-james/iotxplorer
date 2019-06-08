@@ -434,7 +434,8 @@ export class BlockchainExplorer extends Component {
               },
               {
                 name: "twitter:image",
-                content: `${assetURL("/meta-image-large.png")}`
+                content:
+                  "https://www.iotxplorer.io/homepage-meta-image-twitter.png"
               }
             ]}
           />
@@ -574,7 +575,8 @@ export class BlockchainExplorer extends Component {
               },
               {
                 name: "twitter:image",
-                content: `${assetURL("/meta-image-large.png")}`
+                content:
+                  "https://www.iotxplorer.io/homepage-meta-image-twitter.png"
               }
             ]}
           />
