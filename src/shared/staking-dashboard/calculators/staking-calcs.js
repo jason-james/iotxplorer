@@ -36,7 +36,7 @@ export class Calculators extends Component {
     if (this.state.autostake === true) {
       iotxplorerVotes = votes;
       overallRedist =
-        (percent / 100) * 300000 * this.state.stakeDuration * 0.87;
+        (percent / 100) * 366667 * this.state.stakeDuration * 0.87;
 
       bonusVotes = Math.log(this.state.stakeDuration) / Math.log(1.2);
       effectiveVotes = this.state.stakeAmount * (1 + bonusVotes / 100);
@@ -51,7 +51,7 @@ export class Calculators extends Component {
       }
       iotxplorerVotes = votes;
       overallRedist =
-        (percent / 100) * 300000 * this.state.stakeDuration * 0.87;
+        (percent / 100) * 366667 * this.state.stakeDuration * 0.87;
 
       //sums up effective vote for every day in stake period and takes an average
       effectiveVotes =
@@ -127,29 +127,22 @@ export class Calculators extends Component {
             }
           ]}
         />
-        <div
-          class='columns'
-          style={{ paddingRight: "6rem", minHeight: "100vh" }}
-        >
+        <div class='columns calc-spacing'>
           <StakingDashboardNav activeClass='calculators' />
           <div
-            className='column is-2'
-            style={{
-              minHeight: "100%",
-              background: "#00d1b2",
-              marginTop: "-10px"
-            }}
+            className={
+              this.props.width <= 680
+                ? "column calculator-right"
+                : "column is-2 calculator-right"
+            }
           />
 
           <div
-            class='column is-3'
-            style={{
-              minHeight: "100%",
-              background: "#00d1b2",
-              marginTop: "-10px",
-              paddingRight: "9rem",
-              paddingTop: "4rem"
-            }}
+            className={
+              this.props.width <= 680
+                ? "column calculator-left"
+                : "column is-3 calculator-left"
+            }
           >
             <h4 className='title is-4'> Live Rewards Calculator</h4>
             <p>
@@ -157,8 +150,8 @@ export class Calculators extends Component {
               produced, on top of the regular block reward of 8 IOTX per block.
               In addition, all delegates placed in the Top 36 receieve a
               Foundation Bonus of 80 IOTX per epoch, and all delegates in the
-              Top 100 share an average Epoch Bonus of 366,660 IOTX proportional
-              to their vote percentage.{" "}
+              Top 100 share an average Epoch Bonus of 366,667 IOTX per day
+              proportional to their vote percentage.{" "}
             </p>
             <br />
 
@@ -264,7 +257,7 @@ export class Calculators extends Component {
                 <h4 className='title is-4' style={{ paddingTop: "4rem" }}>
                   ⬡ every week
                 </h4>
-                <h1 className='title is-1' style={{ fontSize: "100px" }}>
+                <h1 className='title calculator-font'>
                   {this.state.weeklyReturn}
                 </h1>
               </div>
@@ -272,7 +265,7 @@ export class Calculators extends Component {
                 <h4 className='title is-4' style={{ paddingTop: "4rem" }}>
                   ⬡ every month
                 </h4>
-                <h1 className='title is-1' style={{ fontSize: "100px" }}>
+                <h1 className='title calculator-font'>
                   {this.state.monthlyReturn}
                 </h1>
               </div>
@@ -280,7 +273,7 @@ export class Calculators extends Component {
                 <h4 className='title is-4' style={{ paddingTop: "4rem" }}>
                   ⬡ every year
                 </h4>
-                <h1 className='title is-1' style={{ fontSize: "100px" }}>
+                <h1 className='title calculator-font'>
                   {this.state.yearlyReturn}
                 </h1>
               </div>

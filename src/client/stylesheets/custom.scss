@@ -1,3 +1,50 @@
+@media only screen and (max-width: 640px) {
+  .calc-spacing {
+    min-height: 100vh;
+  }
+
+  .calculator-left {
+    min-height: 100%;
+    background: #00d1b2;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .calculator-right {
+    min-height: 100%;
+    background: #00d1b2;
+    margin-top: -10px;
+    padding-top: 1rem;
+  }
+
+  .calculator-font {
+    font-size: 80px;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  .calc-spacing {
+    padding-right: 6rem;
+    min-height: 100vh;
+  }
+
+  .calculator-left {
+    min-height: 100%;
+    background: #00d1b2;
+    padding-right: 9rem;
+    padding-top: 4rem;
+    margin-top: -10px;
+  }
+  .calculator-right {
+    min-height: 100%;
+    background: #00d1b2;
+    margin-top: -10px;
+  }
+
+  .calculator-font {
+    font-size: 100px;
+  }
+}
+
 /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -77,7 +124,7 @@ input:checked + .slider:before {
 
 @media only screen and (max-width: 640px) {
   .mobile-spacing {
-    margin-top: 32px;
+    margin-top: 48px;
   }
 
   .staking-spacing {

@@ -9,7 +9,8 @@ export const CalculatorsContainer = connect(
     return {
       state: state.calculators || null,
       delegateData: state.stakingDashboard.delegateData,
-      iotxplorerDelegateData: state.stakingDashboard.iotxplorerDelegateData
+      iotxplorerDelegateData: state.stakingDashboard.iotxplorerDelegateData,
+      width: state.app.width
     };
   },
   dispatch => ({

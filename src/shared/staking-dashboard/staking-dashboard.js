@@ -94,28 +94,6 @@ export class StakingDashboard extends Component {
     return data;
   };
 
-  calculateROI() {
-    // use if want a rough ROI calculation in the dashboard cards
-    if (!this.props.delegateData) {
-      return "...";
-    }
-    const CONSTANT = 100000;
-    const overallRedist =
-      0.87 *
-      366667 *
-      365 *
-      (this.formDashboardStats(this.props.delegateData)[1] / 100);
-
-    const bonusVotes = Math.log(350) / Math.log(1.2);
-    const effectiveVotes = CONSTANT * (1 + bonusVotes / 100);
-    const percentOfTotalVotes =
-      effectiveVotes /
-      this.props.delegateData[this.props.iotxplorerDelegateData - 1].liveVotes;
-    const amountGivenBack = percentOfTotalVotes * overallRedist + CONSTANT;
-    const ROI = ((parseInt(amountGivenBack) - CONSTANT) / CONSTANT) * 100;
-    return ROI.toFixed(1);
-  }
-
   render() {
     const data = this.formPieChartData(this.props.delegateData);
     const options = {
