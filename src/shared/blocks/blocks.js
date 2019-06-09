@@ -166,9 +166,9 @@ export class BlocksList extends Component {
               <td
                 className={hideColClass(this.props.width) ? "" : "none-on-palm"}
               >
-                <Link to={`/blocks/${b.hash}`} className='link'>
+                <a href={`/blocks/${b.hash}`} className='link'>
                   {ellipsisText(b.hash, this.props.width)}
-                </Link>
+                </a>
               </td>
               <td
                 className={
@@ -176,13 +176,13 @@ export class BlocksList extends Component {
                 }
               >
                 {hideColClass(this.props.width) ? (
-                  <Link to={`/blocks/${b.hash}`} className='link'>
+                  <a href={`/blocks/${b.hash}`} className='link'>
                     {b.height}
-                  </Link>
+                  </a>
                 ) : (
-                  <Link to={`/blocks/${b.hash}`} className='link'>
+                  <a href={`/blocks/${b.hash}`} className='link'>
                     {b.height}
-                  </Link>
+                  </a>
                 )}
               </td>
               <td
@@ -192,9 +192,9 @@ export class BlocksList extends Component {
               </td>
               <td>{b.numActions}</td>
               <td>
-                <Link to={`/address/${b.producerAddress}`}>
+                <a href={`/address/${b.producerAddress}`}>
                   {this.findProducerName(b.producerAddress)}
-                </Link>
+                </a>
               </td>
               <td
                 className={hideColClass(this.props.width) ? "" : "none-on-palm"}

@@ -25,9 +25,12 @@ export class Action extends Component {
           <TransferSummary
             fetching={this.props.state.fetching}
             action={this.props.state.actionInfo}
+            receipt={this.props.state.receipt}
+            price={this.props.price}
             error={this.props.state.error}
             id={this.props.params.id}
             fetchAction={this.props.fetchAction}
+            fetchActionReceipt={this.props.fetchActionReceipt}
           />
         </div>
         <CommonMargin />
@@ -45,8 +48,25 @@ export class TransferSummary extends Component {
           checkingPending: false
         }
       });
+
+      this.props.fetchActionReceipt({ actionHash: this.props.id });
     }
   }
+
+  buildKeyValueArray = object => {
+    return Object.keys(object).map(key => {
+      if (typeof object[key] === "object") {
+        return {
+          key,
+          value: <pre>{JSON.stringify(object[key], null, 2)}</pre>
+        };
+      }
+      return {
+        key,
+        value: object[key]
+      };
+    });
+  };
 
   getActionType = info => {
     const actionsTypes = [
@@ -75,8 +95,6 @@ export class TransferSummary extends Component {
 
     for (let i = 0; i < actionsTypes.length; i++) {
       if (get(info, `action.core.${actionsTypes[i]}`)) {
-        console.log(actionsTypes[i]);
-
         return actionsTypes[i];
       }
     }
@@ -315,6 +333,47 @@ export class TransferSummary extends Component {
       ];
     }
 
-    return <SingleItemTable subtitle={this.props.id} rows={rows} />;
+    if (actionType === "execution") {
+      let receiptRows = [
+        {
+          c1: "Status",
+          c2:
+            this.props.receipt.status === "1" ? (
+              <span class='tag is-success is-medium'>Successful</span>
+            ) : (
+              <span class='tag is-danger is-medium'>Failed</span>
+            )
+        },
+        {
+          c1: "Block Height",
+          c2: this.props.receipt.blkHeight
+        },
+        {
+          c1: "Gas Fee",
+          c2: (
+            <div>
+              {this.props.receipt.gasConsumed / 1e6} ⬡
+              <br />
+              <div style={{ fontSize: "10pt", color: "#00d1b2" }}>
+                $
+                {(
+                  (this.props.price.usd * this.props.receipt.gasConsumed) /
+                  1e6
+                ).toFixed(4)}
+              </div>
+            </div>
+          )
+        }
+      ];
+
+      return (
+        <div>
+          <SingleItemTable subtitle={this.props.id} rows={rows} />
+          <SingleItemTable subtitle='Receipt' rows={receiptRows} />
+        </div>
+      );
+    } else {
+      return <SingleItemTable subtitle={this.props.id} rows={rows} />;
+    }
   }
 }
