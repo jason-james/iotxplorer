@@ -390,7 +390,7 @@ export class AddressSummary extends Component {
             </thead>
             <tbody>
               {this.props.state.actions.map(currentElement => (
-                <tr>
+                <tr key={currentElement.actHash}>
                   <td>
                     <Link
                       to={`/actions/${currentElement.actHash}`}

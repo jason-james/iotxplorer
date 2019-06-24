@@ -107,6 +107,7 @@ class RecentBlock extends Component {
         {blocks.map(b => (
           <section
             style={{ borderBottom: "1px solid #dadee6", marginBottom: "24px" }}
+            key={b.hash}
           >
             <div className='columns'>
               <TopBarStyle>

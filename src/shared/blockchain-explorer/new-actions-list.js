@@ -131,6 +131,7 @@ export class RecentAction extends Component {
         {this.props.actions.slice(0, 8).map(currentElement => (
           <section
             style={{ borderBottom: "1px solid #dadee6", marginBottom: "6px" }}
+            key={currentElement.actHash}
           >
             <div className='columns blocks-detail is-vcentered'>
               <div className='column is-one-third '>
@@ -167,7 +168,7 @@ export class RecentAction extends Component {
                       style={{ color: "#363636", fontSize: "16px" }}
                     >
                       <i
-                        class='fas fa-long-arrow-alt-right'
+                        className='fas fa-long-arrow-alt-right'
                         style={{
                           fontSize: "24px",
                           marginRight: "14px",
@@ -191,7 +192,7 @@ export class RecentAction extends Component {
                     </div>
                     <div className='columns'>
                       <i
-                        class='fas fa-long-arrow-alt-left'
+                        className='fas fa-long-arrow-alt-left'
                         style={{
                           fontSize: "24px",
                           marginRight: "14px",
@@ -234,7 +235,7 @@ export class RecentAction extends Component {
                       } else
                         return (
                           <span
-                            class='tag is-dark is-small'
+                            className='tag is-dark is-small'
                             style={{ marginLeft: "0" }}
                           >
                             {this.getAmount(currentElement)}
