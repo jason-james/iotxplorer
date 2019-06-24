@@ -34,6 +34,10 @@ export class Delegates extends Component {
     });
   }
 
+  componentWillUnmount() {
+    window.clearInterval(this.state.fetchDelegateData);
+  }
+
   render() {
     const { delegates, width } = this.props;
 

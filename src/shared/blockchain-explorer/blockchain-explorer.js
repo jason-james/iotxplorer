@@ -117,6 +117,10 @@ export class BlockchainExplorer extends Component {
   componentWillUnmount() {
     window.clearInterval(this.state.fetchConsensusMetricsId);
     window.clearInterval(this.state.fetchMarketData);
+    window.clearInterval(this.state.fetchBlockMetasByIndex);
+    window.clearInterval(this.state.fetchActionsByIndex);
+    window.clearInterval(this.state.fetchDelegateData);
+    window.clearInterval(this.state.fetchElectionStats);
 
     window.removeEventListener("resize", this.updateWindowDimensions);
   }

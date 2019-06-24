@@ -40,6 +40,11 @@ export class StakingDashboard extends Component {
     this.setState({ fetchDelegateData, fetchIotxplorerDelegateData });
   }
 
+  componentWillUnmount() {
+    window.clearInterval(this.state.fetchDelegateData);
+    window.clearInterval(this.state.fetchIotxplorerDelegateData);
+  }
+
   rankHandler = iotxplorerDelegateData => {
     if (!iotxplorerDelegateData) {
       return "...";
