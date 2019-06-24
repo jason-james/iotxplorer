@@ -1,17 +1,15 @@
 // @flow
 import { fromRau } from "iotex-client-js/dist/account/utils";
-import Component from "inferno-component";
-import Helmet from "inferno-helmet";
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import isBrowser from "is-browser";
 import jdenticon from "jdenticon";
-import { Link } from "inferno-router";
+import { Link } from "react-router";
 import { get } from "dottie";
 import { publicKeyToAddress } from "iotex-antenna/lib/crypto/crypto";
 import window from "global/window";
 import { fromNow } from "../common/from-now";
 import { CommonMargin } from "../common/common-margin";
-import { ExecutionsListOnlyId } from "../executions/executions";
-import { TransfersListOnlyId } from "../transfers/transfers";
 import type {
   TAddressDetails,
   TTransfer,
@@ -21,11 +19,6 @@ import { EmptyMessage, ErrorMessage, LoadingMessage } from "../common/message";
 import type { Error } from "../../entities/common-types";
 import { t } from "../../lib/iso-i18n";
 import { SingleItemTable } from "../common/single-item-table";
-import { SingleColTable } from "../common/single-col-table";
-import { VotesListOnlyId } from "../votes/votes";
-import { SettleDepositsListOnlyId } from "../deposit/settle-deposit-list";
-import { CreateDepositsListOnlyId } from "../deposit/create-deposit-list";
-import { isValidRawAddress } from "../wallet/validator";
 import type { TExecution } from "../../entities/explorer-types";
 import type { TSettleDeposit } from "../../entities/wallet-types";
 import type {
@@ -74,9 +67,9 @@ export class Address extends Component {
         <Helmet title={`${t("address.title")} - IoTeX`} />
         <div>
           <div>
-            <nav class='level' style={{ marginBottom: "0.5rem" }}>
-              <div class='level-left'>
-                <div class='level-item'>
+            <nav className='level' style={{ marginBottom: "0.5rem" }}>
+              <div className='level-left'>
+                <div className='level-item'>
                   <span
                     style={{ display: "inline-block" }}
                     dangerouslySetInnerHTML={{
@@ -84,7 +77,7 @@ export class Address extends Component {
                     }}
                   />
                 </div>
-                <div class='level-item'>
+                <div className='level-item'>
                   <h1 className='title'>{t("address.title")}</h1>
                 </div>
               </div>
@@ -383,7 +376,7 @@ export class AddressSummary extends Component {
             <thead>
               <tr>
                 <th>
-                  <span class='bx--table-header-label'>Hash</span>
+                  <span className='bx--table-header-label'>Hash</span>
                 </th>
                 <th>Age</th>
                 <th>Block</th>
@@ -418,8 +411,8 @@ export class AddressSummary extends Component {
                   </td>
                   <td>{this.getActionType(currentElement)}</td>
                   <td>
-                    <a
-                      href={`/address/${publicKeyToAddress(
+                    <Link
+                      to={`/address/${publicKeyToAddress(
                         Buffer.from(currentElement.action.senderPubKey)
                       ).toString("Hex")}`}
                     >
@@ -429,7 +422,7 @@ export class AddressSummary extends Component {
                         .toString("Hex")
                         .substr(0, 14)}
                       ..
-                    </a>
+                    </Link>
                   </td>
                   <td>
                     {(() => {
@@ -442,20 +435,20 @@ export class AddressSummary extends Component {
                         sender === this.props.id &&
                         this.getAddress(currentElement)[0] !== "-"
                       ) {
-                        return <span class='tag is-warning'>OUT</span>;
+                        return <span className='tag is-warning'>OUT</span>;
                       }
                       if (sender !== this.props.id) {
-                        return <span class='tag is-light'>IN</span>;
+                        return <span className='tag is-light'>IN</span>;
                       }
                     })()}
                   </td>
                   <td>
-                    <a
-                      href={`/address/${this.getAddress(currentElement)[0]}`}
+                    <Link
+                      to={`/address/${this.getAddress(currentElement)[0]}`}
                       className='link'
                     >
                       {this.getAddress(currentElement)[1]}
-                    </a>
+                    </Link>
                   </td>
                   <td>{this.getAmount(currentElement)}</td>
 
@@ -479,12 +472,12 @@ export class AddressSummary extends Component {
             <div className='level-right'>
               <div className='level-item'>
                 <nav
-                  class='pagination'
+                  className='pagination'
                   role='navigation'
                   aria-label='pagination'
                 >
                   <button
-                    class='pagination-previous is-dark is-inverse'
+                    className='pagination-previous is-dark is-inverse'
                     onClick={e => {
                       this.handlePrevClick();
                       console.log(this.state.pageNumber);
@@ -493,7 +486,7 @@ export class AddressSummary extends Component {
                     Previous
                   </button>
                   <button
-                    class='pagination-next is-dark is-inverse'
+                    className='pagination-next is-dark is-inverse'
                     onClick={e => {
                       this.handleNextClick();
                     }}

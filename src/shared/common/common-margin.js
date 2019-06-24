@@ -1,7 +1,7 @@
 // @flow
 
-import {styled} from 'styletron-inferno';
+import { styled } from "styletron-react";
 
-export const CommonMargin = styled('div', {
-  margin: '8px',
+export const CommonMargin = styled("div", {
+  margin: "8px"
 });

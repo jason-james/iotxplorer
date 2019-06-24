@@ -1,19 +1,19 @@
-import {CONSENSUS_API, DASHBOARD} from '../common/site-url';
+import { CONSENSUS_API, DASHBOARD, ACTION } from "../common/site-url";
 
 export function setConsensusMetricsRoutes(server) {
   const {
-    gateways: {RpcMethod, iotexgraphql},
+    gateways: { RpcMethod, iotexgraphql }
   } = server;
 
   async function getConsensusMetrics(ctx, next) {
     try {
       const chainMeta = await RpcMethod.getChainMeta({});
       const consensusMetrics = chainMeta.chainMeta;
-      ctx.body = {ok: true, consensusMetrics};
+      ctx.body = { ok: true, consensusMetrics };
     } catch (error) {
       ctx.body = {
         ok: false,
-        error: {code: 'FAIL_GET_CONSENSUS', message: 'consensus.error.fail'},
+        error: { code: "FAIL_GET_CONSENSUS", message: "consensus.error.fail" }
       };
     }
   }
@@ -22,11 +22,11 @@ export function setConsensusMetricsRoutes(server) {
     try {
       const response = await iotexgraphql.fetchElectionStats();
       const electionStats = response.data.data.stats;
-      ctx.body = {ok: true, electionStats};
+      ctx.body = { ok: true, electionStats };
     } catch (error) {
       ctx.body = {
         ok: false,
-        error: {code: 'FAIL_GET_DELEGATE_DATA', message: 'error.unknown'},
+        error: { code: "FAIL_GET_DELEGATE_DATA", message: "error.unknown" }
       };
     }
   }
@@ -35,11 +35,11 @@ export function setConsensusMetricsRoutes(server) {
     try {
       const response = await iotexgraphql.fetchbpCandidatesOnContract();
       const bpCandidatesOnContract = response.data.data.bpCandidatesOnContract;
-      ctx.body = {ok: true, bpCandidatesOnContract};
+      ctx.body = { ok: true, bpCandidatesOnContract };
     } catch (error) {
       ctx.body = {
         ok: false,
-        error: {code: 'FAIL_GET_DELEGATE_DATA', message: 'error.unknown'},
+        error: { code: "FAIL_GET_DELEGATE_DATA", message: "error.unknown" }
       };
     }
   }
@@ -49,22 +49,23 @@ export function setConsensusMetricsRoutes(server) {
       const response = await RpcMethod.getBlockMetas({
         byIndex: {
           start: ctx.request.body.start,
-          count: ctx.request.body.count,
-        },
+          count: ctx.request.body.count
+        }
       });
-      const blockMetas = response.blkMetas.sort((m1: any, m2: any) => {
+      const blockMetas = response.blkMetas.sort((m1, m2) => {
         return m2.height - m1.height;
       });
+
       ctx.body = {
         ok: true,
         blockMetas,
         start: ctx.request.body.start,
-        count: ctx.request.body.count,
+        count: ctx.request.body.count
       };
     } catch (error) {
       ctx.body = {
         ok: false,
-        error: {code: 'FAIL_GET_BLKMETA', message: 'blkmeta.error.fail'},
+        error: { code: "FAIL_GET_BLKMETA", message: "blkmeta.error.fail" }
       };
     }
   }
@@ -72,29 +73,51 @@ export function setConsensusMetricsRoutes(server) {
   async function getBlockMeta(ctx, next) {
     try {
       const response = await RpcMethod.getBlockMetas({
-        byHash: {blkHash: ctx.request.body.blkHash},
+        byHash: { blkHash: ctx.request.body.blkHash }
       });
       const blockMeta = response.blkMetas;
       ctx.body = {
         ok: true,
         blockMeta,
-        blkHash: ctx.request.body.blkHash,
+        blkHash: ctx.request.body.blkHash
       };
     } catch (error) {
       ctx.body = {
         ok: false,
-        error: {code: 'FAIL_GET_BLKMETA', message: 'blkmeta.error.fail'},
+        error: { code: "FAIL_GET_BLKMETA", message: "blkmeta.error.fail" }
+      };
+    }
+  }
+
+  async function getActionsByIndex(ctx, next) {
+    try {
+      const response = await RpcMethod.getActions({
+        byIndex: {
+          start: ctx.request.body.start,
+          count: ctx.request.body.count
+        }
+      });
+      const actions = response.actionInfo.reverse();
+      ctx.body = {
+        ok: true,
+        actions
+      };
+    } catch (error) {
+      ctx.body = {
+        ok: false,
+        error: { code: "FAIL_GET_ACTIONS", message: "actions.error.fail" }
       };
     }
   }
 
   server.post(
-    'getbpCandidatesOnContract',
+    "getbpCandidatesOnContract",
     DASHBOARD.CANDIDATE_DATA,
     getbpCandidatesOnContract
   );
-  server.post('getBlockMetas', DASHBOARD.BLOCK_METAS, getBlockMetasByIndex);
-  server.post('getBlockMetasHash', DASHBOARD.BLOCK_META, getBlockMeta);
-  server.post('getConsensusMetrics', CONSENSUS_API, getConsensusMetrics);
-  server.post('getElectionStats', DASHBOARD.ELECTION_STATS, getElectionStats);
+  server.post("getBlockMetas", DASHBOARD.BLOCK_METAS, getBlockMetasByIndex);
+  server.post("getActionsByIndex", ACTION.GET_ACTIONS, getActionsByIndex);
+  server.post("getBlockMetasHash", DASHBOARD.BLOCK_META, getBlockMeta);
+  server.post("getConsensusMetrics", CONSENSUS_API, getConsensusMetrics);
+  server.post("getElectionStats", DASHBOARD.ELECTION_STATS, getElectionStats);
 }

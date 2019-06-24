@@ -1,6 +1,4 @@
-import Component from 'inferno-component';
-import {cloneVNode} from 'inferno-clone-vnode';
-import {Children} from 'inferno-compat';
+import React, { Component, cloneElement, Children } from "react";
 
 export class ChartistGraph extends Component {
   componentWillReceiveProps(newProps) {
@@ -16,7 +14,7 @@ export class ChartistGraph extends Component {
       try {
         this.chartist.detach();
       } catch (err) {
-        throw new Error('Internal chartist error', err);
+        throw new Error("Internal chartist error", err);
       }
     }
   }
@@ -26,9 +24,9 @@ export class ChartistGraph extends Component {
   }
 
   updateChart(config) {
-    const Chartist = require('chartist');
+    const Chartist = require("chartist");
 
-    const {type, data} = config;
+    const { type, data } = config;
     const options = config.options || {};
     const responsiveOptions = config.responsiveOptions || [];
     let event;
@@ -56,18 +54,18 @@ export class ChartistGraph extends Component {
   }
 
   render() {
-    const {className, style, children, data, type} = this.props;
+    const { className, style, children, data, type } = this.props;
     const childrenWithProps =
       children &&
       Children.map(children, child =>
-        cloneVNode(child, {
+        cloneElement(child, {
           type,
-          data,
+          data
         })
       );
     return (
       <div
-        className={`ct-chart ${className || ''}`}
+        className={`ct-chart ${className || ""}`}
         ref={ref => (this.chart = ref)}
         style={style}
       >
@@ -78,35 +76,35 @@ export class ChartistGraph extends Component {
 }
 
 export const BarStyles = {
-  BARS: '0',
-  CANDLES: '1',
-  HOLLOW_CANDLES: '9',
-  HEIKIN_ASHI: '8',
-  LINE: '2',
-  AREA: '3',
-  RENKO: '4',
-  LINE_BREAK: '7',
-  KAGI: '5',
-  POINT_AND_FIGURE: '6',
+  BARS: "0",
+  CANDLES: "1",
+  HOLLOW_CANDLES: "9",
+  HEIKIN_ASHI: "8",
+  LINE: "2",
+  AREA: "3",
+  RENKO: "4",
+  LINE_BREAK: "7",
+  KAGI: "5",
+  POINT_AND_FIGURE: "6"
 };
 
 export const IntervalTypes = {
-  D: 'D',
-  W: 'W',
+  D: "D",
+  W: "W"
 };
 
 export const RangeTypes = {
-  YTD: 'ytd',
-  ALL: 'all',
+  YTD: "ytd",
+  ALL: "all"
 };
 
 export const Themes = {
-  LIGHT: 'Light',
-  DARK: 'Dark',
+  LIGHT: "Light",
+  DARK: "Dark"
 };
 
-const SCRIPT_ID = 'tradingview-widget-script';
-const CONTAINER_ID = 'tradingview-widget';
+const SCRIPT_ID = "tradingview-widget-script";
+const CONTAINER_ID = "tradingview-widget";
 
 export class TradingViewWidget extends Component {
   static defaultProps = {
@@ -119,16 +117,16 @@ export class TradingViewWidget extends Component {
     hide_side_toolbar: true,
     hide_top_toolbar: false,
     interval: IntervalTypes.D,
-    locale: 'en',
+    locale: "en",
     save_image: true,
     show_popup_button: false,
     style: BarStyles.HEIKIN_ASHI,
     theme: Themes.LIGHT,
-    timezone: 'Etc/UTC',
-    toolbar_bg: '#F1F3F6',
-    widgetType: 'widget',
+    timezone: "Etc/UTC",
+    toolbar_bg: "#F1F3F6",
+    widgetType: "widget",
     width: 980,
-    withdateranges: false,
+    withdateranges: false
   };
 
   containerId = `${CONTAINER_ID}-${Math.random()}`;
@@ -145,9 +143,11 @@ export class TradingViewWidget extends Component {
   };
 
   canUseDOM = () =>
-    Boolean(typeof window !== 'undefined' &&
-      window.document &&
-      window.document.createElement);
+    Boolean(
+      typeof window !== "undefined" &&
+        window.document &&
+        window.document.createElement
+    );
 
   appendScript = onload => {
     if (!this.canUseDOM()) {
@@ -157,20 +157,20 @@ export class TradingViewWidget extends Component {
 
     if (this.scriptExists()) {
       /* global TradingView */
-      if (typeof TradingView === 'undefined') {
+      if (typeof TradingView === "undefined") {
         this.updateOnloadListener(onload);
         return;
       }
       onload();
       return;
     }
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.id = SCRIPT_ID;
-    script.type = 'text/javascript';
+    script.type = "text/javascript";
     script.async = true;
-    script.src = 'https://s3.tradingview.com/tv.js';
+    script.src = "https://s3.tradingview.com/tv.js";
     script.onload = onload;
-    document.getElementsByTagName('head')[0].appendChild(script);
+    document.getElementsByTagName("head")[0].appendChild(script);
   };
 
   getScriptElement = () => document.getElementById(SCRIPT_ID);
@@ -188,27 +188,27 @@ export class TradingViewWidget extends Component {
 
   initWidget = () => {
     /* global TradingView */
-    if (typeof TradingView === 'undefined') {
+    if (typeof TradingView === "undefined") {
       return;
     }
 
-    const {widgetType, ...widgetConfig} = this.props;
-    const config = {...widgetConfig, container_id: this.containerId};
+    const { widgetType, ...widgetConfig } = this.props;
+    const config = { ...widgetConfig, container_id: this.containerId };
 
     if (config.autosize) {
       delete config.width;
       delete config.height;
     }
 
-    if (typeof config.interval === 'number') {
+    if (typeof config.interval === "number") {
       config.interval = config.interval.toString();
     }
 
-    if (config.popup_width && typeof config.popup_width === 'number') {
+    if (config.popup_width && typeof config.popup_width === "number") {
       config.popup_width = config.popup_width.toString();
     }
 
-    if (config.popup_height && typeof config.popup_height === 'number') {
+    if (config.popup_height && typeof config.popup_height === "number") {
       config.popup_height = config.popup_height.toString();
     }
 
@@ -220,7 +220,7 @@ export class TradingViewWidget extends Component {
     if (!this.canUseDOM()) {
       return;
     }
-    document.getElementById(this.containerId).innerHTML = '';
+    document.getElementById(this.containerId).innerHTML = "";
   };
 
   getStyle = () => {
@@ -228,8 +228,8 @@ export class TradingViewWidget extends Component {
       return {};
     }
     return {
-      width: '100%',
-      height: '100%',
+      width: "100%",
+      height: "100%"
     };
   };
 

@@ -1,49 +1,48 @@
 // @flow
-import document from 'global/document';
-import StyletronClient from 'styletron-client';
-import {render} from 'inferno';
-import window from 'global/window';
-import {initDevTools} from 'inferno-devtools';
-
-import JSONGlobals from 'safe-json-globals/get';
-import {initAssetURL} from '../../../lib/asset-url';
-import {initClientI18n} from '../../../lib/iso-i18n';
-import {initGoogleAnalytics} from '../google-analytics';
-import {configureStore} from './configure-store';
-import {RootBrowser} from './root-browser';
-import {noopReducer} from './root-reducer';
-import type {Reducer} from './root-reducer';
+import React from "react";
+import document from "global/document";
+import { Client as StyletronClient } from "styletron-engine-atomic";
+import { render } from "react-dom";
+import window from "global/window";
+import JSONGlobals from "safe-json-globals/get";
+import { initAssetURL } from "../../../lib/asset-url";
+import { initClientI18n } from "../../../lib/iso-i18n";
+import { initGoogleAnalytics } from "../google-analytics";
+import { configureStore } from "./configure-store";
+import { RootBrowser } from "./root-browser";
+import { noopReducer } from "./root-reducer";
+import type { Reducer } from "./root-reducer";
 
 export function clientRender({
   reducer = noopReducer,
-  vDom,
+  vDom
 }: {
   reducer: Reducer,
   vDom: any
 }) {
-  const store = configureStore(JSONGlobals('state'), reducer);
+  const store = configureStore(JSONGlobals("state"), reducer);
   const {
     siteURL,
     routePrefix,
     translations,
-    analytics: {googleTid},
+    analytics: { googleTid },
     manifest,
-    csrfToken,
+    csrfToken
   } = store.getState().base;
   window.csrfToken = csrfToken;
 
-  initGoogleAnalytics({tid: googleTid});
+  initGoogleAnalytics({ tid: googleTid });
   initClientI18n(translations);
   initAssetURL(siteURL, routePrefix, manifest);
-  initDevTools();
 
-  const stylesheets = document.getElementsByClassName('styletron-global');
-  const styletron = new StyletronClient(stylesheets, {prefix: '_'});
+  const stylesheets = document.getElementsByClassName("styletron-global");
+
+  const styletron = new StyletronClient({ hydrate: stylesheets, prefix: "_" });
 
   render(
     <RootBrowser store={store} styletron={styletron}>
       {vDom}
     </RootBrowser>,
-    document.getElementById('root')
+    document.getElementById("root")
   );
 }

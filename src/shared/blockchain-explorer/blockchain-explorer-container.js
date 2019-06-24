@@ -1,19 +1,17 @@
-import {connect} from 'inferno-redux';
+import { connect } from "react-redux";
+import { BlockchainExplorer } from "./blockchain-explorer";
 
-import {fetchExecutions} from '../executions/executions-actions';
-import {fetchTransfers} from '../transfers/transfers-actions';
-import {fetchBlocks} from '../blocks/blocks-actions';
-import {fetchVotes} from '../votes/votes-actions';
+import { fetchBlocks } from "../blocks/blocks-actions";
 import {
   fetchConsensusMetrics,
   fetchElectionStats,
   fetchbpCandidatesOnContract,
   fetchBlockMetasByIndex,
-} from '../consensus-metrics/consensus-metrics-actions';
-import {fetchDelegateData} from '../staking-dashboard/staking-dashboard-actions';
-import {BlockchainExplorer} from './blockchain-explorer';
-import {fetchMarketData} from './market-dashboard-actions';
-import {fetchChartData} from './line-chart-actions';
+  fetchActionsByIndex
+} from "../consensus-metrics/consensus-metrics-actions";
+import { fetchDelegateData } from "../staking-dashboard/staking-dashboard-actions";
+import { fetchMarketData } from "./market-dashboard-actions";
+import { fetchChartData } from "./line-chart-actions";
 
 export const BlockchainExplorerContainer = connect(
   function mapStateToProps(state) {
@@ -30,20 +28,20 @@ export const BlockchainExplorerContainer = connect(
       chartData: state.lineChart.chartData,
       delegateData: state.stakingDashboard.delegateData,
       fetching: state.fetching,
-      error: state.error,
+      error: state.error
     };
   },
   dispatch => ({
     fetchExecutions: data => dispatch(fetchExecutions(data)),
     fetchTransfers: data => dispatch(fetchTransfers(data)),
     fetchBlocks: data => dispatch(fetchBlocks(data)),
-    fetchVotes: data => dispatch(fetchVotes(data)),
     fetchBlockMetasByIndex: data => dispatch(fetchBlockMetasByIndex(data)),
+    fetchActionsByIndex: data => dispatch(fetchActionsByIndex(data)),
     fetchConsensusMetrics: () => dispatch(fetchConsensusMetrics()),
     fetchMarketData: () => dispatch(fetchMarketData()),
     fetchChartData: () => dispatch(fetchChartData()),
     fetchElectionStats: () => dispatch(fetchElectionStats()),
     fetchbpCandidatesOnContract: () => dispatch(fetchbpCandidatesOnContract()),
-    fetchDelegateData: () => dispatch(fetchDelegateData()),
+    fetchDelegateData: () => dispatch(fetchDelegateData())
   })
 )(BlockchainExplorer);

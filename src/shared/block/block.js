@@ -1,8 +1,9 @@
 // @flow
 
 import { fromRau } from "iotex-client-js/dist/account/utils";
-import Component from "inferno-component";
-import Helmet from "inferno-helmet";
+import React, { Component } from "react";
+import { Link } from "react-router";
+import { Helmet } from "react-helmet";
 import isBrowser from "is-browser";
 import window from "global";
 import { CommonMargin } from "../common/common-margin";
@@ -12,9 +13,6 @@ import type { TBlock, TTransfer, TVote } from "../../entities/explorer-types";
 import { t } from "../../lib/iso-i18n";
 import { SingleItemTable } from "../common/single-item-table";
 import { SingleColTable } from "../common/single-col-table";
-import { ExecutionsListOnlyId } from "../executions/executions";
-import { TransfersListOnlyId } from "../transfers/transfers";
-import { VotesListOnlyId } from "../votes/votes";
 import type { TExecution } from "../../entities/explorer-types";
 import { fromNow } from "../common/from-now";
 import {
@@ -233,9 +231,9 @@ export class BlockSummary extends Component {
       {
         c1: "Producer",
         c2: (
-          <a href={`/address/${blockMeta.producerAddress}`}>
+          <Link to={`/address/${blockMeta.producerAddress}`}>
             {blockMeta.producerAddress}
-          </a>
+          </Link>
         )
       }
     ];

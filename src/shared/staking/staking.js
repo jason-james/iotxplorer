@@ -1,5 +1,5 @@
-import Component from "inferno-component";
-import Helmet from "inferno-helmet";
+import React, { Component } from "react";
+import {Helmet} from "react-helmet";;
 import { assetURL } from "../../lib/asset-url";
 import { t } from "../../lib/iso-i18n";
 import { STAKING_DASHBOARD, SITE_URL } from "../common/site-url";
@@ -10,7 +10,7 @@ export class Staking extends Component {
   render() {
     return (
       <section>
-        <section class='hero is-primary is-large is-bold'>
+        <section className='hero is-primary is-large is-bold'>
           <Helmet
             title={"iotxplorer: Stake with us <3"}
             meta={[
@@ -58,8 +58,8 @@ export class Staking extends Component {
           <div className='columns' style={{ marginBottom: "0px" }}>
             <div className='column is-two-fifths staking-bg-image' />
             <div className='column staking-spacing'>
-              <h1 class='title'>Always add value.</h1>
-              <h2 class='subtitle'>
+              <h1 className='title'>Always add value.</h1>
+              <h2 className='subtitle'>
                 Add value to the IoTeX network whilst adding to your wallet.
                 Stake with iotxplorer.
               </h2>
@@ -73,7 +73,7 @@ export class Staking extends Component {
                 target='_blank'
                 noValidate={false}
               >
-                <p class='control has-icons-left'>
+                <p className='control has-icons-left'>
                   <input
                     type='email'
                     className='input'
@@ -84,8 +84,8 @@ export class Staking extends Component {
                     required={true}
                     style={{ width: "400px" }}
                   />
-                  <span class='icon is-small is-left'>
-                    <i class='fas fa-envelope' />
+                  <span className='icon is-small is-left'>
+                    <i className='fas fa-envelope' />
                   </span>
                 </p>
                 <input
@@ -103,18 +103,18 @@ export class Staking extends Component {
               </form>
             </div>
           </div>
-          <div class='hero-body' style={{ padding: "0px" }}>
-            <div class='container has-text-centered'>
+          <div className='hero-body' style={{ padding: "0px" }}>
+            <div className='container has-text-centered'>
               {/* <div className='columns'>
                     <div className='column is-half'>
 
                     </div>
 
                     <div className='column'>
-                        <h1 class="title">
+                        <h1 className="title">
                         Always add value.
                         </h1>
-                        <h2 class="subtitle">
+                        <h2 className="subtitle">
                         Add value to the IoTeX network whilst adding to your wallet. Stake with iotxplorer.
                         </h2>
                     </div>
@@ -122,9 +122,9 @@ export class Staking extends Component {
             </div>
           </div>
         </section>
-        <div class='box cta'>
-          <p class='has-text-centered'>
-            <span class='tag is-primary'>New</span> Read our{" "}
+        <div className='box cta'>
+          <p className='has-text-centered'>
+            <span className='tag is-primary'>New</span> Read our{" "}
             <a
               href='https://medium.com/@iotxplorer/who-we-are-an-introduction-to-iotxplorer-35005c020867'
               target='_blank'
@@ -144,11 +144,11 @@ export class Staking extends Component {
           </h2>
         </div>
 
-        <section class='container'>
-          <div class='columns features'>
-            <div class='column is-4'>
-              <div class='card is-shady' style={{ paddingTop: "1.5em" }}>
-                <div class='card-image has-text-centered'>
+        <section className='container'>
+          <div className='columns features'>
+            <div className='column is-4'>
+              <div className='card is-shady' style={{ paddingTop: "1.5em" }}>
+                <div className='card-image has-text-centered'>
                   <img
                     src={assetURL("/undraw-safe.svg")}
                     alt='secure'
@@ -156,8 +156,8 @@ export class Staking extends Component {
                     height='275'
                   />
                 </div>
-                <div class='card-content'>
-                  <div class='content'>
+                <div className='card-content'>
+                  <div className='content'>
                     <h4 style={{ display: "flex", justifyContent: "center" }}>
                       {" "}
                       Secure.{" "}
@@ -176,9 +176,9 @@ export class Staking extends Component {
                 </div>
               </div>
             </div>
-            <div class='column is-4'>
-              <div class='card is-shady' style={{ paddingTop: "1.5em" }}>
-                <div class='card-image has-text-centered'>
+            <div className='column is-4'>
+              <div className='card is-shady' style={{ paddingTop: "1.5em" }}>
+                <div className='card-image has-text-centered'>
                   <img
                     src={assetURL("/undraw-financial-data.png")}
                     alt='profitable'
@@ -186,8 +186,8 @@ export class Staking extends Component {
                     height='250'
                   />
                 </div>
-                <div class='card-content'>
-                  <div class='content'>
+                <div className='card-content'>
+                  <div className='content'>
                     <h4 style={{ display: "flex", justifyContent: "center" }}>
                       {" "}
                       Rewarding.{" "}
@@ -210,9 +210,9 @@ export class Staking extends Component {
                 </div>
               </div>
             </div>
-            <div class='column is-4'>
-              <div class='card is-shady' style={{ paddingTop: "1.5em" }}>
-                <div class='card-image has-text-centered'>
+            <div className='column is-4'>
+              <div className='card is-shady' style={{ paddingTop: "1.5em" }}>
+                <div className='card-image has-text-centered'>
                   <img
                     src={assetURL("/undraw-transparent.svg")}
                     alt='transparent'
@@ -220,8 +220,8 @@ export class Staking extends Component {
                     height='207'
                   />
                 </div>
-                <div class='card-content'>
-                  <div class='content'>
+                <div className='card-content'>
+                  <div className='content'>
                     <h4 style={{ display: "flex", justifyContent: "center" }}>
                       {" "}
                       Transparent.{" "}
@@ -270,8 +270,8 @@ export class Staking extends Component {
             </h2>
           </div>
 
-          <div class='container'>
-            <div class='columns'>
+          <div className='container'>
+            <div className='columns'>
               <div className='column'>
                 <div className='card'>
                   <div className='card-image'>
@@ -318,7 +318,7 @@ export class Staking extends Component {
                   </div>
                 </div>
               </div>
-              <div class='column'>
+              <div className='column'>
                 <div className='card'>
                   <div className='card-image'>
                     <iframe
@@ -358,13 +358,13 @@ export class Staking extends Component {
           </div>
 
           <section
-            class='hero is-light is-medium is-bold'
+            className='hero is-light is-medium is-bold'
             style={{ marginTop: "64px" }}
           >
-            <div class='hero-body'>
-              <div class='container has-text-centered'>
-                <h2 class='title'>We are open to contributions!</h2>
-                <h2 class='subtitle'>
+            <div className='hero-body'>
+              <div className='container has-text-centered'>
+                <h2 className='title'>We are open to contributions!</h2>
+                <h2 className='subtitle'>
                   Please email contact@iotxplorer.io if you are interested.
                 </h2>
               </div>

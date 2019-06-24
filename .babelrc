@@ -1,18 +1,18 @@
 {
   "presets": [
-    "es2017",
-    "es2015"
-  ],
-  "plugins": [
     [
-      "inferno",
+      "@babel/preset-env",
       {
-        "imports": true,
-        "pragma": ""
+        "targets": {
+          "node": "current"
+        }
       }
     ],
-    "transform-flow-strip-types",
-    "transform-object-rest-spread",
-    "transform-class-properties"
+    ["@babel/preset-react"],
+    ["@babel/preset-typescript"]
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "transform-flow-strip-types"
   ]
 }

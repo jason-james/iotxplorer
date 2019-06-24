@@ -1,6 +1,6 @@
 // @flow
 
-import Component from 'inferno-component';
+import React, { Component } from "react";
 import type {Row} from '../../entities/common-types';
 import {t} from '../../lib/iso-i18n';
 

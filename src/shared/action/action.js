@@ -1,11 +1,11 @@
-import Component from "inferno-component";
+import React, { Component } from "react";
+import decamelize from "decamelize";
 import { get } from "dottie";
 import { fromRau } from "iotex-client-js/dist/account/utils";
-
-import { Link } from "inferno-router";
+import { Link } from "react-router";
 import { publicKeyToAddress } from "iotex-antenna/lib/crypto/crypto";
 import isBrowser from "is-browser";
-import Helmet from "inferno-helmet";
+import { Helmet } from "react-helmet";
 import { SuggestGasPriceRequest } from "iotex-antenna/protogen/proto/api/api_pb";
 import { t } from "../../lib/iso-i18n";
 import { ToolTip } from "../common/tooltip";
@@ -95,7 +95,7 @@ export class TransferSummary extends Component {
 
     for (let i = 0; i < actionsTypes.length; i++) {
       if (get(info, `action.core.${actionsTypes[i]}`)) {
-        return actionsTypes[i];
+        return decamelize(actionsTypes[i], " ");
       }
     }
     return "";
@@ -105,7 +105,7 @@ export class TransferSummary extends Component {
     let rows = [];
     const actionType = this.getActionType(this.props.action[0]);
     const action = this.props.action;
-    if (this.props.fetching) {
+    if (this.props.fetching || !action[0] || !this.props.price) {
       return <LoadingMessage fakeRows={false} />;
     }
     if (this.props.error) {
@@ -116,7 +116,7 @@ export class TransferSummary extends Component {
     }
 
     const pubkey = Buffer.from(action[0].action.senderPubKey).toString("Hex");
-    const address = publicKeyToAddress(pubkey);
+    var address = publicKeyToAddress(pubkey);
 
     if (actionType === "grantReward") {
       rows = [
@@ -339,9 +339,9 @@ export class TransferSummary extends Component {
           c1: "Status",
           c2:
             this.props.receipt.status === "1" ? (
-              <span class='tag is-success is-medium'>Successful</span>
+              <span className='tag is-success is-medium'>Successful</span>
             ) : (
-              <span class='tag is-danger is-medium'>Failed</span>
+              <span className='tag is-danger is-medium'>Failed</span>
             )
         },
         {

@@ -1,8 +1,8 @@
 // @flow
 
-import Component from "inferno-component";
-import Helmet from "inferno-helmet";
-import { Link } from "inferno-router";
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
+import { Link } from "react-router";
 import { fromRau } from "iotex-client-js/dist/account/utils";
 import { CommonMargin } from "../common/common-margin";
 import type { TBlock } from "../../entities/explorer-types";
@@ -126,7 +126,7 @@ export class BlocksList extends Component {
 
   render() {
     const blocks: Array<TBlock> = this.props.blocks;
-    if (!blocks) {
+    if (!blocks || !this.props.memberInfo) {
       return <LoadingMessage />;
     }
 
@@ -166,9 +166,9 @@ export class BlocksList extends Component {
               <td
                 className={hideColClass(this.props.width) ? "" : "none-on-palm"}
               >
-                <a href={`/blocks/${b.hash}`} className='link'>
+                <Link to={`/blocks/${b.hash}`} className='link'>
                   {ellipsisText(b.hash, this.props.width)}
-                </a>
+                </Link>
               </td>
               <td
                 className={
@@ -176,13 +176,13 @@ export class BlocksList extends Component {
                 }
               >
                 {hideColClass(this.props.width) ? (
-                  <a href={`/blocks/${b.hash}`} className='link'>
+                  <Link to={`/blocks/${b.hash}`} className='link'>
                     {b.height}
-                  </a>
+                  </Link>
                 ) : (
-                  <a href={`/blocks/${b.hash}`} className='link'>
+                  <Link to={`/blocks/${b.hash}`} className='link'>
                     {b.height}
-                  </a>
+                  </Link>
                 )}
               </td>
               <td
@@ -192,9 +192,9 @@ export class BlocksList extends Component {
               </td>
               <td>{b.numActions}</td>
               <td>
-                <a href={`/address/${b.producerAddress}`}>
+                <Link to={`/address/${b.producerAddress}`}>
                   {this.findProducerName(b.producerAddress)}
-                </a>
+                </Link>
               </td>
               <td
                 className={hideColClass(this.props.width) ? "" : "none-on-palm"}

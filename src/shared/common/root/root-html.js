@@ -1,4 +1,4 @@
-import Helmet from "inferno-helmet";
+import { Helmet } from "react-helmet";
 
 import { assetURL } from "../../../lib/asset-url";
 
@@ -9,12 +9,12 @@ export function rootHtml({
   clientScript,
   nonce
 }) {
-  const styleBody = styletron.injectDeclaration({ prop: "margin", val: 0 });
+  // const styleBody = styletron.injectDeclaration({ prop: "margin", val: 0 });
   const stylesheets = styletron.getStylesheetsHtml("styletron-global");
   const head = Helmet.rewind();
 
   return `<!DOCType html>
-<html ${head.htmlAttributes.toString()} class="has-navbar-fixed-top">
+<html ${head.htmlAttributes.toString()} className="has-navbar-fixed-top">
   <head>
     ${head.title.toString()}
     ${head.meta.toString()}
@@ -51,7 +51,7 @@ export function rootHtml({
       nonce
     )}
   </head>
-  <body class=${styleBody}>
+  <body>
     <div id='root'>${reactMarkup}</div>
     ${
       clientScript

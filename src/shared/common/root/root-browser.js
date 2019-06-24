@@ -1,18 +1,19 @@
-import createBrowserHistory from 'history/createBrowserHistory';
-import {Provider as StyleProvider} from 'styletron-inferno';
-import {Provider} from 'inferno-redux';
-import {Router} from 'inferno-router';
+import React from "react";
+import { Provider } from "react-redux";
+import { Router } from "react-router";
+import { Provider as StyleProvider } from "styletron-react";
+import createBrowserHistory from "history/lib/createBrowserHistory";
 
-const browserHistory = createBrowserHistory();
+export const browserHistory = createBrowserHistory();
 
-export function RootBrowser({store, children, styletron}) {
+export function RootBrowser({ store, children, styletron }) {
   return (
-    <Provider store={store}>
-      <StyleProvider styletron={styletron}>
-        <Router history={browserHistory}>
+    <StyleProvider value={styletron}>
+      <Provider store={store}>
+        <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
           {children}
         </Router>
-      </StyleProvider>
-    </Provider>
+      </Provider>
+    </StyleProvider>
   );
 }

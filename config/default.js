@@ -55,7 +55,7 @@ module.exports = {
       "self",
       "data:",
       "https://fonts.gstatic.com/s/",
-      "https://use.fontawesome.com/releases/v5.0.9/webfonts/"
+      "https://use.fontawesome.com/releases/v5.3.1/webfonts/"
     ],
     "img-src": ["*"],
     "media-src": ["self"],
@@ -64,11 +64,11 @@ module.exports = {
       "self",
       "unsafe-eval",
       "https://s3.tradingview.com/tv.js",
-      "https://use.fontawesome.com/releases/v5.0.9/js/all.js",
+      "https://use.fontawesome.com/releases/v5.3.1/js/all.js",
       "https://www.google-analytics.com/analytics.js",
       "https://d3js.org/d3.v4.min.js",
       "https://ethereum.github.io/solc-bin/bin/",
-      "https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"
+      "http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"
     ]
   }
 };

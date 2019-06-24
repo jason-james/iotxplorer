@@ -1,7 +1,7 @@
-import {connect} from 'inferno-redux';
+import { connect } from "react-redux";
 
-import {Nav} from './nav';
-import * as actions from './nav-actions';
+import { Nav } from "./nav";
+import * as actions from "./nav-actions";
 
 export const NavContainer = connect(
   function mapStateToProps(state) {
@@ -11,11 +11,11 @@ export const NavContainer = connect(
       fetching: state.nav.fetching,
       error: state.nav.error,
       chains: state.base.chains,
-      href: state.base.href,
+      href: state.base.href
     };
   },
   dispatch => ({
     fetchCoinStatistic: () => dispatch(actions.fetchCoinStatistic()),
-    fetchCoinPrice: () => dispatch(actions.fetchCoinPrice()),
-  }),
+    fetchCoinPrice: () => dispatch(actions.fetchCoinPrice())
+  })
 )(Nav);

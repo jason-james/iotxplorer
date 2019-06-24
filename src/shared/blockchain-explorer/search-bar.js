@@ -1,4 +1,7 @@
-import Component from "inferno-component";
+import React, { Component } from "react";
+// import { browserHistory } from "../../shared/common/root/root-browser";
+// import { browserHistory } from "react-router";
+
 import { publicKeyToAddress } from "iotex-antenna/lib/crypto/crypto";
 import window from "global/window";
 import { t } from "../../lib/iso-i18n";
@@ -30,7 +33,7 @@ export class SearchBar extends Component {
     value = value.trim();
 
     if (value.startsWith("io")) {
-      window.location = `/address/${value}`;
+      this.props.router.push(`/address/${value}`);
     } else if (value.length === 130) {
       window.location = `/address/${publicKeyToAddress(value)}`;
     } else if (isNormalInteger(value)) {
@@ -38,7 +41,7 @@ export class SearchBar extends Component {
         start: Number(value),
         count: 1
       }).then(res => {
-        window.location = `/blocks/${res.blockMetas[0].hash}`;
+        this.props.router.push(`/blocks/${res.blockMetas[0].hash}`);
       });
     } else {
       // block by hash
@@ -46,7 +49,7 @@ export class SearchBar extends Component {
         try {
           const validBlockHash = res.blockMeta[0].hash;
           if (validBlockHash) {
-            window.location = `blocks/${validBlockHash}`;
+            this.props.router.push(`blocks/${validBlockHash}`);
           }
         } catch (err) {
           // actions by hash
@@ -59,12 +62,12 @@ export class SearchBar extends Component {
             try {
               const actionInfo = res.actionInfo[0];
               if (actionInfo) {
-                window.location = `actions/${actionInfo.actHash}`;
+                this.props.router.push(`actions/${actionInfo.actHash}`);
               }
             } catch (err) {
               // invalid block num/block hash/action hash/address
               console.log(err);
-              window.location = "/notfound";
+              this.props.router.push("/notfound");
             }
           });
         }
@@ -105,8 +108,8 @@ export class SearchBar extends Component {
                 borderTopRightRadius: "3px"
               }}
             >
-              <span class='icon'>
-                <i class='fas fa-search' />
+              <span className='icon'>
+                <i className='fas fa-search' />
               </span>
               <span>Search</span>
             </button>

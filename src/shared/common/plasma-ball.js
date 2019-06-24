@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @flow
 
-import Component from "inferno-component";
+import React, { Component } from "react";
 import loadScript from "load-script";
 import window from "global/window";
 import { colors } from "./styles/style-color";

@@ -1,6 +1,6 @@
 // @flow
 
-import Component from 'inferno-component';
+import React, { Component } from "react";
 import {t} from '../../lib/iso-i18n';
 import {ToolTip} from '../common/tooltip';
 

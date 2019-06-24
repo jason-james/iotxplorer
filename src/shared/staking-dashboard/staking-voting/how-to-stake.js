@@ -1,25 +1,25 @@
-import Component from 'inferno-component';
+import React, { Component } from "react";
 import {StakingDashboardNav} from '../staking-dashboard-nav';
 import {assetURL} from '../../../lib/asset-url';
 
 export class HowToStake extends Component {
   render() {
     return (
-      <div class='section'>
-        <div class='columns' style={{paddingRight: '6rem'}}>
+      <div className='section'>
+        <div className='columns' style={{paddingRight: '6rem'}}>
           <StakingDashboardNav activeClass='how-to-vote' />
 
-          <main class='column'>
+          <main className='column'>
             <section>
               <section
-                class='hero welcome is-small is-primary'
+                className='hero welcome is-small is-primary'
                 style={{
                   marginBottom: '26px',
                 }}
               >
-                <div class='hero-body'>
-                  <div class='container' style={{margin: '0px'}}>
-                    <h1 class='title'>How To Vote</h1>
+                <div className='hero-body'>
+                  <div className='container' style={{margin: '0px'}}>
+                    <h1 className='title'>How To Vote</h1>
                   </div>
                 </div>
               </section>

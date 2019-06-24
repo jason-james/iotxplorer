@@ -1,13 +1,9 @@
-import { Route } from "inferno-router";
+import React from "react";
+import { Route, IndexRoute } from "react-router";
 import window from "global/window";
-
 import { AppContainer } from "./app-container";
 import { NotFound } from "./common/not-found";
 import { BlockchainExplorerContainer } from "./blockchain-explorer/blockchain-explorer-container";
-import { ExecutionContainer } from "./execution/execution-container";
-import { ExecutionsContainer } from "./executions/executions-container";
-import { TransferContainer } from "./transfer/transfer-container";
-import { TransfersContainer } from "./transfers/transfers-container";
 import { AddressContainer } from "./address/address-container";
 import { BlockContainer } from "./block/block-container";
 import { BlocksContainer } from "./blocks/blocks-container";
@@ -16,14 +12,6 @@ import {
   BLOCK,
   BLOCKS,
   ADDRESS,
-  EXECUTION,
-  EXECUTIONS,
-  TRANSFER,
-  TRANSFERS,
-  VOTE,
-  VOTES,
-  WALLET,
-  DEPOSIT,
   STAKING,
   STAKING_DASHBOARD,
   HOW_TO_STAKE,
@@ -31,11 +19,6 @@ import {
   ACTION,
   DELEGATES
 } from "./common/site-url";
-import { VoteContainer } from "./vote/vote-container";
-import { VotesContainer } from "./votes/votes-container";
-import { WalletContainer } from "./wallet/wallet-container";
-import { SettleDepositContainer } from "./deposit/settle-deposit-container";
-import { CreateDepositContainer } from "./deposit/create-deposit-container";
 import { StakingContainer } from "./staking/staking-container";
 import { StakingDashboardContainer } from "./staking-dashboard/staking-dashboard-container";
 import { HowToStakeContainer } from "./staking-dashboard/staking-voting/how-to-stake-container";
@@ -49,31 +32,14 @@ import { DelegatesContainer } from "./delegates/delegates-container";
 
 export function createViewRoutes(routePrefix = "/") {
   return (
-    <Route path={routePrefix} component={AppContainer}>
-      <RoutePage path={SITE_URL} component={BlockchainExplorerContainer} />
-      <RoutePage path={EXECUTIONS.INDEX} component={ExecutionsContainer} />
-      <RoutePage path={EXECUTION.INDEX} component={ExecutionContainer} />
-      <RoutePage path={TRANSFERS.INDEX} component={TransfersContainer} />
-      <RoutePage path={TRANSFER.INDEX} component={TransferContainer} />
+    <Route onEnter={onEnter} path={routePrefix} component={AppContainer}>
+      <IndexRoute onEnter={onEnter} component={BlockchainExplorerContainer} />
 
       <RoutePage path={BLOCKS.INDEX} component={BlocksContainer} />
+
       <RoutePage path={BLOCK.INDEX} component={BlockContainer} />
 
-      <RoutePage
-        path={DEPOSIT.INDEX_SETTLE}
-        component={SettleDepositContainer}
-      />
-      <RoutePage
-        path={DEPOSIT.INDEX_CREATE}
-        component={CreateDepositContainer}
-      />
-
       <RoutePage path={ADDRESS.INDEX} component={AddressContainer} />
-
-      <RoutePage path={VOTES.INDEX} component={VotesContainer} />
-      <RoutePage path={VOTE.INDEX} component={VoteContainer} />
-
-      <RoutePage path={WALLET.INDEX} component={WalletContainer} />
 
       <RoutePage path={STAKING.INDEX} component={StakingContainer} />
 
@@ -110,7 +76,7 @@ export function createViewRoutes(routePrefix = "/") {
 
       <RoutePage path={DELEGATES.INDEX} component={DelegatesContainer} />
 
-      <RoutePage path='*' component={NotFound} />
+      <RoutePage component={NotFound} />
     </Route>
   );
 }

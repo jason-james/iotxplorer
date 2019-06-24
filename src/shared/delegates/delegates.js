@@ -1,8 +1,8 @@
 // @flow
 
-import Component from "inferno-component";
-import Helmet from "inferno-helmet";
-import { styled } from "styletron-inferno";
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
+import { styled } from "styletron-react";
 import { colors } from "../common/styles/style-color";
 import { colorHover } from "../common/color-hover";
 import isBrowser from "is-browser";
@@ -61,13 +61,13 @@ export class DelegatesList extends Component {
     if (status === "ONLINE") {
       return (
         <span>
-          <i class='fas fa-signal has-text-primary' /> Online{" "}
+          <i className='fas fa-signal has-text-primary' /> Online{" "}
         </span>
       );
     } else if (status === "NOT_EQUIPPED") {
       return (
         <span>
-          <i class='fas fa-times-circle has-text-danger' /> Offline{" "}
+          <i className='fas fa-times-circle has-text-danger' /> Offline{" "}
         </span>
       );
     } else {

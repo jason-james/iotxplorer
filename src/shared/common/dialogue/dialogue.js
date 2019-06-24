@@ -1,5 +1,5 @@
 
-import Component from 'inferno-component';
+import React, { Component } from "react";
 
 export class Dialogue extends Component {
 

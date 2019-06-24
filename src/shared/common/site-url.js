@@ -6,7 +6,7 @@ export const IOTXPLORER_URL = "https://iotxplorer.io/";
 
 export class ADDRESS {
   static get INDEX(): string {
-    return "/address/:id/";
+    return "/address/:id";
   }
 
   static get GET_ACTIONS(): string {
@@ -60,7 +60,7 @@ export class VOTES {
 
 export class BLOCK {
   static get INDEX(): string {
-    return "/blocks/:id/";
+    return "/blocks/:id";
   }
 
   static get GET_BLOCK(): string {
@@ -140,7 +140,7 @@ export class TRANSFERS {
 
 export class ACTION {
   static get INDEX(): string {
-    return "/actions/:id/";
+    return "/actions/:id";
   }
 
   static get GET(): string {
@@ -149,6 +149,10 @@ export class ACTION {
 
   static get GET_RECEIPT(): string {
     return "/api/getActionReceipt";
+  }
+
+  static get GET_ACTIONS(): string {
+    return "/api/getActions";
   }
 }
 

@@ -1,14 +1,13 @@
-import Component from "inferno-component";
-import { Link } from "inferno-router";
-
+import React, { Component } from "react";
+import { Link } from "react-router";
 export class StakingDashboardNav extends Component {
   render() {
     if (this.props.activeClass === "calculators") {
       return (
-        <aside class='column is-2 mobile-spacing'>
-          <nav class='menu'>
-            <p class='menu-label'>General</p>
-            <ul class='menu-list'>
+        <aside className='column is-2 mobile-spacing'>
+          <nav className='menu'>
+            <p className='menu-label'>General</p>
+            <ul className='menu-list'>
               <li>
                 <Link to='/staking/dashboard/'>Dashboard</Link>
               </li>
@@ -18,8 +17,8 @@ export class StakingDashboardNav extends Component {
                 </Link>
               </li>
             </ul>
-            <p class='menu-label'>Voting/Staking</p>
-            <ul class='menu-list'>
+            <p className='menu-label'>Voting/Staking</p>
+            <ul className='menu-list'>
               <li>
                 <Link to='/staking/howto'>How To Vote</Link>
               </li>
@@ -29,10 +28,10 @@ export class StakingDashboardNav extends Component {
       );
     } else if (this.props.activeClass === "how-to-vote") {
       return (
-        <aside class='column is-2 mobile-spacing'>
-          <nav class='menu'>
-            <p class='menu-label'>General</p>
-            <ul class='menu-list'>
+        <aside className='column is-2 mobile-spacing'>
+          <nav className='menu'>
+            <p className='menu-label'>General</p>
+            <ul className='menu-list'>
               <li>
                 <Link to='/staking/dashboard/'>Dashboard</Link>
               </li>
@@ -40,8 +39,8 @@ export class StakingDashboardNav extends Component {
                 <Link to='/staking/calculators/'>Calculators</Link>
               </li>
             </ul>
-            <p class='menu-label'>Voting/Staking</p>
-            <ul class='menu-list'>
+            <p className='menu-label'>Voting/Staking</p>
+            <ul className='menu-list'>
               <li>
                 <Link to='/staking/howto' className='is-active'>
                   How To Vote
@@ -53,10 +52,10 @@ export class StakingDashboardNav extends Component {
       );
     } else if (this.props.activeClass === "dashboard") {
       return (
-        <aside class='column is-2'>
-          <nav class='menu'>
-            <p class='menu-label'>General</p>
-            <ul class='menu-list'>
+        <aside className='column is-2'>
+          <nav className='menu'>
+            <p className='menu-label'>General</p>
+            <ul className='menu-list'>
               <li>
                 <Link to='/staking/dashboard/' className='is-active'>
                   Dashboard
@@ -66,8 +65,8 @@ export class StakingDashboardNav extends Component {
                 <Link to='/staking/calculators/'>Calculators</Link>
               </li>
             </ul>
-            <p class='menu-label'>Voting/Staking</p>
-            <ul class='menu-list'>
+            <p className='menu-label'>Voting/Staking</p>
+            <ul className='menu-list'>
               <li>
                 <Link to='/staking/howto'>How To Vote</Link>
               </li>

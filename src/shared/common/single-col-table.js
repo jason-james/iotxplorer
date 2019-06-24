@@ -1,6 +1,6 @@
 // @flow
 
-import Component from 'inferno-component';
+import React, { Component } from "react";
 import {TableWrapper} from '../common/table-wrapper';
 import type {Error} from '../../entities/common-types';
 

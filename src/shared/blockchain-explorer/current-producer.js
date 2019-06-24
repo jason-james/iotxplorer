@@ -1,5 +1,5 @@
-import Component from "inferno-component";
-import { Link } from "inferno-router";
+import React, { Component } from "react";
+import { Link } from "react-router";
 import { ToolTip } from "../common/tooltip";
 import { t } from "../../lib/iso-i18n";
 import { assetURL } from "../../lib/asset-url";
@@ -14,7 +14,7 @@ export class CurrentProducer extends Component {
   render() {
     var producerLogo = assetURL("/blocks-spinner.svg");
 
-    if (this.props.tipBlockMeta) {
+    if (this.props.tipBlockMeta && this.props.allContractData) {
       var producerAddr = this.props.tipBlockMeta[0].producerAddress;
 
       const newArray = this.props.allContractData.filter(function(el) {
@@ -45,7 +45,7 @@ export class CurrentProducer extends Component {
     return (
       <div
         className='box box-custom'
-        style='width: 100%;height:100%;min-height:300px'
+        style={{ width: "100%", height: "100%", minHeight: "300px" }}
       >
         <div>
           <h1 className='subtitle dashboard-title' style={{ color: "#4c4c4c" }}>
@@ -81,7 +81,7 @@ export class CurrentProducer extends Component {
           <a
             href={producerWebsite}
             target='_blank'
-            class='button is-primary'
+            className='button is-primary'
             style={{ marginRight: "8px", marginTop: "16px" }}
           >
             Website
@@ -89,7 +89,7 @@ export class CurrentProducer extends Component {
           <a
             href={profile}
             target='_blank'
-            class='button is-primary'
+            className='button is-primary'
             style={{ marginLeft: "8px", marginTop: "16px" }}
           >
             Profile

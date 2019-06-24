@@ -1,5 +1,5 @@
-import Component from "inferno-component";
-import Helmet from "inferno-helmet";
+import React, { Component } from "react";
+import {Helmet} from "react-helmet";;
 import { StakingDashboardNav } from "../staking-dashboard-nav";
 import { assetURL } from "../../../lib/asset-url";
 
@@ -85,7 +85,7 @@ export class Calculators extends Component {
 
   render() {
     return (
-      <div class='section'>
+      <div className='section'>
         <Helmet
           title={"iotxplorer: Calculator"}
           meta={[
@@ -128,7 +128,7 @@ export class Calculators extends Component {
             }
           ]}
         />
-        <div class='columns calc-spacing'>
+        <div className='columns calc-spacing'>
           <StakingDashboardNav activeClass='calculators' />
           <div className='column is-2 calculator-right' />
 
@@ -164,7 +164,7 @@ export class Calculators extends Component {
             <div className='field has-addons'>
               <div className='control'>
                 <input
-                  class='input is-rounded'
+                  className='input is-rounded'
                   type='text'
                   placeholder='300,000'
                   value={this.state.stakeAmount}
@@ -181,7 +181,7 @@ export class Calculators extends Component {
             <div className='field has-addons'>
               <div className='control'>
                 <input
-                  class='input is-rounded'
+                  className='input is-rounded'
                   type='text'
                   placeholder='28'
                   value={this.state.stakeDuration}
@@ -195,7 +195,7 @@ export class Calculators extends Component {
               </div>
             </div>
 
-            <label class='switch'>
+            <label className='switch'>
               <input
                 type='checkbox'
                 onClick={e => {
@@ -204,7 +204,7 @@ export class Calculators extends Component {
                   });
                 }}
               />
-              <span class='slider round' />
+              <span className='slider round' />
             </label>
             <span style={{ marginLeft: "8px", marginTop: "4rem" }}>
               Auto-Stake
@@ -212,7 +212,7 @@ export class Calculators extends Component {
 
             <div style={{ marginTop: "12px" }}>
               <a
-                class='button is-info is-rounded'
+                className='button is-info is-rounded'
                 onClick={e => {
                   this.calculateROI(
                     this.props.delegateData[

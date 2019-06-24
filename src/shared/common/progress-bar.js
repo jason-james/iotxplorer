@@ -1,6 +1,6 @@
 // @flow
 
-import Component from 'inferno-component';
+import React, { Component } from "react";
 import isBrowser from 'is-browser';
 import window from 'global';
 import {colors} from '../common/styles/style-color';

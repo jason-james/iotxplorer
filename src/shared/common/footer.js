@@ -1,6 +1,7 @@
 // @flow
 
-import { styled } from "styletron-inferno";
+import React from "react";
+import { styled } from "styletron-react";
 import { t } from "../../lib/iso-i18n";
 import { assetURL } from "../../lib/asset-url";
 import { fonts } from "./styles/style-font";
@@ -40,7 +41,7 @@ export function Footer() {
                 target='_blank'
                 noValidate={false}
               >
-                <div class='control has-text-centered'>
+                <div className='control has-text-centered'>
                   <input
                     type='email'
                     className='input'

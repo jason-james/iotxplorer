@@ -1,4 +1,4 @@
-import Component from "inferno-component";
+import React, { Component } from "react";
 import axios from "axios";
 import AnimateHeight from "../../lib/height-animate";
 import "babel-polyfill";
@@ -165,19 +165,19 @@ export class RewardsInfo extends Component {
           }}
           style={{ marginBottom: "4px" }}
         >
-          <div class='field has-addons' style={{ height: "60px" }}>
-            <div class='control' style={{ width: "100%" }}>
+          <div className='field has-addons' style={{ height: "60px" }}>
+            <div className='control' style={{ width: "100%" }}>
               <input
-                class='input'
+                className='input'
                 type='text'
                 placeholder='Enter your ethereum address'
                 style={{ height: "50px", border: "2px solid #00d1b2" }}
                 onChange={e => this.setState({ address: e.target.value })}
               />
             </div>
-            <div class='control'>
+            <div className='control'>
               <a
-                class='button is-primary'
+                className='button is-primary'
                 style={{ height: "50px" }}
                 onClick={e => {
                   this.fetchVoterHistory(e);
@@ -193,11 +193,11 @@ export class RewardsInfo extends Component {
 
         <AnimateHeight duration={500} height={this.state.height}>
           {this.state.error === true ? (
-            <article class='message is-info' style={{ marginBottom: "12px" }}>
-              <div class='message-header'>
+            <article className='message is-info' style={{ marginBottom: "12px" }}>
+              <div className='message-header'>
                 <p>Oh, no!</p>
               </div>
-              <div class='message-body'>
+              <div className='message-body'>
                 You didn't enter a valid address. Either you have not yet voted
                 for iotxplorer or you have not been voting long enough to be a
                 part of the most recent reward cycle. To find out when your
@@ -208,14 +208,14 @@ export class RewardsInfo extends Component {
               </div>
             </article>
           ) : (
-            <div class='columns is-multiline' style={{ paddingTop: "12px" }}>
+            <div className='columns is-multiline' style={{ paddingTop: "12px" }}>
               <div
-                class='column is-6 mobile-chartist'
+                className='column is-6 mobile-chartist'
                 style={{ paddingTop: "0px" }}
               >
-                <div class='panel' style={{ height: "425px" }}>
-                  <p class='panel-heading'>Rewards</p>
-                  <div class='panel-block'>
+                <div className='panel' style={{ height: "425px" }}>
+                  <p className='panel-heading'>Rewards</p>
+                  <div className='panel-block'>
                     <ChartistGraph
                       data={data}
                       options={options}
@@ -246,11 +246,11 @@ export class RewardsInfo extends Component {
                   </div>
                 </div>
               </div>
-              <div class='column is-6' style={{ paddingTop: "0px" }}>
+              <div className='column is-6' style={{ paddingTop: "0px" }}>
                 <div className='card'>
                   <div className='table-container'>
                     <table
-                      class='table is-fullwidth is-striped is-scrollable table-container'
+                      className='table is-fullwidth is-striped is-scrollable table-container'
                       style={{ marginBottom: "0px" }}
                     >
                       <thead>
@@ -285,17 +285,17 @@ export class RewardsInfo extends Component {
                       </tbody>
                     </table>
                   </div>
-                  <footer class='card-footer' style={{ padding: "0.5rem" }}>
+                  <footer className='card-footer' style={{ padding: "0.5rem" }}>
                     <nav className='level' style={{ width: "641px" }}>
                       <div className='level-left'>
                         <div className='level-item'>
                           <nav
-                            class='is-small pagination'
+                            className='is-small pagination'
                             role='navigation'
                             aria-label='pagination'
                           >
                             <a
-                              class='pagination-previous'
+                              className='pagination-previous'
                               onClick={e => {
                                 this.handlePrevClick();
                                 this.fetchVoterHistory(e);
@@ -305,7 +305,7 @@ export class RewardsInfo extends Component {
                               Previous
                             </a>
                             <a
-                              class='pagination-next'
+                              className='pagination-next'
                               onClick={e => {
                                 this.handleNextClick();
                                 this.fetchVoterHistory(e);
@@ -330,16 +330,16 @@ export class RewardsInfo extends Component {
               </div>
             </div>
           )}
-          <div class='hero is-small is-dark' style={{ marginBottom: "1rem" }}>
-            <div class='hero-body'>
-              <div class='container has-text-centered'>
-                <h1 class='title'>
+          <div className='hero is-small is-dark' style={{ marginBottom: "1rem" }}>
+            <div className='hero-body'>
+              <div className='container has-text-centered'>
+                <h1 className='title'>
                   {this.totalEarned(this.average(this.state.chartData)).toFixed(
                     2
                   )}{" "}
                   ⬡
                 </h1>
-                <h2 class='subtitle'>Total Earned</h2>
+                <h2 className='subtitle'>Total Earned</h2>
               </div>
             </div>
           </div>

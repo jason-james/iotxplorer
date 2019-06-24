@@ -1,6 +1,6 @@
-import Component from "inferno-component";
-import { Link } from "inferno-router";
-import Helmet from "inferno-helmet";
+import React, { Component } from "react";
+import { Link } from "react-router";
+import { Helmet } from "react-helmet";
 
 import { assetURL } from "../../lib/asset-url";
 

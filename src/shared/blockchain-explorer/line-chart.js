@@ -1,4 +1,4 @@
-import Component from 'inferno-component';
+import React, { Component } from "react";
 import * as d3 from 'd3';
 import * as Axis from 'd3-axis';
 import moment from 'moment';

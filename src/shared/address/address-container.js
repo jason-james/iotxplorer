@@ -1,4 +1,4 @@
-import { connect } from "inferno-redux";
+import { connect } from "react-redux";
 
 import * as actions from "../address/address-actions";
 import fetchCoinPrice from "../common/nav/nav-actions";

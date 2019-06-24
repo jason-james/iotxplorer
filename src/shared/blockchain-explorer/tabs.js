@@ -1,4 +1,4 @@
-import Component from 'inferno-component';
+import React, { Component } from "react";
 import {Tab} from './tab';
 
 export class Tabs extends Component {

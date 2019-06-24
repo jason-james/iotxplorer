@@ -1,4 +1,4 @@
-import Component from 'inferno-component';
+import React, { Component } from "react";
 import {assetURL} from '../../../lib/asset-url';
 import {ToolTip} from '../../../shared/common/tooltip';
 import {nav} from '../../common/nav/nav';
@@ -201,15 +201,15 @@ export class StakingCalc extends Component {
 
           <div className='columns is-centered'>
             <div className='column is-3'>
-              <div class='box box-custom'>
-                <div class='heading has-text-centered'>ROI</div>
-                <div class='title has-text-centered'>
+              <div className='box box-custom'>
+                <div className='heading has-text-centered'>ROI</div>
+                <div className='title has-text-centered'>
                   {isNaN(results[0]) ? 0 : results[0]}%
                 </div>
-                <div class='level'>
-                  <div class='level-item'>
-                    <div class=''>
-                      <div class='heading'>Total IOTX returned (yearly)</div>
+                <div className='level'>
+                  <div className='level-item'>
+                    <div className=''>
+                      <div className='heading'>Total IOTX returned (yearly)</div>
                       <div className='has-text-centered'>
                         {isNaN(results[1]) ? 0 : results[1]}
                       </div>
@@ -219,17 +219,17 @@ export class StakingCalc extends Component {
               </div>
             </div>
             <div className='column is-3'>
-              <div class='box box-custom'>
-                <div class='heading has-text-centered'>
+              <div className='box box-custom'>
+                <div className='heading has-text-centered'>
                   Profit per year (USD)
                 </div>
-                <div class='title has-text-centered'>
+                <div className='title has-text-centered'>
                   ${isNaN(results[2]) ? 0 : results[2]}
                 </div>
-                <div class='level'>
-                  <div class='level-item'>
-                    <div class=''>
-                      <div class='heading has-text-centered'>
+                <div className='level'>
+                  <div className='level-item'>
+                    <div className=''>
+                      <div className='heading has-text-centered'>
                         Profit per year (IOTX)
                       </div>
                       <div className='has-text-centered'>

@@ -1,4 +1,4 @@
-import { connect } from "inferno-redux";
+import { connect } from "react-redux";
 import { fetchDelegateData } from "../staking-dashboard-actions";
 import { fetchIotxplorerDelegateData } from "../staking-dashboard-actions";
 import { Calculators } from "../calculators/staking-calcs";

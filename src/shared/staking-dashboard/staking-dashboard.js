@@ -1,5 +1,5 @@
-import Component from "inferno-component";
-import Helmet from "inferno-helmet";
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import axios from "axios";
 import {
   ChartistGraph,
@@ -59,6 +59,9 @@ export class StakingDashboard extends Component {
       return ["...", "..."];
     }
     const iotxplorerStats = delegateData[this.props.iotxplorerDelegateData - 1];
+    if (!iotxplorerStats) {
+      return ["...", "..."];
+    }
     const votes = new Intl.NumberFormat("en-US", {
       maximumFractionDigits: 1
     }).format(iotxplorerStats.liveVotes);
@@ -119,7 +122,7 @@ export class StakingDashboard extends Component {
     const type = "Pie";
 
     return (
-      <div class='section'>
+      <div className='section'>
         <Helmet
           title={"iotxplorer: Dashboard"}
           meta={[
@@ -166,20 +169,20 @@ export class StakingDashboard extends Component {
           ]}
         />
 
-        <div class='columns dashboard-spacing'>
+        <div className='columns dashboard-spacing'>
           <StakingDashboardNav activeClass='dashboard' />
-          <main class='column'>
+          <main className='column'>
             <section>
               <section
-                class='hero welcome is-small is-primary'
+                className='hero welcome is-small is-primary'
                 style={{
                   marginBottom: "12px"
                 }}
               >
-                <div class='hero-body'>
-                  <div class='container' style={{ margin: "0px" }}>
-                    <h1 class='title'>Dashboard</h1>
-                    <h2 class='subtitle'>
+                <div className='hero-body'>
+                  <div className='container' style={{ margin: "0px" }}>
+                    <h1 className='title'>Dashboard</h1>
+                    <h2 className='subtitle'>
                       version 0.1.2{" "}
                       <span
                         className='tag is-light'
@@ -200,38 +203,38 @@ export class StakingDashboard extends Component {
                 <RewardsInfo />
               </section>
 
-              <section class='info-tiles'>
-                <div class='tile is-ancestor has-text-centered'>
-                  <div class='tile is-parent'>
-                    <article class='tile is-child box dashboard-card'>
-                      <p class='title' style={{ color: "#ffffff" }}>
+              <section className='info-tiles'>
+                <div className='tile is-ancestor has-text-centered'>
+                  <div className='tile is-parent'>
+                    <article className='tile is-child box dashboard-card'>
+                      <p className='title' style={{ color: "#ffffff" }}>
                         {this.rankHandler(this.props.iotxplorerDelegateData)}
                       </p>
-                      <p class='subtitle'>Rank</p>
+                      <p className='subtitle'>Rank</p>
                     </article>
                   </div>
-                  <div class='tile is-parent'>
-                    <article class='tile is-child box dashboard-card'>
-                      <p class='title' style={{ color: "#ffffff" }}>
+                  <div className='tile is-parent'>
+                    <article className='tile is-child box dashboard-card'>
+                      <p className='title' style={{ color: "#ffffff" }}>
                         {this.formDashboardStats(this.props.delegateData)[0]}
                       </p>
-                      <p class='subtitle'>Votes</p>
+                      <p className='subtitle'>Votes</p>
                     </article>
                   </div>
-                  <div class='tile is-parent'>
-                    <article class='tile is-child box dashboard-card'>
-                      <p class='title' style={{ color: "#ffffff" }}>
+                  <div className='tile is-parent'>
+                    <article className='tile is-child box dashboard-card'>
+                      <p className='title' style={{ color: "#ffffff" }}>
                         {this.formDashboardStats(this.props.delegateData)[1]}%
                       </p>
-                      <p class='subtitle'>Vote Percent</p>
+                      <p className='subtitle'>Vote Percent</p>
                     </article>
                   </div>
-                  <div class='tile is-parent'>
-                    <article class='tile is-child box dashboard-card'>
-                      <p class='title' style={{ color: "#ffffff" }}>
+                  <div className='tile is-parent'>
+                    <article className='tile is-child box dashboard-card'>
+                      <p className='title' style={{ color: "#ffffff" }}>
                         {this.totalCandidatesHandler(this.props.electionStats)}
                       </p>
-                      <p class='subtitle'>Total Candidates</p>
+                      <p className='subtitle'>Total Candidates</p>
                     </article>
                   </div>
                 </div>
@@ -239,21 +242,21 @@ export class StakingDashboard extends Component {
 
               <section>
                 <div
-                  class='columns is-multiline'
+                  className='columns is-multiline'
                   style={{ paddingTop: "16px" }}
                 >
-                  <div class='column is-6'>
-                    <div class='panel' style={{ height: "385px" }}>
-                      <p class='panel-heading'>IOTX/BTC: 24h</p>
+                  <div className='column is-6'>
+                    <div className='panel' style={{ height: "385px" }}>
+                      <p className='panel-heading'>IOTX/BTC: 24h</p>
                       <TradingViewWidget symbol='BINANCE:IOTXBTC' autosize />
                     </div>
                   </div>
-                  <div class='column is-6 mobile-spacing'>
-                    <div class='panel'>
-                      <p class='panel-heading'>
+                  <div className='column is-6 mobile-spacing'>
+                    <div className='panel'>
+                      <p className='panel-heading'>
                         Delegate Vote Percent (closest 10)
                       </p>
-                      <div class='panel-block'>
+                      <div className='panel-block'>
                         <ChartistGraph
                           data={data}
                           options={options}

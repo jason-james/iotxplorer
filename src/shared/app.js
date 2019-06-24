@@ -1,7 +1,6 @@
-import Component from "inferno-component";
-import { styled } from "styletron-inferno";
-import Helmet from "inferno-helmet";
-
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
+import { styled } from "styletron-react";
 import window from "global";
 import { assetURL } from "../lib/asset-url";
 import { t } from "../lib/iso-i18n";
@@ -22,6 +21,7 @@ export class App extends Component {
   componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener("resize", this.updateWindowDimensions);
+    window.scrollTo(0, 0);
   }
 
   componentWillUnmount() {
@@ -75,7 +75,7 @@ export class App extends Component {
           script={[
             {
               defer: true,
-              src: "https://use.fontawesome.com/releases/v5.0.9/js/all.js"
+              src: "https://use.fontawesome.com/releases/v5.3.1/js/all.js"
             },
             {
               defer: true,
@@ -85,7 +85,7 @@ export class App extends Component {
         />
         <NavContainer />
         <Breadcrumbs width={this.props.width} />
-        <div style={{ minHeight: "100vh" }}>{children}</div>
+        <div style={{ minHeight: "100vh", paddingTop: "50px" }}>{children}</div>
         <CookieConsentContainer
           content={t("other.cookie.content")}
           accept={t("other.cookie.accept")}

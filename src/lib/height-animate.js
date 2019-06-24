@@ -1,4 +1,4 @@
-import Component from 'inferno-component';
+import React, { Component } from "react";
 import cx from 'classnames';
 
 const ANIMATION_STATE_CLASSES = {

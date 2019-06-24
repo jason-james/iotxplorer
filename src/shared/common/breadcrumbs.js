@@ -1,8 +1,8 @@
 // @flow
 
-import Component from "inferno-component";
-import { styled } from "styletron-inferno";
-import { Link } from "inferno-router";
+import React, { Component } from "react";
+import { styled } from "styletron-react";
+import { Link } from "react-router";
 import window from "global/window";
 import { t } from "../../lib/iso-i18n";
 import { fonts } from "./styles/style-font";
@@ -95,8 +95,9 @@ export class Breadcrumbs extends Component {
           </nav>
         </BreadCrumbStyle>
       );
+    } else {
+      return <div />;
     }
-    return <div />;
   }
 }
 
@@ -112,5 +113,5 @@ export function notClickablePath(p: string): boolean {
 const BreadCrumbStyle = styled("div", props => ({
   ...fonts.body,
   paddingTop: "50px",
-  marginBottom: "0rem"
+  marginBottom: "10rem"
 }));

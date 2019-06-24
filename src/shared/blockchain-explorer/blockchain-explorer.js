@@ -1,13 +1,10 @@
 // @flow
 
-import Component from "inferno-component";
-import Helmet from "inferno-helmet";
+import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import window from "global";
 import { CommonMargin } from "../common/common-margin";
 import { PlasmaBall } from "../common/plasma-ball";
-import { fetchExecutions } from "../executions/executions-actions";
-import { fetchTransfers } from "../transfers/transfers-actions";
-import { fetchBlocks } from "../blocks/blocks-actions";
 import type { Error } from "../../entities/common-types";
 import type {
   TBlock,
@@ -17,11 +14,7 @@ import type {
 } from "../../entities/explorer-types";
 import { t } from "../../lib/iso-i18n";
 import { SingleColTable } from "../common/single-col-table";
-import { ExecutionsListOnlyId } from "../executions/executions";
-import { TransfersListOnlyId } from "../transfers/transfers";
 import { BlocksList } from "../blocks/blocks";
-import { VotesListOnlyId } from "../votes/votes";
-import { fetchVotes } from "../votes/votes-actions";
 import { fetchConsensusMetrics } from "../consensus-metrics/consensus-metrics-actions";
 import type { TConsensusMetrics } from "../../entities/explorer-types";
 import { ToolTip } from "../common/tooltip";
@@ -36,61 +29,15 @@ import { Tab } from "./tab";
 import { MarketDashboard } from "./market-dashboard";
 import { LineChart } from "./line-chart";
 import { CurrentProducer } from "./current-producer";
+import { NewBlocksList } from "./new-blocks-list";
+import { NewActionsList } from "./new-actions-list";
+import { MyStockChart } from "./stockchart";
 
 type PropsType = {
   statistic: TCoinStatistic
 };
 
 export class BlockchainExplorer extends Component {
-  props: {
-    fetchExecutions: fetchExecutions,
-    fetchTransfers: fetchTransfers,
-    fetchBlocks: fetchBlocks,
-    fetchVotes: fetchVotes,
-    fetchConsensusMetrics: fetchConsensusMetrics,
-    fetchMarketData: fetchMarketData,
-    fetchChartData: fetchChartData,
-    executions: {
-      offset: number,
-      count: number,
-      fetching: boolean,
-      error: Error,
-      items: Array<TExecution>,
-      tip: number
-    },
-    transfers: {
-      offset: number,
-      count: number,
-      fetching: boolean,
-      error: Error,
-      items: Array<TTransfer>,
-      tip: number
-    },
-    blocks: {
-      offset: number,
-      count: number,
-      fetching: boolean,
-      error: Error,
-      items: Array<TBlock>,
-      tip: number
-    },
-    votes: {
-      offset: number,
-      count: number,
-      fetching: boolean,
-      error: Error,
-      items: Array<TVote>,
-      tip: number
-    },
-    width: number,
-    statistic: TCoinStatistic,
-    consensus: {
-      metrics: Object,
-      electionStats: Object
-    },
-    chainId: number
-  };
-
   constructor(props: any) {
     super(props);
     this.state = {
@@ -101,46 +48,11 @@ export class BlockchainExplorer extends Component {
       fetchDelegateData: 0,
       fetchbpCandidatesOnContract: 0,
       fetchBlockMetasByIndex: 0,
+      fetchActionsByIndex: 0,
       height: 0,
       activeTab: "Market"
     };
     this.formStats = this.formStats.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps: PropsType, nextContext: any) {
-    if (
-      nextProps.statistic &&
-      this.state.height !== nextProps.statistic.height
-    ) {
-      this.setState(
-        state => {
-          state.height = nextProps.statistic.height;
-        },
-        () => {
-          this.props.fetchExecutions({
-            offset: 0,
-            count: this.props.executions.count,
-            tip: this.state.height
-          });
-          this.props.fetchTransfers({
-            offset: 0,
-            count: this.props.transfers.count,
-            tip: this.state.height,
-            showCoinBase: false
-          });
-          this.props.fetchBlocks({
-            offset: 0,
-            count: this.props.blocks.count,
-            tip: this.state.height
-          });
-          this.props.fetchVotes({
-            offset: 0,
-            count: this.props.votes.count,
-            tip: this.state.height
-          });
-        }
-      );
-    }
   }
 
   componentDidMount() {
@@ -153,11 +65,20 @@ export class BlockchainExplorer extends Component {
     const fetchBlockMetasByIndex = window.setInterval(() => {
       if (this.props.consensus.metrics.height) {
         this.props.fetchBlockMetasByIndex({
-          start: this.props.consensus.metrics.height - 5,
-          count: 6
+          start: this.props.consensus.metrics.height - 4,
+          count: 5
         });
       }
     }, 500);
+
+    const fetchActionsByIndex = window.setInterval(() => {
+      if (this.props.consensus.metrics.numActions) {
+        this.props.fetchActionsByIndex({
+          start: this.props.consensus.metrics.numActions - 10,
+          count: 11
+        });
+      }
+    }, 1000);
 
     const fetchDelegateData = window.setInterval(
       () => this.props.fetchDelegateData(),
@@ -188,7 +109,8 @@ export class BlockchainExplorer extends Component {
       fetchElectionStats,
       fetchbpCandidatesOnContract,
       fetchDelegateData,
-      fetchBlockMetasByIndex
+      fetchBlockMetasByIndex,
+      fetchActionsByIndex
     });
   }
 
@@ -224,16 +146,8 @@ export class BlockchainExplorer extends Component {
     return axes;
   };
 
-  // formCurrentProducer = (chainData, contractData, websiteData) => {
-  //     // 1. Find current producer via getChainMeta, pass as prop
-  //     const currentProducerAddr = chainData.
-  //     // 2. Get delegates info from graph-ql. Compare ioOperatorAddr with producer address and extract the name
-
-  //     // 3. Get the logo and website and iotex member page link from graph-ql comparing name from 2 with registeredName
-  // }
-
   formMarketStats = (marketData, daily) => {
-    if (!marketData) {
+    if (!marketData || !daily) {
       return [
         {
           title: t("marketDashboard.marketCap"),
@@ -448,7 +362,7 @@ export class BlockchainExplorer extends Component {
                 <TitleContainer />
               </div>
               <div className='container is-fluid'>
-                <SearchBar />
+                <SearchBar router={this.props.router} />
               </div>
             </div>
           </div>
@@ -468,32 +382,9 @@ export class BlockchainExplorer extends Component {
                         className='column is-half'
                         style={{ paddingLeft: "0px" }}
                       >
-                        <ChartistGraph
-                          data={this.formChartData(this.props.chartData)}
-                          options={options2}
-                          responsiveOptions={responsiveOptions}
-                          type={type}
-                          // listener={{
-                          //   draw: function(data) {
-                          //     let Chartist = require("chartist");
-
-                          //     if (data.type === "line" || data.type === "area") {
-                          //       data.element.animate({
-                          //         d: {
-                          //           begin: 2000 * data.index,
-                          //           dur: 2000,
-                          //           from: data.path
-                          //             .clone()
-                          //             .scale(1, 0)
-                          //             .translate(0, data.chartRect.height())
-                          //             .stringify(),
-                          //           to: data.path.clone().stringify(),
-                          //           easing: Chartist.Svg.Easing.easeOutQuint
-                          //         }
-                          //       });
-                          //     }
-                          //   }
-                          // }}
+                        <MyStockChart
+                          chartData={this.props.chartData}
+                          width={this.props.width}
                         />
                       </div>
                       <MarketDashboard
@@ -510,29 +401,32 @@ export class BlockchainExplorer extends Component {
             </div>
           </div>
           <br />
-          <div className='section' style={{ padding: "24px", margin: "0rem" }}>
+          <div
+            className='section'
+            style={{ padding: "24px", margin: "0rem", paddingTop: "0" }}
+          >
             <div className='container'>
-              <div className='card homepage-card'>
-                <h1
-                  className='title has-text-centered is-centered'
-                  style={{ paddingTop: "1.5rem", marginBottom: "0px" }}
-                >
-                  Latest Blocks
-                </h1>
-                <div className='card-content'>
-                  <div className='column'>
-                    <div className='columns'>
-                      <div className='column'>{blocksTable}</div>
-                    </div>
-                  </div>
+              <div className='columns'>
+                <div className='column is-half'>
+                  <NewBlocksList
+                    blocks={this.props.consensus.blockMetas}
+                    tipBlockMeta={this.props.consensus.blockMetas}
+                    allContractData={
+                      this.props.consensus.bpCandidatesOnContract
+                    }
+                    memberInfo={this.props.delegateData}
+                    width={this.props.width}
+                  />
                 </div>
-                <CommonMargin />
+                <div className='column is-half'>
+                  <NewActionsList actions={this.props.consensus.actions} />
+                </div>
               </div>
             </div>
           </div>
         </section>
       );
-    } else if (this.state.activeTab === "Blockchain") {
+    } else {
       return (
         <section>
           <Helmet
@@ -589,7 +483,7 @@ export class BlockchainExplorer extends Component {
                 <TitleContainer />
               </div>
               <div className='container is-fluid'>
-                <SearchBar />
+                <SearchBar router={this.props.router} />
               </div>
             </div>
           </div>
@@ -631,24 +525,26 @@ export class BlockchainExplorer extends Component {
             </div>
           </div>
           <br />
-          <div className='section' style={{ padding: "24px", margin: "0rem" }}>
+          <div
+            className='section'
+            style={{ padding: "24px", margin: "0rem", paddingTop: "0" }}
+          >
             <div className='container'>
-              <div className='card homepage-card'>
-                <h1
-                  className='title has-text-centered is-centered'
-                  style={{ paddingTop: "1.5rem", marginBottom: "0px" }}
-                >
-                  Latest Blocks
-                </h1>
-
-                <div className='card-content'>
-                  <div className='column'>
-                    <div className='columns'>
-                      <div className='column'>{blocksTable}</div>
-                    </div>
-                  </div>
+              <div className='columns'>
+                <div className='column is-half'>
+                  <NewBlocksList
+                    blocks={this.props.consensus.blockMetas}
+                    tipBlockMeta={this.props.consensus.blockMetas}
+                    allContractData={
+                      this.props.consensus.bpCandidatesOnContract
+                    }
+                    memberInfo={this.props.delegateData}
+                    width={this.props.width}
+                  />
                 </div>
-                <CommonMargin />
+                <div className='column is-half'>
+                  <NewActionsList actions={this.props.consensus.actions} />
+                </div>
               </div>
             </div>
           </div>

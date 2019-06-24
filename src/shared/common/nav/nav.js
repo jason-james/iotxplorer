@@ -1,7 +1,8 @@
 // @flow
 
-import Component from "inferno-component";
-import { styled } from "styletron-inferno";
+import React, { Component } from "react";
+import { Link } from "react-router";
+import { styled } from "styletron-react";
 import serialize from "form-serialize";
 import window from "global/window";
 import isBrowser from "is-browser";
@@ -112,14 +113,14 @@ export class Nav extends Component {
             <nav className='navbar is-primary'>
               <div className='container'>
                 <div className='navbar-brand'>
-                  <a className='navbar-item small-nav-logo' href={SITE_URL}>
+                  <Link className='navbar-item small-nav-logo' to={SITE_URL}>
                     <img
                       src={assetURL("/dark-iotxplorer-logo.png")}
                       alt='IoTeX Explorer'
                       width='120'
                       height='29'
                     />
-                  </a>
+                  </Link>
                   <div
                     className={`navbar-burger burger ${
                       this.state.displayDropdownMenu ? "is-active" : ""
@@ -138,99 +139,99 @@ export class Nav extends Component {
                   }`}
                 >
                   <div className='navbar-end'>
-                    <a
+                    <Link
                       className='navbar-item  is-hoverable'
-                      href={DELEGATES.INDEX}
+                      to={DELEGATES.INDEX}
                       style={{ marginRight: "12px" }}
                     >
                       Delegates
-                    </a>
+                    </Link>
                     <div className='navbar-item has-dropdown is-hoverable'>
-                      <a
+                      <Link
                         className='navbar-link is-arrowless'
-                        href={STAKING_DASHBOARD.INDEX}
+                        to={STAKING_DASHBOARD.INDEX}
                       >
                         Dashboard
-                      </a>
+                      </Link>
                       <div
                         className='navbar-dropdown'
                         style={{ paddingTop: "0px", borderTop: "0px" }}
                       >
-                        <a
+                        <Link
                           className='navbar-item nav-dropdown-item'
-                          href={STAKING_DASHBOARD.INDEX}
+                          to={STAKING_DASHBOARD.INDEX}
                         >
                           Member's Portal
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                           className='navbar-item nav-dropdown-item'
-                          href={STAKING_DASHBOARD.HOW_TO_STAKE}
+                          to={HOW_TO_STAKE.INDEX}
                         >
                           How To
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                           className='navbar-item nav-dropdown-item'
-                          href={STAKING_DASHBOARD.CALCULATORS}
+                          to={STAKING_DASHBOARD.CALCULATORS}
                         >
                           Calculators
-                        </a>
+                        </Link>
                       </div>
                     </div>
                     <div className='navbar-item has-dropdown is-hoverable'>
-                      <a
+                      <Link
                         className='navbar-link is-arrowless'
-                        href={EDUCATION.INDEX}
+                        to={EDUCATION.INDEX}
                       >
                         Education
-                      </a>
+                      </Link>
                       <div
                         className='navbar-dropdown'
                         style={{ paddingTop: "0px", borderTop: "0px" }}
                       >
-                        <a
+                        <Link
                           className='navbar-item nav-dropdown-item'
-                          href={EDUCATION.UNDERSTANDING_IOTEX}
+                          to={EDUCATION.UNDERSTANDING_IOTEX}
                         >
                           Understanding IoTeX
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                           className='navbar-item nav-dropdown-item'
-                          href={EDUCATION.VOTING_AND_DELEGATING}
+                          to={EDUCATION.VOTING_AND_DELEGATING}
                         >
                           Voting and Delegating
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                           className='navbar-item nav-dropdown-item'
-                          href={EDUCATION.USING_THE_TESTNET}
+                          to={EDUCATION.USING_THE_TESTNET}
                         >
                           Using the Testnet
-                        </a>
+                        </Link>
                       </div>
                     </div>
                     <div className='navbar-item has-dropdown is-hoverable'>
-                      <a
+                      <Link
                         className='navbar-link is-arrowless'
-                        href={STAKING.INDEX}
+                        to={STAKING.INDEX}
                       >
                         Stake With Us &lt;3
-                      </a>
+                      </Link>
                       <div
                         className='navbar-dropdown'
                         style={{ paddingTop: "0px", borderTop: "0px" }}
                       >
-                        <a
+                        <Link
                           className='navbar-item nav-dropdown-item'
-                          href={STAKING.INDEX}
+                          to={STAKING.INDEX}
                         >
                           Why Us?
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                           className='navbar-item nav-dropdown-item'
-                          href='https://member.iotex.io/delegate/5c736ba72d01e727d88b9dea'
+                          to='https://member.iotex.io/delegate/5c736ba72d01e727d88b9dea'
                           target='_blank'
                         >
                           Voting Profile
-                        </a>
+                        </Link>
                       </div>
                     </div>
                     {/* <div className='navbar-item has-dropdown is-hoverable'>
@@ -299,14 +300,14 @@ export class Nav extends Component {
           <nav className='navbar is-primary'>
             <div className='container'>
               <div className='navbar-brand'>
-                <a className='navbar-item small-nav-logo' href={SITE_URL}>
+                <Link className='navbar-item small-nav-logo' to={SITE_URL}>
                   <img
                     src={assetURL("/dark-iotxplorer-logo.png")}
                     alt='IoTeX Explorer'
                     width='120'
                     height='29'
                   />
-                </a>
+                </Link>
                 <div
                   className={`navbar-burger burger ${
                     this.state.displayDropdownMenu ? "is-active" : ""
@@ -325,99 +326,99 @@ export class Nav extends Component {
                 }`}
               >
                 <div className='navbar-end'>
-                  <a
-                    className='navbar-item is-hoverable is-arrowless'
-                    href={DELEGATES.INDEX}
+                  <Link
+                    className='navbar-item  is-hoverable'
+                    to={DELEGATES.INDEX}
                     style={{ marginRight: "12px" }}
                   >
                     Delegates
-                  </a>
+                  </Link>
                   <div className='navbar-item has-dropdown is-hoverable'>
-                    <a
+                    <Link
                       className='navbar-link is-arrowless'
-                      href={STAKING_DASHBOARD.INDEX}
+                      to={STAKING_DASHBOARD.INDEX}
                     >
                       Dashboard
-                    </a>
+                    </Link>
                     <div
                       className='navbar-dropdown'
                       style={{ paddingTop: "0px", borderTop: "0px" }}
                     >
-                      <a
+                      <Link
                         className='navbar-item nav-dropdown-item'
-                        href={STAKING_DASHBOARD.INDEX}
+                        to={STAKING_DASHBOARD.INDEX}
                       >
                         Member's Portal
-                      </a>
-                      <a
+                      </Link>
+                      <Link
                         className='navbar-item nav-dropdown-item'
-                        href={STAKING_DASHBOARD.HOW_TO_STAKE}
+                        to={HOW_TO_STAKE.INDEX}
                       >
                         How To
-                      </a>
-                      <a
+                      </Link>
+                      <Link
                         className='navbar-item nav-dropdown-item'
-                        href={STAKING_DASHBOARD.CALCULATORS}
+                        to={STAKING_DASHBOARD.CALCULATORS}
                       >
                         Calculators
-                      </a>
+                      </Link>
                     </div>
                   </div>
                   <div className='navbar-item has-dropdown is-hoverable'>
-                    <a
+                    <Link
                       className='navbar-link is-arrowless'
-                      href={EDUCATION.INDEX}
+                      to={EDUCATION.INDEX}
                     >
                       Education
-                    </a>
+                    </Link>
                     <div
                       className='navbar-dropdown'
                       style={{ paddingTop: "0px", borderTop: "0px" }}
                     >
-                      <a
+                      <Link
                         className='navbar-item nav-dropdown-item'
-                        href={EDUCATION.UNDERSTANDING_IOTEX}
+                        to={EDUCATION.UNDERSTANDING_IOTEX}
                       >
                         Understanding IoTeX
-                      </a>
-                      <a
+                      </Link>
+                      <Link
                         className='navbar-item nav-dropdown-item'
-                        href={EDUCATION.VOTING_AND_DELEGATING}
+                        to={EDUCATION.VOTING_AND_DELEGATING}
                       >
                         Voting and Delegating
-                      </a>
-                      <a
+                      </Link>
+                      <Link
                         className='navbar-item nav-dropdown-item'
-                        href={EDUCATION.USING_THE_TESTNET}
+                        to={EDUCATION.USING_THE_TESTNET}
                       >
                         Using the Testnet
-                      </a>
+                      </Link>
                     </div>
                   </div>
                   <div className='navbar-item has-dropdown is-hoverable'>
-                    <a
+                    <Link
                       className='navbar-link is-arrowless'
-                      href={STAKING.INDEX}
+                      to={STAKING.INDEX}
                     >
                       Stake With Us &lt;3
-                    </a>
+                    </Link>
                     <div
                       className='navbar-dropdown'
                       style={{ paddingTop: "0px", borderTop: "0px" }}
                     >
-                      <a
+                      <Link
                         className='navbar-item nav-dropdown-item'
-                        href={STAKING.INDEX}
+                        to={STAKING.INDEX}
                       >
                         Why Us?
-                      </a>
-                      <a
+                      </Link>
+                      <Link
                         className='navbar-item nav-dropdown-item'
-                        href='https://member.iotex.io/delegate/5c736ba72d01e727d88b9dea'
+                        to='https://member.iotex.io/delegate/5c736ba72d01e727d88b9dea'
                         target='_blank'
                       >
                         Voting Profile
-                      </a>
+                      </Link>
                     </div>
                   </div>
                   {/* <div className='navbar-item has-dropdown is-hoverable'>
