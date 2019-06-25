@@ -1,6 +1,8 @@
 
 # iotxplorer
 
+[![CircleCI](https://circleci.com/gh/jason-james/iotxplorer.svg?style=shield)](https://circleci.com/gh/jason-james/iotxplorer)
+
 Frontend website for [the iotex blockchain](https://github.com/iotexproject/iotex-core) and eventually the website for all things IoTeX.
 
 Website is live at http://www.iotxplorer.io
