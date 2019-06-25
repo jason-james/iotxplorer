@@ -17,7 +17,7 @@ jobs:
           paths:
             - node_modules
           key: v2-dependencies-{{ checksum "package.json" }}
-      - run: npm build-production
+      - run: npm run build-production
       - store_artifacts:
           path: coverage
           prefix: coverage
