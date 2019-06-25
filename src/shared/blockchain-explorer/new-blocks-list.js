@@ -11,7 +11,10 @@ import TimeAgo from "react-timeago";
 export class NewBlocksList extends Component {
   render() {
     return (
-      <div className='card'>
+      <div
+        className='card'
+        style={{ maxHeight: this.props.width <= 680 ? "" : "873px" }}
+      >
         <header className='card-header'>
           <p className='card-header-title'>Recent Blocks</p>
         </header>
