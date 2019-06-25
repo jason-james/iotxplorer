@@ -24,7 +24,6 @@ export class NewBlocksList extends Component {
             width={this.props.width}
           />
         </div>
-        <hr />
       </div>
     );
   }
@@ -160,7 +159,7 @@ class RecentBlock extends Component {
               style={{ marginBottom: "12px" }}
             >
               <BlockProdDataStyle className='column is-one-third '>
-                <div className='columns is-vcentered'>
+                <div className='columns is-mobile is-vcentered'>
                   <div className='column is-4'>
                     <span
                       style={{ display: "inline-block" }}
@@ -187,8 +186,14 @@ class RecentBlock extends Component {
                   </div>
                 </div>
               </BlockProdDataStyle>
-              <BlockTxDataStyle className='column is-one-third'>
-                <div className='columns is-vcentered' style={{ margin: "1px" }}>
+              <BlockTxDataStyle
+                className='column is-one-third'
+                width={this.props.width}
+              >
+                <div
+                  className='columns is-mobile is-vcentered'
+                  style={{ margin: "1px" }}
+                >
                   <div className='column is-4'>
                     <i
                       className='fas fa-exchange-alt'
@@ -212,7 +217,10 @@ class RecentBlock extends Component {
                 </div>{" "}
               </BlockTxDataStyle>
               <BlockGasDataStyle className='column is-one-third'>
-                <div className='columns is-vcentered' style={{ margin: "1px" }}>
+                <div
+                  className='columns is-mobile is-vcentered'
+                  style={{ margin: "1px" }}
+                >
                   <div className='column is-4'>
                     <i className='fas fa-fire' style={{ fontSize: "24px" }} />
                   </div>
@@ -262,7 +270,8 @@ const BlockTxDataStyle = styled("div", props => ({
   height: "70px",
   background: "linear-gradient(135deg,#fff,#f2f6fb)",
   marginBottom: "12px",
-  marginTop: "12px"
+  marginTop: "12px",
+  border: props.width <= 680 ? "1px solid #dadee6" : ""
 }));
 
 const BlockGasDataStyle = styled("div", props => ({

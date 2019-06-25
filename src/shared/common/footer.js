@@ -20,14 +20,19 @@ const DASHBOARD_LINK = "https://www.iotxplorer.io/staking/dashboard";
 
 export function Footer() {
   return (
-    <FooterStyle className='footer'>
+    <FooterStyle>
       <div className='container'>
         <div className='content has-text-centered'>
           <div className='columns'>
             <div className='column is-one-third has-text-centered'>
               <p
                 className='heading'
-                style={{ width: "60%", marginLeft: "54px", fontSize: "15px" }}
+                style={{
+                  width: "60%",
+                  marginLeft: "54px",
+                  fontSize: "15px",
+                  letterSpacing: " 0px"
+                }}
               >
                 Stay Updated
               </p>
@@ -93,7 +98,12 @@ export function Footer() {
             <div className='column is-one-third has-text-centered'>
               <p
                 className='heading has-text-centered'
-                style={{ width: "60%", marginLeft: "52px", fontSize: "15px" }}
+                style={{
+                  width: "60%",
+                  marginLeft: "52px",
+                  fontSize: "15px",
+                  letterSpacing: " 0px"
+                }}
               >
                 explore
               </p>
@@ -129,10 +139,11 @@ export function Footer() {
   );
 }
 
-const FooterStyle = styled("footer", props => ({
+const FooterStyle = styled("div", props => ({
   ...fonts.body,
   backgroundColor: "#363636",
-  color: colors.inverse01
+  color: colors.inverse01,
+  padding: "3rem 1.5rem 6rem"
 }));
 
 const LinkStyle = styled("a", props => ({

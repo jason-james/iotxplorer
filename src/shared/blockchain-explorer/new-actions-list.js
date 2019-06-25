@@ -6,20 +6,24 @@ import { Link } from "react-router";
 import { fromRau } from "iotex-client-js/dist/account/utils";
 import { get } from "dottie";
 import decamelize from "decamelize";
+import defaultFormatter from "react-timeago";
 
 export class NewActionsList extends Component {
   render() {
-    return (
-      <div className='card'>
-        <header className='card-header'>
-          <p className='card-header-title'>Recent Actions</p>
-        </header>
-        <div className='card-content' style={{ marginBottom: "-18px" }}>
-          <RecentAction actions={this.props.actions} />
+    if (this.props.width <= 680) {
+      return <div />;
+    } else {
+      return (
+        <div className='card' style={{ maxHeight: "873px" }}>
+          <header className='card-header'>
+            <p className='card-header-title'>Recent Actions</p>
+          </header>
+          <div className='card-content'>
+            <RecentAction actions={this.props.actions} />
+          </div>
         </div>
-        <hr />
-      </div>
-    );
+      );
+    }
   }
 }
 
@@ -116,6 +120,16 @@ export class RecentAction extends Component {
     }
   };
 
+  formatter = (value, unit, suffix) => {
+    if (unit === "second") {
+      return " " + value + " sec ";
+    }
+
+    if (unit === "minute") {
+      return " " + value + " min ";
+    }
+  };
+
   render() {
     if (!this.props.actions) {
       return <LoadingMessage fakeRows={false} />;
@@ -128,15 +142,15 @@ export class RecentAction extends Component {
           marginTop: "-30px"
         }}
       >
-        {this.props.actions.slice(0, 8).map(currentElement => (
+        {this.props.actions.slice(0, 14).map(currentElement => (
           <section
             style={{ borderBottom: "1px solid #dadee6", marginBottom: "6px" }}
             key={currentElement.actHash}
           >
-            <div className='columns blocks-detail is-vcentered'>
+            <div className='columns is-mobile blocks-detail is-vcentered'>
               <div className='column is-one-third '>
                 <div
-                  className='columns is-vcentered'
+                  className='columns is-mobile is-vcentered'
                   style={{ marginRight: "1px" }}
                 >
                   <div className='column is-4' style={{ marginRight: "7px" }}>
@@ -161,7 +175,10 @@ export class RecentAction extends Component {
                 </div>
               </div>
               <div className='column is-one-third'>
-                <div className='columns is-vcentered' style={{ margin: "1px" }}>
+                <div
+                  className='columns is-mobile is-vcentered'
+                  style={{ margin: "1px" }}
+                >
                   <div className='column'>
                     <div
                       className='columns subtitle is-6'
@@ -190,7 +207,7 @@ export class RecentAction extends Component {
                           );
                       })()}
                     </div>
-                    <div className='columns'>
+                    <div className='columns is-mobile'>
                       <i
                         className='fas fa-long-arrow-alt-left'
                         style={{
@@ -227,7 +244,10 @@ export class RecentAction extends Component {
                 </div>
               </div>
               <div className='column is-one-sixth'>
-                <div className='columns is-vcentered' style={{ margin: "1px" }}>
+                <div
+                  className='columns is-mobile is-vcentered'
+                  style={{ margin: "1px" }}
+                >
                   <div className='column'>
                     {(() => {
                       if (this.getAmount(currentElement) === "-") {
@@ -236,7 +256,7 @@ export class RecentAction extends Component {
                         return (
                           <span
                             className='tag is-dark is-small'
-                            style={{ marginLeft: "0" }}
+                            style={{ marginLeft: "-1.5rem" }}
                           >
                             {this.getAmount(currentElement)}
                           </span>
@@ -246,10 +266,14 @@ export class RecentAction extends Component {
                 </div>
               </div>
               <div className='column is-one-sixth'>
-                <div className='columns is-vcentered' style={{ margin: "1px" }}>
+                <div className='columns is-vcentered'>
                   <div className='column' style={{ paddingRight: "0" }}>
-                    <span style={{ color: "6f7788", fontSize: "12px" }}>
-                      <TimeAgo date={currentElement.timestamp.seconds * 1000} />
+                    <span style={{ color: "6f7788", fontSize: "13px" }}>
+                      <i className='fas fa-clock' />
+                      <TimeAgo
+                        date={currentElement.timestamp.seconds * 1000}
+                        formatter={this.formatter}
+                      />
                     </span>
                   </div>
                 </div>

@@ -74,8 +74,8 @@ export class BlockchainExplorer extends Component {
     const fetchActionsByIndex = window.setInterval(() => {
       if (this.props.consensus.metrics.numActions) {
         this.props.fetchActionsByIndex({
-          start: this.props.consensus.metrics.numActions - 10,
-          count: 11
+          start: this.props.consensus.metrics.numActions - 20,
+          count: 21
         });
       }
     }, 1000);
@@ -423,7 +423,10 @@ export class BlockchainExplorer extends Component {
                   />
                 </div>
                 <div className='column is-half'>
-                  <NewActionsList actions={this.props.consensus.actions} />
+                  <NewActionsList
+                    actions={this.props.consensus.actions}
+                    width={this.props.width}
+                  />
                 </div>
               </div>
             </div>
@@ -547,7 +550,10 @@ export class BlockchainExplorer extends Component {
                   />
                 </div>
                 <div className='column is-half'>
-                  <NewActionsList actions={this.props.consensus.actions} />
+                  <NewActionsList
+                    actions={this.props.consensus.actions}
+                    width={this.props.width}
+                  />
                 </div>
               </div>
             </div>
