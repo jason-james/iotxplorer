@@ -1,3 +1,20 @@
+body .p-datatable .p-sortable-column .p-sortable-column-icon {
+  color: #848484;
+  display: none;
+}
+
+.p-paginator .p-paginator-icon {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
+  display: none;
+}
+
 body .p-datatable .p-datatable-thead > tr > th:first-child {
   padding: 0.571em 0.857em;
   width: 342px;

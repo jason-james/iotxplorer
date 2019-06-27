@@ -79,7 +79,7 @@ export class RewardsChart extends Component {
       data3.push((current.blockReward / 1e18).toFixed(0));
     });
     console.log([data1, data2, data3]);
-    return [data1, data2, data3];
+    return [data1.reverse(), data2.reverse(), data3.reverse()];
   };
 
   render() {
@@ -87,32 +87,32 @@ export class RewardsChart extends Component {
       //   labels: ["January", "February", "March", "April", "May", "June", "July"],
       datasets: [
         {
-          label: "Volume (USD)",
+          label: "Foundation Bonus (⬡)",
           type: "line",
           data: this.formChartData(this.props.rewards)[0],
           fill: true,
-          backgroundColor: "FFD900",
-          borderColor: "FFD900",
+          backgroundColor: "rgba(255, 217, 0, 0.8)",
+          borderColor: "rgba(255, 217, 0, 1)",
           pointBorderColor: "#fff",
-          pointBackgroundColor: "FFD900"
+          pointBackgroundColor: "rgba(255, 217, 0, 1)"
         },
         {
           type: "line",
-          label: "Price (USD)",
+          label: "Epoch Bonus (⬡)",
           data: this.formChartData(this.props.rewards)[1],
           fill: true,
-          backgroundColor: "rgba(54, 54, 54, 0.2)",
-          borderColor: "rgba(54, 54, 54, 0.2)",
+          backgroundColor: "rgba(54, 54, 54, 0.8)",
+          borderColor: "rgba(54, 54, 54, 1)",
           pointBorderColor: "#fff",
           pointBackgroundColor: "rgba(54, 54, 54, 0.2)",
           pointBorderColor: "#fff"
         },
         {
           type: "line",
-          label: "Price (USD)",
+          label: "Block Rewards (⬡)",
           data: this.formChartData(this.props.rewards)[2],
           fill: true,
-          backgroundColor: "rgba(0, 209, 178, 0.2)",
+          backgroundColor: "rgba(0, 209, 178, 0.8)",
           borderColor: "rgba(0, 209, 178, 1)",
           pointBorderColor: "#fff",
           pointBackgroundColor: "rgba(0, 209, 178, 1)",
@@ -122,6 +122,10 @@ export class RewardsChart extends Component {
     };
 
     const options = {
+      title: {
+        display: true,
+        text: "Total Rewards (past 7 days)"
+      },
       responsive: true,
       tooltips: {
         mode: "label"
@@ -147,7 +151,6 @@ export class RewardsChart extends Component {
             stacked: true,
             display: true,
             position: "left",
-            id: "y-axis-1",
             gridLines: {
               display: false
             },
@@ -166,6 +169,6 @@ export class RewardsChart extends Component {
       maintainAspectRatio: true
     };
 
-    return <Line data={data} options={options} />;
+    return <Line data={data} options={options} width={1280} height={440} />;
   }
 }

@@ -25,6 +25,10 @@ export class ProductivityChart extends Component {
     };
 
     const options = {
+      title: {
+        display: true,
+        text: "Productivity (past 7 days)"
+      },
       responsive: true,
       tooltips: {
         mode: "label"

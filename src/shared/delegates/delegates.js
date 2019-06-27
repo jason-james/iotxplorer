@@ -116,6 +116,8 @@ export class DelegatesList extends Component {
   };
 
   handleClick = (e, d) => {
+    window.scrollTo(0, 0);
+
     this.setState({
       height: "auto",
       selectedDelegate: d
@@ -144,17 +146,17 @@ export class DelegatesList extends Component {
 
     return (
       <section>
-        {/* <AnimateHeight duration={500} height={this.state.height}> */}
-        <DelegateAnalytics
-          delegate={this.state.selectedDelegate}
-          consensus={consensus}
-          fetchProductivity={this.props.fetchProductivity}
-          productivity={this.props.productivity}
-          fetchBuckets={this.props.fetchBuckets}
-          bucketsInfo={this.props.bucketsInfo}
-          rewards={this.props.rewards}
-        />
-        {/* </AnimateHeight> */}
+        <AnimateHeight duration={500} height={this.state.height}>
+          <DelegateAnalytics
+            delegate={this.state.selectedDelegate}
+            consensus={consensus}
+            fetchProductivity={this.props.fetchProductivity}
+            productivity={this.props.productivity}
+            fetchBuckets={this.props.fetchBuckets}
+            bucketsInfo={this.props.bucketsInfo}
+            rewards={this.props.rewards}
+          />
+        </AnimateHeight>
         <table className='bx--data-table-v2'>
           <thead>
             <tr>
@@ -230,7 +232,7 @@ export class DelegatesList extends Component {
                       className='button is-small is-primary'
                       onClick={e => this.handleClick(e, d)}
                     >
-                      Full Rewards Analytics Information
+                      Click to Expand
                     </a>
                   </td>
                 </tr>

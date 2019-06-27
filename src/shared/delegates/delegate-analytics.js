@@ -14,6 +14,9 @@ export class DelegateAnalytics extends Component {
     return (
       <section style={{ marginBottom: "18px" }}>
         <div className='card'>
+          <div className='card-header'>
+            <p className='card-header-title'>Delegate: Insights </p>
+          </div>
           <div className='card-content'>
             <div className='columns'>
               <div className='column is-half'>
@@ -70,15 +73,15 @@ export class DelegateAnalytics extends Component {
             </div>
             <div className='columns'>
               <div className='column'>
-                <BucketInfoTable
-                  bucketsInfo={this.props.bucketsInfo}
-                  totalVotes={delegate.liveVotes}
-                />
+                <RewardsChart rewards={this.props.rewards} />
               </div>
             </div>
             <div className='columns'>
               <div className='column'>
-                <RewardsChart rewards={this.props.rewards} height={440} />
+                <BucketInfoTable
+                  bucketsInfo={this.props.bucketsInfo}
+                  totalVotes={delegate.liveVotes}
+                />
               </div>
             </div>
           </div>
