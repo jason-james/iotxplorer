@@ -140,11 +140,19 @@ export class Nav extends Component {
                 >
                   <div className='navbar-end'>
                     <Link
-                      className='navbar-item  is-hoverable'
+                      className='navbar-item is-hoverable'
                       to={DELEGATES.INDEX}
                       style={{ marginRight: "12px" }}
                     >
-                      Delegates
+                      <div className='columns' style={{ marginTop: "0" }}>
+                        Delegates
+                      </div>
+                      <div
+                        className='columns'
+                        style={{ fontSize: "12px", marginTop: "0" }}
+                      >
+                        insights
+                      </div>
                     </Link>
                     <div className='navbar-item has-dropdown is-hoverable'>
                       <Link
@@ -331,7 +339,15 @@ export class Nav extends Component {
                     to={DELEGATES.INDEX}
                     style={{ marginRight: "12px" }}
                   >
-                    Delegates
+                    <div className='columns' style={{ marginTop: "0" }}>
+                      Delegates
+                    </div>
+                    <div
+                      className='columns'
+                      style={{ fontSize: "12px", marginTop: "0" }}
+                    >
+                      insights
+                    </div>
                   </Link>
                   <div className='navbar-item has-dropdown is-hoverable'>
                     <Link

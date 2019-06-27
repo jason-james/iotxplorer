@@ -106,7 +106,7 @@ export class RewardsInfo extends Component {
     return axes;
   };
 
-  handleNextClick = () => {
+  handleNextClick = e => {
     if (this.state.maxPages === null) {
       this.setState({
         maxPages: Math.ceil(this.state.tableContent.length / 8)
@@ -117,7 +117,7 @@ export class RewardsInfo extends Component {
     }
   };
 
-  handlePrevClick = () => {
+  handlePrevClick = e => {
     if (this.state.pageNumber !== 1) {
       this.setState({ pageNumber: this.state.pageNumber - 1 });
     }
@@ -193,7 +193,10 @@ export class RewardsInfo extends Component {
 
         <AnimateHeight duration={500} height={this.state.height}>
           {this.state.error === true ? (
-            <article className='message is-info' style={{ marginBottom: "12px" }}>
+            <article
+              className='message is-info'
+              style={{ marginBottom: "12px" }}
+            >
               <div className='message-header'>
                 <p>Oh, no!</p>
               </div>
@@ -208,7 +211,10 @@ export class RewardsInfo extends Component {
               </div>
             </article>
           ) : (
-            <div className='columns is-multiline' style={{ paddingTop: "12px" }}>
+            <div
+              className='columns is-multiline'
+              style={{ paddingTop: "12px" }}
+            >
               <div
                 className='column is-6 mobile-chartist'
                 style={{ paddingTop: "0px" }}
@@ -297,7 +303,7 @@ export class RewardsInfo extends Component {
                             <a
                               className='pagination-previous'
                               onClick={e => {
-                                this.handlePrevClick();
+                                this.handlePrevClick(e);
                                 this.fetchVoterHistory(e);
                                 console.log(this.state.pageNumber);
                               }}
@@ -307,7 +313,7 @@ export class RewardsInfo extends Component {
                             <a
                               className='pagination-next'
                               onClick={e => {
-                                this.handleNextClick();
+                                this.handleNextClick(e);
                                 this.fetchVoterHistory(e);
                               }}
                             >
@@ -330,7 +336,10 @@ export class RewardsInfo extends Component {
               </div>
             </div>
           )}
-          <div className='hero is-small is-dark' style={{ marginBottom: "1rem" }}>
+          <div
+            className='hero is-small is-dark'
+            style={{ marginBottom: "1rem" }}
+          >
             <div className='hero-body'>
               <div className='container has-text-centered'>
                 <h1 className='title'>

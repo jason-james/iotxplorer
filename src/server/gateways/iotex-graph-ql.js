@@ -12,7 +12,9 @@ export class IotexGraphQL {
                     name
                     liveVotes
                     percent
+                    blurb
                     id
+                    rank
                     registeredName
                     logo
                     website
@@ -78,6 +80,49 @@ export class IotexGraphQL {
                   }
                 }
               `
+      }
+    });
+  }
+
+  fetchProductivity(name, startEpoch) {
+    return axios({
+      url: "https://iotex-analytics.herokuapp.com/query",
+      method: "post",
+      data: {
+        query: `
+                  query {
+                  delegate (startEpoch: ${startEpoch} epochCount:24 delegateName: "${name}") {
+                      productivity {
+                          production
+                          expectedProduction
+                          }
+                      reward {
+                        blockReward
+                        epochReward
+                        foundationBonus
+                        }    
+                     }
+                  }
+                  `
+      }
+    });
+  }
+
+  fetchBuckets(name) {
+    return axios({
+      url: "https://member.iotex.io/api-gateway/",
+      method: "post",
+      data: {
+        query: `
+                  query {
+                  buckets(name: "${name}" offset:0 limit:1000) {
+                    voter
+                    votes
+                    weightedVotes
+                    remainingDuration
+                      }
+                  }
+                  `
       }
     });
   }

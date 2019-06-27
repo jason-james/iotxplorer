@@ -64,7 +64,17 @@ export class App extends Component {
             {
               rel: "stylesheet",
               type: "text/css",
-              href: `${assetURL("/stylesheets/custom.css")}`
+              href: `${assetURL("/stylesheets/primereact.css")}`
+            },
+            {
+              rel: "stylesheet",
+              type: "text/css",
+              href: `${assetURL("/stylesheets/primeicons.css")}`
+            },
+            {
+              rel: "stylesheet",
+              type: "text/css",
+              href: `${assetURL("/stylesheets/theme.css")}`
             },
             {
               rel: "stylesheet",

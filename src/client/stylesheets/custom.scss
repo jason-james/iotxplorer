@@ -1,3 +1,75 @@
+body .p-datatable .p-datatable-thead > tr > th:first-child {
+  padding: 0.571em 0.857em;
+  width: 342px;
+  border: none;
+  font-weight: 700;
+  color: #fff;
+  background-color: #363636;
+  text-align: center;
+}
+
+body .p-paginator .p-paginator-pages .p-paginator-page {
+  color: #fff;
+}
+
+body .p-datatable .p-sortable-column.p-highlight {
+  background-color: #00d1b2;
+  color: #ffffff;
+}
+
+body .p-paginator {
+  background-color: #474747;
+  border: 1px solid #c8c8c8;
+  padding: 0;
+}
+
+ody .p-datatable .p-sortable-column:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  -webkit-box-shadow: inset 0 0 0 0.2em #00d1b2;
+  -moz-box-shadow: inset 0 0 0 0.2em #00d1b2;
+  box-shadow: inset 0 0 0 0.2em #00d1b2;
+}
+
+body .p-inputtext:enabled:focus {
+  outline: 0 none;
+  outline-offset: 0;
+  -webkit-box-shadow: 0 0 0 0.2em #00d1b2;
+  -moz-box-shadow: 0 0 0 0.2em #00d1b2;
+  box-shadow: 0 0 0 0.2em #00d1b2;
+  border-color: #00d1b2;
+}
+
+body .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background-color: #00d1b2;
+  color: #ffffff;
+}
+
+body .p-datatable .p-sortable-column.p-highlight {
+  background-color: #474747;
+  color: #ffffff;
+}
+
+body .p-datatable .p-datatable-tbody > tr {
+  background: #474747;
+  border: 1px solid #c8c8c8;
+  padding: 0.429em 0.857em;
+  color: #fff;
+}
+
+body .p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background-color: #363636;
+}
+
+body .p-datatable .p-datatable-thead > tr > th {
+  padding: 0.571em 0.857em;
+  border: none;
+  font-weight: 700;
+  color: #fff;
+  background-color: #363636;
+  text-align: center;
+}
+
 @media only screen and (max-width: 640px) {
   .calc-spacing {
     min-height: 100vh;

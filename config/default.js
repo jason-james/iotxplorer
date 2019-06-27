@@ -46,7 +46,8 @@ module.exports = {
       "http://fonts.googleapis.com/css",
       "http://use.fontawesome.com/releases/v5.0.9/css/all.css",
       "http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css",
-      "https://cdn.jsdelivr.net/npm/bulma-switch@2.0.0/dist/css/bulma-switch.min.css"
+      "https://cdn.jsdelivr.net/npm/bulma-switch@2.0.0/dist/css/bulma-switch.min.css",
+      "https://unpkg.com/carbon-components/css/carbon-components.min.css"
     ],
     "frame-src": ["https://www.youtube.com/", "https://s.tradingview.com/"],
     "connect-src": ["self"],

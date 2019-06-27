@@ -278,6 +278,14 @@ export class DELEGATES {
   static get GET(): string {
     return "/api/getDelegates";
   }
+
+  static get GET_PRODUCTIVITY(): string {
+    return "/api/getProductivity";
+  }
+
+  static get GET_BUCKETS(): string {
+    return "/api/getBuckets";
+  }
 }
 
 export class STAKING {
