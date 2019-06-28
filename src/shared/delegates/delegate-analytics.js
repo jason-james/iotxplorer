@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { LoadingMessage } from "../common/message";
 import { ProductivityChart } from "./productivity-chart";
-import { BucketInfoTable, RewardsChart } from "./all-voters-data-table";
+import { BucketInfoTable, RewardsChart } from "./insights-visualisation";
 
 export class DelegateAnalytics extends Component {
   render() {
@@ -78,7 +78,10 @@ export class DelegateAnalytics extends Component {
             </div>
             <div className='columns'>
               <div className='column'>
-                <RewardsChart rewards={this.props.rewards} />
+                <RewardsChart
+                  rewards={this.props.rewards}
+                  width={this.props.width}
+                />
               </div>
             </div>
             <div className='columns'>

@@ -2,7 +2,6 @@
 
 import React, { Component } from "react";
 import AnimateHeight from "../../lib/height-animate";
-
 import { Helmet } from "react-helmet";
 import { styled } from "styletron-react";
 import { colors } from "../common/styles/style-color";
@@ -14,6 +13,7 @@ import { EmptyMessage, LoadingMessage } from "../common/message";
 import { TableWrapper } from "../common/table-wrapper";
 import type { TDelegate } from "../../entities/delegate-types";
 import { DelegateAnalytics } from "./delegate-analytics";
+import { hideColClass } from "../common/utils";
 
 export class Delegates extends Component {
   constructor(props: any) {
@@ -155,19 +155,57 @@ export class DelegatesList extends Component {
             fetchBuckets={this.props.fetchBuckets}
             bucketsInfo={this.props.bucketsInfo}
             rewards={this.props.rewards}
+            width={this.props.width}
           />
         </AnimateHeight>
         <table className='bx--data-table-v2'>
           <thead>
             <tr>
-              <th>Rank</th>
-              <th />
-              <th>Delegate Name</th>
-              <th>Server Status</th>
-              <th>Votes & Percent</th>
-              <th>Cumulative Share</th>
-              <th style={{ textAlign: "center" }}>Blocks in Epoch</th>
-              <th />
+              <th
+                className={
+                  hideColClass(this.props.width) ? "" : "second-to-none-header"
+                }
+              >
+                Rank
+              </th>
+              <th
+                className={hideColClass(this.props.width) ? "" : "none-on-palm"}
+              />
+              <th
+                className={
+                  hideColClass(this.props.width) ? "" : "second-to-none-header"
+                }
+              >
+                Delegate Name
+              </th>
+              <th
+                className={hideColClass(this.props.width) ? "" : "none-on-palm"}
+              >
+                Server Status
+              </th>
+              <th
+                className={
+                  hideColClass(this.props.width) ? "" : "second-to-none-header"
+                }
+              >
+                Votes & Percent
+              </th>
+              <th
+                className={hideColClass(this.props.width) ? "" : "none-on-palm"}
+              >
+                Cumulative Share
+              </th>
+              <th
+                className={hideColClass(this.props.width) ? "" : "none-on-palm"}
+                style={{ textAlign: "center" }}
+              >
+                Blocks in Epoch
+              </th>
+              <th
+                className={
+                  hideColClass(this.props.width) ? "" : "second-to-none-header"
+                }
+              />
             </tr>
           </thead>
           <tbody>
@@ -177,8 +215,20 @@ export class DelegatesList extends Component {
               }, 0);
               return (
                 <tr className='bx--parent-row-v2' data-parent-row>
-                  <td>{i + 1}</td>
-                  <td>
+                  <td
+                    className={
+                      hideColClass(this.props.width)
+                        ? ""
+                        : "second-to-none-header"
+                    }
+                  >
+                    {i + 1}
+                  </td>
+                  <td
+                    className={
+                      hideColClass(this.props.width) ? "" : "none-on-palm"
+                    }
+                  >
                     <img
                       src={d.logo}
                       style={{
@@ -188,15 +238,39 @@ export class DelegatesList extends Component {
                       }}
                     />
                   </td>
-                  <td>{d.name}</td>
-                  <td>{this.displayServerStatus(d.serverStatus)}</td>
-                  <td>
+                  <td
+                    className={
+                      hideColClass(this.props.width)
+                        ? ""
+                        : "second-to-none-header"
+                    }
+                  >
+                    {d.name}
+                  </td>
+                  <td
+                    className={
+                      hideColClass(this.props.width) ? "" : "none-on-palm"
+                    }
+                  >
+                    {this.displayServerStatus(d.serverStatus)}
+                  </td>
+                  <td
+                    className={
+                      hideColClass(this.props.width)
+                        ? ""
+                        : "second-to-none-header"
+                    }
+                  >
                     {Number(d.liveVotes).toLocaleString()}
                     <div style={{ color: "#00d1b2", fontSize: "0.8rem" }}>
                       {d.percent}%
                     </div>
                   </td>
-                  <td>
+                  <td
+                    className={
+                      hideColClass(this.props.width) ? "" : "none-on-palm"
+                    }
+                  >
                     <div
                       style={{
                         height: "100%",
@@ -221,18 +295,29 @@ export class DelegatesList extends Component {
                       <p>{cumulativeArr[i].toFixed(2)}%</p>
                     </div>
                   </td>
-                  <td style={{ textAlign: "center" }}>
+                  <td
+                    className={
+                      hideColClass(this.props.width) ? "" : "none-on-palm"
+                    }
+                    style={{ textAlign: "center" }}
+                  >
                     {this.displayProductivity(
                       d.productivity,
                       d.productivityBase
                     )}
                   </td>
-                  <td>
+                  <td
+                    className={
+                      hideColClass(this.props.width)
+                        ? ""
+                        : "second-to-none-header"
+                    }
+                  >
                     <a
                       className='button is-small is-primary'
                       onClick={e => this.handleClick(e, d)}
                     >
-                      Click to Expand
+                      Expand
                     </a>
                   </td>
                 </tr>

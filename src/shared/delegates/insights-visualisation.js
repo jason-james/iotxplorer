@@ -199,6 +199,13 @@ export class RewardsChart extends Component {
       maintainAspectRatio: true
     };
 
-    return <Line data={data} options={options} width={1280} height={440} />;
+    return (
+      <Line
+        data={data}
+        options={options}
+        width={this.props.width < 720 ? null : 1280}
+        height={440}
+      />
+    );
   }
 }
