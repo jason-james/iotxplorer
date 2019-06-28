@@ -145,11 +145,11 @@ export class Nav extends Component {
                       style={{ marginRight: "12px" }}
                     >
                       <div className='columns' style={{ marginTop: "0" }}>
-                        Delegates
+                        Delegate
                       </div>
                       <div
                         className='columns'
-                        style={{ fontSize: "12px", marginTop: "0" }}
+                        style={{ fontSize: "14px", marginTop: "0" }}
                       >
                         insights
                       </div>
@@ -340,11 +340,11 @@ export class Nav extends Component {
                     style={{ marginRight: "12px" }}
                   >
                     <div className='columns' style={{ marginTop: "0" }}>
-                      Delegates
+                      Delegate
                     </div>
                     <div
                       className='columns'
-                      style={{ fontSize: "12px", marginTop: "0" }}
+                      style={{ fontSize: "14px", marginTop: "0" }}
                     >
                       insights
                     </div>

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
-
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { MultiSelect } from "primereact/multiselect";
+import { ToolTip } from "../common/tooltip";
 
 export class BucketInfoTable extends Component {
   constructor(props: any) {
@@ -14,6 +14,8 @@ export class BucketInfoTable extends Component {
     this.state = {
       buckets: []
     };
+
+    this.shareTemplate = this.shareTemplate.bind(this);
   }
 
   componentDidMount() {
@@ -26,17 +28,45 @@ export class BucketInfoTable extends Component {
 
   getVoterPercentages = (buckets, totalVotes) => {
     buckets.forEach(curr => {
-      curr["percent"] = (curr.votes / totalVotes) * 100;
+      curr["percent"] = ((curr.votes / totalVotes) * 100).toFixed(3);
     });
     this.setState({
       buckets
     });
   };
 
+  shareTemplate(rowData, column) {
+    return (
+      <span className='p-column-title'>
+        Share (%){" "}
+        <ToolTip
+          iconClass={"fas fa-question-circle"}
+          message="You can find out roughly how much IOTX (⬡) you should be getting every day by multiplying your share by the daily delegate rewards from the chart above, according to your delegate's reward structure."
+          customPadClass={"rollDpos-tooltip"}
+        />
+      </span>
+    );
+  }
+
+  findUniqueAddresses = buckets => {
+    let uniqueArray = [];
+    buckets.forEach(bucket => {
+      if (!uniqueArray.includes(bucket.voter)) {
+        uniqueArray.push(bucket.voter);
+      }
+    });
+    return uniqueArray.length;
+  };
+
   render() {
+    var footer = `Total buckets: ${
+      this.state.buckets.length
+    }    Unique addresses: ${this.findUniqueAddresses(this.state.buckets)}`;
+
     return (
       <DataTable
         value={this.state.buckets}
+        footer={footer}
         paginator={true}
         rows={10}
         responsive={true}
@@ -50,7 +80,7 @@ export class BucketInfoTable extends Component {
         />
         <Column field='votes' header='Stake' sortable={true} />
         <Column field='weightedVotes' header='Votes' sortable={true} />
-        <Column field='percent' header='Share (%)' sortable={true} />
+        <Column field='percent' header={this.shareTemplate()} sortable={true} />
 
         <Column
           field='remainingDuration'

@@ -7,7 +7,12 @@ export class DelegateAnalytics extends Component {
   render() {
     const { delegate } = this.props;
 
-    if (!delegate) {
+    if (
+      !delegate ||
+      this.props.productivity === [] ||
+      this.props.rewards === [] ||
+      this.props.bucketsInfo === []
+    ) {
       return <LoadingMessage />;
     }
 
