@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from "react";
+import { Link } from "react-router";
 import { Helmet } from "react-helmet";
 import window from "global";
 import { CommonMargin } from "../common/common-margin";
@@ -370,6 +371,17 @@ export class BlockchainExplorer extends Component {
               </div>
             </div>
           </div>
+          <div class='box cta'>
+            <p class='has-text-centered'>
+              <span class='tag is-primary' style={{ marginRight: "8px" }}>
+                New
+              </span>
+              Check out our <Link to='/delegates'>Delegate Insights</Link> page
+              to take a peek into your delegate's data and find out what you
+              should be earning. Includes productivity, total rewards, voter
+              buckets, and soon, you'll be able to track their rewards accuracy.
+            </p>
+          </div>
           <div className='section' style={{ padding: "0px", margin: "0rem" }}>
             <div className='container' style={{ marginTop: "42px" }}>
               <div className='card homepage-card'>
@@ -493,6 +505,17 @@ export class BlockchainExplorer extends Component {
                 <SearchBar router={this.props.router} />
               </div>
             </div>
+          </div>
+          <div class='box cta'>
+            <p class='has-text-centered'>
+              <span class='tag is-primary' style={{ marginRight: "8px" }}>
+                New
+              </span>
+              Check out our <Link to='/delegates'>Delegate Insights</Link> page
+              to take a peek into your delegate's data and find out what you
+              should be earning. Includes productivity, total rewards, voter
+              buckets, and soon, you'll be able to track their rewards accuracy.
+            </p>
           </div>
           <div className='section' style={{ padding: "0px", margin: "0rem" }}>
             <div className='container' style={{ marginTop: "42px" }}>

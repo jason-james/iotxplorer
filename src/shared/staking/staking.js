@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Helmet} from "react-helmet";;
+import { Helmet } from "react-helmet";
 import { assetURL } from "../../lib/asset-url";
 import { t } from "../../lib/iso-i18n";
 import { STAKING_DASHBOARD, SITE_URL } from "../common/site-url";
@@ -124,7 +124,7 @@ export class Staking extends Component {
         </section>
         <div className='box cta'>
           <p className='has-text-centered'>
-            <span className='tag is-primary'>New</span> Read our{" "}
+            <span className='tag is-primary'>Note</span> You can read our{" "}
             <a
               href='https://medium.com/@iotxplorer/who-we-are-an-introduction-to-iotxplorer-35005c020867'
               target='_blank'
@@ -147,7 +147,10 @@ export class Staking extends Component {
         <section className='container'>
           <div className='columns features'>
             <div className='column is-4'>
-              <div className='card is-shady' style={{ paddingTop: "1.5em" }}>
+              <div
+                className='card is-shady'
+                style={{ paddingTop: "1.5em", maxHeight: "398px" }}
+              >
                 <div className='card-image has-text-centered'>
                   <img
                     src={assetURL("/undraw-safe.svg")}
@@ -233,9 +236,9 @@ export class Staking extends Component {
                         completely transparent – you’ll always know our ranking
                         and reward structure
                       </strong>
-                      . We’ll even go a step further and provide insightful
-                      reports tailored to you, which break down your rewards
-                      after each cycle.
+                      . We were the very <strong>first</strong> delegate to
+                      provide a member's portal for our voters to track our
+                      rank, rewards, and payments.
                     </p>
                     {/* <p><a href="#">Learn more</a></p> */}
                   </div>
