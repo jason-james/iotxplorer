@@ -103,8 +103,10 @@ export class DelegatesList extends Component {
     }
   };
 
-  displayProductivity = (prod, base) => {
-    if (!prod || !base) {
+  displayProductivity = (prod, base, d, i) => {
+    if (d.rank >= i + 10) {
+      return "Not enough self stake";
+    } else if (!prod || !base) {
       return "";
     } else if (base === 0 || base === "0") {
       return "Not Selected";
@@ -221,8 +223,11 @@ export class DelegatesList extends Component {
                         ? ""
                         : "second-to-none-header"
                     }
+                    style={{
+                      fontSize: d.rank >= i + 10 ? "0" : "1rem"
+                    }}
                   >
-                    {i + 1}
+                    {d.rank}
                   </td>
                   <td
                     className={
@@ -244,6 +249,9 @@ export class DelegatesList extends Component {
                         ? ""
                         : "second-to-none-header"
                     }
+                    style={{
+                      textDecoration: d.rank >= i + 10 ? "line-through" : "#"
+                    }}
                   >
                     {d.name}
                   </td>
@@ -251,6 +259,9 @@ export class DelegatesList extends Component {
                     className={
                       hideColClass(this.props.width) ? "" : "none-on-palm"
                     }
+                    style={{
+                      textDecoration: d.rank >= i + 10 ? "line-through" : ""
+                    }}
                   >
                     {this.displayServerStatus(d.serverStatus)}
                   </td>
@@ -261,7 +272,13 @@ export class DelegatesList extends Component {
                         : "second-to-none-header"
                     }
                   >
-                    {Number(d.liveVotes).toLocaleString()}
+                    <div
+                      style={{
+                        textDecoration: d.rank >= i + 10 ? "line-through" : ""
+                      }}
+                    >
+                      {Number(d.liveVotes).toLocaleString()}
+                    </div>
                     <div style={{ color: "#00d1b2", fontSize: "0.8rem" }}>
                       {d.percent}%
                     </div>
@@ -292,18 +309,30 @@ export class DelegatesList extends Component {
                         paddingLeft: "120px"
                       }}
                     >
-                      <p>{cumulativeArr[i].toFixed(2)}%</p>
+                      <p
+                        style={{
+                          textDecoration:
+                            d.rank >= i + 10 ? "line-through" : "#"
+                        }}
+                      >
+                        {cumulativeArr[i].toFixed(2)}%
+                      </p>
                     </div>
                   </td>
                   <td
                     className={
                       hideColClass(this.props.width) ? "" : "none-on-palm"
                     }
-                    style={{ textAlign: "center" }}
+                    style={{
+                      textAlign: "center",
+                      fontSize: d.rank >= i + 10 ? "14px" : "1rem"
+                    }}
                   >
                     {this.displayProductivity(
                       d.productivity,
-                      d.productivityBase
+                      d.productivityBase,
+                      d,
+                      i
                     )}
                   </td>
                   <td
