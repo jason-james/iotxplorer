@@ -55,7 +55,7 @@ export class Delegates extends Component {
 
     return (
       <div className='column container'>
-        <Helmet title={"Delegate - iotxplorer"} />
+        <Helmet title={"Iotxplorer - Delegate Insights"} />
         <div>
           <h1 className='title'>Delegates</h1>
           <DelegatesList

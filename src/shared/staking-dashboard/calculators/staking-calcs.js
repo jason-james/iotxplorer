@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Helmet} from "react-helmet";;
+import { Helmet } from "react-helmet";
 import { StakingDashboardNav } from "../staking-dashboard-nav";
 import { assetURL } from "../../../lib/asset-url";
 
@@ -87,7 +87,7 @@ export class Calculators extends Component {
     return (
       <div className='section'>
         <Helmet
-          title={"iotxplorer: Calculator"}
+          title={"Iotxplorer: Calculator"}
           meta={[
             {
               name: "description",
@@ -95,7 +95,7 @@ export class Calculators extends Component {
             },
             {
               property: "og:title",
-              content: "iotxplorer: Calculator"
+              content: "Iotxplorer: Calculator"
             },
             {
               property: "og:description",
@@ -115,7 +115,7 @@ export class Calculators extends Component {
             },
             {
               name: "twitter:title",
-              content: "iotxplorer: Calculator"
+              content: "Iotxplorer: Calculator"
             },
             {
               name: "twitter:description",

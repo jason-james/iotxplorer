@@ -314,7 +314,7 @@ export class BlockchainExplorer extends Component {
       return (
         <section>
           <Helmet
-            title={"iotxplorer: iotex search engine"}
+            title={"Iotxplorer: IoTeX Block Explorer"}
             meta={[
               {
                 name: "description",
@@ -323,7 +323,7 @@ export class BlockchainExplorer extends Component {
               },
               {
                 property: "og:title",
-                content: "iotxplorer: iotex search engine"
+                content: "Iotxplorer: IoTeX Block Explorer"
               },
               {
                 property: "og:description",
@@ -344,7 +344,7 @@ export class BlockchainExplorer extends Component {
               },
               {
                 name: "twitter:title",
-                content: "iotxplorer: iotex search engine"
+                content: "Iotxplorer: IoTeX Block Explorer"
               },
               {
                 name: "twitter:description",
@@ -449,7 +449,7 @@ export class BlockchainExplorer extends Component {
       return (
         <section>
           <Helmet
-            title={"iotxplorer: iotex search engine"}
+            title={"Iotxplorer: IoTeX Block Explorer"}
             meta={[
               {
                 name: "description",
@@ -458,7 +458,7 @@ export class BlockchainExplorer extends Component {
               },
               {
                 property: "og:title",
-                content: "iotxplorer: iotex search engine"
+                content: "Iotxplorer: IoTeX Block Explorer"
               },
               {
                 property: "og:description",
@@ -479,7 +479,7 @@ export class BlockchainExplorer extends Component {
               },
               {
                 name: "twitter:title",
-                content: "iotxplorer: iotex search engine"
+                content: "Iotxplorer: IoTeX Block Explorer"
               },
               {
                 name: "twitter:description",

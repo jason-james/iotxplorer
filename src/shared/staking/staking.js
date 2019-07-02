@@ -12,7 +12,7 @@ export class Staking extends Component {
       <section>
         <section className='hero is-primary is-large is-bold'>
           <Helmet
-            title={"iotxplorer: Stake with us <3"}
+            title={"Iotxplorer: Stake with us <3"}
             meta={[
               {
                 name: "description",
@@ -21,7 +21,7 @@ export class Staking extends Component {
               },
               {
                 property: "og:title",
-                content: "iotxplorer: Stake with us <3"
+                content: "Iotxplorer: Stake with us <3"
               },
               {
                 property: "og:description",
@@ -42,7 +42,7 @@ export class Staking extends Component {
               },
               {
                 name: "twitter:title",
-                content: "iotxplorer: Stake with us <3"
+                content: "Iotxplorer: Stake with us <3"
               },
               {
                 name: "twitter:description",

@@ -129,7 +129,7 @@ export class StakingDashboard extends Component {
     return (
       <div className='section'>
         <Helmet
-          title={"iotxplorer: Dashboard"}
+          title={"Iotxplorer: Dashboard"}
           meta={[
             {
               name: "description",
@@ -138,7 +138,7 @@ export class StakingDashboard extends Component {
             },
             {
               property: "og:title",
-              content: "iotxplorer: Dashboard"
+              content: "Iotxplorer: Dashboard"
             },
             {
               property: "og:description",
@@ -159,7 +159,7 @@ export class StakingDashboard extends Component {
             },
             {
               name: "twitter:title",
-              content: "iotxplorer: iotex network explorer"
+              content: "Iotxplorer: iotex network explorer"
             },
             {
               name: "twitter:description",

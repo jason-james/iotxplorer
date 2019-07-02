@@ -9,7 +9,7 @@ export class EducationHeader extends Component {
     return (
       <section className='hero is-primary'>
         <Helmet
-          title={"iotxplorer: education"}
+          title={"Iotxplorer: Education"}
           meta={[
             {
               name: "description",
@@ -18,7 +18,7 @@ export class EducationHeader extends Component {
             },
             {
               property: "og:title",
-              content: "iotxplorer: Education"
+              content: "Iotxplorer: Education"
             },
             {
               property: "og:description",
@@ -39,7 +39,7 @@ export class EducationHeader extends Component {
             },
             {
               name: "twitter:title",
-              content: "iotxplorer: Education"
+              content: "Iotxplorer: Education"
             },
             {
               name: "twitter:description",
