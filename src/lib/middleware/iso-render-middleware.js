@@ -19,7 +19,16 @@ export function isoRenderMiddleware(server: Server): any {
       const routes = vDom;
       const renderProps = match(
         { routes, location: ctx.url },
-        (err, redirectLocation, renderProps) => {}
+        (err, redirectLocation, renderProps) => {
+          if (err) {
+            res.status(500).send(error.message);
+          } else if (redirectLocation) {
+            res.redirect(
+              302,
+              redirectLocation.pathname + redirectLocation.search
+            );
+          }
+        }
       );
       ctx.body = html(ctx, renderProps, reducer, clientScript);
     };
