@@ -134,6 +134,10 @@ export class DelegatesList extends Component {
     });
   };
 
+  secureLogo = logoURL => {
+    return "https:" + logoURL.split(":")[1];
+  };
+
   render() {
     const { delegates, consensus } = this.props;
 
@@ -235,7 +239,7 @@ export class DelegatesList extends Component {
                     }
                   >
                     <img
-                      src={d.logo}
+                      src={this.secureLogo(d.logo)}
                       style={{
                         objectFit: "contain",
                         height: "40px",

@@ -58,7 +58,41 @@ export class BucketInfoTable extends Component {
     return uniqueArray.length;
   };
 
+  export = () => {
+    this.dt.exportCSV();
+  };
+
   render() {
+    var header = (
+      <nav class='level'>
+        <div class='level-left'>
+          <div class='level-item'>
+            <p>Buckets (Current Epoch)</p>
+          </div>
+        </div>
+
+        <div class='level-right'>
+          <a class='button is-primary is-outlined' onClick={this.export}>
+            <i class='fas fa-download' />
+          </a>
+        </div>
+      </nav>
+    );
+
+    <nav class='level'>
+      <div class='level-left'>
+        <div class='level-item'>
+          <p>Buckets (Current Epoch)</p>
+        </div>
+      </div>
+
+      <div class='level-right'>
+        <a class='button is-primary is-outlined' onClick={this.export}>
+          <i class='fas fa-download' />
+        </a>
+      </div>
+    </nav>;
+
     var footer = `Total buckets: ${
       this.state.buckets.length
     }    Unique addresses: ${this.findUniqueAddresses(this.state.buckets)}`;
@@ -66,10 +100,14 @@ export class BucketInfoTable extends Component {
     return (
       <DataTable
         value={this.state.buckets}
+        header={header}
         footer={footer}
         paginator={true}
         rows={10}
         responsive={true}
+        ref={el => {
+          this.dt = el;
+        }}
       >
         <Column
           field='voter'
