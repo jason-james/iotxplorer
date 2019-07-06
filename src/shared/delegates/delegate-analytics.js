@@ -4,6 +4,10 @@ import { ProductivityChart } from "./productivity-chart";
 import { BucketInfoTable, RewardsChart } from "./insights-visualisation";
 
 export class DelegateAnalytics extends Component {
+  secureLogo = logoURL => {
+    return "https:" + logoURL.split(":")[1];
+  };
+
   render() {
     const { delegate } = this.props;
 
@@ -20,17 +24,17 @@ export class DelegateAnalytics extends Component {
       <section style={{ marginBottom: "18px" }}>
         <div className='card'>
           <div className='card-header'>
-            <p className='card-header-title'>Delegate: Insights </p>
+            <p className='card-header-title'>Insights </p>
           </div>
           <div className='card-content'>
             <div className='columns'>
-              <div className='column is-half'>
-                <div className='card'>
-                  <div className='card-header'>
+              <div className='column'>
+                <div className='card' style={{ boxShadow: "none" }}>
+                  <div className='card-header' style={{ boxShadow: "none" }}>
                     <p className='card-header-title is-centered'>
                       <div className='columns'>
                         <img
-                          src={delegate.logo}
+                          src={this.secureLogo(delegate.logo)}
                           style={{
                             objectFit: "contain",
                             height: "80px",
@@ -44,37 +48,45 @@ export class DelegateAnalytics extends Component {
                       </div>
                     </p>
                   </div>
-                  <div className='card-content'>
+                  <div className='card-content' style={{ paddingTop: "1rem" }}>
                     <div className='columns'>
-                      <div className='column'>
-                        <p>{delegate.blurb}</p>
+                      <div className='column is-centered'>
+                        <p className='has-text-centered'>{delegate.blurb}</p>
                       </div>
                     </div>
 
-                    <div className='columns ' style={{ marginBottom: "0" }}>
-                      <p className='title ' style={{ margin: "6px" }}>
-                        <span style={{ fontSize: "18px" }}>Rank: </span>
-                        {delegate.rank}
-                      </p>
-                    </div>
-                    <div className='columns ' style={{ marginBottom: "0" }}>
-                      <p className='title ' style={{ margin: "6px" }}>
-                        <span style={{ fontSize: "18px" }}>Votes: </span>
-                        {Number(delegate.liveVotes).toLocaleString()}
-                      </p>
-                    </div>
-                    <div className='columns '>
-                      <p className='title ' style={{ margin: "6px" }}>
-                        <span style={{ fontSize: "18px" }}>Percent: </span>
-                        {delegate.percent}%
-                      </p>
-                    </div>
+                    <nav class='level'>
+                      <div class='level-item has-text-centered'>
+                        <div>
+                          <p class='heading'>Rank</p>
+                          <p class='title'> {delegate.rank}</p>
+                        </div>
+                      </div>
+                      <div class='level-item has-text-centered'>
+                        <div>
+                          <p class='heading'>Votes</p>
+                          <p class='title'>
+                            {" "}
+                            {Number(delegate.liveVotes).toLocaleString()}
+                          </p>
+                        </div>
+                      </div>
+                      <div class='level-item has-text-centered'>
+                        <div>
+                          <p class='heading'>Percent</p>
+                          <p class='title'>{delegate.percent}%</p>
+                        </div>
+                      </div>
+                    </nav>
                   </div>
                 </div>
               </div>
-              <div className='column is-half'>
-                <ProductivityChart productivity={this.props.productivity} />
-              </div>
+            </div>
+            <div className='columns'>
+              <ProductivityChart
+                productivity={this.props.productivity}
+                width={this.props.width}
+              />
             </div>
             <div className='columns'>
               <div className='column'>

@@ -72,16 +72,18 @@ export class ProductivityChart extends Component {
       },
       maintainAspectRatio: true
     };
-
-    if (this.props.productivity === []) {
+    console.log(this.props.productivity);
+    if (this.props.productivity.length === 0) {
+      return <div />;
+    } else {
       return (
-        <img
-          src={assetURL("/blocks-spinner.svg")}
-          style={{ objectFit: "contain", height: "200px", width: "200px" }}
+        <Line
+          data={data}
+          options={options}
+          width={this.props.width < 720 ? null : 1280}
+          height={380}
         />
       );
-    } else {
-      return <Line data={data} options={options} width={650} height={310} />;
     }
   }
 }

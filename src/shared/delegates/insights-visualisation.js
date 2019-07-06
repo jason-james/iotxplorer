@@ -79,20 +79,6 @@ export class BucketInfoTable extends Component {
       </nav>
     );
 
-    <nav class='level'>
-      <div class='level-left'>
-        <div class='level-item'>
-          <p>Buckets (Current Epoch)</p>
-        </div>
-      </div>
-
-      <div class='level-right'>
-        <a class='button is-primary is-outlined' onClick={this.export}>
-          <i class='fas fa-download' />
-        </a>
-      </div>
-    </nav>;
-
     var footer = `Total buckets: ${
       this.state.buckets.length
     }    Unique addresses: ${this.findUniqueAddresses(this.state.buckets)}`;
@@ -146,7 +132,6 @@ export class RewardsChart extends Component {
       data2.push((current.epochReward / 1e18).toFixed(0));
       data3.push((current.blockReward / 1e18).toFixed(0));
     });
-    console.log([data1, data2, data3]);
     return [data1.reverse(), data2.reverse(), data3.reverse()];
   };
 
@@ -159,19 +144,19 @@ export class RewardsChart extends Component {
           type: "line",
           data: this.formChartData(this.props.rewards)[0],
           fill: true,
-          backgroundColor: "rgba(255, 217, 0, 0.8)",
-          borderColor: "rgba(255, 217, 0, 1)",
-          pointBorderColor: "#fff",
-          pointBackgroundColor: "rgba(255, 217, 0, 1)"
+          backgroundColor: "rgba(0, 209, 178, 0.85)",
+          borderColor: "rgba(0, 209, 178, 1)",
+          pointBackgroundColor: "rgba(0, 209, 178, 1)",
+          pointBorderColor: "#fff"
         },
         {
           type: "line",
           label: "Epoch Bonus (⬡)",
           data: this.formChartData(this.props.rewards)[1],
           fill: true,
+
           backgroundColor: "rgba(54, 54, 54, 0.8)",
           borderColor: "rgba(54, 54, 54, 1)",
-          pointBorderColor: "#fff",
           pointBackgroundColor: "rgba(54, 54, 54, 0.2)",
           pointBorderColor: "#fff"
         },
@@ -180,11 +165,10 @@ export class RewardsChart extends Component {
           label: "Block Rewards (⬡)",
           data: this.formChartData(this.props.rewards)[2],
           fill: true,
-          backgroundColor: "rgba(0, 209, 178, 0.8)",
-          borderColor: "rgba(0, 209, 178, 1)",
+          backgroundColor: "rgb(115,251,224, 0.8)",
+          borderColor: "rgb(115,251,224)",
           pointBorderColor: "#fff",
-          pointBackgroundColor: "rgba(0, 209, 178, 1)",
-          pointBorderColor: "#fff"
+          pointBackgroundColor: "rgb(115,251,224)"
         }
       ]
     };
