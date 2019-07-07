@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Line } from "react-chartjs-2";
 import axios from "axios";
 import AnimateHeight from "../../lib/height-animate";
 import "babel-polyfill";
@@ -88,22 +89,72 @@ export class RewardsInfo extends Component {
 
   formChartData = data => {
     var toChart = this.average(data);
-    const axes = {
-      labels: [],
-      series: [[]]
-    };
-    // const toChart = data.slice(0, 8);
+
+    const yData = [];
+    const xData = [];
 
     toChart.forEach(current => {
       const date = new Date(current.timestamp * 1000).toDateString();
       const parsedDate = date.slice(3, -4);
-      axes.labels.push(parsedDate);
-      axes.series[0].push(current.rewards);
+      xData.push(parsedDate);
+      yData.push(current.rewards);
     });
-    // axes.labels = axes.labels.reverse();
-    // axes.series[0] = axes.series[0].reverse();
-    // axes.labels[7] = "";
-    return axes;
+
+    const data1 = {
+      datasets: [
+        {
+          label: "Rewards Per Payout (⬡)",
+          type: "line",
+          data: yData,
+          fill: true,
+          backgroundColor: "rgba(54, 54, 54, 0.2)",
+          borderColor: "rgba(54, 54, 54, 1)",
+          pointBorderColor: "#fff",
+          pointBackgroundColor: "rgba(54, 54, 54, 1)",
+          yAxisID: "y-axis-1"
+        }
+      ]
+    };
+
+    const options = {
+      responsive: true,
+      tooltips: {
+        mode: "label"
+      },
+      elements: {
+        line: {
+          fill: false
+        }
+      },
+      scales: {
+        xAxes: [
+          {
+            display: true,
+            gridLines: {
+              display: false
+            },
+            labels: xData
+          }
+        ],
+        yAxes: [
+          {
+            type: "linear",
+            display: true,
+            position: "left",
+            id: "y-axis-1",
+            gridLines: {
+              display: false
+            },
+            labels: {
+              show: true
+            }
+          }
+        ]
+      },
+      maintainAspectRatio: true
+    };
+
+    return [data1, options];
   };
 
   handleNextClick = e => {
@@ -132,17 +183,6 @@ export class RewardsInfo extends Component {
   };
 
   render() {
-    const type = "Line";
-    const options = {
-      low: 0,
-      high: this.findChartHigh(),
-      width: 840,
-      height: 368,
-      showArea: true,
-      fullWidth: true,
-      chartPadding: { right: 40 }
-    };
-
     const responsiveOptions = [
       [
         "screen and (max-width: 640px)",
@@ -153,7 +193,8 @@ export class RewardsInfo extends Component {
       ]
     ];
 
-    const data = this.formChartData(this.state.chartData);
+    const data = this.formChartData(this.state.chartData)[0];
+    const options = this.formChartData(this.state.chartData)[1];
 
     return (
       <section>
@@ -219,35 +260,14 @@ export class RewardsInfo extends Component {
                 className='column is-6 mobile-chartist'
                 style={{ paddingTop: "0px" }}
               >
-                <div className='panel' style={{ height: "425px" }}>
+                <div className='panel' style={{ height: "445px" }}>
                   <p className='panel-heading'>Rewards</p>
                   <div className='panel-block'>
-                    <ChartistGraph
+                    <Line
                       data={data}
                       options={options}
-                      responsiveOptions={responsiveOptions}
-                      type={type}
-                      // listener={{
-                      //   draw: function(data) {
-                      //     let Chartist = require("chartist");
-
-                      //     if (data.type === "line" || data.type === "area") {
-                      //       data.element.animate({
-                      //         d: {
-                      //           begin: 2000 * data.index,
-                      //           dur: 2000,
-                      //           from: data.path
-                      //             .clone()
-                      //             .scale(1, 0)
-                      //             .translate(0, data.chartRect.height())
-                      //             .stringify(),
-                      //           to: data.path.clone().stringify(),
-                      //           easing: Chartist.Svg.Easing.easeOutQuint
-                      //         }
-                      //       });
-                      //     }
-                      //   }
-                      // }}
+                      width={840}
+                      height={390}
                     />
                   </div>
                 </div>
