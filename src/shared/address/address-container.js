@@ -9,7 +9,8 @@ export const AddressContainer = connect(
     return {
       state: state.address,
       width: state.app.width,
-      price: state.nav.price
+      price: state.nav.price,
+      base: state.base
     };
   },
   dispatch => ({

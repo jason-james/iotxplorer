@@ -1,5 +1,6 @@
 import config from "config";
 import RpcMethod from "iotex-antenna/lib/rpc-method/node-rpc-method";
+import Antenna from "iotex-antenna";
 import { CoinMarketCap } from "./coin-market-cap";
 import { CrossChain } from "./cross-chains";
 import { CryptoCompare } from "./crypto-compare";
@@ -13,7 +14,6 @@ export function setGateways(server) {
   server.gateways.RpcMethod = new RpcMethod(
     server.config.gateways.iotexAntenna
   );
-
   server.gateways.crossChain = new CrossChain(config.get("chains"));
 
   server.gateways.iotexCore = server.gateways.iotxRpcMethods;

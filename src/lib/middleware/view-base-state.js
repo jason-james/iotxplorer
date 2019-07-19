@@ -1,13 +1,12 @@
 // @flow
-import deepExtend from 'deep-extend';
-import dotty from 'dotty';
-import type {Context} from 'koa';
+import deepExtend from "deep-extend";
+import dotty from "dotty";
+import type { Context } from "koa";
 
-import type {Server} from '../server';
+import type { Server } from "../server";
 
 export function viewBaseState(server: Server) {
-  return async(ctx: Context, next: () => Promise<void>) => {
-
+  return async (ctx: Context, next: () => Promise<void>) => {
     ctx.state.view = {
       base: {
         routePrefix: server.routePrefix(),
@@ -15,7 +14,10 @@ export function viewBaseState(server: Server) {
         analytics: server.config.analytics,
         csrfToken: ctx.csrf,
         iotexCore: server.config.gateways.iotexCore,
-      },
+        vitaTokens: server.config.vitaTokens,
+        defaultERC20Tokens: server.config.defaultERC20Tokens,
+        RpcMethod: server.gateways.RpcMethod
+      }
     };
 
     ctx.deepExtendState = function deepExtendState(newState) {

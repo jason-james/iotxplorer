@@ -1,6 +1,8 @@
 // @flow
 import { fromRau } from "iotex-client-js/dist/account/utils";
 import React, { Component } from "react";
+import { styled } from "styletron-react";
+import { getAntenna } from "../getAntenna";
 import { Helmet } from "react-helmet";
 import isBrowser from "is-browser";
 import jdenticon from "jdenticon";
@@ -10,6 +12,7 @@ import { publicKeyToAddress } from "iotex-antenna/lib/crypto/crypto";
 import window from "global/window";
 import { fromNow } from "../common/from-now";
 import { CommonMargin } from "../common/common-margin";
+import { ERC20Token as Token } from "../erc20/erc20Token";
 import type {
   TAddressDetails,
   TTransfer,
@@ -90,6 +93,7 @@ export class Address extends Component {
               fetchAccount={this.props.fetchAccount}
               fetchActionsByAddress={this.props.fetchActionsByAddress}
               width={this.props.width}
+              base={this.props.base}
             />
           </div>
           <CommonMargin />
@@ -98,6 +102,8 @@ export class Address extends Component {
     );
   }
 }
+
+const ACTIONS_PER_PAGE = 7;
 
 export class AddressSummary extends Component {
   props: {
@@ -153,11 +159,14 @@ export class AddressSummary extends Component {
 
   constructor(props: PropsType) {
     super(props);
+    this._isMounted = false;
     this.state = {
       fetchAccount: 0,
       fetchActions: 0,
       pageNumber: 1,
-      maxPages: null
+      maxPages: null,
+      tokenInfos: {},
+      fetchActionsByAddress: 0
     };
   }
 
@@ -168,93 +177,140 @@ export class AddressSummary extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
+
+    this.props.fetchAccount({ address: this.props.id });
     const fetchAccount = window.setInterval(() => {
       this.props.fetchAccount({ address: this.props.id });
-    }, 20000);
-    this.setState({ fetchAccount });
+    }, 1000);
+    this._isMounted && this.pollAccount();
 
-    setTimeout(
-      function() {
-        // Start the timer
-        this.props.fetchActionsByAddress({
-          address: this.props.id,
-          start:
-            this.props.state.account.numActions - 15 * this.state.pageNumber < 0
-              ? 0
-              : this.props.state.account.numActions -
-                15 * this.state.pageNumber,
-          count: 15
-        }); // After 1 second, set render to true
-      }.bind(this),
-      1000
-    );
+    window.setInterval(() => {
+      this._isMounted && this.pollAccount();
+    }, 10000);
+
+    const fetchActionsByAddress = window.setInterval(() => {
+      this.props.fetchActionsByAddress({
+        address: this.props.id,
+        start:
+          this.props.state.account.numActions -
+            ACTIONS_PER_PAGE * this.state.pageNumber <
+          0
+            ? 0
+            : this.props.state.account.numActions -
+              ACTIONS_PER_PAGE * this.state.pageNumber,
+        count: ACTIONS_PER_PAGE
+      });
+    }, 1000);
+
+    this.setState({ fetchAccount, fetchActionsByAddress });
+
+    // setTimeout(
+    //   function() {
+    //     // Start the timer
+    //     this.props.fetchActionsByAddress({
+    //       address: this.props.id,
+    //       start:
+    //         this.props.state.account.numActions - ACTIONS_PER_PAGE * this.state.pageNumber < 0
+    //           ? 0
+    //           : this.props.state.account.numActions -
+    //             ACTIONS_PER_PAGE * this.state.pageNumber,
+    //       count: ACTIONS_PER_PAGE
+    //     }); // After 1 second, set render to true
+    //   }.bind(this),
+    //   1000
+    // );
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
     window.clearInterval(this.state.fetchAccount);
+    window.clearInterval(this.state.fetchActionsByAddress);
   }
 
-  componentWillReceiveProps(nextProps: PropsType, nextContext: any) {
-    if (this.props.id !== nextProps.id) {
-      if (isBrowser) {
-        this.props.fetchAddressId({ id: nextProps.id });
-        this.props.fetchAddressVotersId({
-          id: nextProps.id,
-          offset: 0,
-          count: this.props.state.voters.count
-        });
-        this.props.fetchAddressTransfersId({
-          id: nextProps.id,
-          offset: 0,
-          count: this.props.state.transfers.count
-        });
-        this.props.fetchAddressExecutionsId({
-          id: nextProps.id,
-          offset: 0,
-          count: this.props.state.executions.count
-        });
-        this.props.fetchAddressSettleDepositsId({
-          id: nextProps.id,
-          offset: 0,
-          count: this.props.state.settleDeposits.count
-        });
-        this.props.fetchAddressCreateDepositsId({
-          id: nextProps.id,
-          offset: 0,
-          count: this.props.state.createDeposits.count
-        });
-      }
+  pollAccount = async () => {
+    window.clearTimeout(this.pollAccountInterval);
+    if (!this.props.id) {
+      return;
     }
-  }
+    await this.getTokensInfo();
+
+    this.pollAccountInterval = window.setTimeout(this.pollAccount, 1000);
+  };
+
+  getTokensInfo = async () => {
+    const { defaultERC20Tokens } = this.props.base;
+
+    let tokenAddresses = [];
+    tokenAddresses = [...defaultERC20Tokens, ...tokenAddresses];
+    const tokenInfos = await Promise.all(
+      tokenAddresses.map(addr =>
+        Token.getToken(addr, getAntenna().iotx).getInfo(this.props.id)
+      )
+    );
+    const newTokenInfos: ITokenInfoDict = {};
+    tokenInfos.forEach(info => {
+      if (info && info.symbol) {
+        newTokenInfos[info.tokenAddress] = info;
+      }
+    });
+    this._isMounted && this.setState({ tokenInfos: newTokenInfos.undefined });
+    // dispatch(setTokens(newTokenInfos));
+  };
 
   handlePrevClick = () => {
     if (this.state.pageNumber !== 1) {
-      this.setState({ pageNumber: this.state.pageNumber - 1 });
-      this.props.fetchActionsByAddress({
-        address: this.props.id,
-        start: this.props.state.account.numActions - 15 * this.state.pageNumber,
-        count: 15
+      this.setState({ pageNumber: this.state.pageNumber - 1 }, () => {
+        this.props.fetchActionsByAddress({
+          address: this.props.id,
+          start:
+            this.props.state.account.numActions -
+            ACTIONS_PER_PAGE * this.state.pageNumber,
+          count: ACTIONS_PER_PAGE
+        });
       });
     }
   };
 
   handleNextClick = () => {
     if (this.state.maxPages === null) {
-      this.setState({
-        maxPages: Math.ceil(this.props.state.account.numActions / 15)
-      });
-    }
-    if (this.state.pageNumber < this.state.maxPages) {
+      this.setState(
+        {
+          maxPages: Math.ceil(
+            this.props.state.account.numActions / ACTIONS_PER_PAGE
+          )
+        },
+        () => {
+          if (this.state.pageNumber < this.state.maxPages) {
+            this.setState({ pageNumber: this.state.pageNumber + 1 });
+
+            this.props.fetchActionsByAddress({
+              address: this.props.id,
+              start:
+                this.props.state.account.numActions -
+                  ACTIONS_PER_PAGE * this.state.pageNumber >
+                this.props.state.account.numActions
+                  ? this.props.state.account.numActions - ACTIONS_PER_PAGE
+                  : this.props.state.account.numActions -
+                    ACTIONS_PER_PAGE * this.state.pageNumber,
+              count: ACTIONS_PER_PAGE
+            });
+          }
+        }
+      );
+    } else if (this.state.pageNumber < this.state.maxPages) {
       this.setState({ pageNumber: this.state.pageNumber + 1 });
 
       this.props.fetchActionsByAddress({
         address: this.props.id,
         start:
-          this.props.state.account.numActions - 15 * this.state.pageNumber >
+          this.props.state.account.numActions -
+            ACTIONS_PER_PAGE * this.state.pageNumber >
           this.props.state.account.numActions
-            ? this.props.state.account.numActions - 15
-            : this.props.state.account.numActions - 15 * this.state.pageNumber,
-        count: 15
+            ? this.props.state.account.numActions - ACTIONS_PER_PAGE
+            : this.props.state.account.numActions -
+              ACTIONS_PER_PAGE * this.state.pageNumber,
+        count: ACTIONS_PER_PAGE
       });
     }
   };
@@ -370,6 +426,141 @@ export class AddressSummary extends Component {
       <div>
         <SingleItemTable subtitle={a.address || ""} rows={rows} />
         <br />
+        <div className='columns' style={{ marginTop: "-3em" }}>
+          <div className='column'>
+            <div
+              className='card'
+              style={{
+                color: "#ffffff",
+                backgroundColor: "#363636",
+                minHeight: "400px"
+              }}
+            >
+              <header className='card-header'>
+                <p
+                  className='card-header-title'
+                  style={{ color: "#ffffff", fontSize: "18px" }}
+                >
+                  Votes
+                </p>
+              </header>
+              <div className='card-content'>
+                <div
+                  className='has-text-centered is-centered'
+                  style={{ fontSize: "100px", marginTop: "50px" }}
+                >
+                  <span className='icon has-text-primary'>
+                    <i className='fab fa-linode' />
+                  </span>
+                  <div style={{ fontSize: "0.2em", marginTop: "-15px" }}>
+                    No Votes Available
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='column'>
+            <div
+              className='card'
+              style={{
+                color: "#ffffff",
+                backgroundColor: "#363636",
+                minHeight: "400px"
+              }}
+            >
+              {/* <header class='card-header'>
+                <p
+                  class='card-header-title'
+                  style={{ color: "#ffffff", fontSize: "18px" }}
+                >
+                  Tokens
+                </p>
+              </header> */}
+              <div className='card-content'>
+                <div className='content'>
+                  <div
+                    style={{
+                      marginBottom: "24px"
+                    }}
+                    // key={b.hash}
+                  >
+                    <div
+                      className='columns blocks-detail '
+                      style={{ marginBottom: "12px" }}
+                    >
+                      <BlockProdDataStyle className='column'>
+                        <div
+                          className='columns is-mobile is-vcentered'
+                          style={{ paddingLeft: "12px", paddingTop: "7px" }}
+                        >
+                          <div
+                            className='column is-1'
+                            style={{ color: "black" }}
+                          >
+                            <img src='https://static.wixstatic.com/media/efb9d3_d6595e1324dd473a9d91fd1ca1b3d668~mv2.png/v1/fill/w_34,h_34,al_c,q_80,usm_0.66_1.00_0.01/vita.webp' />
+                          </div>
+                          <div className='column'>
+                            <div
+                              className='columns subtitle is-6'
+                              style={{ color: "#363636", fontSize: "16px" }}
+                            >
+                              <Link
+                                to={`/address/${
+                                  this.state.tokenInfos.erc20TokenAddress
+                                }`}
+                              >
+                                {this.state.tokenInfos.name}
+                              </Link>
+                            </div>
+                            <div
+                              className='columns'
+                              style={{ color: "#00d1b2", fontSize: "14px" }}
+                            >
+                              XRC-20
+                            </div>
+                          </div>
+                          <div className='column'>
+                            <div
+                              className='columns subtitle is-6'
+                              style={{
+                                color: "#363636",
+                                fontSize: "16px",
+                                display: "block",
+                                textAlign: "right",
+                                paddingRight: "20px"
+                              }}
+                            >
+                              {this.state.tokenInfos.balanceString
+                                ? `${new Intl.NumberFormat("en-US", {
+                                    maximumFractionDigits: 1
+                                  }).format(
+                                    this.state.tokenInfos.balanceString
+                                  )} `
+                                : "... "}
+                              VITA
+                            </div>
+                            <div
+                              className='columns'
+                              style={{
+                                color: "#00d1b2",
+                                fontSize: "14px",
+                                display: "block",
+                                textAlign: "right",
+                                paddingRight: "20px"
+                              }}
+                            >
+                              $ 0.00
+                            </div>
+                          </div>
+                        </div>
+                      </BlockProdDataStyle>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className='bx--data-table-container'>
           <h1 className='title'>Transactions</h1>
           <table className='bx--data-table-v2' style={{ marginBottom: "0px" }}>
@@ -385,7 +576,6 @@ export class AddressSummary extends Component {
                 <th />
                 <th>To</th>
                 <th>Value</th>
-                <th>Data</th>
               </tr>
             </thead>
             <tbody>
@@ -406,13 +596,13 @@ export class AddressSummary extends Component {
                       to={`/blocks/${currentElement.blkHash}`}
                       className='link'
                     >
-                      {currentElement.blkHash.substr(0, 8)}..
+                      {currentElement.blkHeight}
                     </Link>
                   </td>
                   <td>{this.getActionType(currentElement)}</td>
                   <td>
-                    <Link
-                      to={`/address/${publicKeyToAddress(
+                    <a
+                      href={`/address/${publicKeyToAddress(
                         Buffer.from(currentElement.action.senderPubKey)
                       ).toString("Hex")}`}
                     >
@@ -422,7 +612,7 @@ export class AddressSummary extends Component {
                         .toString("Hex")
                         .substr(0, 14)}
                       ..
-                    </Link>
+                    </a>
                   </td>
                   <td>
                     {(() => {
@@ -443,16 +633,14 @@ export class AddressSummary extends Component {
                     })()}
                   </td>
                   <td>
-                    <Link
-                      to={`/address/${this.getAddress(currentElement)[0]}`}
+                    <a
+                      href={`/address/${this.getAddress(currentElement)[0]}`}
                       className='link'
                     >
                       {this.getAddress(currentElement)[1]}
-                    </Link>
+                    </a>
                   </td>
                   <td>{this.getAmount(currentElement)}</td>
-
-                  <td>{this.getPayload(currentElement).substr(0, 8)}</td>
                 </tr>
               ))}
             </tbody>
@@ -464,7 +652,7 @@ export class AddressSummary extends Component {
                   {!a.numActions
                     ? ""
                     : `Page ${this.state.pageNumber} of ${Math.ceil(
-                        a.numActions / 15
+                        a.numActions / ACTIONS_PER_PAGE
                       )}`}
                 </div>
               </div>
@@ -502,3 +690,21 @@ export class AddressSummary extends Component {
     );
   }
 }
+const BlockProdDataStyle = styled("div", props => ({
+  border: "1px solid #dadee6",
+  height: "70px",
+  background: "linear-gradient(135deg,#fff,#f2f6fb)",
+  marginBottom: "12px",
+  marginTop: "12px",
+  borderRadius: "4px"
+}));
+
+const BlockGasDataStyle = styled("div", props => ({
+  border: "1px solid #dadee6",
+  height: "70px",
+  background: "linear-gradient(135deg,#fff,#f2f6fb)",
+  marginBottom: "12px",
+  marginTop: "12px",
+  borderTopRightRadius: "4px",
+  borderBottomRightRadius: "4px"
+}));

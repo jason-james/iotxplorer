@@ -32,6 +32,14 @@ module.exports = {
   analytics: {
     googleTid: process.env.GOOGLE_TID || "UA-XXXXXXXXX-1"
   },
+  vitaTokens: [
+    "io1hp6y4eqr90j7tmul4w2wa8pm7wx462hq0mg4tw", // VITA Production
+    "io14j96vg9pkx28htpgt2jx0tf3v9etpg4j9h384m" // VITA Testnet
+  ],
+  defaultERC20Tokens: [
+    "io1hp6y4eqr90j7tmul4w2wa8pm7wx462hq0mg4tw",
+    "io14j96vg9pkx28htpgt2jx0tf3v9etpg4j9h384m"
+  ],
   chains: JSON.parse(
     process.env.CHAINS ||
       '[{"id":1,"name":"mainchain","url":"http://localhost:4004/"},{"id":2,"name":"subchain","url":"http://localhost:4005/"}]'
@@ -50,7 +58,10 @@ module.exports = {
       "https://unpkg.com/carbon-components/css/carbon-components.min.css"
     ],
     "frame-src": ["https://www.youtube.com/", "https://s.tradingview.com/"],
-    "connect-src": ["self"],
+    "connect-src": [
+      "self",
+      "https://iotexscan.io/iotex-core-proxy/iotexapi.APIService/ReadContract"
+    ],
     "child-src": ["self"],
     "font-src": [
       "self",
