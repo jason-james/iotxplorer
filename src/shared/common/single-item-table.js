@@ -5,6 +5,7 @@ import type { Row } from "../../entities/common-types";
 import { t } from "../../lib/iso-i18n";
 import QRCode from "qrcode.react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { assetURL } from "../../lib/asset-url";
 
 export class SingleItemTable extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ export class SingleItemTable extends Component {
                   >
                     <img
                       style={{ height: "23px" }}
-                      src='https://www.mintscan.io/static/media/qrcode.40bb8059.svg'
+                      src={assetURL("/qrcode.svg")}
                     />
                   </span>
                   {this.props.subtitle}
@@ -77,17 +78,31 @@ export class SingleItemTable extends Component {
 
                   <CopyToClipboard
                     text={this.props.subtitle}
-                    onCopy={() => this.setState({ copied: true })}
+                    onCopy={() => {
+                      this.setState({ copied: true }, () => {
+                        setTimeout(() => {
+                          this.setState({ copied: false });
+                        }, 1000);
+                      });
+                    }}
                   >
                     <span>
                       <i
                         style={{
                           marginLeft: "10px",
-                          cursor: "pointer",
-                          color: this.state.copied ? "white" : null
+                          cursor: "pointer"
                         }}
                         className='far fa-copy'
                       />
+                      <span
+                        style={{
+                          marginLeft: "5px",
+                          color: "white",
+                          visibility: this.state.copied ? "visible" : "hidden"
+                        }}
+                      >
+                        <i className='fas fa-check-circle is-light' />
+                      </span>
                     </span>
                   </CopyToClipboard>
                 </th>
