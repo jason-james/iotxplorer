@@ -95,7 +95,7 @@ export class App extends Component {
         />
         <NavContainer />
         <Breadcrumbs width={this.props.width} />
-        <div style={{ minHeight: "100vh", paddingTop: "50px" }}>{children}</div>
+        <div style={{ minHeight: "80vh", paddingTop: "50px" }}>{children}</div>
         <CookieConsentContainer
           content={t("other.cookie.content")}
           accept={t("other.cookie.accept")}

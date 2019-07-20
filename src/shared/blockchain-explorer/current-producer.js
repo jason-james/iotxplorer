@@ -11,6 +11,10 @@ export class CurrentProducer extends Component {
 
   // 3. Get the logo and website and iotex member page link from graph-ql comparing name from 2 with registeredName
 
+  secureLogo = logoURL => {
+    return "https:" + logoURL.split(":")[1];
+  };
+
   render() {
     var producerLogo = assetURL("/blocks-spinner.svg");
 
@@ -59,7 +63,7 @@ export class CurrentProducer extends Component {
         </div>
         <div className='has-text-centered'>
           <img
-            src={producerLogo}
+            src={this.secureLogo(producerLogo)}
             style={{ objectFit: "contain", height: "200px", width: "200px" }}
           />
         </div>

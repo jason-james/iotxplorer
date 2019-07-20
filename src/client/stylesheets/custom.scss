@@ -1,3 +1,14 @@
+.qr-wrapper {
+  background: linear-gradient(135deg, rgb(255, 255, 255), rgb(242, 246, 251));
+  padding: 5px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  max-width: 45px;
+  margin-right: 11px;
+}
+
 body .p-datatable .p-sortable-column .p-sortable-column-icon {
   color: #848484;
   display: none;
