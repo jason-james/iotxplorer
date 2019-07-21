@@ -319,7 +319,7 @@ export class BlockchainExplorer extends Component {
               {
                 name: "description",
                 content:
-                  "IoTeX network explorer and proud delegate #AlwaysAddValue"
+                  "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
               },
               {
                 property: "og:title",
@@ -328,7 +328,7 @@ export class BlockchainExplorer extends Component {
               {
                 property: "og:description",
                 content:
-                  "IoTeX network explorer and proud delegate #AlwaysAddValue"
+                  "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
               },
               {
                 property: "og:image",
@@ -349,7 +349,7 @@ export class BlockchainExplorer extends Component {
               {
                 name: "twitter:description",
                 content:
-                  "IoTeX network explorer and proud delegate #AlwaysAddValue"
+                  "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
               },
               {
                 name: "twitter:image",
@@ -454,7 +454,7 @@ export class BlockchainExplorer extends Component {
               {
                 name: "description",
                 content:
-                  "IoTeX network explorer and proud delegate #AlwaysAddValue"
+                  "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
               },
               {
                 property: "og:title",
@@ -463,7 +463,7 @@ export class BlockchainExplorer extends Component {
               {
                 property: "og:description",
                 content:
-                  "IoTeX network explorer and proud delegate #AlwaysAddValue"
+                  "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
               },
               {
                 property: "og:image",
@@ -484,7 +484,7 @@ export class BlockchainExplorer extends Component {
               {
                 name: "twitter:description",
                 content:
-                  "IoTeX network explorer and proud delegate #AlwaysAddValue"
+                  "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
               },
               {
                 name: "twitter:image",

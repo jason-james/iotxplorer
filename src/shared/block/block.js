@@ -77,6 +77,10 @@ export class Block extends Component {
             blockMeta={this.props.block.blockMeta[0]}
             fetchBlockMeta={this.props.fetchBlockMeta}
             width={this.props.width}
+            fetchbpCandidatesOnContract={this.props.fetchbpCandidatesOnContract}
+            fetchDelegateData={this.props.fetchDelegateData}
+            delegateData={this.props.delegateData}
+            consensus={this.props.consensus}
           />
         </div>
         <CommonMargin />
@@ -136,6 +140,9 @@ export class BlockSummary extends Component {
   }
 
   componentDidMount() {
+    this.props.fetchbpCandidatesOnContract();
+    this.props.fetchDelegateData();
+
     const fetchBlockExecutionsId = window.setInterval(
       () =>
         this.props.fetchBlockExecutionsId({
@@ -199,6 +206,26 @@ export class BlockSummary extends Component {
     }
   }
 
+  getCurrentProducer = (producerAddr, candidates) => {
+    if (candidates && this.props.delegateData) {
+      const newArray = candidates.filter(function(el) {
+        return el.ioOperatorAddr === producerAddr;
+      });
+
+      if (newArray !== [] && newArray[0]) {
+        const registeredName = newArray[0].name;
+
+        const prod = this.props.delegateData.filter(function(el) {
+          return el.registeredName === registeredName;
+        });
+
+        var producerName = prod[0].name;
+        var producerLogo = prod[0].logo;
+      }
+    }
+    return [producerName, producerLogo];
+  };
+
   // eslint-disable-next-line complexity
   render() {
     if (this.props.fetching) {
@@ -232,7 +259,12 @@ export class BlockSummary extends Component {
         c1: "Producer",
         c2: (
           <Link to={`/address/${blockMeta.producerAddress}`}>
-            {blockMeta.producerAddress}
+            {
+              this.getCurrentProducer(
+                blockMeta.producerAddress,
+                this.props.consensus.bpCandidatesOnContract
+              )[0]
+            }
           </Link>
         )
       }
