@@ -23,7 +23,7 @@ export class RewardsInfo extends Component {
   }
 
   fetchVoterHistory = async event => {
-    // event.preventDefault();
+    event.preventDefault();
     const url = `/api/getVoter/${this.state.address.toLowerCase()}?page=${
       this.state.pageNumber
     }`;
@@ -41,7 +41,7 @@ export class RewardsInfo extends Component {
   };
 
   fetchChartData = async event => {
-    // event.preventDefault();
+    event.preventDefault();
     const url = `/api/getVoter/${this.state.address.toLowerCase()}`;
     try {
       const response = await axios.get(url);
