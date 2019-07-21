@@ -23,7 +23,7 @@ export class RewardsInfo extends Component {
   }
 
   fetchVoterHistory = async event => {
-    event.preventDefault();
+    // event.preventDefault();
     const url = `/api/getVoter/${this.state.address.toLowerCase()}?page=${
       this.state.pageNumber
     }`;
@@ -41,7 +41,7 @@ export class RewardsInfo extends Component {
   };
 
   fetchChartData = async event => {
-    event.preventDefault();
+    // event.preventDefault();
     const url = `/api/getVoter/${this.state.address.toLowerCase()}`;
     try {
       const response = await axios.get(url);
@@ -105,7 +105,7 @@ export class RewardsInfo extends Component {
         {
           label: "Rewards Per Payout (⬡)",
           type: "line",
-          data: yData,
+          data: yData.slice(yData.length - 17, yData.length),
           fill: true,
           backgroundColor: "rgba(54, 54, 54, 0.2)",
           borderColor: "rgba(54, 54, 54, 1)",
@@ -133,7 +133,7 @@ export class RewardsInfo extends Component {
             gridLines: {
               display: false
             },
-            labels: xData
+            labels: xData.slice(xData.length - 17, xData.length)
           }
         ],
         yAxes: [
@@ -159,18 +159,30 @@ export class RewardsInfo extends Component {
 
   handleNextClick = e => {
     if (this.state.maxPages === null) {
-      this.setState({
-        maxPages: Math.ceil(this.state.tableContent.length / 8)
+      this.setState(
+        {
+          maxPages: Math.ceil(this.state.tableContent.length / 8)
+        },
+        () => {
+          if (this.state.pageNumber < this.state.maxPages) {
+            this.setState({ pageNumber: this.state.pageNumber + 1 }, () => {
+              this.fetchVoterHistory(e);
+            });
+          }
+        }
+      );
+    } else if (this.state.pageNumber < this.state.maxPages) {
+      this.setState({ pageNumber: this.state.pageNumber + 1 }, () => {
+        this.fetchVoterHistory(e);
       });
-    }
-    if (this.state.pageNumber <= this.state.maxPages) {
-      this.setState({ pageNumber: this.state.pageNumber + 1 });
     }
   };
 
   handlePrevClick = e => {
     if (this.state.pageNumber !== 1) {
-      this.setState({ pageNumber: this.state.pageNumber - 1 });
+      this.setState({ pageNumber: this.state.pageNumber - 1 }, () => {
+        this.fetchVoterHistory(e);
+      });
     }
   };
 
@@ -261,7 +273,7 @@ export class RewardsInfo extends Component {
                 style={{ paddingTop: "0px" }}
               >
                 <div className='panel' style={{ height: "445px" }}>
-                  <p className='panel-heading'>Rewards</p>
+                  <p className='panel-heading'>Rewards (60 days)</p>
                   <div className='panel-block'>
                     <Line
                       data={data}
@@ -312,7 +324,14 @@ export class RewardsInfo extends Component {
                     </table>
                   </div>
                   <footer className='card-footer' style={{ padding: "0.5rem" }}>
-                    <nav className='level' style={{ width: "641px" }}>
+                    <nav
+                      className='level'
+                      style={{
+                        width: "100%",
+                        paddingRight: "5px",
+                        paddingLeft: "5px"
+                      }}
+                    >
                       <div className='level-left'>
                         <div className='level-item'>
                           <nav
@@ -324,8 +343,6 @@ export class RewardsInfo extends Component {
                               className='pagination-previous'
                               onClick={e => {
                                 this.handlePrevClick(e);
-                                this.fetchVoterHistory(e);
-                                console.log(this.state.pageNumber);
                               }}
                             >
                               Previous
@@ -334,7 +351,6 @@ export class RewardsInfo extends Component {
                               className='pagination-next'
                               onClick={e => {
                                 this.handleNextClick(e);
-                                this.fetchVoterHistory(e);
                               }}
                             >
                               Next page

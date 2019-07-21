@@ -561,9 +561,15 @@ export class AddressSummary extends Component {
             </div>
           </div>
         </div>
-        <div className='bx--data-table-container'>
+        <div
+          className='bx--data-table-container'
+          style={{ overflow: "visible" }}
+        >
           <h1 className='title'>Transactions</h1>
-          <table className='bx--data-table-v2' style={{ marginBottom: "0px" }}>
+          <table
+            className='bx--data-table-v2'
+            style={{ marginBottom: "0px", overflow: "visible" }}
+          >
             <thead>
               <tr>
                 <th>
@@ -645,16 +651,35 @@ export class AddressSummary extends Component {
               ))}
             </tbody>
           </table>
-          <nav className='level' style={{ marginTop: "12px" }}>
+
+          <nav
+            className='level'
+            style={{
+              padding: "10px",
+              backgroundColor: "#363636",
+              color: "#ffffff",
+              width: "calc(100% - 1px)"
+            }}
+          >
             <div className='level-left'>
               <div className='level-item'>
-                <div>
+                <div style={{ marginRight: "65px" }}>
                   {!a.numActions
                     ? ""
                     : `Page ${this.state.pageNumber} of ${Math.ceil(
                         a.numActions / ACTIONS_PER_PAGE
                       )}`}
                 </div>
+              </div>
+            </div>
+
+            <div className='level-item'>
+              <div>
+                {!a.numActions
+                  ? ""
+                  : `${this.state.pageNumber * ACTIONS_PER_PAGE -
+                      (ACTIONS_PER_PAGE - 1)} - ${this.state.pageNumber *
+                      ACTIONS_PER_PAGE} of ${a.numActions} items`}
               </div>
             </div>
             <div className='level-right'>
