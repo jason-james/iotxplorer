@@ -2,6 +2,7 @@
 
 import config from "config";
 import axios from "axios";
+import crypto from "crypto";
 import type { Server } from "../lib/server";
 import { setBlockchainExplorerRoutes } from "../shared/blockchain-explorer/blockchain-explorer-handler";
 
@@ -51,6 +52,30 @@ export function setServerRoutes(server: Server) {
     ctx.setState("base.chainId", chainId);
     await next();
   });
+
+  // initWebhook(
+  //   process.env.TWITTER_ACCESS_TOKEN,
+  //   process.env.TWITTER_ACCESS_TOKEN_SECRET
+  // );
+
+  /**
+   * Creates a HMAC SHA-256 hash created from the app TOKEN and
+   * your app Consumer Secret.
+   * @param  token  the token provided by the incoming GET request
+   * @return string
+   */
+  server.get(
+    "get-challenge-response",
+    "/webhooks/twitter",
+    async (ctx, next) => {
+      hmac = crypto
+        .createHmac("sha256", process.env.TWITTER_CONSUMER_SECRET)
+        .update(ctx.query.crc_token)
+        .digest("base64");
+
+      return hmac;
+    }
+  );
 
   // Fetching from MongoDB
   server.get("get-voter", "/api/getVoter/:address", async (ctx, next) => {
