@@ -55,11 +55,11 @@ export function setServerRoutes(server: Server) {
     await next();
   });
 
-  // initWebhook(
-  //   process.env.TWITTER_ACCESS_TOKEN,
-  //   process.env.TWITTER_ACCESS_TOKEN_SECRET,
-  //   server
-  // );
+  initWebhook(
+    process.env.TWITTER_ACCESS_TOKEN,
+    process.env.TWITTER_ACCESS_TOKEN_SECRET,
+    server
+  );
 
   /**
    * Creates a HMAC SHA-256 hash created from the app TOKEN and

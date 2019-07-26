@@ -84,7 +84,7 @@ export async function set_tip_list(
 ) {
   /*
     Loop through the message starting after the tip amount and identify any users that were tagged for a tip.  Add the
-    user object to the users_to_tip dict to process the tips.
+    user object to the users_to_tip array to process the tips.
     */
   console.log(new Date().toLocaleString() + " : in set_tip_list");
   let tweet_array = tweet.text.split(" ");

@@ -45,7 +45,7 @@ export default async function initWebhook(
     });
 
     // Starts a server and adds a new webhook
-    await webhook.start();
+    await webhook.start("https://www.iotxplorer.io/twitter");
 
     // Subscribes to a user's activity
     await webhook.subscribe({ oauth_token, oauth_token_secret });
@@ -59,10 +59,9 @@ function handleDirectMessage(Twitter, event, server) {
     gateways: { RpcMethod }
   } = server;
   /*
-      Parse the DM, see if there is an action provided and perform it.
-      If no action is provided, reply with an error.
-      Each action spawns a child process that will handle the requested action and terminate after completion.
-      */
+  Parse the DM, see if there is an action provided and perform it.
+  If no action is provided, reply with an error.
+  */
   let dm_object = event["direct_message_events"][0];
   let message_object = get(dm_object, "message_create");
   // Get sender id
