@@ -173,6 +173,7 @@
     "styletron-react": "^5.1.3",
     "styletron-server": "^3.0.4",
     "twilio": "^3.29.1",
+    "twit": "^2.2.11",
     "twitter-autohook": "^1.0.5",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "unfetch": "^3.1.0",

@@ -4,6 +4,7 @@ import config from "config";
 import axios from "axios";
 import crypto from "crypto";
 import type { Server } from "../lib/server";
+import initWebhook from "../tip-bot/webhook";
 import { setBlockchainExplorerRoutes } from "../shared/blockchain-explorer/blockchain-explorer-handler";
 
 import { setAddressRoutes } from "../shared/address/address-handler";
@@ -26,6 +27,7 @@ import { setCalculatorsRoutes } from "../shared/staking-dashboard/calculators/st
 import { getDB } from "../database/db";
 import { setActionRoutes } from "../shared/action/action-handler";
 import { setJsonRpcRoutes } from "./json-rpc/json-rpc";
+import { handleWebhook } from "../tip-bot/webhook";
 
 // eslint-disable-next-line max-statements
 export function setServerRoutes(server: Server) {
@@ -55,7 +57,8 @@ export function setServerRoutes(server: Server) {
 
   // initWebhook(
   //   process.env.TWITTER_ACCESS_TOKEN,
-  //   process.env.TWITTER_ACCESS_TOKEN_SECRET
+  //   process.env.TWITTER_ACCESS_TOKEN_SECRET,
+  //   server
   // );
 
   /**
@@ -64,18 +67,32 @@ export function setServerRoutes(server: Server) {
    * @param  token  the token provided by the incoming GET request
    * @return string
    */
-  server.get(
-    "get-challenge-response",
-    "/webhooks/twitter",
-    async (ctx, next) => {
-      hmac = crypto
-        .createHmac("sha256", process.env.TWITTER_CONSUMER_SECRET)
-        .update(ctx.query.crc_token)
-        .digest("base64");
+  // server.get(
+  //   "get-challenge-response",
+  //   "/webhooks/twitter",
+  //   async (ctx, next) => {
+  //     const response_token = crypto
+  //       .createHmac("sha256", process.env.TWITTER_CONSUMER_SECRET)
+  //       .update(ctx.query.crc_token)
+  //       .digest("base64");
+  //     ctx.response.body = { response_token: "sha256=" + response_token };
+  //     console.log(ctx.response.body);
+  //   }
+  // );
 
-      return hmac;
-    }
-  );
+  // server.post("log-event", "/webhooks/twitter", async (ctx, next) => {
+  //   console.log(ctx.request.body);
+  // });
+
+  // server.post("webhook-event", "/webhooks/twitter", handleWebhook);
+
+  // server.get("addsub-callback", "/callbacks/addsub", (ctx, next) => {
+  //   ctx.response.body = { ok: true };
+  // });
+
+  // server.get("addsub-callback", "/callbacks/removesub", (ctx, next) => {
+  //   ctx.response.body = { ok: true };
+  // });
 
   // Fetching from MongoDB
   server.get("get-voter", "/api/getVoter/:address", async (ctx, next) => {
