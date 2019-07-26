@@ -45,7 +45,7 @@ export default async function initWebhook(
     });
 
     // Starts a server and adds a new webhook
-    await webhook.start("https://www.iotxplorer.io/twitter");
+    await webhook.start("http://www.iotxplorer.io/twitter/webhook");
 
     // Subscribes to a user's activity
     await webhook.subscribe({ oauth_token, oauth_token_secret });
