@@ -7,6 +7,6 @@ export function getAntenna(): Antenna {
   if (injectedWindow.antenna) {
     return injectedWindow.antenna;
   }
-  injectedWindow.antenna = new Antenna(`http://${process.env.IOTEX_CORE_URL}`);
+  injectedWindow.antenna = new Antenna(`https://iotexscan.io/iotex-core-proxy`);
   return injectedWindow.antenna;
 }
