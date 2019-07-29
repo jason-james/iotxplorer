@@ -92,14 +92,13 @@ export function setServerRoutes(server: Server) {
         .update(ctx.query.crc_token)
         .digest("base64");
       ctx.response.body = { response_token: "sha256=" + response_token };
-      // ctx.response.status = 200;
+      ctx.response.status = 200;
       console.log(ctx.response.body);
     }
   );
 
   server.post("log-event", "/webhooks/twitter", async (ctx, next) => {
     console.log("EVENT PAYLOAD", ctx.request.body);
-    console.log(ctx.response.body);
   });
 
   // server.post("webhook-event", "/webhooks/twitter", handleWebhook);
