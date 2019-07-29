@@ -28,6 +28,7 @@ import { getDB } from "../database/db";
 import { setActionRoutes } from "../shared/action/action-handler";
 import { setJsonRpcRoutes } from "./json-rpc/json-rpc";
 import { handleWebhook } from "../tip-bot/webhook";
+import Twit from "twit";
 
 // eslint-disable-next-line max-statements
 export function setServerRoutes(server: Server) {
@@ -55,6 +56,20 @@ export function setServerRoutes(server: Server) {
     await next();
   });
 
+  // var Twitter = new Twit({
+  //   consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  //   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  //   access_token: process.env.TWITTER_ACCESS_TOKEN,
+  //   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+  // });
+
+  // Twitter.get("account_activity/all/webhooks", (err, body, res) => {
+  //   if (err) {
+  //     console.log(err);
+  //   }
+  //   console.log(body);
+  // });
+
   // initWebhook(
   //   process.env.TWITTER_ACCESS_TOKEN,
   //   process.env.TWITTER_ACCESS_TOKEN_SECRET,
@@ -67,22 +82,23 @@ export function setServerRoutes(server: Server) {
    * @param  token  the token provided by the incoming GET request
    * @return string
    */
-  // server.get(
-  //   "get-challenge-response",
-  //   "/webhooks/twitter",
-  //   async (ctx, next) => {
-  //     const response_token = crypto
-  //       .createHmac("sha256", process.env.TWITTER_CONSUMER_SECRET)
-  //       .update(ctx.query.crc_token)
-  //       .digest("base64");
-  //     ctx.response.body = { response_token: "sha256=" + response_token };
-  //     console.log(ctx.response.body);
-  //   }
-  // );
 
-  // server.post("log-event", "/webhooks/twitter", async (ctx, next) => {
-  //   console.log(ctx.request.body);
-  // });
+  server.get(
+    "get-challenge-response",
+    "/webhooks/twitter",
+    async (ctx, next) => {
+      const response_token = crypto
+        .createHmac("sha256", process.env.TWITTER_CONSUMER_SECRET)
+        .update(ctx.query.crc_token)
+        .digest("base64");
+      ctx.response.body = { response_token: "sha256=" + response_token };
+      console.log(ctx.response.body);
+    }
+  );
+
+  server.post("log-event", "/webhooks/twitter", async (ctx, next) => {
+    console.log("EVENT PAYLOAD", ctx.request.body);
+  });
 
   // server.post("webhook-event", "/webhooks/twitter", handleWebhook);
 
