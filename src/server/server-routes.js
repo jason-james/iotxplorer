@@ -93,7 +93,7 @@ export function setServerRoutes(server: Server) {
         .digest("base64");
       ctx.response.body = { response_token: "sha256=" + response_token };
       ctx.response.status = 200;
-      console.log(ctx.response.body);
+      console.log(ctx.response);
     }
   );
 
