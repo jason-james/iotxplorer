@@ -76,7 +76,7 @@ export function setServerRoutes(server: Server) {
     server
   );
 
-  /**
+  /***
    * Creates a HMAC SHA-256 hash created from the app TOKEN and
    * your app Consumer Secret.
    * @param  token  the token provided by the incoming GET request
