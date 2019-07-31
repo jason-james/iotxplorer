@@ -56,19 +56,19 @@ export function setServerRoutes(server: Server) {
     await next();
   });
 
-  var Twitter = new Twit({
-    consumer_key: process.env.TWITTER_CONSUMER_KEY,
-    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-    access_token: process.env.TWITTER_ACCESS_TOKEN,
-    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-  });
+  // var Twitter = new Twit({
+  //   consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  //   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  //   access_token: process.env.TWITTER_ACCESS_TOKEN,
+  //   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+  // });
 
-  Twitter.get("account_activity/all/webhooks", (err, body, res) => {
-    if (err) {
-      console.log(err);
-    }
-    console.log(body.environments[0].webhooks);
-  });
+  // Twitter.get("account_activity/all/webhooks", (err, body, res) => {
+  //   if (err) {
+  //     console.log(err);
+  //   }
+  //   console.log(body.environments[0].webhooks);
+  // });
 
   initWebhook(
     process.env.TWITTER_ACCESS_TOKEN,
