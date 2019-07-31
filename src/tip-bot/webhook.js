@@ -25,6 +25,7 @@ export default async function initWebhook(
 
     server.post("log-event", "/webhooks/twitter", (ctx, next) => {
       let event = ctx.request.body;
+      console.log(event);
       if (event.hasOwnProperty("direct_message_events")) {
         // User sent a DM to the bot
         handleDirectMessage(Twitter, event, server);
