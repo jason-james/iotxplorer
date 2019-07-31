@@ -378,15 +378,15 @@ export function tip_error_message(language, screenName) {
   return message;
 }
 
-export function tip_success_message(language, screenName, address) {
+export function tip_success_message(language, screenName, hash) {
   let message;
 
   switch (language) {
     case "en":
-      message = `@${screenName} You have successfully sent a tip! To view all of your recent tips, visit https://www.iotxplorer.io/address/${address}`;
+      message = `@${screenName} You have successfully sent a tip! To track your action on the blockchain, visit https://www.iotxplorer.io/actions/${hash} (You may have to wait a few seconds for the action to register)`;
       break;
     default:
-      message = `@${screenName} You have successfully sent a tip! To view all of your recent tips, visit https://www.iotxplorer.io/address/${address}`;
+      message = `@${screenName} You have successfully sent a tip! To track your action on the blockchain, visit https://www.iotxplorer.io/actions/${hash} (You may have to wait a few seconds for the action to register)`;
   }
   return message;
 }

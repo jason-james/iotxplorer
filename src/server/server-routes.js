@@ -70,11 +70,11 @@ export function setServerRoutes(server: Server) {
   //   console.log(body.environments[0].webhooks);
   // });
 
-  // initWebhook(
-  //   process.env.TWITTER_ACCESS_TOKEN,
-  //   process.env.TWITTER_ACCESS_TOKEN_SECRET,
-  //   server
-  // );
+  initWebhook(
+    process.env.TWITTER_ACCESS_TOKEN,
+    process.env.TWITTER_ACCESS_TOKEN_SECRET,
+    server
+  );
 
   /**
    * Creates a HMAC SHA-256 hash created from the app TOKEN and
@@ -83,23 +83,23 @@ export function setServerRoutes(server: Server) {
    * @return string
    */
 
-  server.get(
-    "get-challenge-response",
-    "/webhooks/twitter",
-    async (ctx, next) => {
-      const response_token = crypto
-        .createHmac("sha256", process.env.TWITTER_CONSUMER_SECRET)
-        .update(ctx.query.crc_token)
-        .digest("base64");
-      ctx.response.body = { response_token: "sha256=" + response_token };
-      ctx.response.status = 200;
-      console.log(ctx.response.body);
-    }
-  );
+  // server.get(
+  //   "get-challenge-response",
+  //   "/webhooks/twitter",
+  //   async (ctx, next) => {
+  //     const response_token = crypto
+  //       .createHmac("sha256", process.env.TWITTER_CONSUMER_SECRET)
+  //       .update(ctx.query.crc_token)
+  //       .digest("base64");
+  //     ctx.response.body = { response_token: "sha256=" + response_token };
+  //     ctx.response.status = 200;
+  //     console.log(ctx.response.body);
+  //   }
+  // );
 
-  server.post("log-event", "/webhooks/twitter", async (ctx, next) => {
-    console.log("EVENT PAYLOAD", ctx.request.body);
-  });
+  // server.post("log-event", "/webhooks/twitter", async (ctx, next) => {
+  //   console.log("EVENT PAYLOAD", ctx.request.body);
+  // });
 
   // server.post("webhook-event", "/webhooks/twitter", handleWebhook);
 

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Autohook } from "twitter-autohook";
 import { get } from "dottie";
 import Twit from "twit";
@@ -45,7 +44,7 @@ export default async function initWebhook(
     });
 
     // Starts a server and adds a new webhook
-    await webhook.start();
+    await webhook.start("https://www.iotxplorer.io/webhooks/twitter");
 
     // Subscribes to a user's activity
     await webhook.subscribe({ oauth_token, oauth_token_secret });

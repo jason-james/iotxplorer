@@ -561,7 +561,7 @@ export async function send_tip(
               status: RESPONSES.tip_success_message(
                 "en",
                 screenName,
-                unlockedWallet.address
+                tweet["tip_hash"]
               ),
               in_reply_to_status_id: tweet["id"]
             },
