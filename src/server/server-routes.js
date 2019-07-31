@@ -87,6 +87,7 @@ export function setServerRoutes(server: Server) {
     "get-challenge-response",
     "/webhooks/twitter",
     async (ctx, next) => {
+      console.log(ctx.query.crc_token)
       const response_token = crypto
         .createHmac("sha256", process.env.TWITTER_CONSUMER_SECRET)
         .update(ctx.query.crc_token)
