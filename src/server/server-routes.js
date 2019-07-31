@@ -56,19 +56,19 @@ export function setServerRoutes(server: Server) {
     await next();
   });
 
-  // var Twitter = new Twit({
-  //   consumer_key: process.env.TWITTER_CONSUMER_KEY,
-  //   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-  //   access_token: process.env.TWITTER_ACCESS_TOKEN,
-  //   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-  // });
+  var Twitter = new Twit({
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token: process.env.TWITTER_ACCESS_TOKEN,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+  });
 
-  // Twitter.get("account_activity/all/webhooks", (err, body, res) => {
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  //   console.log(body.environments[0].webhooks);
-  // });
+  Twitter.get("account_activity/all/webhooks", (err, body, res) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(body.environments[0].webhooks);
+  });
 
   initWebhook(
     process.env.TWITTER_ACCESS_TOKEN,
@@ -83,33 +83,19 @@ export function setServerRoutes(server: Server) {
    * @return string
    */
 
-  // server.get(
-  //   "get-challenge-response",
-  //   "/webhooks/twitter",
-  //   async (ctx, next) => {
-  //     const response_token = crypto
-  //       .createHmac("sha256", process.env.TWITTER_CONSUMER_SECRET)
-  //       .update(ctx.query.crc_token)
-  //       .digest("base64");
-  //     ctx.response.body = { response_token: "sha256=" + response_token };
-  //     ctx.response.status = 200;
-  //     console.log(ctx.response.body);
-  //   }
-  // );
-
-  // server.post("log-event", "/webhooks/twitter", async (ctx, next) => {
-  //   console.log("EVENT PAYLOAD", ctx.request.body);
-  // });
-
-  // server.post("webhook-event", "/webhooks/twitter", handleWebhook);
-
-  // server.get("addsub-callback", "/callbacks/addsub", (ctx, next) => {
-  //   ctx.response.body = { ok: true };
-  // });
-
-  // server.get("addsub-callback", "/callbacks/removesub", (ctx, next) => {
-  //   ctx.response.body = { ok: true };
-  // });
+  server.get(
+    "get-challenge-response",
+    "/webhooks/twitter",
+    async (ctx, next) => {
+      const response_token = crypto
+        .createHmac("sha256", process.env.TWITTER_CONSUMER_SECRET)
+        .update(ctx.query.crc_token)
+        .digest("base64");
+      ctx.response.body = { response_token: "sha256=" + response_token };
+      ctx.response.status = 200;
+      console.log(ctx.response.body);
+    }
+  );
 
   // Fetching from MongoDB
   server.get("get-voter", "/api/getVoter/:address", async (ctx, next) => {

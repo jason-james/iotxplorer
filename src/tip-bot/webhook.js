@@ -21,13 +21,10 @@ export default async function initWebhook(
   });
 
   try {
-    const webhook = new Autohook();
-
-    // Removes existing webhooks
-    await webhook.removeWebhooks();
-
     // Listens to incoming activity
-    webhook.on("event", event => {
+
+    server.post("log-event", "/webhooks/twitter", (ctx, next) => {
+      let event = ctx.request.body;
       if (event.hasOwnProperty("direct_message_events")) {
         // User sent a DM to the bot
         handleDirectMessage(Twitter, event, server);
@@ -42,12 +39,6 @@ export default async function initWebhook(
         return 0;
       }
     });
-
-    // Starts a server and adds a new webhook
-    await webhook.start("https://www.iotxplorer.io/webhooks/twitter");
-
-    // Subscribes to a user's activity
-    await webhook.subscribe({ oauth_token, oauth_token_secret });
   } catch (e) {
     console.log(e);
   }
