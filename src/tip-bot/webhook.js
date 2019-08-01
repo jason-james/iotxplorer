@@ -172,6 +172,12 @@ function handleTweets(Twitter, event, server) {
 
   let tweet = {};
   tweet["text"] = tweet_object.text;
+
+  if (tweet_object.retweeted_status) {
+    console.log("Retweeted, ignoring");
+    tweet_object["id"] = null;
+  }
+
   if (tweet_object["id"] === null || tweet_object["id"] === undefined) {
     return 1;
   }
