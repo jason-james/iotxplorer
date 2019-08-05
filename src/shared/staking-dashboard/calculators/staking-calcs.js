@@ -36,7 +36,7 @@ export class Calculators extends Component {
     if (this.state.autostake === true) {
       iotxplorerVotes = votes;
       overallRedist =
-        (percent / 100) * 366667 * this.state.stakeDuration * 0.87;
+        (percent / 100) * 450000 * this.state.stakeDuration * 0.87;
 
       bonusVotes = Math.log(this.state.stakeDuration) / Math.log(1.2);
       effectiveVotes = this.state.stakeAmount * (1 + bonusVotes / 100);
@@ -51,7 +51,7 @@ export class Calculators extends Component {
       }
       iotxplorerVotes = votes;
       overallRedist =
-        (percent / 100) * 366667 * this.state.stakeDuration * 0.87;
+        (percent / 100) * 450000 * this.state.stakeDuration * 0.87;
 
       //sums up effective vote for every day in stake period and takes an average
       effectiveVotes =
@@ -139,8 +139,8 @@ export class Calculators extends Component {
               produced, on top of the regular block reward of 8 IOTX per block.
               In addition, all delegates placed in the Top 36 receieve a
               Foundation Bonus of 80 IOTX per epoch, and all delegates in the
-              Top 100 share an average Epoch Bonus of 366,667 IOTX per day
-              proportional to their vote percentage.{" "}
+              Top 100 share an Epoch Bonus of 450,000 IOTX per day proportional
+              to their vote percentage.{" "}
             </p>
             <br />
 
