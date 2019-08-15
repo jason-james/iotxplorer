@@ -479,10 +479,10 @@ export function giveaway_message(language, txHash) {
 
   switch (language) {
     case "en":
-      message = `We just sent you a 10 IOTX tip! Tx hash: https://www.iotxplorer.io/actions/${txHash}\n\nTo enter the giveaway, all you have to do is follow @iotxplorer and tip 5 different users at least 1 IOTX.`;
+      message = `We just sent you a 10 IOTX tip! Tx hash: https://www.iotxplorer.io/actions/${txHash}\n\nTo enter the giveaway, all you have to do is:\n\n 1) Follow @iotxplorer\n2) Retweet this tweet: \n 3) Tip 5 different users at least 1 IOTX\n\nThat's it!`;
       break;
     default:
-      message = `We just sent you a 10 IOTX tip! Tx hash: https://www.iotxplorer.io/actions/${txHash}\n\nTo enter the giveaway, all you have to do is follow @iotxplorer and tip 5 different users at least 1 IOTX.`;
+      message = `We just sent you a 10 IOTX tip! Tx hash: https://www.iotxplorer.io/actions/${txHash}\n\nTo enter the giveaway, all you have to do is:\n\n 1) Follow @iotxplorer\n2) Retweet this tweet: \n 3) Tip 5 different users at least 1 IOTX\n\nThat's it!`;
   }
   return message;
 }
@@ -492,10 +492,10 @@ export function giveaway_no_account_registered_message(language, txHash) {
 
   switch (language) {
     case "en":
-      message = `You didn't have an account with us yet so I registered one for you and sent you a 10 IOTX tip! Tx hash: https://www.iotxplorer.io/actions/${txHash}\n\nTo enter the giveaway, all you have to do is follow @iotxplorer and tip 5 different users at least 1 IOTX.`;
+      message = `You didn't have an account with us yet so I registered one for you and sent you a 10 IOTX tip! Tx hash: https://www.iotxplorer.io/actions/${txHash}\n\nTo enter the giveaway, all you have to do is:\n\n 1) Follow @iotxplorer\n2) Retweet this tweet: \n 3) Tip 5 different users at least 1 IOTX\n\nThat's it!`;
       break;
     default:
-      message = `You didn't have an account with us yet so I registered one for you and sent you a 10 IOTX tip! Tx hash: https://www.iotxplorer.io/actions/${txHash}\n\nTo enter the giveaway, all you have to do is follow @iotxplorer and tip 5 different users at least 1 IOTX.`;
+      message = `You didn't have an account with us yet so I registered one for you and sent you a 10 IOTX tip! Tx hash: https://www.iotxplorer.io/actions/${txHash}\n\nTo enter the giveaway, all you have to do is:\n\n 1) Follow @iotxplorer\n2) Retweet this tweet: \n 3) Tip 5 different users at least 1 IOTX\n\nThat's it!`;
   }
   return message;
 }
@@ -505,10 +505,10 @@ export function already_sent_giveaway_IOTX(language) {
 
   switch (language) {
     case "en":
-      message = `My records show that I've already sent you 10 IOTX. If this is a mistake, please contact my owner at t.me/iotxplorer`;
+      message = `My records show that I've already sent you 10 IOTX. If this is a mistake, please contact my owner on telegram or @iotxplorer t.me/iotxplorer\n\nTo enter the giveaway, all you have to do is:\n\n 1) Follow @iotxplorer\n2) Retweet this tweet: \n 3) Tip 5 different users at least 1 IOTX\n\nThat's it!`;
       break;
     default:
-      message = `My records show that I've already sent you 10 IOTX. If this is a mistake, please contact my owner at t.me/iotxplorer`;
+      message = `My records show that I've already sent you 10 IOTX. If this is a mistake, please contact my owner on telegram or @iotxplorer t.me/iotxplorer\n\nTo enter the giveaway, all you have to do is:\n\n 1) Follow @iotxplorer\n2) Retweet this tweet: \n 3) Tip 5 different users at least 1 IOTX\n\nThat's it!`;
   }
   return message;
 }

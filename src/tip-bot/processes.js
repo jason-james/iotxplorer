@@ -1029,7 +1029,7 @@ export async function giveaway_process(
     //User isn't registered yet
 
     // Register them
-    registerProcess(Twitter, userID, RESPONSES, screenName);
+    await registerProcess(Twitter, userID, RESPONSES, screenName);
 
     // Set enteredGiveaway = true in database
     const collection = await getDB()
