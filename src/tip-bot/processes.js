@@ -1031,17 +1031,13 @@ export async function giveaway_process(
     // Register them
     await registerProcess(Twitter, userID, RESPONSES, screenName);
 
+    // Get user
+    user = await getUserFromDB(userID);
+
     // Set enteredGiveaway = true in database
     const collection = await getDB()
       .db()
       .collection("TipUsers");
-
-    await collection.update(
-      {
-        screenName: { $eq: screenName }
-      },
-      { $set: { enteredGiveaway: true } }
-    );
 
     // Send 10 IOTX
 
@@ -1058,6 +1054,13 @@ export async function giveaway_process(
       gasLimit: GASLIMIT,
       gasPrice: GASPRICE
     });
+
+    await collection.update(
+      {
+        screenName: { $eq: screenName }
+      },
+      { $set: { enteredGiveaway: true } }
+    );
 
     // Send DM response
     data = {
