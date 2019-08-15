@@ -32,3 +32,7 @@ export const info_commands = {
 export const withdraw_commands = {
   en: ["!w", "!withdraw", "!withdrawal"]
 };
+
+export const giveaway_commands = {
+  en: ["!giveaway"]
+};

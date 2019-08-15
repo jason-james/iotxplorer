@@ -1006,3 +1006,169 @@ export async function withdraw_process(
     });
   }
 }
+
+export async function giveaway_process(
+  Twitter,
+  userID,
+  RESPONSES,
+  RpcMethod,
+  screenName,
+  registerProcess
+) {
+  /*
+  When the user sends !giveaway dm, register them if not registered and then send them 10 IOTX.
+  */
+
+  console.log(new Date().toLocaleString() + ": Going through giveaway process");
+  let data;
+  let user = await getUserFromDB(userID);
+  let tipHash;
+  const antenna = new Antenna(`http://${process.env.IOTEX_CORE_URL}`);
+
+  if (!user) {
+    //User isn't registered yet
+
+    // Register them
+    registerProcess(Twitter, userID, RESPONSES, screenName);
+
+    // Set enteredGiveaway = true in database
+    const collection = await getDB()
+      .db()
+      .collection("TipUsers");
+
+    await collection.update(
+      {
+        screenName: { $eq: screenName }
+      },
+      { $set: { enteredGiveaway: true } }
+    );
+
+    // Send 10 IOTX
+
+    console.log("unlocking wallet");
+    var unlockedWallet = await antenna.iotx.accounts.privateKeyToAccount(
+      process.env.giveawayAccountPrivateKey
+    );
+    console.log("sending 10 iotx");
+
+    tipHash = await antenna.iotx.sendTransfer({
+      from: unlockedWallet.address,
+      to: user.address,
+      value: toRau(10, "iotx"),
+      gasLimit: GASLIMIT,
+      gasPrice: GASPRICE
+    });
+
+    // Send DM response
+    data = {
+      event: {
+        type: "message_create",
+        message_create: {
+          target: { recipient_id: userID },
+          message_data: {
+            text: RESPONSES.giveaway_no_account_registered_message(
+              "en",
+              tipHash
+            )
+          }
+        }
+      }
+    };
+
+    Twitter.post("direct_messages/events/new", data, function(
+      err,
+      data,
+      response
+    ) {
+      if (err) {
+        console.log(err);
+      }
+    });
+    console.log(
+      new Date().toLocaleString() +
+        ": User does not have an account yet, notifying and sending giveaway IOTX."
+    );
+  } else {
+    //User is registered
+
+    if (user.enteredGiveaway) {
+      // User already entered, don't send anything.
+
+      // Send DM response
+      data = {
+        event: {
+          type: "message_create",
+          message_create: {
+            target: { recipient_id: userID },
+            message_data: {
+              text: RESPONSES.already_sent_giveaway_IOTX("en")
+            }
+          }
+        }
+      };
+
+      Twitter.post("direct_messages/events/new", data, function(
+        err,
+        data,
+        response
+      ) {
+        if (err) {
+          console.log(err);
+        }
+      });
+      console.log(
+        new Date().toLocaleString() +
+          ": User tried to enter giveaway more than once."
+      );
+    } else {
+      // Send 10 IOTX
+      console.log("unlocking wallet");
+      var unlockedWallet = await antenna.iotx.accounts.privateKeyToAccount(
+        process.env.giveawayAccountPrivateKey
+      );
+      console.log("sending 10 iotx");
+
+      tipHash = await antenna.iotx.sendTransfer({
+        from: unlockedWallet.address,
+        to: user.address,
+        value: toRau(10, "iotx"),
+        gasLimit: GASLIMIT,
+        gasPrice: GASPRICE
+      });
+
+      // Update that they've entered giveaway in DB
+      const collection = await getDB()
+        .db()
+        .collection("TipUsers");
+
+      await collection.update(
+        {
+          screenName: { $eq: screenName }
+        },
+        { $set: { enteredGiveaway: true } }
+      );
+      // Send DM response
+      data = {
+        event: {
+          type: "message_create",
+          message_create: {
+            target: { recipient_id: userID },
+            message_data: {
+              text: RESPONSES.giveaway_message("en", tipHash)
+            }
+          }
+        }
+      };
+      console.log(new Date().toLocaleString() + ": Send giveaway 10 IOTX");
+      Twitter.post("direct_messages/events/new", data, function(
+        err,
+        data,
+        response
+      ) {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+  }
+}

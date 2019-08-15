@@ -147,6 +147,17 @@ function handleDirectMessage(Twitter, event, server) {
         console.log(err);
       }
     });
+  } else if (
+    COMMANDS.giveaway_commands.en.includes(message_object.message_data.text)
+  ) {
+    PROCESSES.giveaway_process(
+      Twitter,
+      userID,
+      RESPONSES,
+      RpcMethod,
+      screenName,
+      PROCESSES.registerProcess
+    );
   }
 }
 
