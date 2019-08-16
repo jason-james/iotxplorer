@@ -180,10 +180,10 @@ export function not_a_number_text(language, screenName) {
 
   switch (language) {
     case "en":
-      message = `@${screenName} Looks like the value you entered to tip was not a number. You can try again using the format @iotxplorer_bot !tip 100 @username`;
+      message = `@${screenName} Looks like the value you entered to tip was not a number. You can try again using the format @iotxplorer_bot !tip 100 IOTX @username`;
       break;
     default:
-      message = `@${screenName} Looks like the value you entered to tip was not a number. You can try again using the format @iotxplorer_bot !tip 100 @username`;
+      message = `@${screenName} Looks like the value you entered to tip was not a number. You can try again using the format @iotxplorer_bot !tip 100 IOTX @username`;
   }
   return message;
 }
@@ -492,10 +492,10 @@ export function giveaway_no_account_registered_message(language, txHash) {
 
   switch (language) {
     case "en":
-      message = `You didn't have an account with us yet so I registered one for you and sent you a 10 IOTX tip! Tx: https://www.iotxplorer.io/actions/${txHash}\n\nTo have a chance at winning $100 worth of IOTX, all you have to do is:\n\n 1) Follow @iotxplorer \n2) Retweet this tweet: https://twitter.com/iotxplorer/status/1162145693634576385 \n 3) Tip 5 different users at least 1 IOTX\n\nThat's all!`;
+      message = `You didn't have an account with us yet so I registered one for you and sent you a 10 IOTX tip! Tx: https://www.iotxplorer.io/actions/${txHash}\n\nTo have a chance at winning $100 worth of IOTX, all you have to do is:\n\n 1) Follow @iotxplorer \n 2) Retweet this tweet: https://twitter.com/iotxplorer/status/1162145693634576385 \n 3) Tip 5 different users at least 1 IOTX\n\nThat's all!`;
       break;
     default:
-      message = `You didn't have an account with us yet so I registered one for you and sent you a 10 IOTX tip! Tx: https://www.iotxplorer.io/actions/${txHash}\n\nTo have a chance at winning $100 worth of IOTX, all you have to do is:\n\n 1) Follow @iotxplorer \n2) Retweet this tweet: https://twitter.com/iotxplorer/status/1162145693634576385 \n 3) Tip 5 different users at least 1 IOTX\n\nThat's all!`;
+      message = `You didn't have an account with us yet so I registered one for you and sent you a 10 IOTX tip! Tx: https://www.iotxplorer.io/actions/${txHash}\n\nTo have a chance at winning $100 worth of IOTX, all you have to do is:\n\n 1) Follow @iotxplorer \n 2) Retweet this tweet: https://twitter.com/iotxplorer/status/1162145693634576385 \n 3) Tip 5 different users at least 1 IOTX\n\nThat's all!`;
   }
   return message;
 }
@@ -505,10 +505,10 @@ export function already_sent_giveaway_IOTX(language) {
 
   switch (language) {
     case "en":
-      message = `My records show that I've already sent you 10 IOTX. If this is a mistake, please contact us on telegram at t.me/iotxplorer or @iotxplorer on Twitter. \n\nTo have a chance at winning $100 worth of IOTX, all you have to do is:\n\n 1) Follow @iotxplorer \n2) Retweet this tweet: https://twitter.com/iotxplorer/status/1162145693634576385 \n 3) Tip 5 different users at least 1 IOTX`;
+      message = `My records show that I've already sent you 10 IOTX. If this is a mistake, please contact us on telegram at t.me/iotxplorer or @iotxplorer on Twitter. \n\nTo have a chance at winning $100 worth of IOTX, all you have to do is:\n\n 1) Follow @iotxplorer \n 2) Retweet this tweet: https://twitter.com/iotxplorer/status/1162145693634576385 \n 3) Tip 5 different users at least 1 IOTX`;
       break;
     default:
-      message = `My records show that I've already sent you 10 IOTX. If this is a mistake, please contact us on telegram at t.me/iotxplorer or @iotxplorer on Twitter. \n\nTo have a chance at winning $100 worth of IOTX, all you have to do is:\n\n 1) Follow @iotxplorer \n2) Retweet this tweet: https://twitter.com/iotxplorer/status/1162145693634576385 \n 3) Tip 5 different users at least 1 IOTX`;
+      message = `My records show that I've already sent you 10 IOTX. If this is a mistake, please contact us on telegram at t.me/iotxplorer or @iotxplorer on Twitter. \n\nTo have a chance at winning $100 worth of IOTX, all you have to do is:\n\n 1) Follow @iotxplorer \n 2) Retweet this tweet: https://twitter.com/iotxplorer/status/1162145693634576385 \n 3) Tip 5 different users at least 1 IOTX`;
   }
   return message;
 }
