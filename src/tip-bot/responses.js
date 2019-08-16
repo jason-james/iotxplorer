@@ -102,10 +102,10 @@ export function balance_message(language, balance, address) {
 
   switch (language) {
     case "en":
-      message = `Balance: ${balance} IOTX.\n\nYou can see the full transaction history for your tip account at https://www.iotxplorer.io/address/${address}`;
+      message = `Balance: ${balance} IOTX.\n\nYou can see the full transaction history for your tip account on our blockchain explorer.`;
       break;
     default:
-      message = `Balance: ${balance} IOTX.\n\nYou can see the full transaction history for your tip account at https://www.iotxplorer.io/address/${address}`;
+      message = `Balance: ${balance} IOTX.\n\nYou can see the full transaction history for your tip account on our blockchain explorer.`;
   }
   return message;
 }
