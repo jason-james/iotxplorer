@@ -1,11 +1,9 @@
 // @flow
 
 import React, { Component } from "react";
-import { Link } from "react-router";
 import { Helmet } from "react-helmet";
 import window from "global";
 import { CommonMargin } from "../common/common-margin";
-import { PlasmaBall } from "../common/plasma-ball";
 import type { Error } from "../../entities/common-types";
 import type {
   TBlock,
@@ -14,21 +12,14 @@ import type {
   TVote
 } from "../../entities/explorer-types";
 import { t } from "../../lib/iso-i18n";
-import { SingleColTable } from "../common/single-col-table";
-import { BlocksList } from "../blocks/blocks";
-import { fetchConsensusMetrics } from "../consensus-metrics/consensus-metrics-actions";
 import type { TConsensusMetrics } from "../../entities/explorer-types";
-import { ToolTip } from "../common/tooltip";
 import type { TExecution } from "../../entities/explorer-types";
 import { TitleContainer } from "../common/iotex-explorer-title";
 import { assetURL } from "../../lib/asset-url";
-import { ChartistGraph } from "../chart-helper/chart-helper";
 import { Dashboard } from "./dashboard";
 import { SearchBar } from "./search-bar";
 import { Tabs } from "./tabs";
-import { Tab } from "./tab";
 import { MarketDashboard } from "./market-dashboard";
-import { LineChart } from "./line-chart";
 import { CurrentProducer } from "./current-producer";
 import { NewBlocksList } from "./new-blocks-list";
 import { NewActionsList } from "./new-actions-list";
@@ -70,7 +61,7 @@ export class BlockchainExplorer extends Component {
           count: 5
         });
       }
-    }, 500);
+    }, 1000);
 
     const fetchActionsByIndex = window.setInterval(() => {
       if (this.props.consensus.metrics.numActions) {
@@ -209,11 +200,16 @@ export class BlockchainExplorer extends Component {
       ];
     }
 
-    // Sets empty array return value to hold dashboard info. Dashboard is the info to the right of plasmaball
     const retval = [];
     if (!stats.electionStats) {
-      var percentStaked = 0;
-      var totalVotes = "Cannot Fetch";
+      [
+        {
+          title: "Blockchain Info",
+          subtitle: "Data could not be displayed",
+          icon: "fas fa-question-circle",
+          msg: "Reload the page and try again"
+        }
+      ];
     } else {
       var percentStaked =
         (parseFloat(stats.electionStats.totalVotedStakes) /
@@ -260,37 +256,6 @@ export class BlockchainExplorer extends Component {
   }
 
   renderContent() {
-    const type = "Line";
-    const options2 = {
-      width: 650,
-      height: 440,
-      showPoint: false,
-      showArea: true,
-      fullWidth: true,
-      axisY: {
-        labelInterpolationFnc: function skipLabels(value, index) {
-          return index % 2 === 0 ? `$${value.toFixed(4)}` : null;
-        }
-      }
-    };
-
-    const responsiveOptions = [
-      [
-        "screen and (max-width: 640px)",
-        {
-          width: 350,
-          height: 270
-        }
-      ],
-      [
-        "screen and (max-width: 2270px)",
-        {
-          width: 555,
-          height: 460
-        }
-      ]
-    ];
-
     const tabList = [
       {
         name: "Market"
@@ -300,97 +265,75 @@ export class BlockchainExplorer extends Component {
       }
     ];
 
-    const blocksTable = (
-      <BlocksList
-        blocks={this.props.consensus.blockMetas}
-        width={this.props.width}
-        tipBlockMeta={this.props.consensus.blockMetas}
-        allContractData={this.props.consensus.bpCandidatesOnContract}
-        memberInfo={this.props.delegateData}
-      />
-    );
-
-    if (this.state.activeTab === "Market") {
-      return (
-        <section>
-          <Helmet
-            title={"Iotxplorer: IoTeX Block Explorer"}
-            meta={[
-              {
-                name: "description",
-                content:
-                  "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
-              },
-              {
-                property: "og:title",
-                content: "Iotxplorer: IoTeX Block Explorer"
-              },
-              {
-                property: "og:description",
-                content:
-                  "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
-              },
-              {
-                property: "og:image",
-                content: `${assetURL("/meta-image-large.png")}`
-              },
-              {
-                name: "twitter:card",
-                content: "summary_large_image"
-              },
-              {
-                name: "twitter:site",
-                content: "@iotxplorer"
-              },
-              {
-                name: "twitter:title",
-                content: "Iotxplorer: IoTeX Block Explorer"
-              },
-              {
-                name: "twitter:description",
-                content:
-                  "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
-              },
-              {
-                name: "twitter:image",
-                content:
-                  "https://www.iotxplorer.io/homepage-meta-image-twitter.png"
-              }
-            ]}
-          />
-          <div
-            className='hero is-medium hero-bg-image'
-            style={{ padding: "0rem", margin: "0rem" }}
-          >
-            <div className='hero-body' style={{ paddingTop: "7rem" }}>
-              <div className='container'>
-                <TitleContainer />
-              </div>
-              <div className='container is-fluid'>
-                <SearchBar router={this.props.router} />
-              </div>
+    return (
+      <section>
+        <Helmet
+          title={"Iotxplorer: IoTeX Block Explorer"}
+          meta={[
+            {
+              name: "description",
+              content:
+                "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
+            },
+            {
+              property: "og:title",
+              content: "Iotxplorer: IoTeX Block Explorer"
+            },
+            {
+              property: "og:description",
+              content:
+                "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
+            },
+            {
+              property: "og:image",
+              content: `${assetURL("/meta-image-large.png")}`
+            },
+            {
+              name: "twitter:card",
+              content: "summary_large_image"
+            },
+            {
+              name: "twitter:site",
+              content: "@iotxplorer"
+            },
+            {
+              name: "twitter:title",
+              content: "Iotxplorer: IoTeX Block Explorer"
+            },
+            {
+              name: "twitter:description",
+              content:
+                "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
+            },
+            {
+              name: "twitter:image",
+              content:
+                "https://www.iotxplorer.io/homepage-meta-image-twitter.png"
+            }
+          ]}
+        />
+        <div
+          className='hero is-medium hero-bg-image'
+          style={{ padding: "0rem", margin: "0rem" }}
+        >
+          <div className='hero-body' style={{ paddingTop: "7rem" }}>
+            <div className='container'>
+              <TitleContainer />
+            </div>
+            <div className='container is-fluid'>
+              <SearchBar router={this.props.router} />
             </div>
           </div>
-          <div class='box cta'>
-            <p class='has-text-centered'>
-              <span class='tag is-primary' style={{ marginRight: "8px" }}>
-                New
-              </span>
-              Check out our <Link to='/delegates'>Delegate Insights</Link> page
-              to take a peek into your delegate's data and find out what you
-              should be earning. Includes productivity, total rewards, voter
-              buckets, and soon, you'll be able to track their rewards accuracy.
-            </p>
-          </div>
-          <div className='section' style={{ padding: "0px", margin: "0rem" }}>
-            <div className='container' style={{ marginTop: "42px" }}>
-              <div className='card homepage-card'>
-                <Tabs
-                  tabList={tabList}
-                  activeTab={this.state.activeTab}
-                  changeActiveTab={this.changeActiveTab.bind(this)}
-                />
-
+        </div>
+        <div className='section' style={{ padding: "0px", margin: "0rem" }}>
+          <div className='container' style={{ marginTop: "42px" }}>
+            <div className='card homepage-card'>
+              <Tabs
+                tabList={tabList}
+                activeTab={this.state.activeTab}
+                changeActiveTab={this.changeActiveTab.bind(this)}
+              />
+              {this.state.activeTab == "Market" ? (
                 <div className='card-content' style={{ paddingTop: "3px" }}>
                   <div className='column' style={{ padding: "0px" }}>
                     <div className='columns'>
@@ -412,120 +355,7 @@ export class BlockchainExplorer extends Component {
                     </div>
                   </div>
                 </div>
-              </div>
-              <CommonMargin />
-            </div>
-          </div>
-          <br />
-          <div
-            className='section'
-            style={{ padding: "24px", margin: "0rem", paddingTop: "0" }}
-          >
-            <div className='container'>
-              <div className='columns'>
-                <div className='column is-half'>
-                  <NewBlocksList
-                    blocks={this.props.consensus.blockMetas}
-                    tipBlockMeta={this.props.consensus.blockMetas}
-                    allContractData={
-                      this.props.consensus.bpCandidatesOnContract
-                    }
-                    memberInfo={this.props.delegateData}
-                    width={this.props.width}
-                  />
-                </div>
-                <div className='column is-half'>
-                  <NewActionsList
-                    actions={this.props.consensus.actions}
-                    width={this.props.width}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      );
-    } else {
-      return (
-        <section>
-          <Helmet
-            title={"Iotxplorer: IoTeX Block Explorer"}
-            meta={[
-              {
-                name: "description",
-                content:
-                  "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
-              },
-              {
-                property: "og:title",
-                content: "Iotxplorer: IoTeX Block Explorer"
-              },
-              {
-                property: "og:description",
-                content:
-                  "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
-              },
-              {
-                property: "og:image",
-                content: `${assetURL("/meta-image-large.png")}`
-              },
-              {
-                name: "twitter:card",
-                content: "summary_large_image"
-              },
-              {
-                name: "twitter:site",
-                content: "@iotxplorer"
-              },
-              {
-                name: "twitter:title",
-                content: "Iotxplorer: IoTeX Block Explorer"
-              },
-              {
-                name: "twitter:description",
-                content:
-                  "IoTeX blockchain explorer. Search addresses, actions and blocks. View delegate analytics, calculate your staking rewards, learn about IoT, IoTeX, blockchain and their intersection."
-              },
-              {
-                name: "twitter:image",
-                content:
-                  "https://www.iotxplorer.io/homepage-meta-image-twitter.png"
-              }
-            ]}
-          />
-          <div
-            className='hero is-medium hero-bg-image'
-            style={{ padding: "0rem", margin: "0rem" }}
-          >
-            <div className='hero-body' style={{ paddingTop: "7rem" }}>
-              <div className='container'>
-                <TitleContainer />
-              </div>
-              <div className='container is-fluid'>
-                <SearchBar router={this.props.router} />
-              </div>
-            </div>
-          </div>
-          <div class='box cta'>
-            <p class='has-text-centered'>
-              <span class='tag is-primary' style={{ marginRight: "8px" }}>
-                New
-              </span>
-              Check out our <Link to='/delegates'>Delegate Insights</Link> page
-              to take a peek into your delegate's data and find out what you
-              should be earning. Includes productivity, total rewards, voter
-              buckets, and soon, you'll be able to track their rewards accuracy.
-            </p>
-          </div>
-          <div className='section' style={{ padding: "0px", margin: "0rem" }}>
-            <div className='container' style={{ marginTop: "42px" }}>
-              <div className='card homepage-card'>
-                <Tabs
-                  tabList={tabList}
-                  activeTab={this.state.activeTab}
-                  changeActiveTab={this.changeActiveTab.bind(this)}
-                />
-
+              ) : (
                 <div className='card-content' style={{ paddingTop: "3px" }}>
                   <div className='column' style={{ padding: "0px" }}>
                     <div className='columns'>
@@ -550,40 +380,38 @@ export class BlockchainExplorer extends Component {
                     </div>
                   </div>
                 </div>
-              </div>
-              <CommonMargin />
+              )}
             </div>
+            <CommonMargin />
           </div>
-          <br />
-          <div
-            className='section'
-            style={{ padding: "24px", margin: "0rem", paddingTop: "0" }}
-          >
-            <div className='container'>
-              <div className='columns'>
-                <div className='column is-half'>
-                  <NewBlocksList
-                    blocks={this.props.consensus.blockMetas}
-                    tipBlockMeta={this.props.consensus.blockMetas}
-                    allContractData={
-                      this.props.consensus.bpCandidatesOnContract
-                    }
-                    memberInfo={this.props.delegateData}
-                    width={this.props.width}
-                  />
-                </div>
-                <div className='column is-half'>
-                  <NewActionsList
-                    actions={this.props.consensus.actions}
-                    width={this.props.width}
-                  />
-                </div>
+        </div>
+        <br />
+        <div
+          className='section'
+          style={{ padding: "24px", margin: "0rem", paddingTop: "0" }}
+        >
+          <div className='container'>
+            <div className='columns'>
+              <div className='column is-half'>
+                <NewBlocksList
+                  blocks={this.props.consensus.blockMetas}
+                  tipBlockMeta={this.props.consensus.blockMetas}
+                  allContractData={this.props.consensus.bpCandidatesOnContract}
+                  memberInfo={this.props.delegateData}
+                  width={this.props.width}
+                />
+              </div>
+              <div className='column is-half'>
+                <NewActionsList
+                  actions={this.props.consensus.actions}
+                  width={this.props.width}
+                />
               </div>
             </div>
           </div>
-        </section>
-      );
-    }
+        </div>
+      </section>
+    );
   }
 
   render() {

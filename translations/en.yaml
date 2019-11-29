@@ -144,11 +144,9 @@ votes.in: Vote received
 votes.error.get: Could not get votes
 "rolldpos:title": Roll-DPoS
 "rolldpos:msg": >-
-  A randomized delegated proof of stake algorithm, which inherits all the
+  IoTeX uses RDPoS, a randomized delegated proof of stake algorithm, which inherits all the
   advantages of the original DPoS consensus framework and further enhances its
-  capability in terms of decentralization as well as extensibility to complex
-  blockchain architectures. The colored dots represent the delegates, and the
-  flashing dot represents the selected producer.
+  capability in terms of decentralization and extensibility. Current Producer refers to the delegate mining the current block.
 breadcrumbs.home: home
 breadcrumbs.votes: votes
 breadcrumbs.transfers: transfers

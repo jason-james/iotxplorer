@@ -72,7 +72,6 @@ export class ProductivityChart extends Component {
       },
       maintainAspectRatio: true
     };
-    console.log(this.props.productivity);
     if (this.props.productivity.length === 0) {
       return <div />;
     } else {
