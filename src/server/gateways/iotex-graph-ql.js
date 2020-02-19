@@ -27,6 +27,9 @@ export class IotexGraphQL {
                   }
                 }
               `
+      },
+      headers: {
+        "x-iotex-client-id": "iotxplorer"
       }
     });
   }
@@ -44,6 +47,9 @@ export class IotexGraphQL {
                   }
                 }
               `
+      },
+      headers: {
+        "x-iotex-client-id": "iotxplorer"
       }
     });
   }
@@ -63,6 +69,9 @@ export class IotexGraphQL {
                   }
                 }
               `
+      },
+      headers: {
+        "x-iotex-client-id": "iotxplorer"
       }
     });
   }
@@ -80,6 +89,9 @@ export class IotexGraphQL {
                   }
                 }
               `
+      },
+      headers: {
+        "x-iotex-client-id": "iotxplorer"
       }
     });
   }
@@ -123,6 +135,9 @@ export class IotexGraphQL {
                       }
                   }
                   `
+      },
+      headers: {
+        "x-iotex-client-id": "iotxplorer"
       }
     });
   }

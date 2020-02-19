@@ -96,14 +96,14 @@ export class DelegateAnalytics extends Component {
                 />
               </div>
             </div>
-            <div className='columns'>
+            {/* <div className='columns'>
               <div className='column'>
                 <BucketInfoTable
                   bucketsInfo={this.props.bucketsInfo}
                   totalVotes={delegate.liveVotes}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

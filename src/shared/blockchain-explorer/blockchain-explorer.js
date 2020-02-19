@@ -201,7 +201,7 @@ export class BlockchainExplorer extends Component {
     }
 
     const retval = [];
-    if (!stats.electionStats) {
+    if (stats.electionStats == null) {
       [
         {
           title: "Blockchain Info",
