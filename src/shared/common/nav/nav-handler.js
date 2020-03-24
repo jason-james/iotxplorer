@@ -1,4 +1,4 @@
-import {NAV} from '../site-url';
+import { NAV } from "../site-url";
 
 export function formatBlockHistory(seconds) {
   if (seconds === 0) {
@@ -19,50 +19,78 @@ export function formatBlockHistory(seconds) {
 }
 
 export function setNavRoutes(server) {
-  const {gateways: {iotexCore, coinmarketcap}} = server;
+  const {
+    gateways: { iotexCore, cryptocompare }
+  } = server;
 
   async function getStatisticApi(ctx, next) {
     try {
       const statistic = await iotexCore.getCoinStatistic();
       const block1 = await iotexCore.getLastBlocksByRange(1, 1);
-      const latestBlock = await iotexCore.getLastBlocksByRange(statistic.height, 1);
+      const latestBlock = await iotexCore.getLastBlocksByRange(
+        statistic.height,
+        1
+      );
       statistic.bh = formatBlockHistory(
-        block1[0] && latestBlock[0] && latestBlock[0].height >= block1[0].height ?
-          latestBlock[0].timestamp - block1[0].timestamp : 0
+        block1[0] && latestBlock[0] && latestBlock[0].height >= block1[0].height
+          ? latestBlock[0].timestamp - block1[0].timestamp
+          : 0
       );
 
-      ctx.body = {ok: true, statistic};
+      ctx.body = { ok: true, statistic };
     } catch (error) {
-      ctx.body = {ok: false, error: {code: 'FAIL_GET_STATISTIC', message: 'nav.error.statistic'}};
+      ctx.body = {
+        ok: false,
+        error: { code: "FAIL_GET_STATISTIC", message: "nav.error.statistic" }
+      };
     }
   }
 
   async function getCoinPrice(ctx, next) {
     try {
-      const response = await coinmarketcap.fetchCoinPrice();
-      const d = response.data[0];
-      const price = {usd: d.price_usd, eth: d.price_eth, btc: d.price_btc};
-      ctx.body = {ok: true, price};
+      const response = await cryptocompare.fetchCoinPrice();
+      console.log(response.data);
+      const d = response.data;
+      const price = { usd: d.USD, eth: d.ETH, btc: parseFloat(d.BTC) };
+      ctx.body = { ok: true, price };
     } catch (error) {
-      ctx.body = {ok: false, error: {code: 'FAIL_GET_COIN_PRICE', message: 'nav.error.coin'}};
+      ctx.body = {
+        ok: false,
+        error: { code: "FAIL_GET_COIN_PRICE", message: "nav.error.coin" }
+      };
     }
   }
 
   async function getBlockOrActionByHash(ctx, next) {
     try {
-      const result = await iotexCore.getBlockOrActionByHash(ctx.request.body.hashStr);
+      const result = await iotexCore.getBlockOrActionByHash(
+        ctx.request.body.hashStr
+      );
 
       if (result.execution || result.block || result.transfer || result.vote) {
-        ctx.body = {ok: true, result};
+        ctx.body = { ok: true, result };
       } else {
-        ctx.body = {ok: false, error: {code: 'FAIL_FUZZY_SEARCH', message: 'nav.fuzzy.search.not.found'}};
+        ctx.body = {
+          ok: false,
+          error: {
+            code: "FAIL_FUZZY_SEARCH",
+            message: "nav.fuzzy.search.not.found"
+          }
+        };
       }
     } catch (error) {
-      ctx.body = {ok: false, error: {code: 'FAIL_FUZZY_SEARCH', message: 'error.unknown'}};
+      ctx.body = {
+        ok: false,
+        error: { code: "FAIL_FUZZY_SEARCH", message: "error.unknown" }
+      };
     }
   }
 
-  server.post('getStatistic', NAV.STATISTIC, getStatisticApi);
-  server.post('getCoinPrice', NAV.PRICE, getCoinPrice);
-  server.post('getBlockOrActionByHash', NAV.FUZZY_SEARCH, getBlockOrActionByHash);
+  server.post("getStatistic", NAV.STATISTIC, getStatisticApi);
+  server.post("getCoinPrice", NAV.PRICE, getCoinPrice);
+  server.post(
+    "getBlockOrActionByHash",
+    NAV.FUZZY_SEARCH,
+    getBlockOrActionByHash
+  );
 }
