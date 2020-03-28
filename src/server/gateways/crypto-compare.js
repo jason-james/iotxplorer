@@ -13,4 +13,11 @@ export class CryptoCompare {
       "https://min-api.cryptocompare.com/data/price?fsym=IOTX&tsyms=BTC,USD,ETH";
     return axios.get(url);
   }
+
+  fetchMarketStats() {
+    // there are usd, btc and eth prices
+    const url =
+      "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=IOTX&tsyms=USD";
+    return axios.get(url);
+  }
 }

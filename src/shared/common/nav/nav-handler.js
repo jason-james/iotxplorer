@@ -49,7 +49,6 @@ export function setNavRoutes(server) {
   async function getCoinPrice(ctx, next) {
     try {
       const response = await cryptocompare.fetchCoinPrice();
-      console.log(response.data);
       const d = response.data;
       const price = { usd: d.USD, eth: d.ETH, btc: parseFloat(d.BTC) };
       ctx.body = { ok: true, price };

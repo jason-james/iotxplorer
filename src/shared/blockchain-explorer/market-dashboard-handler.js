@@ -2,23 +2,23 @@ import { DASHBOARD } from "../common/site-url";
 
 export function setMarketDashboardRoutes(server) {
   const {
-    gateways: { coinmarketcap }
+    gateways: { cryptocompare }
   } = server;
 
   async function getMarketData(ctx, next) {
     try {
-      const response = await coinmarketcap.fetchMarketData();
-      const d = response.data.data.IOTX;
+      const response = await cryptocompare.fetchMarketStats();
+      const d = response.data;
       const marketData = {
         marketCap: new Intl.NumberFormat("en-US", {
           maximumFractionDigits: 1
-        }).format(d.quote.USD.market_cap),
+        }).format(5399999890 * d.RAW.IOTX.USD.PRICE),
         supply: new Intl.NumberFormat("en-US", {
           maximumFractionDigits: 0
-        }).format(d.circulating_supply),
+        }).format(5399999890),
         volume: new Intl.NumberFormat("en-US", {
           maximumFractionDigits: 0
-        }).format(d.quote.USD.volume_24h)
+        }).format(d.RAW.IOTX.USD.TOTALVOLUME24HTO)
       };
 
       ctx.body = { ok: true, marketData };
