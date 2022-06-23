@@ -200,7 +200,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-util": "^3.0.8",
     "inferno-test-utils": "^3.10.1",
-    "jsdom": "11.5.1",
+    "jsdom": "16.5.0",
     "jsdom-global": "3.0.2",
     "nyc": "^11.9.0",
     "webpack": "^4.29.6",
